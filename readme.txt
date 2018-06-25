@@ -19,4 +19,8 @@ zaibiaoji
 
 dev
 
+<<<<<<< HEAD
 master
+=======
+wanghui
+>>>>>>> wanghui
