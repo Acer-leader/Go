@@ -1,0 +1,91 @@
+<include file="Public:head"/>
+
+
+<body>
+
+<!--head --> 
+<div class="head_box" style=" background:#4a89db">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">申请贷款</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+
+
+
+<div class="warpper_box">
+
+<div class="yanzhengtip">
+验证码已发送至您的手机号
+<h3>{$data.tel|msubstr=0,3,'utf-8',false}********</h3>
+</div>
+<div class="shoujihao">
+<div class="shoujihao_l">验证码</div>
+<div class="shoujihao_r">
+<input  onFocus="this.value = '';" id="code1" onBlur="if (this.value == '') {this.value = '请输入验证码';}"  value="请输入验证码"  type="text" >
+</div>
+<div class="clear"></div>
+</div>
+<div class="shoujihao_btn">
+<a href="javascript:void(0);" id="Codelogin">立即申请</a>
+</div>
+</div>
+
+
+
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+<div class="loading"></div>
+<div class="sccg sccg01">
+    <div style="margin-top:15px;"><i class="fa fa-spinner fa-pulse fa-2x" style=" color:#fff"></i></div>
+    <p style="color:#fff;font-family:微软雅黑">等待中...</p>
+</div>
+</body>
+<script>
+		
+
+$(document).ready(function (){
+$('#Codelogin').click(function(){
+       // var telephone    = $('.tel').val();
+        //var verify_code  = $('.verify_code1').val();
+        var code         = $('#code1').val();
+
+        
+        if(code==''||code=='请输入验证码'){
+            alert('请输入短信验证码');return;
+        }
+        $.ajax({
+            url:"__HOST__/Apply/daikuando1",
+            data:{
+                //telephone:telephone,
+                //verify_code:verify_code,
+                code:code,
+            },
+            beforeSend:function(){
+                  $('.loading').show();
+                  $('.sccg01').stop().fadeIn(10);
+            },
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                $('.loading').hide();
+                $('.sccg01').stop().fadeOut();
+                if(data.status){
+                   dialog.showTips("提交成功","",'__HOST__/Apply/sqdaikuan2')
+                }else{
+                  dialog.showTips(data.info,"warn");return false;                  
+                }
+            }
+        })
+    })
+})
+
+</script>
+</html>

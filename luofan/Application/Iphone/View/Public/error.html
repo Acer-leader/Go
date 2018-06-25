@@ -1,0 +1,21 @@
+<include file="Public:header" />
+<body style="min-width:1190px">
+<include file="Public:top" /> <include file="Public:menu" />
+<link rel="stylesheet" href="__CSS__/index2.css">
+<div class="zhuc_cg">
+  <div class="container">
+    <div class="zhuc_cg1"> <img style="top:70px;" src="__IMAGES__/error.png" width="90">
+      <h5 style="font-size:20px; font-weight:600;">{$error_msg}</h5>
+      <h5>请检查您输入的网址或者数据是否正确。</h5>
+      <h5>您可以回到<a href="javaScript:;" onClick="window.history.back();">之前页面</a>或者<a href="{:U('Index/index')}">首页</a></h5>
+    </div>
+  </div>
+</div>
+<!--  / login  --> 
+<include file="Public:footer" /> 
+<!---navshow----> 
+<!--navshow--> 
+<include file="Public:right" /> 
+<script language="javascript" src="__JS__/index.js"></script>
+</body>
+</html>

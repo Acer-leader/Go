@@ -1,0 +1,112 @@
+<include file="Public:header" />
+</head>
+<body>
+
+<include file="Public:head" />
+<!-- ========================================== -->
+ 
+<!--  / warpper  -->
+<div class="warpper">
+    <div class="newslist_box newslist_box2">
+    	<div class="index_container">
+        	<div class="newslist2_left">
+                <div class="common_tit1" style="border-bottom:0;">
+                    <span>常见问题</span>
+                </div>
+                
+                <ul class="newslist2_list">
+				<foreach name='prolist' item='vo'>
+                	<li>
+                        <div class="newslist2_wz">
+                        	<a href="{:U('index/answer','id='.$vo['id'])}">
+                        		<h3>{$vo.title}</h3>
+                            </a>
+                            <h4><notempty name="$news['add_time']">时间：{$news['edit_time']|date="Y-m-d H:i:s",###}</notempty></h4>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+				</foreach>
+                </ul>
+            </div>
+            	
+            </div>
+        	<div class="clear"></div>
+        </div>
+    </div>
+
+</div>
+<!--  / warpper  -->
+
+<!-- ========================================== -->
+<include file="Public:right" />
+<include file="Public:footer" />
+<!-- ========================================== -->
+
+</body>
+<script>
+
+var mySwiper1 = new Swiper('.swiper1',{
+		pagination : '.pagination1',
+		loop:true,
+		autoplay:5000,
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 4,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.fangdai_lt').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.fangdai_rt').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+</script>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+	$(window).load(function(){
+		$(".swiper1").height($(".swiper1 img ").height());
+		$('.swiper2').height($('.swiper2 img').height()+60)
+		
+	})
+	$(window).resize(function(){
+        $(".swiper1").height($(".swiper1 img ").height());
+		$('.swiper2').height($('.swiper2 img').height()+60)
+	});
+
+	
+})	
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})	
+</script>
+
+</html>

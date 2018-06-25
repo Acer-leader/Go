@@ -1,0 +1,67 @@
+<include file="Public:head"/>
+<link href="__CSS__/fx.css" type="text/css"  rel="stylesheet" />
+
+<style>
+body,html{
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<body style="background:url(__IMAGES__/rigister_bg.jpg) no-repeat center center; background-size:cover;">
+
+	<div class="register">
+    	<h2>代理商登录</h2>
+        
+        
+        <div class="register_input">
+        	<input onfocus="this.placeholder = '';" onblur="this.placeholder = '手机号';" class="tab1_shouji telephone" placeholder="手机号" type="text" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+        </div>
+        <div class="register_input">
+        	<input onfocus="this.placeholder = '';" onblur="this.placeholder = '输入密码';" placeholder="输入密码" type="password" class="tab1_password password">
+        </div>
+        
+        <div class="register_input register_input_btn">
+        	<a href="javascript:void(0);"><input type="button" value="确认登录" class="login_btn" id="logins"/></a>
+            <h6>没有账号？ <a href="__HOST__/Login/register">立即注册</a></h6>
+        </div>        
+        
+    </div>
+
+</body>
+<include file="Public:RegLoginCom"/>
+<script>		
+$(document).ready(function (){
+  $('#logins').click(function(){
+      var telephone = $('.telephone').val();
+        var password  = $('.password').val();
+        if(!telephone){
+            alert('请输入你的手机号');return;
+        }
+        if(!telephone.match(/^1[35789][0-9]{9}$/)){
+            alert('手机号码格式错误!');return;
+        }
+        if(!password){
+            alert('请输入密码');return;
+        }
+        $.ajax({
+            url:"{:U('Iphone/Login/doLogin')}",
+            data:{
+                telephone:telephone,
+                password:password,
+            },
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status){
+                    dialog.showTips(data.info,"",data.url);
+                    //window.location.href=data.url;
+                }else{
+                  dialog.showTips(data.info,"warn");return false;                  
+                }
+            }
+        })
+    })
+})
+</script>
+</html>

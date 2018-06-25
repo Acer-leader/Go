@@ -1,0 +1,313 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+<style>
+    .imgnav{
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .imgwrapper{
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .imgwrapper img{
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border:0;
+    }
+    .spanpd10{
+        margin:10px;
+    }
+    .wxtables.wxtables-sku.newtable{
+        width: 40%;
+        margin: 0;
+    }
+    .img-list li{
+        width: 60px;
+        height:60px;
+    }
+    .cst_h3 span{font-weight: normal;}
+    #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+    .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+    .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+    #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+    #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+    #xuanze2:hover{ background:#E6E6E6; }
+    .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+.formitems .fi-name{
+  width:300px !important;
+}
+    </style>
+<div class="container">
+  <div class="inner clearfix">
+  <include file="Public:left" />
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">配置详情</h1>
+      <form aciton="{:U('/Admin/Service/editService')}" enctype="multipart/form-data" method="post" id="editMember" onsubmit="sub">
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">基本信息</h3>
+
+          <!--<div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>id：</label>
+            <div class="form-controls">
+              <input type="text" class="input" value="{$cache.id}" readonly="readonly" >
+              <input type="hidden" class="input" name="id" value="{$cache.id}">
+          </div>-->
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>微信头部搜索背景字：</label>
+            <div class="form-controls">
+              <input type="text" class="input" name="tl1" value="{$res.tl1}" placeholder="毛巾，行李箱，背包">
+          </div>
+
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>积分管理-注册积分：</label>
+            <div class="form-controls">
+              <input type="text" class="input" name="tl2" value="{$res.tl2}"  >
+          </div>
+
+
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>积分管理-关注商城积分：</label>
+            <div class="form-controls">
+              <input type="text" class="input" name="tl3" value="{$res.tl3}"  >
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>积分管理-分享积分：</label>
+            <div class="form-controls">
+              <input type="text" class="input" name="tl4" value="{$res.tl4}"  >
+          </div>
+
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>积分管理-推荐注册积分：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.key1}"  name="key1" placeholder="" />
+                </div>
+            </div>
+
+             <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>积分管理-购买商品积分（1元=？积分）：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.key3}"  name="key3" placeholder="(1元=1积分,1元=3积分)" />
+                    <span style="color: #aaafff">直接填写多少积分,例：1</span>
+                </div>
+            </div>
+            
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>积分管理-签到：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.key2}"  name="key2" placeholder="" />
+                </div>
+            </div>
+
+             <!-- <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>PC首页搜索关键字4：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.key4}"  name="key4" placeholder="" />
+                </div>
+            </div>
+             <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>PC首页搜索关键字5：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.key5}"  name="key5" placeholder="" />
+                </div>
+            </div>
+
+             <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>PC首页预约标题1：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.theme1}"  name="theme1" placeholder="" />
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>PC首页预约标题2：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.theme2}"  name="theme2" placeholder="" />
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>PC首页预约标题3：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.theme3}"  name="theme3" placeholder="" />
+                </div>
+            </div> -->
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>客服QQ：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.qq_num}"  name="qq_num" placeholder="">
+                    <!-- <span style="color: #aaafff">请按格式填写</span> -->
+                </div>
+            </div>
+
+
+             <!-- <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>VIP返佣金比例设置：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.return_price}"  name="return_price" placeholder="10%"/>
+                    <span style="color: #aaafff">%,请输入数字,将会转换成百分比</span>
+                </div>
+            </div> -->
+
+
+
+
+    <!-- <div  class="formitems" style="width:100%;">
+            <label class="fi-name">微信退换服务内容：</label>
+            <div class="form-controls pdt3"><br>
+            <script id="editor" name="detail" type="text/plain" style="width:200px;height:500px;">{$res.detail|htmlspecialchars_decode|stripslashes}</script>
+           </div>
+        </div>
+
+
+             <div class="formitems">
+                <label class="fi-name">微信二维码：</label>
+                <div class="form-controls pdt5 j-imglistPanel">
+                    <div class="xuanze_showimge fl mgr10">
+                    <img src="{$res['weixin_code']}" width="300">
+                  </div>
+                    <div class="btnimage fl">选择图片
+                        <input type="file"  accept="image/jpg,image/jpeg,image/png" name="serial" id="xuanze" class="file" >
+                    </div>
+                    <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" /><span class="xuanze_percent">80%</span></div>
+                    <span class="fi-help-text fl lh30 mgl10">建议大小（宽300高60）</span>
+                </div>
+            </div> -->
+
+<!--
+             <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>微信二维码：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" value="{$res.weixin_code}"  name="weixin_code" placeholder="ewm.jpg">
+                    <span style="color: #aaafff">请填写图片名称和格式</span>
+                </div>
+            </div> -->
+
+            <!-- <div class="formitems">
+               <label class="fi-name"><span class="colorRed">*</span>摘要：</label>
+               <div class="form-controls">
+                 <input type="text" class="input" name="digest" value="{$info.digest}"  >
+             </div>-->
+
+
+
+          <!-- <div  class="formitems" style="width:100%;">
+            <label class="fi-name">退换服务内容：</label>
+            <div class="form-controls pdt3"><br>
+            <script id="editor" name="detail" type="text/plain" style="width:200px;height:500px;">{$res.detail|htmlspecialchars_decode|stripslashes}</script>
+           </div>
+          </div> -->
+
+
+
+
+        <!-- end 详情及其它 -->
+
+        <div class="panel-single panel-single-light mgt20 txtCenter"> <a href="" class="btn" onclick="history.back()">返回</a>
+        <input type="hidden"  name="id" value="{$info.id}">
+        <input type="submit" id="sub" class="btn btn-primary" value="保存">
+        </div>
+      </form>
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<!-- <script type="text/javascript" src="__JS__/jquery.js"></script> -->
+<!-- <script type="text/javascript" src="__JS__/uploadPreview.min.js"></script> -->
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+
+
+<script type="text/javascript">
+
+//上传图片
+  $(function () {
+    var percent = $('.duoxuan_percent');
+    var progress = $('.duoxuan_percent');
+    $("#duoxuan").wrap("<form id='myupload' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#duoxuan").change(function(){ //选择文件
+      $("#myupload").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80"  class="mgr10 mgt10 " onclick="delImg(this)"><input type="hidden" name="pic1[]" id="pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          //console.log(img);
+          $('.duoxuan_showimge').append(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+
+
+    var percent = $('.xuanze_percent');
+    var progress = $('.xuanze_percent');
+
+    $("#xuanze").wrap("<form id='myupload1' action='{:U('/Admin/Job/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#xuanze").change(function(){ //选择文件
+
+      $("#myupload1").ajaxSubmit({
+
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" width="80"  ><input type="hidden" name="pic" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+
+
+          $('.xuanze_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+        }
+      });
+    });
+
+
+
+  });
+function add_re(r){
+  $('#restriction'+r).show();
+  }
+function del_re(r){
+  $('#restriction'+r).hide();
+  }
+</script>
+<!--上传图片-end-->
+
+
+

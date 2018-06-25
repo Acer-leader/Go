@@ -1,0 +1,48 @@
+<include file="Public:head"/>
+
+
+<body>
+<style>
+.newsdot_box_body p{
+	line-height: 20px!important;
+	font-size:12px!important;
+	margin-bottom:5px!important;
+	margin-top: 10px!important;
+	color: #666!important;
+}
+</style>
+<!--head --> 
+<div class="head_box" style=" background:#959ef9">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">资讯详情</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+<div class="warpper_box">
+ <div class="newsdot_box">
+ <div class="newsdot_box_title">{$dot.news_title}</div>
+ <div class="newsdot_box_time">
+ <div class="newsdot_box_time_l">编辑：{$dot.source}  来源：{$dot.author}</div>
+ <div class="newsdot_box_time_r">{$add_time}</div>
+ <div class="clear"></div>
+ </div>
+ <div class="newsdot_box_body">
+ 	{$dot.detail|htmlspecialchars_decode|stripslashes} 
+ </div>
+ </div>
+</div>
+
+<!--foot-->
+<include file="Public:footer"/>
+
+<!--foot-->
+
+
+</body>
+
+</html>

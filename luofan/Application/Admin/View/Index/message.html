@@ -1,0 +1,110 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+<style>
+    .imgnav{
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .imgwrapper{
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .imgwrapper img{
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border:0;
+    }
+    .spanpd10{
+        margin:10px;
+    }
+    .wxtables.wxtables-sku.newtable{
+        width: 40%;
+        margin: 0;
+    }
+    .img-list li{
+        width: 60px;
+        height:60px;
+    }
+    .cst_h3 span{font-weight: normal;}
+    #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+    .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+    .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+    #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+    #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+    #xuanze2:hover{ background:#E6E6E6; }
+    .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+    .formitems .fi-name{
+        width:300px !important;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left" />
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">配置详情</h1>
+                <div class="panel-single panel-single-light mgt20">
+                    <h3 class="cst_h3 mgb20">基本信息</h3>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>ip每日发送次数： </label>
+                        <div class="form-controls">
+                            <input type="number" class="input" name="ip_num" value="{$cache.ip_num}" placeholder="">次
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>电话每日发送次数： </label>
+                        <div class="form-controls">
+                            <input type="number" class="input" value="{$cache.tel_num}"  name="tel_num" placeholder="">次
+                        </div>
+                    </div>
+
+                    <div class="panel-single panel-single-light mgt20 txtCenter">
+                        <button class="btn btn-primary" id="btn-submit">保存</button>
+                    </div>
+                </div>
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+
+<!--编辑保存 1-->
+<script>
+    $("#btn-submit").click(function(){
+
+       var ip_num = $('input[name="ip_num"]').val();
+       var tel_num = $('input[name="tel_num"]').val();
+	   $.ajax({
+			url:"{:U('Admin/index/message')}",
+			data:{ip_num:ip_num,tel_num:tel_num},
+			dataType:"json",
+			type:'post',
+			success:function(data){
+				if(data.status){
+					alert(data.info);
+					window.location.reload();
+				}else{
+					alert(data.info);
+				}
+			}
+	   })
+
+    })
+
+
+
+</script>
+<!--编辑保存 2-->

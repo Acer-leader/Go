@@ -1,0 +1,210 @@
+<include file="Public:head"/>
+<link href="__CSS__/fx.css" type="text/css"  rel="stylesheet" />
+
+<body>
+<!--head -->
+
+
+<div class="head_box houtai">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" style=" line-height:30px;color:#357ce2" ></i></a>
+<a href="index.html" class="shouye" style=" line-height:24px; color:#357ce2" >首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_right">
+<a class="grzx" href="__HOST__/Distribution/fx_my"><img src="__IMAGES__/grzx.png"></a>
+</div>
+<div class="head_box_center"  style=" color:#555; line-height:35px;" >绑定银行卡</div>
+<div class="clear"></div>
+
+</div>
+<!--head --> 
+
+<div class="fenxiao_my">
+<div class="fenxiao_my_topA">
+ <div class="fenxiao_my_num_one">请绑定持卡人本人的银行卡</div>
+  </div>
+  <div class="fenxiao_my_bottomA">
+    	<div class="fenxiao_my_num_one_A">
+        	<span> 持卡人</span><input id="card_name"  onfocus="this.placeholder = '';" onblur="this.placeholder = '姓名';"  placeholder="姓名" type="text"   >
+        </div>
+        <div class="fenxiao_my_num_one_A">
+        	<span> 卡号</span><input onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9]+/,'');}).call(this)" id="card_num" onfocus="this.placeholder = '';" onblur="this.placeholder = '卡号';"  placeholder="请输入银行卡号" type="text">
+        </div> 
+        <div class="fenxiao_my_num_one_A">
+        	<span> 手机号</span><input id="card_tel" onfocus="this.placeholder = '';" onblur="this.placeholder = '银行预留号码';" placeholder="银行预留号码" type="text">
+        </div>
+        <div class="fenxiao_my_num_one_A">
+        	<span> 手机验证码</span><input id="code" onfocus="this.placeholder = '';" onblur="this.placeholder = '验证码';" placeholder="验证码" type="text" style="padding-right: 92px;">
+            <a href="javascript:void(0);" class="register_input_btn"  id="getCode">获取验证码</a>
+        </div>
+        
+        
+   </div>   
+        <div class="fenxiao_button ">
+        	<a href="javascript:void(0);"><input type="button" value="绑定银行卡" /></a>
+        </div>    
+</div>
+
+<!--foot-->
+<div class="foot_box">
+<include file="Public:footer"/>
+</div>
+<!--foot-->
+<div class="loading"></div>
+<div class="sccg sccg01">
+	<div style="margin-top:15px;"><i class="fa fa-spinner fa-pulse fa-2x" style=" color:#fff"></i></div>
+	<p style="color:#fff;font-family:微软雅黑">等待中...</p>
+</div>
+</body>
+<script>
+    $(document).ready(function(){
+        $('.fx_dk').height($(window).height())
+    })
+</script>
+<script>  
+    $(function(){  
+        //银行卡号4个一空格
+        $('#card_num').keyup(function(){  
+          var value=$(this).val().replace(/\s/g,'').replace(/(\d{4})(?=\d)/g,"$1 ");    
+          $(this).val(value)  
+        })  
+        
+        //获取短信验证码
+        var wait = 60;
+        $("#getCode").click(function (){
+            var _this = $(this)
+            if (_this.attr("disabled")) {
+                return false;
+            }
+            var card_tel = $("#card_tel").val();
+            if(!card_tel){
+              dialog.showTips("请填写手机号！","warn");return false;
+            }else if(!card_tel.match(/^1[35789][0-9]{9}$/)){
+              dialog.showTips("手机号码格式错误！","warn");return false;
+
+            }
+            $.ajax({
+                    url:'__HOST__/Distribution/codecheck',
+                    data:{
+                        'card_tel' :card_tel,
+                        'code_type':6
+                    },
+                    beforeSend:function(){
+                      $('.loading').show();
+                      $('.sccg01').stop().fadeIn(10);
+                    },
+                    type:'post',
+                    dataType:'json',
+                    success: function(data){
+                        $('.loading').hide();
+                        $('.sccg01').stop().fadeOut();
+                        if(data.status==1){
+                            dialog.showTips(data.info,"warn");
+                            // 计时
+                            time(_this);
+                        }else{  
+                            dialog.showTips(data.info,"warn");return false;   
+                        }
+                    }
+
+            })
+        })
+        
+        //绑定银行卡
+        $('.fenxiao_button a').click(function(){
+            var card_name   =   $('#card_name').val();
+            if(card_name==""||card_name==null){
+                alert('请输入持卡人姓名！');
+                return  false;
+            }
+            var card_num    =   Trim($('#card_num').val().replace(/ /g,''));
+    
+            if(card_num==""||card_num==null){
+                alert('请输入银行卡号！');
+                return  false;
+            }else{
+                var reg     = /^\d{16}$/  
+                var reg1    =/^\d{19}$/
+                var r   =   card_num.match(reg);     
+                var r1  =   card_num.match(reg1);     
+                if(r==null&&r1==null) {  
+                alert('你输入的银行卡行长度不对!');
+                return  false;
+                }
+            }  
+            var card_tel    =   $('#card_tel').val();
+            if(card_tel==""||card_tel==null){
+                alert('请输入手机号！');
+                return  false;
+            }else{
+                var reg= /^[1][358][0-9]{9}$/;
+                var r = card_tel.match(reg);     
+                if(r==null) {  
+                alert('您输入的手机格式不正确!');
+                return  false;
+                }
+            }  
+            var code    =   $('#code').val();
+            if(!code){
+                alert('请输入短信验证码');
+                return false;
+            }
+            $.ajax({
+                url:'__HOST__/Distribution/bankdo',
+                data:{
+                    card_name   :   card_name,
+                    card_num    :   card_num,
+                    card_tel    :   card_tel,
+                    code        :   code
+                },
+                beforeSend:function(){
+                  $('.loading').show();
+                  $('.sccg01').stop().fadeIn(10);
+                },
+                type:'post',
+                dataType:'json',
+                success: function(e){
+                $('.loading').hide();
+                $('.sccg01').stop().fadeOut();
+                if(e.status==1){
+             
+                     dialog.showTips(e.info,"","__HOST__/Distribution/fx_yongjingtixian/");
+                   
+                }else{
+                     alert(e.info);
+                    }
+                }
+            })
+
+            
+        })
+        
+        //去掉字符串中间的空格
+        function Trim(sText) 
+        { 
+            return sText.replace(new RegExp("(^[\\s]*)|([\\s]*$)", "g"), ""); 
+        }
+        
+        //倒计时
+        function time(o) {
+            //localStorage.aux_reTime=wait;
+            if (wait == 0) {
+              o.removeAttr("disabled");
+              o.html("重新获取").css('cursor','pointer');
+              wait = 60;
+            } else {
+              o.attr("disabled", true);
+              o.html("重新发送(" + wait + ")").css('cursor','default');
+              wait--;
+              setTimeout(function () {
+                  time(o)
+              }, 1000);
+            }
+            }
+        })   
+</script>  
+<script type="text/javascript">
+
+</script>
+</html>

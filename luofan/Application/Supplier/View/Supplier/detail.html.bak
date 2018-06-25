@@ -1,0 +1,200 @@
+<include file="Public:head"/>
+
+<style>
+        .imgnav{
+            max-height: 30px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .imgwrapper{
+            display: block;
+            width: 78px;
+            height: 78px;
+            overflow: hidden;
+        }
+        .imgwrapper img{
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border:0;
+        }
+				#l-map{height:300px;width:100%;}
+        .spanpd10{
+            margin:10px;
+        }
+        .wxtables.wxtables-sku.newtable{
+            width: 40%;
+            margin: 0;
+        }
+        .img-list li{
+            width: 60px;
+            height:60px;
+        }
+        .cst_h3 span{font-weight: normal;}
+    </style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=A607d61b18d43a1ff27abf4ac67da83c"></script>
+
+<div class="container">
+<div class="inner clearfix">
+        <include file="Public:left" />
+<!-- end content-left -->
+
+<div class="content-right fl">
+ 
+
+    <h1 class="content-right-title">查看详情</h1>
+    
+    
+<input type="hidden" id="j-isSid" value="0"><!-- 是否选择了淘宝类目 -->
+<input type="hidden" id="j-hasNorms" value="1"><!-- 淘宝类目下是否有属性 -->
+<input type="hidden" id="supplier" value="">
+
+<form aciton="{:U('/Supplier/Supplier/edit')}" method="post" id="add_step2" onsubmit="return toVaild()">
+<div class="panel-single panel-single-light mgt20">
+    <h3 class="cst_h3 mgb20">基本信息</h3>
+    <div>
+    <!--<div class="formitems">
+        <label class="fi-name">HDID：</label>
+        <div class="form-controls pdt3">
+            <div id="hdup">
+                {$memberdetail.hdid} <a href="javascript:void" onclick="qiehuan(1)" style="margin-left:10px;">修改</a>
+            </div>
+            <div id="hd_up" style="display:none;">
+                <input type="text" id="hdid" value="{$memberdetail.hdid}">
+                <a href="javascript:updatehdid({$memberdetail.id})" style="margin-left:10px;">确认</a>
+                <a href="javascript:void" onclick="qiehuan(2)" style="margin-left:10px;">取消</a>
+            </div>
+        </div>
+    </div>-->
+    <div class="formitems">
+        <label class="fi-name">企业名称：</label>
+        <div class="form-controls">
+            <input type="text" class="input" value="{$memberdetail.username}" readonly name="username" >
+            <span class="lh30 mgl10"></span>
+        </div>
+    </div>
+
+
+        <div class="formitems">
+            <label class="fi-name">固定电话：</label>
+            <div class="form-controls">
+                <input type="text" class="input" value="{$memberdetail.tel}" readonly name="tel" >
+                <span class="lh30 mgl10"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">联系人姓名：</label>
+            <div class="form-controls">
+                <input type="text" class="input" value="{$memberdetail.realname}" readonly name="realname" >
+                <span class="lh30 mgl10"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">联系人手机号：</label>
+            <div class="form-controls">
+                <input type="text" class="input" value="{$memberdetail.telephone}" readonly name="telephone" >
+                <span class="lh30 mgl10"></span>
+            </div>
+        </div>
+
+
+        <div class="formitems">
+            <label class="fi-name">法人代表姓名：</label>
+            <div class="form-controls">
+                <input type="text" class="input" value="{$memberdetail.legal_personname}" readonly name="legal_personname" >
+                <span class="lh30 mgl10"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">法人代表手机号：</label>
+            <div class="form-controls">
+                <input type="text" class="input" value="{$memberdetail.legal_telephone}" readonly name="legal_telephone" >
+                <span class="lh30 mgl10"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">联系人身份证：</label>
+            <div class="form-controls">
+                <input type="text" class="input" value="{$memberdetail.ID_card}" readonly name="telephone" >
+                <span class="lh30 mgl10"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">营业执照扫描件：</label>
+            <div class="form-controls">
+                <input type="text" class="input" value="{$memberdetail.license_pic}" readonly name="license_pic" >
+                <span class="lh30 mgl10"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">营业执照扫描件：</label>
+            <div class="form-controls">
+                <input type="text" class="input" value="{$memberdetail.license_pic}" readonly name="license_pic1" >
+                <span class="lh30 mgl10"></span>
+            </div>
+        </div>
+
+
+
+    <div class="formitems">
+        <label class="fi-name">真实名字：</label>
+        <div class="form-controls">
+            <input type="text" class="input" value="{$memberdetail.realname}" readonly name="person_name" >
+            <span class="lh30 mgl10"></span>
+        </div>
+    </div>
+
+    <div class="formitems">
+        <label class="fi-name">性别：</label>
+        <div class="form-controls" >
+            <switch name="memberdetail.sex">
+                <case value="1">男</case>
+                <case value="2">女</case>
+            </switch>
+            <span class="fi-help-text"></span>
+        </div>
+    </div>
+    <div class="formitems">
+        <label class="fi-name">生日：</label>
+        <div class="form-controls">
+            <input type="text" class="input" value="{$memberdetail.birth}" readonly name="person_name" >
+            <span class="lh30 mgl10"></span>
+        </div>
+    </div>
+
+    <div class="formitems">
+        <label class="fi-name">注册时间：</label>
+        <div class="form-controls">
+            <input type="text" class="input" value="<?php echo (date('Y-m-d H:i:s',$memberdetail['addtime']));?>" readonly name="person_name" >
+            <span class="lh30 mgl10"></span>
+        </div>
+    </div>
+
+
+	</div>
+        
+
+</div>
+<!-- end 基本信息 -->
+
+
+<!-- end 详情及其它 -->
+
+
+<div class="panel-single panel-single-light mgt20 txtCenter">
+    <a href="javascript:history.back(-1)" class="btn">返回</a>
+    <!--<input type="submit" class="btn btn-primary" value="保存">-->
+</div>
+</form>
+
+</div>
+<!-- end content-right -->
+</div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+
+

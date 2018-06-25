@@ -1,0 +1,574 @@
+<include file="Public:head"/>
+<include file="Public:header" />
+<body>
+<!--header-->
+<!--  / warpper  -->
+<div class="warpper">
+
+<div class="user">
+    <div class="index_container">
+    	<div class="user_left">
+        	<div class="user_info">
+            	<div class="user_img">
+                    <empty name="user.person_img">
+                        <img src="__IMAGES__/user.jpg" width="100%"/>
+                        <else/>
+                        <img src="{$user.person_img}" width="80px" alt=""/>
+                    </empty>
+                </div>
+                <div class="user_info_wz">
+                	<h5>昵称：<span>{$user.person_name}</span></h5>
+                    <!-- <h5>等级：
+                    	<div class="user_dj">
+                            <img src="__IMAGES__/dengji_v.png" class="dengji_v" alt="">
+                            <div class="ts_dengjinum">0</div>
+                        </div>
+                    </h5> -->
+                </div>
+            </div>
+        	<ul>
+            	<li class="active" onclick="fnTabBoxFade(this,5,4)"><a href="javascript:void(0);"><div class="user_left_li"><img src="__IMAGES__/user_per.png" /><img src="__IMAGES__/user_per1.png" class="user_left_img"/></div>个人中心</a></li>
+                <!-- <li onclick="fnTabBoxFade(this,5,2)"><a href="#"><div class="user_left_li"><img src="__IMAGES__/user_jd.png" /><img src="__IMAGES__/user_jd1.png" class="user_left_img"/></div>信用卡进度查询</a></li>
+                <li class="user_left_hh" onclick="fnTabBoxFade(this,5,3)"><a href="javascript:void(0);"><div class="user_left_li"><img src="__IMAGES__/user_hh.png" /><img src="__IMAGES__/user_hh1.png" class="user_left_img"/></div>信用卡还款</a></li> -->
+                <!-- <li onclick="fnTabBoxFade(this,5,4)"><a href="javascript:void(0);"><div class="user_left_li"><img src="__IMAGES__/user_set.png" /><img src="__IMAGES__/user_set1.png" class="user_left_img"/></div>设置</a></li> -->
+            </ul>
+        </div>
+        <div class="user_right">
+            	<!--<div class="user_li">
+                	<div class="user_list" style="border-right: solid 1px #ddd;">
+                    	<div class="user_tit">
+                        	<h4><div class="user_list_img"><img src="__IMAGES__/user_xy.png" /></div>我的信用卡</h4>
+                        </div>
+                        <h5><div class="user_list_img"><img src="__IMAGES__/user_xy1.png" /></div>我的额度：<span>0</span>元</h5>
+                        <h5><div class="user_list_img"><img src="__IMAGES__/user_xy2.png" /></div>我的信用卡：<span>0</span>张</h5>
+                        <div class="user_dk_bt">
+                        	<a href="">申请信用卡</a>
+                        </div>
+                    </div>
+                	<div class="user_list">
+                    	<div class="user_tit">
+                        	<h4><div class="user_list_img"><img src="__IMAGES__/user_dk.png" /></div>我的贷款</h4>
+                        </div>
+                        <h5><div class="user_list_img"><img src="__IMAGES__/user_dk1.png" /></div>申请金额：<span>0</span>万</h5>
+                        <h5><div class="user_list_img"><img src="__IMAGES__/user_dk2.png" /></div>当前状态：<span>站务贷款申请</span></h5>
+                        <div class="user_dk_bt">
+                        	<a href="">申请贷款</a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>-->
+        	<div class="user_center TabHide5" id="TabShow1" style="display:none;">
+                <div class="user_li">
+                	<div class="user_list">
+                    	<a href="chaxundot.html">
+                    	<div class="user_cot">
+                        	<div class="user_xyk">
+                            	<img src="__IMAGES__/user_icon1.png" />
+                            </div>
+                            <div class="user_xyk_tit">
+                            	<h4>信用卡进度查询</h4>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                	<div class="user_list">
+                    	<a href="javascript:void(0);" class="user_hk">
+                    	<div class="user_cot">
+                        	<div class="user_xyk">
+                            	<img src="__IMAGES__/user_icon3.png" />
+                            </div>
+                            <div class="user_xyk_tit">
+                            	<h4>信用卡还款</h4>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="user_li">
+                    <div class="user_xyk_add">
+                    	<div class="user_add_img">
+                        <a href="javascrip:void(0);">
+                        	<img src="__IMAGES__/user_add.png" />
+                        </a>
+                        </div>
+                        <div class="user_add_wz">
+                        	<h4>添加您的信用卡吧</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="user_li">
+                	<div class="user_xyk_box">
+                    	<div class="user_xyk_box_tit">
+                        	<h3>中信银联标准IC信用卡(银联，人民币，金卡)</h3>
+                        </div>
+                    	<div class="user_xy_img">
+                        	<img src="__IMAGES__/user_xyk.jpg" />
+                        </div>
+                        <div class="user_xy_wz">
+                        	<div class="user_xy_tit">
+                            	<h4>卡号：<span>***********3541</span></h4>
+                            </div>
+                            <div class="user_xy_xq">
+                            	<h5>信用卡额度：<span>2000元</span></h5>
+                            	<h5>剩余额度：<span>2000元</span></h5>
+                            	<h5>还款金额：<span>0元</span></h5>
+                            	<h5>还款时间：<span>10日</span></h5>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="user_time">
+                            	<img src="__IMAGES__/user_time.png" />
+                                <h5>14天</h5>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="user_hh TabHide5" id="TabShow3" style="display:none;">
+            	<div class="user_hh_tit">
+                	<h4>信用卡还款</h4>
+                </div>
+                <div class="user_hh_cot">
+                	<div class="user_hh_list">
+                    	<div class="user_hh_left">信用卡卡号：</div>
+                        <div class="user_hh_right">
+                        	<input type="text" />
+                        </div>
+                    </div>
+                	<div class="user_hh_list">
+                    	<div class="user_hh_left">持卡人姓名：</div>
+                        <div class="user_hh_right">
+                        	<input type="text" />
+                        </div>
+                    </div>
+                	<div class="user_hh_list">
+                    	<div class="user_hh_left">还款金额：</div>
+                        <div class="user_hh_right">
+                        	<input type="text" />元
+                        </div>
+                    </div>
+                    <div class="user_hh_btn">
+                    	<input type="submit" value="提交"/>
+                    </div>
+                </div>
+            </div>
+            <div class="user_set TabHide5" id="TabShow4">
+                <div class="xiugaiiliao">
+                    <div class="lianxifangshi">基本信息</div>
+                    <div class="one_xinfo">
+                        <span>手机： </span>
+                        <div class="one_infomain">
+                            {$user.telephone}
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <!--<div class="one_xinfo">
+                        <span>等级：</span>
+                        <div class="one_infomain">
+                            <div class="user_dj" style="line-height: 19px;">
+                                <img src="images/dengji_v.png" class="dengji_v" alt="">
+                                <div class="ts_dengjinum">0</div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>-->
+                    <div class="one_xinfo lianxi_one_xinfo">
+                        <span style="height:80px;">真实姓名;</span>
+                        <div class="one_infomain lianxi_one_infomain">
+                            <input type="text"  value="{$user.realname}" name="realname" placeholder="请输入真实姓名" />
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="one_xinfo lianxi_one_xinfo">
+                        <span style="height:80px;">昵称：</span>
+                        <div class="one_infomain lianxi_one_infomain">
+                            <input type="text"  value="{$user.person_name}" name="person_name" placeholder="请输入昵称" />
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- <div class="one_xinfo touxiang_one_xinfo">
+                        <span style="height:110px;">头像：</span>
+                        <div class="one_infomain txkuang">
+                            <empty name="user.person_img">
+                                <img src="__IMAGES__/tx2.jpg" width="80px" alt=""/>
+                                <else/>
+                                <img src="{$user.person_img}" width="80px" alt=""/>
+                            </empty>
+                            <input type="button" class="hyuantouxiang" value="点击更换头像" />
+                        </div>
+                        <div class="showimg"></div>
+                        <div class="clear"></div>
+                        <div style="display: none;">
+                            <input name="pic" type="file" class="person_img" id="xuanze" style="opacity: 0;"/>
+                        </div>
+                    </div> -->
+                    <div class="one_xinfo">
+                        <span style="height:51px;">性别：</span>
+                        <div class="one_infomain">
+                            <input type="radio" name="sex" class="xingbie" <eq name="user.sex" value="1">checked</eq> value="1" /> 男
+                            <input type="radio" name="sex" value="2" class="xingbie" style="margin-left: 30px;"  <eq name="user.sex" value="2">checked</eq> /> 女
+                            <input type="radio" name="sex" value="3" class="xingbie" style="margin-left: 30px;"  <eq name="user.sex" value="3">checked</eq> /> 保密
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="one_xinfo one_didian">
+                        <span style="height:54px;">生日： </span>
+                        <div class="one_infomain didian">
+
+                            <!--生日联动-->
+                            <div class="iDate date">
+                                <input type="text" name="birth" id="birth" value="{$user.birth}">
+                                <button type="button" class="addOn"></button>
+                               
+                            </div>
+                            <!--生日联动-->
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="one_xinfo one_didian">
+                        <span style="height:54px;">职业身份： </span>
+                        <div class="one_infomain didian">
+                            <div>
+                                <select name="position" id="identityid" style="width:110px;">
+                                    <option value="">请选择</option>
+                                    <volist name="position" id="v">
+                                    <option <eq name="user.identityid" value="$v.id">selected</eq> value="{$v.id}">{$v.classname}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="one_xinfo one_didian">
+                        <span style="height:54px;">名下房产类型： </span>
+                        <div class="one_infomain didian">
+                            <div>
+                                <select name="house" id="houseid" style="width:110px;">
+                                    <option value="">请选择</option>
+                                    <volist name="house" id="vv">
+                                        <option <eq name="user.houseid" value="$vv.id">selected</eq> value="{$vv.id}">{$vv.classname}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="one_xinfo one_didian">
+                        <span style="height:54px;">名下是否有车： </span>
+                        <div class="one_infomain didian">
+                            <div>
+                                <select name="car" id="carid" style="width:110px;">
+                                    <option value="">请选择</option>
+                                    <volist name="car" id="vvv">
+                                        <option <eq name="user.carid" value="$vvv.id">selected</eq> value="{$vvv.id}">{$vvv.classname}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="one_xinfo">
+                        <span>月收入： </span>
+                        <div class="one_infomain">
+                            <input type="text" name="month_money" value='{$user.month_money}'>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- <div class="lianxifangshi">联系方式</div> -->
+                    
+                    <!-- <div class="one_xinfo lianxi_one_xinfo">
+                        <span style="height:72px;">Q Q： </span>
+                        <div class="one_infomain lianxi_one_infomain">
+                            <input type="text" value="{$user.qq}" name="qq"  palceholder="请填写您的QQ" />
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="one_xinfo lianxi_one_xinfo">
+                        <span style="height:72px;">微信： </span>
+                        <div class="one_infomain lianxi_one_infomain">
+                            <input type="text" value="{$user['wx_number']}" name="wx_number"  palceholder="请填写您的微信" >
+                        </div>
+                        <div class="clear"></div>
+                    </div> -->
+                    <div class="anniu_box">
+                        <input type="button" class="chongzhi" value="重置">
+                        <input type="button" class="chongzhi chongzhi2" value="保存修改">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+</div>
+
+<div class="user_tk">
+	<div class="user_table">
+    	<div class="user_table_cell">
+        	<div class="user_tk_cot">
+            	<div class="user_tk_tit">
+                	<h3>添加信用卡</h3>
+                </div>
+                <div class="user_tk_wz">
+                	<div class="user_tk_wz_tit">
+                    	<h4>选择银行</h4>
+                    </div>
+                	<div class="user_tk_list">
+                    	<div class="user_yh_sel">
+                        	<h5><span>交通银行</span> <i class="fa fa-angle-down"></i></h5>
+                            <div class="user_yh_box">
+                            	<h5>交通银行</h5>
+                            	<h5>中信银行</h5>
+                            	<h5>广发银行</h5>
+                            	<h5>兴业银行</h5>
+                            	<h5>招商银行</h5>
+                            	<h5>光大银行</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user_next">
+                    	<a href="javascript:void(0);">下一步</a>
+                    </div>
+                </div>
+                <div class="user_tk_wz1">
+                	<div class="user_tk_wz_tit">
+                    	<h4>填写信用卡</h4>
+                    </div>
+                	<div class="user_tk_xyk">
+                    	<div class="user_tk_li">
+                        	<label><span>信用卡号：</span><input type="text"/></label>
+                        </div>
+                    	<div class="user_tk_li">
+                        	<label><span>银行预留手机号：</span><input type="text"/></label>
+                        </div>
+                    	<div class="user_tk_li user_tk_li1">
+                        	<label><span>信用卡额度：</span>
+                                <select >
+                                    <option selected>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>元
+                            </label>
+                        </div>
+                    	<div class="user_tk_li user_tk_li1">
+                        	<label><span>信用卡还款时间：</span>
+                                <select >
+                                    <option selected>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>元
+                            </label></label>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="user_next user_next1">
+                    	<a href="javascript:void(0);">下一步</a>
+                    </div>
+                </div>
+                <div class="user_tk_wz3">
+                	<div class="user_tk_wz3_img">
+                    	<img src="__IMAGES__/user_cg.png" width="40" />
+                    </div>
+                    <h2>恭喜你，添加完成啦</h2>
+                    <div class="user_cg">
+                    	<a href="javascript:void(0);">完成</a>
+                    </div>
+                </div>
+                <div class="user_close">
+                	<a href="javascript:void(0);">
+                    	<img src="__IMAGES__/close.png" width="25"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  / warpper  -->
+<div class="right_nav">
+    <ul>
+        <li>
+            <a href="javascript:void(0);" class="telep">
+                <img src="__IMAGES__/telep.png" width="100%"/>
+                <span class="telep_num">{$web_config.servise_phone}</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);"  class="kefu">
+                <img src="__IMAGES__/kefu.png"  width="100%"/>
+                <span>在线客服</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);"  class="return">
+                <img src="__IMAGES__/return.png"  width="100%"/>
+                <span>返回顶部</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!--  / footer  -->
+<include file="Public:footer" />
+<!--  / footer  -->
+</body>
+<!--日期-->
+<link rel="stylesheet" type="text/css" href="__CSS__/date.css" media="all">
+<script type="text/javascript" src="__JS__/moment.js"></script>
+<script type="text/javascript" src="__JS__/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        if($(".iDate.date").length>0){
+            $(".iDate.date").datetimepicker({
+                locale:"zh-cn",
+                format:"YYYY-MM-DD",
+                dayViewHeaderFormat:"YYYY年 MMMM"
+            });
+        }
+    })
+</script>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script>
+    $(".hyuantouxiang").click(function(){
+        document.getElementById("xuanze").click();
+    });
+
+    $('.chongzhi2').click(function () {
+        var post = {};
+         post.realname = $("input[name=realname]").val();
+         post.person_name = $("input[name=person_name]").val();
+         post.sex = $("input[name=sex]:checked").val();
+         post.birth = $('#birth').val();
+         post.person_img = $("#pic").val();
+         post.identityid = $("#identityid").val();//职业身份
+         post.houseid = $("#houseid").val();//房产
+         post.carid = $("#carid").val();//汽车
+         post.qq  = $("input[name=qq]").val();
+        post.wx_number = $("input[name=wx_number]").val();
+        post.month_money = $("input[name=month_money]").val();
+        $.post("{:U('Ucenter/index')}",{'data':post},function(data){
+            if(data.status==1){
+                alert(data.info);
+                location.href="{:U('Ucenter/index')}";
+            }else{
+                alert(data.info);
+                location.href="{:U('Ucenter/index')}";
+            }
+        },'json');
+    });
+</script>
+<script>
+    $(function(){
+        var percent = $('.xuanze_percent');
+        var progress = $('.xuanze_percent');
+        $("#xuanze").wrap("<form id='myupload1' action='{:U('Ucenter/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#xuanze").change(function(){ //选择文件
+            $("#myupload1").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var imgsrc = data[0]["savepath"].substr(1)+data[0]["savename"];
+                    $(".txkuang img").attr('src',imgsrc);
+                    var img = '<input type="hidden" name="person_img" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" />';
+                    $(".showimg").html(img);
+                    $('.user_gezx_tx').css("background","url("+data[0]['savepath'].substr(1)+data[0]['savename']+")");
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    })
+</script>
+
+<script>
+
+    $(window).scroll(function(){
+        var scrollT=$(window).scrollTop();
+        if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+            $('.right_nav').css('display','block');
+        }else{
+            $('.right_nav').css('display','none');
+        }
+
+    })
+</script>
+<script>
+    function fnTabBoxFade(Focus,Hide,Show){
+        $(Focus).siblings().removeClass("active");
+        $(Focus).addClass("active");
+        $(".TabHide"+Hide).hide();
+        $("#TabShow"+Show).fadeIn("fast");
+    };
+
+</script>
+<script>
+    $(document).ready(function () {
+		
+		$('.user_hk').click(function(){
+			$('#TabShow1').hide();
+			$('#TabShow3').fadeIn();
+			$('.user_left li').removeClass('active')
+			$('.user_left .user_left_hh').addClass('active');
+		})
+		
+		$('.user_yh_box h5').click(function(){
+			$('.user_yh_sel>h5 span').text($(this).html())
+			$('.user_yh_box').stop().delay(100).slideUp(400);
+		})
+		
+		$('.user_yh_sel>h5').click(function(){
+			$('.user_yh_box').stop().slideToggle(400)
+		})
+		
+		$('.user_add_img').click(function(){
+			$('.user_tk').fadeIn();
+			$('.user_tk_wz').fadeIn()
+		})
+		
+		$('.user_next').click(function(){
+			$('.user_tk_wz').hide();
+			$('.user_tk_wz1').fadeIn();
+		})
+		
+		$('.user_next1').click(function(){
+			$('.user_tk_wz1').hide();
+			$('.user_tk_wz3').fadeIn();
+		})
+		
+		$('.user_close,.user_cg').click(function(){
+			$('.user_tk_wz3,.user_tk_wz1').hide();
+			$('.user_tk').fadeOut();
+		})
+		
+		$('.user_xy_wz').height($('.user_xy_img').height())
+		
+		$(window).load(function(){
+			$('.user_left').height($('.user_right').height()-20)
+		})
+		
+    })
+</script>
+
+</html>
+<script src="__JS__/distpicker.data.js"></script>
+<script src="__JS__/distpicker.js"></script>
+<script src="__JS__/jquery-2.0.3.min.js"></script>

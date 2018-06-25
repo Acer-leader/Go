@@ -1,0 +1,81 @@
+<include file="Public:head"/>
+<link href="__CSS__/fx.css" type="text/css"  rel="stylesheet" />
+
+<body>
+<!--head -->
+
+
+<div class="head_box houtai">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" style=" line-height:30px;color:#357ce2" ></i></a>
+<a href="__HOST__/Index" class="shouye" style=" line-height:24px; color:#357ce2" >首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center"  style=" color:#555; line-height:35px;" >个人中心</div>
+<div class="clear"></div>
+
+</div>
+<!--head --> 
+<style>
+#addpic{border-radius: 18px;-webkit-border-radius: 18px;-moz-border-radius: 18px;}
+
+</style>
+<div class="fenxiao_my">
+	<div class="fenxiao_my_top" style="background-image:url(__IMAGES__/fx_my.jpg);">
+    	<div class="tables">
+        	<div class="table_cell">
+            	<div class="fenxiao_my_avatar">
+                	<span><a href="__HOST__/Distribution/fx_my_grxx">
+                        <if condition="$fenxiao['pic'] eq null">
+                        <img src="__IMAGES__/fx_my_avatar.png" id="addpic" width='64' height="64">
+                        <else/>
+                        <img src="__ROOT__{$fenxiao.pic}" width='64' height="64" id="addpic">
+                        </if>
+               
+                    </span>
+                </div>
+                <div class="fenxiao_my_name">
+                	姓名：{$fenxiao.personname}
+                </div>
+            </div>
+        </div>
+        <!-- <div class="fenxiao_my_num">哄哄号：000001</div> -->
+    </div>
+    
+    <div class="fenxiao_my_main">
+    	<div class="fenxiao_my_lis">
+        	<a href="__HOST__/Distribution/fx_yongjingtixian">
+            	<img src="__IMAGES__/fx_my_ico1.png"> <span>我要提现</span> <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    <!--     <div class="fenxiao_my_lis">
+        	<a href="__HOST__/Distribution/fx_zhanghuyue">
+            	<img src="__IMAGES__/fx_my_ico2.png"> <span>我的工资</span> <i class="fa fa-angle-right"></i>
+            </a>
+        </div> -->
+        <div class="fenxiao_my_lis">
+        	<a href="__HOST__/Distribution/fx_xszn">
+            	<img src="__IMAGES__/fx_my_ico3.png"> <span>新手指南</span> <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+        <div class="fenxiao_my_lis">
+        	<a href="__HOST__/Distribution/fx_kf">
+            	<img src="__IMAGES__/fx_my_ico4.png"> <span>客服</span> <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </div>
+    
+</div>
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+<script>
+$(document).ready(function(){
+	$('.fx_dk').height($(window).height())
+})
+</script>
+
+</html>

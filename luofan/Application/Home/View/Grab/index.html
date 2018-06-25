@@ -1,0 +1,626 @@
+<include file="Public:head"/>
+<style>
+   .qiangdan_login {
+     	padding: 0; 
+	}
+    .qiangdan_tit.active {
+		background:transparent;
+	}
+	.qiangdan_cot {
+		padding: 0 30px;
+	}
+	.qiangdan_tit {
+		width: 50%;
+		float: left;
+		cursor: pointer;
+		padding: 15px 0 15px;
+    	margin-bottom: 20px;
+		background: rgba(255,255,255,0.5);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7Fffffff,endColorstr=#7Fffffff);
+	}
+	.qiangdan_tit h3 {
+    	font-size: 18px;
+		margin:0;
+	}
+	.register_name {
+		margin-top: 0
+	}
+	.qiangdan_wz {
+		border: none;
+		position: relative;
+		background: #fff;
+		cursor: pointer;
+		font-size: 14px;
+    	color: #888;
+		height: 40px;
+		width: 290px;
+		padding: 0 10px;
+		line-height: 40px;
+		border-radius: 3px;
+	}
+	.qiangdan_sel {
+		text-align: left;
+		position:relative;
+	}
+	.qiangdan_wz_box {
+		position: absolute;
+		top: 40px;
+		left: 0;
+		width: 100%;
+		background: #fff;
+		display:none;
+    	z-index: 1;
+	}
+	.qiangdan_wz_box a {
+		line-height: 40px;
+		font-size: 14px;
+		padding: 0 10px;
+		color:#999;
+	}
+	.qiangdan_wz_box a:hover {
+		background:#f1f1f1;
+	}
+	.qiangdan_yzm {
+		position: absolute;
+		top: 1px;
+		right: 1px;
+		z-index: 1;
+		font-size: 14px;
+		height: 38px;
+		background: #357ce2;
+		width: 100px;
+		text-align: center;
+		line-height: 38px;
+		color: #fff;
+	}
+	.register_list1{
+		position:relative;
+	}
+	.qiangdanyzm{
+		padding-right:110px !important;
+	}
+	.qiangdan_sx {
+		width: 320px;
+		line-height: 38px;
+		height: 40px;
+		padding: 0 10px;
+		font-size: 14px;
+		margin: 20px auto 10px;
+	}
+	.qiangdan_sx:focus{
+		outline:none;
+	}
+	.qiangdan2_tit {
+		text-align: center;
+	}
+	.register_list .register_ce {
+		background: none;
+		border: 0;
+		height: 40px;
+		line-height: 40px;
+		background: #df4a43;
+		color: #fff;
+		display: inline-block;
+		font-size: 16px;
+		width: 290px;
+		padding: 0;
+	}
+	.qiangdan_login .register_list1 {
+		padding-bottom: 10px;
+	}
+    </style>
+</head>
+
+<body>
+<include file="Public:header"/>
+<!--header-->
+<!--  / warpper  -->
+<div class="warpper">
+
+    <div class="qiangdan_box qiangdan_box1" style="background: url(__IMAGES__/banner_jyq.jpg) no-repeat center center;">
+        <div class="index_container">
+            <div class="qiangdan_login">
+                <div class="register_bottom">
+                    <div class="qiangdan_top">
+                        <div class="qiangdan_tit active" onClick="fnTabBoxFade(this,2,1)">
+                            <h3>小贷公司注册</h3>
+                        </div>
+                        <div class="qiangdan_tit" onClick="fnTabBoxFade(this,2,2)">
+                            <h3>申请贷款</h3>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="qiangdan_cot">
+                        <div class="qiangdan_cot1 TabHide2" id="TabShow1">
+                            <div class="register_list1">
+                                <input class="register_name" type="text" id="ipt_account" placeholder="请输入用户名" onBlur="this.placeholder='请输入用户名'" onFocus="this.placeholder=''">
+                            </div>
+                            <div class="register_list1">
+                                <input class="register_phone" type="text" id="ipt_telephone" placeholder="请输入您的手机号" onBlur="this.placeholder='请输入您的手机号'" onFocus="this.placeholder=''">
+                            </div>
+                            <div class="register_list1">
+                                <input class="register_phone" type="text" id="send_code" placeholder="验证码" onBlur="this.placeholder='验证码'" onFocus="this.placeholder=''" style="width: 180px; float: left;">
+                                <button onClick="scode(this)" style="width:100px;height:38px;border:none;line-height:38px;background-color: #0E64A0;color:#fff;margin-left:8px;">发送短信</button>
+                            </div>
+                            <div class="register_list1">
+                                <input class="register_phone" type="password" id="ipt_pwd" placeholder="请输入密码" onBlur="this.placeholder='请输入密码'" onFocus="this.placeholder=''">
+                            </div>
+                            <div class="register_list1">
+                                <input class="register_phone" type="password" id="ipt_cfpwd" placeholder="请重复输入密码" onBlur="this.placeholder='请重复输入密码'" onFocus="this.placeholder=''">
+                            </div>
+                            <div class="register_list1">
+                                <input class="register_phone" type="text" id="ipt_address" placeholder="请输入地址" onBlur="this.placeholder='请输入地址'" onFocus="this.placeholder=''">
+                            </div>
+                            <div class="register_list1">
+                                <input class="register_phone" type="text" id="ipt_company" placeholder="请输入公司名称" onBlur="this.placeholder='请输入公司名称'" onFocus="this.placeholder=''">
+                            </div>
+                            <div class="register_list">
+                                <input type="submit" class="register_ce" id="btn_register" value="提交申请">
+                            </div>
+                        </div>
+                        <div class="qiangdan_cot1 TabHide2" id="TabShow2" style="display:none;">
+                        <div class="register_list1">
+                        	<div class="qiangdan_sel">
+                            	<div class="qiangdan_wz"><span class="s_type">个贷</span><div class="banlist_btn"><img src="/Public/Home/Images/ban_btn1.png" width="100%" alt=""></div></div>
+                                <div class="qiangdan_wz_box">
+                                	<ul>
+                                    	<li><a href="#">个贷</a></li>
+                                    	<li><a href="#">房贷</a></li>
+                                    	<li><a href="#">车贷</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="register_list1">
+                            <input class="register_phone chenghu" type="text" placeholder="请输入您的称呼" onBlur="this.placeholder='请输入您的称呼'" onFocus="this.placeholder=''">
+                        </div>
+                        <div class="register_list1">
+                            <input class="register_phone dianhua" type="text" placeholder="请输入您的手机号" onBlur="this.placeholder='请输入您的手机号'" onFocus="this.placeholder=''">
+                        </div>
+                        <div class="register_list1">
+                                <input class="register_phone yanzhengma" type="text" id="send_code" placeholder="验证码" onBlur="this.placeholder='验证码'" onFocus="this.placeholder=''" style="width: 180px; float: left;">
+                                <button id="getCode3" style="width:100px;height:38px;border:none;line-height:38px;background-color: #0E64A0;color:#fff;margin-left:8px;">发送短信</button>
+                            </div>
+                        <div class="register_list">
+                            <input type="submit" class="register_ce freedai" value="免费贷款">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="qiangdan_box qiangdan_box2">
+        <div class="index_container">
+            <div class="qiangdan2_top">
+                <div class="qiangdan2_list">
+                    <div class="qiangdan2_wz">
+                        <h4>最近一个月获得贷款人数</h4>
+                        <h2>{$loan.loan_people}人</h2>
+                    </div>
+                </div>
+                <div class="qiangdan2_list">
+                    <div class="qiangdan2_wz">
+                        <h4>最近一个月放款金额</h4>
+                        <h2>{$loan.loan_money}万元</h2>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <notempty name="cache">
+            <div class="qiangdan2_tit" id="shen">
+                <h3>最新贷款申请</h3>
+                <select class="qiangdan_sx">
+                	<option value=""  <eq name="type" value=""> selected </eq>  >全部</option>
+                	<option value="1" <eq name="type" value="1"> selected </eq> >个贷</option>
+                	<option value="2" <eq name="type" value="2"> selected </eq> >房贷</option>
+                	<option value="3" <eq name="type" value="3"> selected </eq> >车贷</option>
+                </select>
+            </div>
+            <div class="qiangdan2_table">
+                <table>
+                    <foreach name="cache" item="vo">
+                    <tr>
+                        <td width="15%">{$vo.truename}</td>
+                        <td width="15%">{$vo.telephone}</td>
+                        <td width="15%">{$vo.cate}</td>
+                        <td width="30%">{$vo.housename}  {$vo.carname}</td>
+                        <td width="15%">{$vo.apply_at|date="Y-m-d H:i:s",###}</td> 
+                        <td width="15%" class="qd"><a href="{:U('Supplier/Index/index')}" >抢单</a></td> 
+                    </tr>
+                    </foreach>
+                </table>
+            </div>
+            </notempty>
+        </div>
+    </div>
+
+
+
+    <div class="qiangdan_box qiangdan_box3">
+        <div class="index_container">
+            <div class="qiangdan2_tit">
+                <h3>简单三步&nbsp;&nbsp;&nbsp;&nbsp;洛凡金融帮您搞定贷款</h3>
+            </div>
+            <div class="qiangdan3">
+                <div class="qiangdan3_list">
+                    <div class="qiangdan3_img">
+                        <img src="__IMAGES__/qiangdan3_1.png" width="50" />
+                    </div>
+                    <div class="qiangdan3_wz">
+                        <h4>在线提交资料</h4>
+                    </div>
+                    <div class="qiangdan3_jt"></div>
+                </div>
+                <div class="qiangdan3_list">
+                    <div class="qiangdan3_img">
+                        <img src="__IMAGES__/qiangdan3_2.png" width="50" />
+                    </div>
+                    <div class="qiangdan3_wz">
+                        <h4>机构审批贷款</h4>
+                    </div>
+                    <div class="qiangdan3_jt"></div>
+                </div>
+                <div class="qiangdan3_list">
+                    <div class="qiangdan3_img">
+                        <img src="__IMAGES__/qiangdan3_3.png" width="50" />
+                    </div>
+                    <div class="qiangdan3_wz">
+                        <h4>签约放贷</h4>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!--  / warpper  -->
+
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+</body>
+
+<script type="text/javascript">
+    var wait = 60;
+  $("#getCode3").click(function (){
+    var _this = $(this)
+    if (_this.attr("disabled")) {
+        return false;
+    }
+    var telephone   = $(".dianhua").val();
+    if(!telephone){
+      dialog.showTips("请填写手机号！","warn");return false;
+    }else if(!telephone.match(/^1[35789][0-9]{9}$/)){
+      dialog.showTips("手机号码格式错误！","warn");return false;
+    }
+
+    $.post("{:U('Index/getMessage')}", {'telephone':telephone,'code_type':15}, function (data){
+		console.log(data);
+      if(data.status==1){
+        dialog.showTips("验证码发送成功，请注意查收！","warn");
+        // 计时
+        time(_this);
+      }else{
+        dialog.showTips(data.info,"warn");return false;
+      }
+    },"json")
+  })
+
+  function time(o) {
+    //localStorage.aux_reTime=wait;
+    if (wait == 0) {
+      o.removeAttr("disabled");
+      o.html("重新获取");
+      wait = 60;
+    } else {
+      o.attr("disabled", true);
+      o.html("重新发送(" + wait + ")");
+      wait--;
+      setTimeout(function () {
+          time(o)
+      }, 1000);
+    }
+  }
+</script>
+
+<script>
+$(".freedai").click(function(){
+	var post ={};
+	post.type    = $(".s_type").html();
+
+	post.name = $(".chenghu").val();
+	post.telephone = $(".dianhua").val();
+	post.code    = $(".yanzhengma").val();
+	
+	if(!post.type){
+          dialog.showTips("请选择申请类型！","warn");return false;
+        }
+	if(!post.name){
+		alert("请填写称呼！");
+        return false;
+	}
+	if(!post.telephone){
+		alert("请填写电话！");
+        return false;
+	}else if(!post.telephone.match(/^1[345789][0-9]{9}$/)){
+          dialog.showTips("手机号码格式错误！","warn");return false;
+    }
+	if(!post.code){
+		alert("请输入验证码！");
+        return false;
+	}
+	var _this = $(this)
+	if (_this.attr("disabled")) {
+		return false;
+	}else{
+		_this.attr("disabled", true);
+	}
+	
+	$.post("{:U('Index/freeApply')}",post, function (data){
+		_this.removeAttr("disabled");
+		console.log(data);
+		dialog.showTips(data.info,"warn",function(){
+			window.location.reload();
+		
+		});return false;       
+
+	},"json")
+
+
+})
+
+</script>
+
+
+
+
+<script>
+$(".qiangdan_sx").change(function(){
+	var type = $(this).val();
+	window.location.href="{:U('Home/Grab/index')}"+"?type="+type+"#shen";
+})
+
+$(".qd").hover(function(){
+	$(this).attr("title",'注册小贷公司即可查看此信息');
+
+})
+
+</script>
+<script>
+    var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+    var mySwiper2 = new Swiper('.swiper2',{
+        loop:true,
+        autoplay:5000,
+        spaceBetween: 0,
+        slidesPerView : 4,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.fangdai_lt').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipePrev()
+    })
+
+    $('.fangdai_rt').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipeNext()
+    })
+
+</script>
+
+
+<script>
+
+
+
+    $(document).ready(function(){
+        $(window).load(function(){
+            $(".swiper1").height($(".swiper1 .ban_box ").height());
+            $('.swiper2').height($('.swiper2 img').height()+60)
+
+        })
+        $(window).resize(function(){
+            $(".swiper1").height($(".swiper1 .ban_box ").height());
+            $('.swiper2').height($('.swiper2 img').height()+60)
+        });
+
+        for(n=0;n<$('.qiangdan2_table tr').length;n++){
+            $('.qiangdan2_table tr').eq(n*2+1).css('background','#e5e5e5')
+        }
+
+    })
+
+
+    $(window).scroll(function(){
+        var scrollT=$(window).scrollTop();
+        if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+            $('.right_nav').css('display','block');
+        }else{
+            $('.right_nav').css('display','none');
+        }
+
+    })
+</script>
+<script>
+	var wait = 60;
+    function scode(obj){
+	  var _this = $(obj);
+        var telephone = $('#ipt_telephone').val();
+        if(!(/^1[34578]\d{9}$/.test(telephone))){
+            alert("请输入正确的手机号");return false;
+        }
+
+        $.ajax({
+            type:"post",
+            url:"{:U('Grab/getMessage')}",
+            async:true,
+            data:{
+                'telephone':telephone,
+                'code_type':5
+
+            },
+            success:function(data){
+                if(data.status==1){
+                    alert(data.info);
+					 time(_this);
+                    return;
+                }else{
+                    alert(data.info);
+                    return false;
+                }
+            }
+        });
+    }
+
+
+  function time(o) {
+    //localStorage.aux_reTime=wait;
+    if (wait == 0) {
+      o.removeAttr("disabled");
+      o.html("重新获取");
+      wait = 60;
+    } else {
+      o.attr("disabled", true);
+      o.html("重新发送(" + wait + ")");
+      wait--;
+      setTimeout(function () {
+          time(o)
+      }, 1000);
+    }
+  }
+
+    $(function () {
+        $("#btn_register").click(function () {
+            var username = $('#ipt_account').val();
+            var telephone = $('#ipt_telephone').val();
+            var password = $('#ipt_pwd').val();
+            var cfpassword = $('#ipt_cfpwd').val();
+            var send_code = $('#send_code').val();
+            var address = $('#ipt_address').val();
+            var company = $('#ipt_company').val();
+
+            if (username == '') {
+                alert("请填写用户名！");
+                $('#ipt_account').focus();
+                return false;
+            }
+            if (telephone == '') {
+                alert("请填写手机号！");
+                $('#ipt_telephone').focus();
+                return false;
+            }
+            if (password == "") {
+                alert('密码必填');
+                $('#ipt_pwd').focus();
+                return false;
+            }
+            if (cfpassword == '') {
+                alert("请填写重复密码！");
+                $('#ipt_cfpwd').focus();
+                return false;
+            }
+            if (send_code == "") {
+                alert('短信验证码必填');
+                $('#send_code').focus();
+                return false;
+            }
+            if (address == "") {
+                alert('请填写地址');
+                $('#ipt_address').focus();
+                return false;
+            }
+            if (company == "") {
+                alert('请填写公司名称');
+                $('#ipt_company').focus();
+                return false;
+            }
+            $.ajax({
+                url: "{:U('/Grab/checkregisterajax')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    'personname': username,
+                    'telephone': telephone,
+                    'password': password,
+                    'cfpassword': cfpassword,
+                    'send_code': send_code,
+                    'address': address,
+                    'company': company 
+                }
+            }).done(function (g) {
+                if (g.status == 1) {
+                    window.location.href=g.url;
+
+                } else {
+                    alert(g.info);
+                    $('#send_code').val('');
+                }
+
+            })
+
+        })
+
+        $('.j-clearIpt').click(function(){
+            console.log(0);
+            $(this).parent().find('input').val('');
+        })
+
+    })
+</script>
+<script>
+$('.qiangdan_wz').click(function(){
+	$(this).siblings('.qiangdan_wz_box').stop().slideToggle()
+})
+
+$('.qiangdan_wz_box a').click(function(){
+	$('.qiangdan_wz_box').stop().slideUp()
+	$('.qiangdan_wz span').html($(this).html())
+})
+function stopPropagation(e) {
+if (e.stopPropagation) 
+e.stopPropagation();
+else 
+e.cancelBubble = true;
+}
+
+$(document).bind('click',function(){
+	$('.qiangdan_wz_box').stop().slideUp()
+});
+
+$(".qiangdan_wz").bind('click',function(e){
+    stopPropagation(e);
+});
+
+function fnTabBoxFade(Focus,Hide,Show){
+	$(Focus).siblings().removeClass("active");
+	$(Focus).addClass("active");
+	$(".TabHide"+Hide).hide();
+	$("#TabShow"+Show).fadeIn("fast");
+};
+</script>
+</html>
+
+

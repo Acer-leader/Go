@@ -1,0 +1,168 @@
+<include file="Public:head"/>
+<style>
+    .btn-success {
+        margin-top: 12px;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <div class="content-right fl">
+            <h1 class="content-right-title">修改  {$info.goods_name}  图标
+                <a style="float: right" href="javascript:history.back();" class="btn btn-success">返回</a>
+            </h1>
+            <table class="wxtables mgt15">
+                <colgroup>
+                    <col width="2%">
+                    <col width="20%">
+                    <col width="10%">
+                    <col width="15%">
+                    <col width="20%">
+                    <col width="38%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <td><i class="icon_check"></i></td>
+                    <td>分类名称</td>
+                    <td>图标</td>
+                    <td class="center">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res" item="vo" >
+                    <tr>
+                        <td class="center"><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}"></td>
+                        <td>{$vo.attr_list}</td>
+                        <td><img src="{$vo.img}" width="30" alt=""></td>
+                        <td class="center"><a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}" data-pic="{$vo.img}" >修改图片</a></td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="tables-btmctrl clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end container -->
+<include file="Public:foot"/>
+<div id="albums-overlay" class="disshow"></div>
+<
+<div class="jbox editfenlei disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">修改图标</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+
+        <div class="formitems" style=" height:60px;">
+            <input type="hidden" name="id" value="id">
+            <label class="fi-name"><span class="colorRed"></span>上传图片：</label>
+            <div class="form-controls images">
+                <div class="showimg showimgedit"></div>
+                <div class="imagesadd">+</div>
+                <input type="file"  accept="image/jpg,image/jpeg,image/png" class="input" name="serial" id="editimage" >
+                <div class="progress">
+                    <div class="bar"></div>
+                    <<div class="percent"></div>
+                </div>
+                <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小:(100*100px)</span>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="jbox-buttons">
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editcategory">确定</a>
+        <a href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a>
+    </div>
+</div>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(function () {
+        var progress = $(".img");
+        var bar = $('.bar') ;
+        var percent = $('.percent');
+        var progress = $('.progress');
+        $("#editimage").wrap("<form id='myupload1' action='{:U('Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#editimage").change(function(){ //选择文件
+            $("#myupload1").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    bar.width(percentVal); //上传进度条宽度变宽
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="editpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.showimgedit').html(img);
+                    $("#editimage").val('');
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+
+
+</script>
+
+
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+</script>
+<!--添加分类end-->
+
+<!--修改分类-->
+<script type="text/javascript">
+    var categoryid;
+    $(".j-editClass").click(function(){
+        $('.editfenlei').show();
+        $('#albums-overlay').show();
+        var id=$(this).attr('data-id');
+        //alert(id);
+        $(".editfenlei input[name=id]").val(id);
+    })
+    $("#editcategory").click(function(){
+        var img = $("#editpic").val();
+        var id = $(".editfenlei input[name=id]").val();
+        $.ajax({
+            url: "{:U('/Admin/Goods/editSKUimg')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                img:img,
+                id:id
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+        })
+    })
+</script> 

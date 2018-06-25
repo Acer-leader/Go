@@ -1,0 +1,222 @@
+<include file="Public:head"/>
+
+<style>
+    .ftnormal {line-height: 25px!important;}
+    .btn{vertical-align: baseline;}
+    .newinput{ width:145px;}
+    .select.mini{width: 110px;}
+    .vtal-2{vertical-align: -2px;}
+	.shady{ background:#000; opacity:0.5; width:100%; height:100%; position:fixed; top:0; left:0; z-index:111111; display:none; }
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<script type="text/javascript">
+
+    J(function(){
+        J('#starttime').calendar();
+        J('#endtime').calendar();
+    });
+
+</script>
+
+<div class="container">
+<div class="inner clearfix">
+    <include file="Public:distributionleft" />
+<!-- end content-left -->
+<div class="shady" id="heemu"></div>
+<img src="" id="em" style="position:fixed;width:34%;margin:auto;left:0;right:0;display:none;z-index:11111111111111;cursor:pointer;" onclick="this.style.display='none',document.getElementById('heemu').style.display='none'"/>
+<div class="content-right fl">
+
+
+    <h1 class="content-right-title">跳出奖励列表</h1>
+
+
+    <form action="" method="get">
+        <div class="tables-searchbox">
+            <input type="text" placeholder="输入订单号" class="input newinput" name="order_no" value="{$_GET['order_no']}">
+            <select value="{$_GET['take_type']}" name="take_type" class="select mini">
+                <option value="">提取类型</option>
+                <option value="1" <eq name="take_type" value="0">selected</eq>>方式一</option>
+                <option value="2" <eq name="take_type" value="1">selected</eq>>方式二</option>
+            </select>
+            <button class="btn btn-primary vtal-2"><i class="gicon-search white"></i>查询</button>
+        </div>
+    </form>
+    <div class="tabs clearfix mgt15">
+        <a href="{:U('Admin/Distribution/takeRewardList/')}" class="<if condition="($_GET['type'] eq '')">active</if> tabs_a fl">所有奖励({$count1})</a>
+        <a href="{:U('Admin/Distribution/takeRewardList/type/2')}" class="<eq name="_GET['type']" value="2">active</eq> tabs_a fl">B计划({$count3})</a>
+        <a href="{:U('Admin/Distribution/takeRewardList/type/3')}" class="<eq name="_GET['type']" value="3">active</eq> tabs_a fl">C计划({$count4})</a>
+		<eq name="pay_type" value="2">
+		<a href="{:U('/Admin/taskOrder/excel')}/dealerid/{$dealerid}" class="btn btn-success fr">导出</a>
+		</eq>
+    </div>
+        <table class="wxtables table-order mgt20">
+            <colgroup>
+                <col width="25%">
+                <col width="5%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <td align="center">订单用户</td>
+                    <td align="center">类型</td>
+                    <td align="center">订单金额</td>
+                    <td align="center">现金金额</td>
+                    <td align="center">提取时间</td>
+                    <td align="center">股份份额</td>
+                    <td align="center">操作管理员</td>
+                    <td align="center">操作时间</td>
+                    <td align="center">操作</td>
+                </tr>
+            </thead>
+        </table>
+
+
+    	<table class="wxtables table-order mgt20">
+              <colgroup>
+                <col width="25%">
+                <col width="5%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+              </colgroup>
+
+            <volist name="cache" id="vo" empty="暂无数据">
+                <thead>
+
+                    <tr>
+                        <td colspan="9" class="ftnormal" style="background-color:#F2F8FC;">
+                            <input type="checkbox" class="checkbox table-ckbs" data-id="2137327" name="id" value="{$vo.id}">
+                            
+                            <span>订单编号：<b>{$vo.order_no}</b></span>
+                            <span class="mgl15">可提取时间：<b>{$vo.create_at|date="Y-m-d H:i:s",###}</b></span>
+                            <!---->
+                            <span class="mgl15 colorRed">
+                                <switch name="vo.take_type">
+                                    <case value="0">未提取</case>
+                                    <case value="1">提取方式一</case>
+                                    <case value="2">提取方式二</case>
+                                </switch>
+                            </span>
+                            <span class="mgl15 colorRed">
+                                <notempty name="vo['share_type']">
+                                <switch name="vo['share_type']['status']">
+                                    <case value="0">未发放股份</case>
+                                    <case value="1">已发放股份</case>
+                                </switch>
+                                </notempty>
+                            </span>
+                         </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td valign="top" class="txtCenter" style="padding-top:15px;vertical-align: inherit;">
+                            <p><b>[姓名]:</b>{$vo['user']['realname']} <b>[昵称]:</b>{$vo['user']['person_name']}</p>
+                            <p><b>电话：</b>{$vo['user']['telephone']}</p>
+                     	</td>
+                        <td valign="top" class="txtCenter" style="padding-top:15px;vertical-align: inherit;">
+                            <p>{$vo.subject}</p>
+                        </td>
+
+                        <td valign="top" class="txtCenter" style="padding-top:15px;vertical-align: inherit;">
+                            <p><b>¥<if condition="$vo['total_fee']">{$vo.total_fee}<else />0.00</if></b></p>
+                        </td>
+
+
+                        <td valign="middle" align="center" class="txtCenter">
+                            <p><b>¥{$vo['share_type']['money']}</b></p>
+                        </td>
+                        <td valign="middle" align="center"  class="txtCenter">
+                            <notempty name="vo['take_at']">
+                            <p><b>{$vo.take_at|date="Y-m-d H:i:s",###}</b></p>
+                            </notempty>
+                        </td>
+
+                        <td valign="middle" align="center"  class="txtCenter">
+                            <p><b>{$vo['share_type']['share']}股</b></p>
+                        </td>
+                        <td valign="middle" align="center"  class="txtCenter">
+                            <p><b>{$vo['share_type']['admin_name']}</b></p>
+                        </td>
+                        <td valign="middle" align="center"  class="txtCenter">
+                            <notempty name="vo['share_type']['deal_at']">
+                            <p><b>{$vo['share_type']['deal_at']|date="Y-m-d H:i:s",###}</b></p>
+                            </notempty>
+                        </td>
+                        <td valign="top" style="vertical-align: inherit;">
+                            <p>
+                                <a href="{:U('Admin/Distribution/orderDetail')}/id/{$vo.id}/dealerid/{$dealerid}" class="btn btn-mini btn-primary">查看详情</a>
+                                <eq name="vo['share_type']['status']" value="0">
+                                    <a class="btn btn-mini btn-warning share" data-id="{$vo['share_type']['id']}" data-tel="{$vo['user']['telephone']}" data-share="{$vo['share_type']['share']}">发放股份</a>
+                                </eq>
+
+                            </p>
+							
+                        </td>
+                    </tr>
+                </tbody>
+ </volist>
+
+            </table>
+
+        <!-- end wxtables -->
+        <div class="tables-btmctrl clearfix mgt10">
+            <div class="fl" style="float:none;">
+                <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                <!-- <a href="javascript:void(0)" onclick="del()" class="btn btn-danger J_batch_del">删除订单</a> -->
+            </div>
+
+            <div class="pages" style="float:none;width:100%;text-align:center;padding-top:10px;">
+                {$page}
+            </div>
+                <!-- end paginate -->
+
+        </div>        <!-- end tables-btmctrl -->
+
+
+    <form action="" method="post" id="ids">
+        <input type="hidden" name="ids" value="">
+    </form>
+
+
+</div>
+<!-- end content-right -->
+</div>
+</div>
+<!-- end container -->
+
+<!--gonggao-->
+<include file="Public:foot"/>
+
+
+<script type="text/javascript">
+
+    $(".share").click(function (){
+        var share = $(this).attr("data-share");
+        var tel   = $(this).attr("data-tel");
+        if(!confirm("确认为"+tel+"发放"+share+"股？此操作不可逆！")){
+            return false;
+        }
+        var id = $(this).attr("data-id");
+        $.post("{:U('Admin/Distribution/takeShare')}",{id:id},function (data){
+            alert(data.info)
+            if(data.status){
+                window.location.reload();
+            }
+        })
+    })
+	
+</script> 

@@ -1,0 +1,295 @@
+<include file="Public:head"/>
+</head>
+
+<body>
+
+
+<!--header-->
+<include file="Public:header"/>
+<!--header-->
+
+
+
+<!--  / warpper  -->
+<div class="warpper">
+	<!--gedai_box1-->
+	<div class="box_main">
+		 <include file="Public:left"/>
+    	<!--right-->
+    	<div class="per_right">
+    		<div class="clien_tip">
+    			<span>客户列表</span>
+    		</div>
+    		<div class="clien_con">
+    			<div class="cline_list">
+    				<div class="cline_lf">申请产品：</div>
+    				<ul class="cline_lr">
+    					<a href="__HOST__/Distribution/"><li><span <if condition="$cate_id eq null">class="cline_cl"</if>>全部</span></li></a>
+    					<a href="__HOST__/Distribution/index/cate_id/1"><li><span <eq name="cate_id" value="1">class="cline_cl"</eq>>个贷</span></li></a>
+    					<a href="__HOST__/Distribution/index/cate_id/2"><li><span <eq name="cate_id" value="2">class="cline_cl"</eq>>房贷</span></li></a>
+    					<a href="__HOST__/Distribution/index/cate_id/3"><li><span <eq name="cate_id" value="3">class="cline_cl"</eq>>车贷</span></li></a>
+    					<!-- <li><span>信用卡</span></li> -->
+    				</ul>
+    				<div class="clear"></div>
+    			</div>
+    			<div class="cline_list">
+    				<div class="cline_lf">申请状态：</div>
+    				<ul class="cline_lr">
+    					<a href="__HOST__/Distribution/"><li><span <if condition="$status eq null">class="cline_cl"</if>>全部</span></li></a>
+    					<a href="__HOST__/Distribution/index/status/1"><li><span <eq name="status" value="1">class="cline_cl"</eq>>正在审核</span></li></a>
+    					<a href="__HOST__/Distribution/index/status/2"><li><span <eq name="status" value="2">class="cline_cl"</eq>>申请通过</span></li></a>
+    		<!-- 			<li><span>车贷</span></li>
+    					<li><span>信用卡</span></li> -->
+    				</ul>
+    				<div class="clear"></div>
+    			</div>
+    		<!-- 	<div class="cline_list">
+    				<div class="cline_lf">所属代理商：</div>
+    				<ul class="cline_lr">
+    					<input type="text" placeholder="" value="" id="number">
+    				</ul>
+    				<div class="clear"></div>
+    			</div> -->
+    		</div>
+    		<div class="clien_con1">
+    			<table>
+    				<thead>
+    					<tr>
+    						<td>姓名</td>
+    						<td>手机号码</td>
+    						<td>申请产品</td>
+    						<td>所属代理商</td>
+    						<td>申请时间</td>
+    						<td>申请状态</td>
+    					</tr>
+    				</thead>
+    				<tbody>
+                        <if condition="empty($new)"><tr ><td colspan="6">暂无客户</td></tr></if>
+                        <foreach name="new" item="v">
+    					<tr>    
+    						<td>{$v.truename}</td>
+    						<td>{$v.telephone|substr=0,3}*****{$v.telephone|substr=-4,4}</td>
+    						<td>
+                                <switch name="v.cate_id">
+                                    <case value="1">
+                                    个人贷款
+                                    </case>
+                                    <case value="2">
+                                    房贷贷款
+                                    </case>
+                                    <case value="3">
+                                    车贷贷款
+                                    </case>
+                                    <default/>
+                                    信用卡
+                                </switch>
+                            </td>
+    						<td>{$v.number}</td>
+    						<td>{$v.apply_at|date="Y-m-d",###}</td>
+    						<td>
+                                <switch name="v.status">
+                                    <case value="2">
+                                    通过
+                                    </case>
+                                    <case value="3">
+                                    不通过
+                                    </case>
+                                    <default/>
+                                    <a href="javascript:void(0);" title="查看" onclick="checked({$v.telephone})">正在审核</a>
+                                </switch>
+                            
+                            </td>
+    					</tr> 
+                        </foreach>
+    					
+    					
+    				</tbody>
+    			</table>
+    		</div>
+    		
+            <div class="wenda3_page" style="text-align:center">{$page}</div>
+    		
+    		<div class="clien_tip">
+    			<span>详情说明</span>
+    		</div>
+    		<div class="clien_con clien_con3">
+    			<h2>
+    				<img src="__IMAGES__/liang.png">
+    				<span>结算周期：</span>
+    				月结，每月初前五个工作日结算上月数据
+    			</h2>
+    			<h2>
+    				<img src="__IMAGES__/liang.png">
+    				<span>状态说明：</span>
+    				数据状态的显示非实时状态，待结算日显示各家状态
+    			</h2>
+    			<h3>
+    				<img src="__IMAGES__/liang1.png">
+    				<span>温馨提示：</span>
+    				民生信用卡、现金卡、玖富万卡属合作商户二维码，用户申请信息不显示详细状态，官方仅显示二维码下款总金额数据状态
+    			</h3>
+    		</div>
+    		
+    	</div>
+    	
+    	<div class="clear"></div>
+	</div>
+	
+
+</div>
+</div>
+<!--  / warpper  -->
+
+
+
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<script>
+function checked(telephone){
+    var post    =   {};
+    post.telephone  =   telephone;
+     $.ajax({
+            url:'__HOST__/Distribution/isapply',
+            data:post,
+            type:'post',
+            dataType:'json',
+            success: function(data){
+                var Content =  data['Content'];
+                if(Content){
+                    if(Content['Status']){
+                        alert('审核通过')
+                    }else{
+                        alert('正在审核');
+                    }
+                }else{
+                    alert('正在审核');
+                }
+
+  
+            }
+        })
+}
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 8,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+	var mySwiper3 = new Swiper('.swiper3',{
+		pagination: '.pagination3',
+		loop:true,
+		autoplay:5000, 
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipePrev()
+	})
+	  
+	$('.arrow-right3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipeNext()
+	})
+	var mySwiper4 = new Swiper('.swiper4',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 4,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.fangdai_lt').on('click', function(e){
+		e.preventDefault()
+		mySwiper4.swipePrev()
+	})
+	  
+	$('.fangdai_rt').on('click', function(e){
+		e.preventDefault()
+		mySwiper4.swipeNext()
+	})
+</script>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+	$(window).load(function(){
+		$(".swiper1").height($(".swiper1 .ban_box ").height());
+		$(".swiper3").height($(".swiper3 img ").height());
+		$('.gedai4_right').height($('.gedai4_left').height()+42)
+		$('.swiper4').height($('.swiper4 img').height()+60)
+		
+	})
+	$(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+		$(".swiper3").height($(".swiper3 img ").height());
+		$('.gedai4_right').height($('.gedai4_left').height()+42)
+		$('.swiper4').height($('.swiper4 img').height()+60)
+	});
+
+	
+})	
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})	
+</script>
+<script>
+    $('#number').blur(function(){
+        var number  =   $(this).val();
+        if(number==""){
+            return false;
+        }
+        window.location.href    =   '__HOST__/Distribution/index/number/'+number;
+    })
+</script>
+</html>

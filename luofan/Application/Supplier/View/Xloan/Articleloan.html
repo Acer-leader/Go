@@ -1,0 +1,157 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__//lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">案例攻略列表</h1>
+    <a href="{:U('/Supplier/Xloan/Addeditarticleloan',array('lontype'=>$lontype))}" class="btn btn-success"> 添加</a>&nbsp;&nbsp;<a href="javascript:;" onclick="javascript:history.back(-1);" class="btn btn-success">返回</a>
+    <form action="{:U('/Supplier/Xloan/Articleloan',array('lontype'=>$lontype))}" method="get">
+      <div class="tables-searchbox newcearchbox">
+        <select name="typeid" class="select small newselect">
+          	<option value="" <if condition="$typeid eq ''">selected</if>>所有分类</option>
+            <option value="0" <if condition="$typeid eq 1">selected</if>>案例</option>
+            <option value="1" <if condition="$typeid eq 2">selected</if>>攻略</option>
+        </select>
+        <input type="text" placeholder="标题/作者/来源" class="input" name="name" value="{$name}" >
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+        <!--<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>--> 
+        <!--产品导出</a>--> 
+      </div>
+    </form>
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+      <col width="2%">
+      <col width="5%">
+      <col width="6%">
+      <col width="20%">
+      <col width="10%">
+      <col width="8%">
+      <col width="5%">
+      <col width="5%">
+      <col width="20%">
+      <col width="20%">
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+          <td><i class="icon_check"></i></td>
+          <td>ID</td>
+          <td>类型</td>
+          <td>标题</td>
+          <td>LOGO</td>
+          <td>作者</td>
+          <td>显示</td>
+          <td>排序</td>
+          <td>时间</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="lists" item="vo">
+          <tr>
+            <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+            <td>{$vo.id}</td>
+            <td><eq name="vo['typeid']" value="1">案例</eq><eq name="vo['typeid']" value="2">攻略</eq></td>
+            <td>{$vo.title}</td>
+            <td><div class="table-item-img"> <img src="{$vo.pic}" alt=""> </div></td>
+            <td>{$vo.author}</td>
+            <td><eq name='vo.is_show' value="0">是<else/>否</eq></td>
+            <td>{$vo.sorts}</td>
+            <td>{$vo.create_at|date="Y-m-d H:i:s",###}</td>
+            <td><a href="{:U('/Supplier/Xloan/Addeditarticleloan/id')}/{$vo.id}/lontype/{$lontype}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+              <a href="{:U('/Supplier/Xloan/Delarticleloan/id')}/{$vo.id}/lontype/{$lontype}" onclick="{if(!confirm('确定删除产品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">删除</a></td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl"> <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a> <a href="javascript:;" data-item="is_sale" class="btn btn-primary change-all-status">上架反选</a> 
+        <!-- <a href="javascript:;" data-item="is_new" class="btn btn-primary change-all-status">新品速递反选</a>
+        <a href="javascript:;" data-item="is_jingxuan" class="btn btn-primary change-all-status">猜你喜欢反选</a>
+        <a href="javascript:;" data-item="is_good" class="btn btn-primary change-all-status">热门兑换反选</a>
+        <a href="javascript:;" data-item="is_cuxiao" class="btn btn-primary change-all-status">热兑商品反选</a>
+        <a href="javascript:;" data-item="is_sku" class="btn btn-primary change-all-status">sku反选</a> --> 
+        <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>
+        <div class="fr">
+          <div class="pages" style="width:auto;"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/> 
+<script>
+$(".change-status").click(function (){
+  var _this= $(this)
+  var id   = $(this).attr("data-id");
+  var item = $(this).attr("data-item");
+  $.post("{:U('Admin/Xloan/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status == 1){
+      _this.css({color:"#0C0"}).html("√");
+    }else if(data.status == 2){
+      _this.css({color:"#c00"}).html("×");
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".change-all-status").click(function (){
+  if(!confirm("确定改变所有选中产品的状态？")){
+    return false;
+  }
+  var ids = "";
+  var item = $(this).attr("data-item");
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Xloan/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+    if(data.status){
+      window.location.reload();
+    }else{
+      alert(data.info);
+    }
+  })
+})
+$(".change-is_sale").click(function (){
+  var id   = $(this).attr("data-id");
+  var item = "is_sale";
+  $.post("{:U('Admin/Xloan/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status){
+      window.location.reload()
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".btn_table_delAll").click(function(){
+  if(!confirm("确定删除所有选中的产品？")){
+    return false;
+  }
+  var ids = "";
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Xloan/delGoods')}" ,{ids:ids}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  })
+})
+</script>

@@ -1,0 +1,358 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">运费列表</h1>
+
+
+            <div class="alert alert-info disable-del">符合查询要求的有 <span style="font-size:16px;">{$count}</span> 个运费规则。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <a id='addExpress' class="btn btn-success">添加运费规则</a>
+          <!--   <div class="tablesWrap">
+                    <div class="tables-searchbox">
+                        <div class="fl" style="float:left">
+                            <form action="{:U('Admin/Order/express')}" method="post">
+                                <div class="tables-searchbox">
+                                    <select name="region_id" id="region_id" class="select">
+                                        <option value="0">全国</option>
+                                        <foreach name="region" item="vo">
+                                            <?php if($vo['region_id']==$resInfo){
+                                                    $selected = "selected='selected'";
+                                                }else{
+                                                    $selected ="";
+                                                }
+                                           ?>
+                                            <option value="{$vo.region_id}" {$selected}>{$vo.region_name}</option>
+                                        </foreach>
+                                    </select>
+                                    <button class="btn btn-primary vtal-2"><i class="gicon-search white"></i>查询</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- end tables-searchbox -->
+                <table class="wxtables" style="text-align:center;">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="45%">
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td align="center"><b>序号</b></td>
+                        <td align="center"><b>地区</b></td>
+                        <td align="center"><b>首重(1KG)价格</b></td>
+                        <td align="center"><b>续重价格</b></td>
+                        <td align="center"><b>操作</b></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <foreach name="express" item="vo" key="k">
+                        <tr>
+                            <td><p>{$k+1}</p></td>
+                            <td><p> {$vo.region_name}</p></td>
+
+                            <td><p>{$vo.first_price} 元</p></td>
+
+                            <td><p>{$vo.next_price} 元/KG</p></td>
+
+                            <td>
+                                <p>
+                                    <a data-id="{$vo.id}" data-next-price="{$vo.next_price}" data-first-price="{$vo.first_price}" class="btn btn-success modifyExpress">修改价格</a>
+                                </p>
+                                <p>
+                                    <a data-id="{$vo.id}" class="btn btn-success modifyRegion">修改区域</a>
+                                </p>
+                            </td>
+                        </tr>
+                        </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <!--<div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                    </div>-->
+                    <div class="fr">
+                         <div class="pages" style="float:none;width:100%;text-align:center;padding-top:10px;">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+
+<div id="albums-overlay" class="disshow"></div>
+
+<!-- 添加运费规则 -->
+<div class="jbox disshow addfregith" style="width:400px;height:250px;top:50%;left:50%;margin-left:-200px;margin-top: -194px;z-index: 999998;position: fixed; opacity: 1.5;">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">添加运费规则</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 110px;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>首重(1KG)价格：</label>
+      <div class="form-controls">
+          <input type="text" id="first_price" style='padding:5px' >
+          <input type="hidden" id="fregithid" >
+      </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>续重价格：</label>
+      <div class="form-controls">
+          <input type="text" id="next_price" style='padding:5px'>
+          <span class="fi-help-text" style='color:red'>注:价格为2位小数，且不能与已有规则重复!</span>
+      </div>
+    </div>
+  </div>
+  <div class="jbox-buttons">
+    <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addfee">确定</a>
+    <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a>
+  </div>
+</div>
+<!-- 添加运费规则 -->
+
+<!-- 修改运费规则 -->
+<div class="jbox disshow modifyfregith" style="width:400px;height:310px;top:50%;left:50%;margin-left:-200px;margin-top: -194px;z-index: 999998;position: fixed; opacity: 1.5;">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">修改运费规则</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 180px;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>原首重(1KG)价格：</label>
+      <div class="form-controls">
+          <input type="text" id="yuan_first_price" readonly style='padding:5px' >
+          <input type="hidden" id="feeid" >
+      </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>现首重(1KG)价格：</label>
+      <div class="form-controls">
+          <input type="text" id="now_first_price" style='padding:5px' >
+          <input type="hidden" id="fregithid" >
+      </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>原续重价格：</label>
+      <div class="form-controls">
+          <input type="text" id="yuan_next_price" readonly style='padding:5px'>
+      </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>现续重价格：</label>
+      <div class="form-controls">
+          <input type="text" id="now_next_price" style='padding:5px'>
+          <span class="fi-help-text" style='color:red'>注:价格为2位小数，且不能与已有规则重复!</span>
+      </div>
+    </div>
+  </div>
+  <div class="jbox-buttons">
+    <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="modifyfee">确定</a>
+    <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a>
+  </div>
+</div>
+<!-- 修改运费规则 -->
+
+<!-- 修改运费区域 -->
+<div class="jbox disshow region" style="width:400px;height:310px;top:50%;left:50%;margin-left:-200px;margin-top: -194px;z-index: 999998;position: fixed; opacity: 1.5;">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">修改区域</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 180px;">
+    <div class="formitems regionList" style='padding:10px;font-size:1.3em'>
+       <!--  <div style='margin-bottom:10px;height:20px;float:left;margin-right:10px'><input type="checkbox" name='region_id' value='1'>北京</div> -->
+
+    </div>
+    <input type="hidden" id="fregithidThis" >
+  </div>
+  <div class="jbox-buttons">
+    <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="okRegion">确定</a>
+    <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a>
+  </div>
+</div>
+<!-- 修改运费区域 -->
+
+<!-- end container -->
+<script>
+//判断是否为数字
+function IsNum(s){
+    if (s!=null && s!="")
+    {
+        return !isNaN(s);
+    }
+    return false;
+}
+$("#addExpress").click(function(){
+    $("#albums-overlay").show();
+    $(".addfregith").show();
+})
+
+$("#addfee").click(function(){
+    var first_price = $("#first_price").val();
+    var next_price = $("#next_price").val();
+    // alert(first_price);
+    // alert(next_price);
+
+    if(first_price ==''){
+        alert('请填首重(1KG)价格！');return false;
+    }
+    if(!IsNum(first_price)){
+        alert('首重(1KG)价格必须为数字！');return false;
+    }
+    first_price = Math.floor(first_price * 100) / 100;
+
+    if(next_price ==''){
+        alert('请填续重价格！');return false;
+    }
+    if(!IsNum(next_price)){
+        alert('续重价格必须为数字！');return false;
+    }
+    next_price = Math.floor(next_price * 100) / 100;
+    
+    $.post("{:U('Admin/Order/addExpress')}",{first_price:first_price,next_price:next_price},
+        function(data){
+            if(data.status==1){
+                window.location.reload();
+            }else{
+                alert(data.info);return false;
+            }
+    },"json");
+})
+
+$(".cancle").click(function(){
+    $(this).parent().parent('.jbox').hide();
+    $('#albums-overlay').hide();
+})
+
+$(".modifyExpress").click(function(){
+    $("#albums-overlay").show();
+    $(".modifyfregith").show();
+    var feeid = $(this).attr('data-id');
+    var first_price = $(this).attr('data-first-price');
+    var next_price = $(this).attr('data-next-price');
+    $('#feeid').val(feeid);
+    $('#yuan_first_price').val('¥'+first_price);
+    $('#yuan_next_price').val('¥'+next_price);
+})
+
+$("#modifyfee").click(function(){
+    var first_price = $("#now_first_price").val();
+    var next_price = $("#now_next_price").val();
+    var feeid = $("#feeid").val();
+    // alert(first_price);
+    // alert(next_price);
+
+    if(first_price ==''){
+        alert('请填首重(1KG)价格！');return false;
+    }
+    if(!IsNum(first_price)){
+        alert('首重(1KG)价格必须为数字！');return false;
+    }
+    first_price = Math.floor(first_price * 100) / 100;
+
+    if(next_price ==''){
+        alert('请填续重价格！');return false;
+    }
+    if(!IsNum(next_price)){
+        alert('续重价格必须为数字！');return false;
+    }
+    next_price = Math.floor(next_price * 100) / 100;
+    
+    $.post("{:U('Admin/Order/modifyExpress')}",{feeid:feeid,first_price:first_price,next_price:next_price},
+        function(data){
+            if(data.status==1){
+                window.location.reload();
+            }else{
+                alert(data.info);return false;
+            }
+    },"json");
+})
+
+$(".modifyRegion").click(function(){
+    $("#albums-overlay").show();
+    $(".region").show();
+    var feeid = $(this).attr('data-id');
+    // alert(feeid);
+    $('#fregithidThis').val(feeid);
+    $.post("{:U('Admin/Order/regionList')}",{feeid:feeid},
+        function(data){
+            console.log(data);
+            var regionList  = '';
+            for (var i = 0; i < data.info.length; i++) {
+                if(data.info[i].status == 1){
+                    var checkedThis = "checked='checked'";
+                }else{
+                    var checkedThis = '';
+                }
+                regionList += "<div style='margin-bottom:10px;height:20px;float:left;margin-right:10px'><input type='checkbox' "+checkedThis+" name='region_id' value='"+data.info[i].id+"'>"+data.info[i].name+"</div>";
+            };
+            $('.regionList').html(regionList)
+    },"json");
+})
+
+$("#okRegion").click(function(){
+    var feeid = $('#fregithidThis').val();
+
+    var region_id = "";
+    $("input[name='region_id']:checkbox").each(function(){ 
+        if($(this).attr("checked")){
+            region_id += $(this).val()+","
+        }
+    })
+    region_id = region_id.substring(0,region_id.length-1);
+  
+    // alert(feeid);
+    // alert(region_id);
+    
+    $.post("{:U('Admin/Order/getRegionSet')}",{feeid:feeid,region_id:region_id},
+        function(data){
+            if(data.status==1){
+                alert(data.info);
+                window.location.reload();
+            }else{
+                alert(data.info);return false;
+            }
+    },"json");
+})
+</script>
+
+<include file="Public:foot"/>

@@ -1,0 +1,40 @@
+<include file="Public:head"/>
+
+
+<body>
+
+<!--head --> 
+<div class="head_box" style=" background:#959ef9">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">优惠详情</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+<div class="warpper_box">
+ <div class="newsdot_box">
+ <div class="newsdot_box_title">{$res.news_title}</div>
+ <div class="newsdot_box_time">
+ <div class="newsdot_box_time_l">编辑：{$res.author}  来源：{$res.source}</div>
+ <div class="newsdot_box_time_r">{$res.add_time|date="Y-m-d H:i",###}</div>
+ <div class="clear"></div>
+ </div>
+ <div class="newsdot_box_body">
+{$res.detail|htmlspecialchars_decode|stripslashes}
+ </div>
+ </div>
+</div>
+
+<!--foot-->
+<include file="Public:footer"/>
+
+<!--foot-->
+
+
+</body>
+
+</html>

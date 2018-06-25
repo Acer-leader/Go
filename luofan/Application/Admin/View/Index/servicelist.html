@@ -1,0 +1,145 @@
+<include file="Public:head"/>
+
+
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+    <div class="inner clearfix">
+    <include file="Public:left" />
+
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">服务列表</h1>
+
+            <div class="clearfix"> <a href="{:U('Admin/Index/addservice')}" class="btn btn-success fl BtnAddClass">添加</a>
+            </div>
+
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+
+
+                <table class="wxtables">
+                    <colgroup>
+                        <col width="3%">
+                        <col width="5%">
+                        <col width="15%">
+                        <col width="20%">
+                        <col width="15%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                    <tr align="center" >
+                        <td><i class="icon_check"></i></td>
+                        <td>ID</td>
+						<td>服务类别</td>
+						<td>标题</td>
+                        <td align="center">添加时间</td>
+                        <td align="center">操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="info" id="vo" key="k" >
+                    <tr>
+                        <td align="center"><input type="checkbox" class="checkbox table-ckbs check" data-id="{$vo.id}"></td>
+                        <td align="center">{$vo.id}</td>
+						<td><notempty name="vo.p_classname">{$vo.p_classname}--{$vo.classname} <else/> {$vo.classname} </notempty> </td>
+                        <td align="center"><p> {$vo.title_en}</p></td>
+                        <td align="center"><p> {$vo.addtime|date="Y-m-d H:i:s",###}</p></td>
+                        <td align="center">
+                            <p>
+                                <a href="{:U('admin/Index/editservice',array('id'=>$vo[id]))}" class="btn btn-primary" title="编辑" >编辑</a>
+                                <a href="javaScript:;" class="btn btn-danger j-delClass" title="删除" onclick="btn_del({$vo['id']})">删除</a>
+                            </p>
+                        </td>
+                    </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                        <a href="javascript:;" class="btn btn-danger btn_table_delAll" onclick="btn_del()">批量删除</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<!--搜索 1-->
+<script>
+    function search_m(){
+        var title=$('#title').val();
+        if(title != ''){
+            location.href="{:U('/Admin/Company/index')}/title/"+title;
+        }else{
+            location.href="{:U('/Admin/Company/index')}";
+        }
+    }
+</script>
+<!--搜索 2-->
+
+<!--删除分类 1-->
+<script>
+    function btn_del(id){
+        if(confirm('确定要删除吗？')){
+            if(!id){
+                var id ='';
+                if($('.check:checked').length ==0){
+                    alert('请选择要删除的数据');return false;
+                }
+                $('.check:checked').each(function(){
+                    id = id + $(this).attr("data-id") + '_';
+                });
+            }
+            $.ajax({
+                url: "{:U('/Admin/Index/delservice')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: id
+                }
+            }).done(function (res) {
+                if (res.status == 1) {
+                    dialog.showTips(res.info,"",res.url);
+                } else {
+                    dialog.showTips(res.info,"warn");
+                }
+            })
+        }
+    }
+</script>
+<!--删除分类 2-->

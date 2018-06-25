@@ -1,0 +1,159 @@
+<include file="Public:head"/>
+</head>
+
+<body>
+<include file="Public:header"/>
+<!--header-->
+
+<!--  / warpper  -->
+<div class="warpper">
+
+    <div class="login_box login_box1">
+
+        <div class="index_container">
+
+            <!--sec1-->
+            <div class="login_sec1">
+            <div class="register_cot_left" style=" margin-top: -34px;"><img src="__IMAGES__/bg_login.png" /></div>
+                <div class="login1_box">
+
+                    <div class="login_tit_box">
+                        <div class="login_tit login_active" onclick="fnTabBoxFade(this,2,1);">密码登录<span></span></div>
+                        <div class="login_tit" onclick="fnTabBoxFade(this,2,2);">验证码登录<span></span></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="login1_box_bom">
+                        <!--tab1-->
+                        <div class="TabHide2" id="TabShow1">
+                            <div class="mima_login">
+                                <div class="dis_rela">
+                                    <input style="margin-bottom: 22px;" class="tab1_shouji telephone" type="text" placeholder="请输入你的手机号" onfocus="this.placeholder=''" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                                    <div class="shoujihao dis_rela_img">
+                                        <img src="__IMAGES__/sj.png" width="100%" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="dis_rela">
+                                    <input type="password" placeholder="请输入6~20位字母数字密码" class="tab1_password password" onfocus="this.placeholder=''"/>
+                                    <div class="login_mima dis_rela_img">
+                                        <img src="__IMAGES__/mm.png" width="100%" alt=""/>
+                                    </div>
+                                </div>
+
+                                <!-- <a href="#" class="wangji_mima">忘记密码？</a> -->
+                                <!-- <div class="yanzhengma_box">
+                                    <span class="yzm_tit">验证码：</span>
+                                    <div class="dis_rela">
+                                        <input type="text" placeholder="输入验证码" onblur="this.placeholder='输入验证码'" onfocus="this.placeholder=''"/>
+                                        <div class="login_yzm dis_rela_img">
+                                            <img src="__IMAGES__/yz.png" width="100%" alt=""/>
+                                        </div>
+                                    </div>
+
+                                    <div class="yzm_img">
+                                        <img src="__IMAGES__/yzm_img.png" width="100%" alt=""/>
+                                    </div>
+                                    <img src="__IMAGES__/suaxin.png" class="shuaxin" alt=""/>
+                                    <div class="clear"></div>
+                                </div> -->
+                                <input type="button" value="登录" class="login_btn" id="login"/>
+                                <a href="{:U('User/reg')}" style="float:left" class="href_regist">没有账号？<span>免费注册</span></a><a href="{:U('User/forget')}" style="float:right" class="href_regist"><span>  忘记密码</span></a>
+                            </div>
+                        </div>
+                        <!--tab1-->
+                        
+                        <!--tab2-->
+                        <div class="TabHide2" id="TabShow2" style="display: none;">
+                            <div class="mima_login">
+
+
+                                <div class="dis_rela">
+                                    <input style="margin-bottom: 22px;" type="text" class="telephone1" placeholder="请输入你的手机号" onfocus="this.placeholder=''" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                                    <div class="shoujihao dis_rela_img">
+                                        <img src="__IMAGES__/sj.png" width="100%" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="dis_rela">
+                                    <input style="margin-bottom: 22px" class="ts_input verify_code1"  type="text" placeholder="输入验证码" onfocus="this.placeholder=''"/>
+                                    <div class="yzm_img ts_yzm_img">
+                                        <img src="__CONTROLLER__/createCode"  onclick=this.src="__CONTROLLER__/createCode/"+Math.random() style="width:100px" >
+                                    </div>
+
+                                   
+                                    <div class="clear"></div>
+                                    <div class="shoujihao dis_rela_img">
+                                        <img src="__IMAGES__/yz.png" width="100%" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="dis_rela">
+                                    <input class="ts_input code1" type="text" placeholder="输入短信验证码" onfocus="this.placeholder=''"/>
+                                    <input type="button" value="获取" class="btn login_huoqu" id="getCode1" data-code_type="3"/>
+                                    <div class="clear"></div>
+                                    <div class="shoujihao dis_rela_img">
+                                        <img src="__IMAGES__/dx.png" width="100%" alt=""/>
+                                    </div>
+                                </div>
+                                <input type="button" value="登录" class="login_btn" id="Codelogin" style="margin-top: 38px;"/>
+                                <a href="{:U('User/reg')}" class="href_regist">没有账号？<span>免费注册 </span></a><a href="{:U('User/forget')}" class="href_regist"><span> | 忘记密码</span></a>
+                            </div>
+                        </div>
+                        <!--tab2-->
+                    </div>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+            <!--sec1-->
+        </div>
+    </div>
+    <!--chedai_box1-->
+
+</div>
+<!--  / warpper  -->
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+</body>
+<include file="Public:RegLoginCom"/>
+<script>
+
+    $(window).scroll(function(){
+        var scrollT=$(window).scrollTop();
+        if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+            $('.right_nav').css('display','block');
+        }else{
+            $('.right_nav').css('display','none');
+        }
+
+    })
+</script>
+<script>
+    function fnTabBoxFade(Focus,Hide,Show){
+        $(Focus).siblings().removeClass("login_active");
+        $(Focus).addClass("login_active");
+        $(".TabHide"+Hide).hide();
+        $("#TabShow"+Show).fadeIn("fast");
+    };
+
+</script>
+<!-- <script>
+    $(document).ready(function () {
+        $(window).load(function () {
+            $(".dis_rela input").on('focus',function () {
+                var img_box = $(this).parent().find(".dis_rela_img img");
+                var abc = $(img_box).attr("src").substring(0,9);
+                $(img_box).attr("src",abc+'red.png');
+            });
+            $(".dis_rela input").on('blur',function () {
+                var img_box = $(this).parent().find(".dis_rela_img img");
+                var abc = $(img_box).attr("src").substring(0,9);
+                $(img_box).attr("src",abc+'.png');
+            });
+        })
+    })
+</script> -->
+
+</html>

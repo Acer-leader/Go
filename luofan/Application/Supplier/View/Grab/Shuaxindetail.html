@@ -1,0 +1,69 @@
+<include file="Public:head"/>
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">消息详情</h1>
+      <div class="chartBox mgt30">
+        <div class="cb-title">信息详情</div>
+        <div class="cb-contain">
+          <ul class="info-table mgl15">
+            <li class="long"> <span class="bold">消息类型：
+              <span>
+                <switch name="data.type">
+                  <case value="0">刷新记录</case>
+                  <case value="1">置顶记录</case>
+                  <case value="2">抢单记录</case>
+                  <case value="3">发布产品</case>
+              </switch>
+              </span>
+            </span>
+            </li>
+            <li class="long"> <span class="bold">使用虚拟币：</span> <span>{$data.loan_money} </span> </li>
+            <li class="long"> <span class="bold">消息标题：</span> <span>{$data.title} </span> </li>
+            <li class="long"> <span class="bold">消息内容：</span> <span> {$data.log_info}</span> </li>
+          </ul>
+        </div>
+
+       <!-- <div class="cb-title">收货人信息</div>
+          <div class="cb-contain">
+            <ul class="info-table mgl15">
+              <li class="long"> <span class="bold">收货人：</span> <span><a href="javascript:void(0);"> {$cache.consignee}</a> </span> </li>
+              <li class="long"> <span class="bold">联系方式：</span> <span><a href="javascript:void(0);"> {$cache.mobile}</a> </span> </li>
+              <li class="long"> <span class="bold">收货地址：</span> <span><a href="javascript:void(0);"> {$cache.province}{$cache.city}{$cache.district}{$cache.address}</a> </span> </li>
+            </ul>
+        </div>
+      </div>-->
+
+
+      <!--<div class="chartBox mgt30">
+        <div class="cb-title">物流信息</div>
+        <div class="cb-contain">
+          <ul class="info-table mgl15">
+            <li class="long"> <span class="bold">物流公司：</span> <span><a href="javascript:void(0);">
+            {$cache.express_name}</a> </span> </li>
+            <li class="long"> <span class="bold">物流单号：</span> <span><a href="javascript:void(0);">
+            {$cache.express_no}</a> </span> </li>
+            <li class="long"> <span class="bold">物流费：</span> <span><a href="javascript:void(0);">
+            {$cache['express_fee']?$cache['express_fee']:0}</a> </span> </li>
+            <li class="long">
+              <span class="bold">物流详情：</span>
+              <foreach name="express" item="v">
+              <p>{$v['AcceptTime']} {$v['AcceptStation']}</p>
+              </foreach>
+            </li>
+            </li>
+          </ul>
+        </div>
+        </div>-->
+      </div>
+
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>

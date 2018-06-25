@@ -1,0 +1,252 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<style>
+	.imgnav{
+		max-height: 30px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.imgwrapper{
+		display: block;
+		width: 78px;
+		height: 78px;
+		overflow: hidden;
+	}
+	.imgwrapper img{
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border:0;
+	}
+	.spanpd10{
+		margin:10px;
+	}
+	.wxtables.wxtables-sku.newtable{
+		width: 40%;
+		margin: 0;
+	}
+	.img-list li{
+		width: 60px;
+		height:60px;
+	}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+	</style>
+<div class="container">
+  <div class="inner clearfix"> <include file="Public:distributionleft" />
+    <!-- end content-left -->
+    
+    <div class="content-right fl">
+      <h1 class="content-right-title">编辑{$cache.title}</h1>
+      <form aciton="" enctype="multipart/form-data" method="post" id="editConfig" onsubmit="sub">
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">积分规则</h3>
+          <!-- <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>id：</label>
+            <div class="form-controls"> 
+              <input type="text" class="input" value="{$cache.id}" readonly="readonly" >
+          </div> -->
+              <input type="hidden" class="input" name="id" value="{$cache.id}">
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>购买金额：</label>
+            <div class="form-controls"> 
+              <input type="text" class="input" value="{$cache.money}">
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>pv：</label>
+            <div class="form-controls">
+              <input type="text" class="input" value="{$cache.pv}" name="pv" >
+              <span class="lh30 mgl10"></span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>一级分销所得：</label>
+            <div class="form-controls">
+              <input type="text" class="input" value="{$cache.level_one}" placeholder="" name="level_one" >
+              <span class="lh30 mgl10"></span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>二级分销所得：</label>
+            <div class="form-controls">
+              <input type="text" class="input" value="{$cache.level_two}" placeholder="" name="level_two" >
+              <span class="lh30 mgl10"></span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>三级分销所得：</label>
+            <div class="form-controls">
+              <input type="text" class="input" value="{$cache.level_three}" placeholder="" name="level_three" >
+              <span class="lh30 mgl10"></span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>积分抵扣：</label>
+            <div class="form-controls">
+              <input type="input" class="input" value="{$cache.take_off}" placeholder="" name="take_off" >%
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>购买次数：</label>
+            <div class="form-controls">
+              <input type="input" class="input" value="{$cache.pay_num}" placeholder="" name="pay_num" >
+              <span class="lh30 mgl10">0为无限次</span>
+            </div>
+          </div>
+
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>提单规则介绍一：</label>
+            <div class="form-controls">
+              <textarea name="intro_one" id="" cols="30" rows="5">{$cache.intro_one}</textarea>
+              <span class="lh30 mgl10">不填写则不会显示</span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>提单规则介绍二：</label>
+            <div class="form-controls">
+              <textarea name="intro_two" id="" cols="30" rows="5">{$cache.intro_two}</textarea>
+              <span class="lh30 mgl10">不填写则不会显示</span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>提单规则介绍三：</label>
+            <div class="form-controls">
+              <textarea name="intro_three" id="" cols="30" rows="5">{$cache.intro_three}</textarea>
+              <span class="lh30 mgl10">不填写则不会显示</span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>备注：</label>
+            <div class="form-controls">
+              <textarea name="remark" id="" cols="30" rows="5">{$cache.remark}</textarea>
+              <span class="lh30 mgl10">提单规则的备注</span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>介绍：</label>
+            <div class="form-controls">
+              <textarea name="describe" id="" cols="30" rows="5">{$cache.describe}</textarea>
+              <span class="lh30 mgl10">不填写则不会显示</span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>介绍的备注：</label>
+            <div class="form-controls">
+              <textarea name="describe_remark" id="" cols="30" rows="5">{$cache.describe_remark}</textarea>
+              <span class="lh30 mgl10">不填写则不会显示</span>
+            </div>
+          </div>
+
+          <eq name="cache['id']" value="1">
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>(等级1)成员达到：</label>
+            <div class="form-controls">
+              <input type="input" class="input" value="{$cache.nums1}" name="nums1" >
+              <span class="lh30 mgl10">人，每多一人得到</span>
+              <input type="input" class="input" value="{$cache.money1}" name="money1" >
+              <span class="lh30 mgl10">元</span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>(等级2)成员达到：</label>
+            <div class="form-controls">
+              <input type="input" class="input" value="{$cache.nums2}" name="nums2" >
+              <span class="lh30 mgl10">人，每多一人得到</span>
+              <input type="input" class="input" value="{$cache.money2}" name="money2" >
+              <span class="lh30 mgl10">元</span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>(等级3)成员达到：</label>
+            <div class="form-controls">
+              <input type="input" class="input" value="{$cache.nums3}" name="nums3" >
+              <span class="lh30 mgl10">人，每多一人得到</span>
+              <input type="input" class="input" value="{$cache.money3}" name="money3" >
+              <span class="lh30 mgl10">元</span>
+            </div>
+          </div>
+          <else />
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>组队达到：</label>
+            <div class="form-controls">
+              <input type="input" class="input" value="{$cache.nums1}" name="nums1" >
+              <span class="lh30 mgl10">人可跳出</span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>奖励1：</label>
+            <div class="form-controls">
+              <input type="input" class="input" value="{$cache.money1}" name="money1" >
+              <span class="lh30 mgl10">元</span>+
+              <input type="input" class="input" value="{$cache.share}" name="share" >
+              <span class="lh30 mgl10">股</span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>奖励2：</label>
+            <div class="form-controls">
+              <input type="input" class="input" value="{$cache.money2}" name="money2" >
+              <span class="lh30 mgl10">元</span>
+            </div>
+          </div>
+          
+          </eq>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>最后修改时间：</label>
+            <div class="form-controls">
+              <input type="input" class="input" value="{$cache.change_at|date='Y-m-d H:i:s',###}" disabled="">
+              <span class="lh30 mgl10"></span>
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>修改者：</label>
+            <div class="form-controls">
+              <input type="input" class="input" value="{$cache.admin_name}" disabled="">
+              <span class="lh30 mgl10"></span>
+            </div>
+          </div>
+        <!-- end 详情及其它 -->
+        
+        <div class="panel-single panel-single-light mgt20 txtCenter"> <a href="" class="btn" onclick="history.back()">返回</a>
+        <input type="button" id="sub" class="btn btn-primary" value="保存">
+        </div>
+      </form>
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+
+<include file="Public:foot"/>
+<!--提交表单前验证--> 
+<!--提交表单前验证end--> 
+
+<!--上传图片--> 
+
+<script type="text/javascript">
+(function(){
+  $("#sub").click(function(){
+    var data = $("#editConfig").serialize();
+    $.post("{:U('/Admin/Distribution/editConfig')}",data,function(res){
+      if(res.status == 1){
+        alert(res.info)
+        window.location.reload();
+      }else{
+        alert(res.info)
+      }
+    },"json")
+    return false;
+  })
+})()
+</script> 
+
+

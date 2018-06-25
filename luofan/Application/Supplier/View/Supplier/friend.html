@@ -1,0 +1,201 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:memberleft" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">好友列表</h1>
+
+
+            <div class="alert alert-info disable-del"><if condition="$count neq '' ">目前拥有 <span style="font-size:16px;">{$count}</span> 名好友。<else/>暂无好友</if><a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                   <!-- <div class="tables-searchbox">
+                        <div>
+                            <input type="text" class="input" name="title" id="title" value="" placeholder="真实姓名">
+
+                            <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                    class="gicon-search white"></i>查询
+                            </button>
+
+                        </div>
+
+
+                    </div>-->
+  
+                <!-- end tables-searchbox -->
+                <table class="wxtables">
+                    <colgroup>
+                        <col width="1%">
+                        <col width="2%">
+                        <col width="10%">
+                        <col width="6%">
+                        <col width="6%">
+                        <col width="6%">
+                        <col width="6%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>头像</td>
+                        <td>真实姓名/手机</td>
+                        <td>会员等级</td>
+                        <td>性别</td>
+                        <td>钱包</td>
+                        <td>星级</td>
+                        <td>注册时间</td>
+                        <td>状态</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="memberlist" item="vo">
+                    <tr>
+                        <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>
+                        <td><img src="{$vo.person_img}" alt="" width="50" ></td>
+                        <td><p> {$vo.realname}<br/>{$vo.telephone}</p></td>
+                        <td><p>{$vo.vip}</p></td>
+                        <td><p>
+                            <switch name="vo.sex">
+                                <case value="1">男</case>
+                                <case value="2">女</case>
+                            </switch>
+                        </p></td>
+                        <td><p>¥{$vo.wallet}</p></td>                      
+                        <td><p>{$vo.evaluate}</p></td>                      
+                        <td>{$vo.addtime}</td>
+                        <td class="status">
+                            <switch name="vo.status">
+                                <case value="0"><p>正常</p></case>
+                                <case value="1"><p style='color:red;'>冻结</p></case>
+                            </switch>
+                        </td>
+                        <td>
+                            <p>
+                                <a href="{:U('/Admin/Member/detail/id')}/{$vo.id}" class="btn btn-success">查看详情</a> <a href="javascript:;"
+                                                                                            <!--class="btn j-sendLetter"-->
+                                                                                           
+                                
+                                <a href="{:U('admin/member/editMember',array('id'=>$vo['id']))}" class="btn btn-primary" title="编辑">编辑</a>
+                                <switch name="vo.status">
+                                    <case value="0">
+                                        <a href="JavaScript:void(0);" class="btn btn-warning changeStatus" title="冻结" data-id="{$vo.id}">冻结</a>
+                                    </case>
+                                    <case value="1">
+                                        <a href="JavaScript:void(0);" class="btn btn-danger changeStatus" title="解冻" data-id="{$vo.id}">解冻</a>
+                                    </case>
+                                </switch>
+
+                                <a href="{:U('admin/member/friend',array('id'=>$vo['id']))}" class="btn btn-primary" title="好友">好友</a>
+
+                                <!--<a href="javascript:;" class="btn j-setLevel" data-id="3646068" data-rank="2048748"-->
+                                   <!--data-name="">设等级</a>-->
+                                <!--<a href="javascript:;" class="btn j-gavePoint" data-user_id="3646068" data-id="3646068"-->
+                                   <!--data-name="" data-point="0">调整积分</a>-->
+
+                                <!--<a href="/User/set_superior/id/3646068" class="btn">设置上级</a>-->
+                                <!--<a href="/User/exportAllLower/id/3646068" class="btn">导出全部下级</a>-->
+                                <!--<a href="javascript:;" class="btn j-balance" data-id="3646068" data-name=""-->
+                                   <!--data-balance="0.00">调整余额</a>-->
+                                <!--<a href="javascript:;" class="btn j-redPack" data-user_id="3646068" data-name="">发红包</a>-->
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                        <!--<a href="javascript:;" class="btn btn-warning j-setUsersLevel">设置等级</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setAgent">设置分销商</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setGroup" data-type="0">设置分组</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setSuperior">设置上级</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setPwd">设置密码</a>-->
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<!-- end container -->
+<script>
+$(function(){
+    
+    $("#search_m").click(function(){
+        var title=$('#title').val();
+        if(title != ''){
+            location.href="{:U('/Admin/Member/index')}/title/"+title;
+        }else{
+            location.href="{:U('/Admin/Member/index')}";
+        }
+       
+
+    })
+
+    $(".changeStatus").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('admin/member/changeStatus')}",{id:id},function(data){
+            if(data.status == 1){
+                var p = _this.parent().parent().parent().find(".status p");
+                p.html(data.info);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("解冻")
+                    p.css("color","red")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("冻结")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+    })
+})
+
+</script>
+
+<include file="Public:foot"/>

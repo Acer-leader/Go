@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)/Public/login/shop_id/2009691.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="__IMAGES__/logo.ico" />
+    <title>注册_洛凡金融</title>
+    <link rel="stylesheet" href="__CSS__/component-min.css">
+    <link rel="stylesheet" href="__CSS__/jbox-min.css">
+    <link rel="stylesheet" href="__CSS__/common_login_reg.css">
+</head>
+<style>
+    .page{
+        margin-top:10px;
+        width:800px;
+    }
+
+    .page a,.page span {
+        display:inline-block;
+        padding:5px 10px;
+        margin:0 1px;
+        border:1px solid #f0f0f0;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        border-radius:3px;
+        width: 40px;
+        text-align: center;
+    }
+    .page a,.page li {
+        display:inline-block;
+        list-style: none;
+        text-decoration:none;
+        color:#CEAF64;
+    }
+    .page a.first,.page a.prev,.page a.next,.page a.end{
+        width:70px;
+        margin:0;
+    }
+    .page a:hover{
+        border-color:#CEAF64;
+    }
+    .page span.current{
+        background:#f5f5f5;
+        color:#CEAF64;
+        font-weight:700;
+        border-color:#e8e8e8;
+        width: 30px;
+        text-align: center;
+    }
+    /*********10.27**********/
+    .wap_tanc{
+        width:100%;
+        height:100%;
+        position:fixed; top:0; left:0;
+        z-index:99999;
+        display:none;
+    }
+    .wap_tanc_bg{
+        width:100%;
+        height:100%;
+        position:absolute; top:0; left:0;
+        z-index:-1;
+        background:#000;
+        opacity:0.4;
+        filter:alpha(opacity=40);
+        -moz-opacity:0.4;
+        -khtml-opacity:0.4;
+        -webkit-opacity:0.4;
+    }
+
+    .wap_tanc_con{
+        width:300px;
+        min-height:110px;
+        background:#fff;
+        border-radius:5px;
+        position:absolute; left:50%; top:50%;
+        margin-top:-55px;
+        margin-left:-150px;
+        display:none;
+    }
+    .wap_tanc_con h5{
+        margin:0;
+        min-height:60px;
+        line-height:60px;
+        text-align:center;
+        font-size:15px;
+        font-weight:600 !important;
+        letter-spacing:1px;
+        border-bottom:1px solid #f1f1f1;
+        padding: 0 10px;
+    }
+
+    .wap_tanc_btn a{
+        display:inline-block;
+        width:49%;
+        float:left;
+        line-height:50px;
+        text-align:center;
+        letter-spacing:1px;
+        font-size:14px;
+        color:#666;
+    }
+
+
+    .wap_tanc_con1{
+        width:500px;
+        height:250px;
+        margin-top:-125px;
+        margin-left:-250px;
+        padding:50px;
+    }
+    .wap_tanc_con1 h5{
+        border-bottom:none;
+        text-align:left;
+        line-height:40px;
+        font-weight:normal !important;
+    }
+    .wap_tanc_con1 h5 img{
+        display:inline-block;
+        vertical-align:top;
+        margin-right:10px;
+    }
+    .wap_tanc_con1 h5 p{
+        display:inline-block;
+        vertical-align:top;
+        font-size:30px;
+    }
+    .wap_tanc_con1 h5 p span{
+        color:#ea5404;
+        margin:0 3px;
+    }
+
+    .wap_tanc_con1 a{
+        font-size:14px;
+        display:inline-block;
+        padding-left:95px;
+        margin-top:20px;
+        color:#ea5404;
+        letter-spacing:1px;
+    }
+    .wap_tanc_con1>p{
+        font-size:24px;
+        color:#999;
+        position:absolute; top:10px; right:20px;
+        cursor:pointer;
+    }
+    /*********10.27**********/
+</style>
+<script>
+
+
+    window.alert = function (msg){
+        dialog.showTips(msg, "warn");
+    }
+    var dialog = {
+        /*
+         type为firm时，url传回调参数
+         */
+        showTips : function (msg,type,url){
+
+            var htmlCon="";
+
+            if(type=='warn'){
+
+                htmlCon='<div class="wap_tanc" style="display: block;z-index:1000000;">'+
+                        '<div class="wap_tanc_bg"></div>'+
+                        '<div class="wap_tanc_con" style="display: block;">'+
+                        '<h5>'+msg+'</h5>'+
+                        '<div class="wap_tanc_btn clearfix">'+
+                        '<a href="javascript:void(0)" style="width:100%;" class="close1">确定</a>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>';
+
+            }else if(type=="firm"){
+
+                htmlCon='<div class="wap_tanc" style="display: block;z-index:1000000;">'+
+                        '<div class="wap_tanc_bg"></div>'+
+                        '<div class="wap_tanc_con" style="display: block;">'+
+                        '<h5>'+msg+'</h5>'+
+                        '<div class="wap_tanc_btn clearfix">'+
+                        '<a href="javascript:void(0)" class="close1" style="border-right:1px solid #f1f1f1;">取消</a>'+
+                        '<a href="javascript:void(0)" class="continue" >确定</a>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>';
+
+            }else{
+
+                if(url!=""){
+
+                    if(url=="1"){
+                        htmlCon='<div class="wap_tanc" style="display: block;z-index:1000000;">'+
+                                '<div class="wap_tanc_bg"></div>'+
+                                '<div class="wap_tanc_con" style="display: block;">'+
+                                '<h5>'+msg+'</h5>'+
+                                '<div class="wap_tanc_btn clearfix">'+
+                                '<a href="javascript:void(0)" style="width:100%;" class="reload">确定</a>'+
+                                '</div>'+
+                                '</div>'+
+                                '</div>';
+
+                    }else{
+
+                        htmlCon='<div class="wap_tanc" style="display: block;z-index:1000000;">'+
+                                '<div class="wap_tanc_bg"></div>'+
+                                '<div class="wap_tanc_con" style="display: block;">'+
+                                '<h5>'+msg+'</h5>'+
+                                '<div class="wap_tanc_btn clearfix">'+
+                                '<a href="'+url+'" style="width:100%;">确定</a>'+
+                                '</div>'+
+                                '</div>'+
+                                '</div>';
+                    }
+
+
+
+                }else{
+
+                    htmlCon='<div class="wap_tanc" style="display: block;z-index:1000000;">'+
+                            '<div class="wap_tanc_bg"></div>'+
+                            '<div class="wap_tanc_con" style="display: block;">'+
+                            '<h5>'+msg+'</h5>'+
+                            '<div class="wap_tanc_btn clearfix">'+
+                            '<a href="##" style="border-right:1px solid #f1f1f1;">取消</a>'+
+                            '<a href="##">确定</a>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>';
+
+                }
+
+            }
+            $('body').append(htmlCon);
+
+
+
+            $('.close1').click(function(){
+                $('.wap_tanc').stop(true).fadeOut(300);
+                $('.wap_tanc_con').stop(true).fadeOut(300);
+                if(typeof url == "function" && type=='warn'){url();}
+                return false;
+            });
+
+            $(".reload").click(function(){
+
+                location.reload();
+
+            });
+
+            $(".continue").click(function (){
+                url();
+                $('.close1').trigger("click");
+            })
+        }
+    }
+
+</script>
+
+<body>
+
+<div class="login">
+    <!--<a href="javascript:void(0)" class="logo"></a>-->
+
+    <div class="login-inner">
+        <h1 class="login-title">账号注册</h1>
+
+        <div class="login-item mgb20">
+            <input type="text" class="clearError" id="ipt_account" placeholder="请输入用户名" tabindex="1">
+            <a href="javascript:;" class="clearIpt j-clearIpt"><i class="gicon-remove"></i></a>
+        </div>
+        <div class="login-item mgb20">
+            <input type="text" class="clearError" id="ipt_telephone" placeholder="请输入手机号" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" tabindex="1">
+            <a href="javascript:;" class="clearIpt j-clearIpt"><i class="gicon-remove"></i></a>
+        </div>
+        <div class="login-item mgb20">
+            <input type="password" class="clearError" id="ipt_pwd" placeholder="请输入密码" tabindex="2">
+            <a href="javascript:;" class="clearIpt j-clearIpt"><i class="gicon-remove"></i></a>
+        </div>
+        <div class="login-item mgb20">
+            <input type="password" class="clearError" id="ipt_cfpwd" placeholder="请重复输入密码" tabindex="2">
+            <a href="javascript:;" class="clearIpt j-clearIpt"><i class="gicon-remove"></i></a>
+        </div>
+        <div class="login-item mgb20" style="width:143px;float:left;">
+            <input type="text" class="clearError" id="send_code" placeholder="验证码" tabindex="2" style="float:left;">
+            <a href="javascript:;" class="clearIpt j-clearIpt"><i class="gicon-remove"></i></a>
+        </div>
+            <button onclick="scode()" style="width:100px;height:40px;border:none;line-height:40px;float:left;background-color: #0E64A0;color:#fff;">发送短信</button>
+<div style="clear:both;"></div>
+        <div class="checkbox-group clearfix mgb20">
+            <label class="fl"><input type="checkbox" id="rd_remember">记住密码</label>
+            <a style="height:25px;line-height: 25px;float:right;" href="{:U('Supplier/User/login')}" id="rd_register">立即登录</a>
+        </div>
+        <div>
+            <a href="javascript:;" class="login-btn" id="btn_register" tabindex="4">立即注册</a>
+        </div>
+        <div class="login-locationnow"><a href="http://www.unohacha.com" style="color:#333;text-decoration:none;" target="_blank">技术支持：吾诺瀚卓</a>
+        </div>
+    </div>
+</div>
+<!-- end login -->
+
+
+
+
+<SCRIPT src="__JS__/jQuery1.7.js" type=text/javascript></SCRIPT>
+<script language="JavaScript">
+    var captcha_img = $('#vcode')
+    var verifyimg = captcha_img.attr("src");
+    captcha_img.attr('title', '点击刷新');
+    captcha_img.click(function () {
+//            if( verifyimg.indexOf('?')>0){
+//                $(this).attr("src", verifyimg+'/random/'+Math.random());
+//            }else{
+        $(this).attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+//            }
+    });
+</script>
+<script language="JavaScript">
+    function scode(){
+        var telephone = $('#ipt_telephone').val();
+        if(!(/^1[34578]\d{9}$/.test(telephone))){
+            alert("请输入正确的手机号");return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"{:U('Supplier/user/getMessage')}",
+            async:true,
+            data:{'telephone':telephone},
+            success:function(data){
+                if(data.status==1){
+                    alert(data.info);
+                    return;
+                }else{
+                    alert(data.info);
+                    return false;
+                }
+            }
+        });
+    }
+
+    $(function () {
+
+
+
+        $("#btn_register").click(function () {
+            var username = $('#ipt_account').val();
+            var telephone = $('#ipt_telephone').val();
+            var password = $('#ipt_pwd').val();
+            var cfpassword = $('#ipt_cfpwd').val();
+            var send_code = $('#send_code').val();
+			
+            if (username == '') {
+                alert("请填写用户名！");
+				$('#ipt_account').focus();
+                return false;
+            }
+            if (telephone == '') {
+                alert("请填写手机号！");
+                $('#ipt_telephone').focus();
+                return false;
+            }
+            if (password == "") {
+                alert('密码必填');
+				$('#ipt_pwd').focus();
+                return false;
+            }
+            if (cfpassword == '') {
+                alert("请填写重复密码！");
+                $('#ipt_cfpwd').focus();
+                return false;
+            }
+            if (send_code == "") {
+                alert('短信验证码必填');
+				$('#send_code').focus();
+                return false;
+            }
+            $.ajax({
+                url: "{:U('/Supplier/User/checkregisterajax')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    'personname': username,
+                    'telephone': telephone,
+                    'password': password,
+                    'cfpassword': cfpassword,
+                    'send_code': send_code
+                }
+            }).done(function (g) {
+                if (g.status == 1) {
+                  /*  alert(g.info);*/
+                  console.log(g);
+                    window.location.href="{:U('Supplier/index/gyindex')}";
+
+                } else {
+                    alert(g.info);
+                    $('#send_code').val('');
+                }
+
+            })
+
+        })
+		
+		$('.j-clearIpt').click(function(){
+			console.log(0);
+			$(this).parent().find('input').val('');
+		})
+		
+    })
+	
+</script>
+<!-- end session hint -->
+
+<!--按回车登录-->
+<script language="JavaScript">
+    $(function () {
+        document.onkeydown = function (event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 13) {
+                //to do something;
+                document.getElementById("btn_register").click(); //调用登录按钮的登录事件
+            }
+        };
+    });
+</script>
+</body>
+</html>

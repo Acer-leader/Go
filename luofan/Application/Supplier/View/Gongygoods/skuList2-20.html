@@ -1,0 +1,268 @@
+<include file="Public:head"/>
+<style>
+.btn-success {
+	margin-top: 12px;
+}
+</style>
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">sku列表</h1>
+    <div class="alert alert-info disable-del">
+      <h4>提示</h4>
+      删除sku属性会删除sku下面所有的sku属性值 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div>
+    <form action="" method="post">
+      <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加sku</a> 
+        
+        <!--<div class="tables-searchbox fr">
+                        <input type="text" placeholder="分类名称" class="input" name="class_name" value="">
+                        <button class="btn"><i class="gicon-search"></i>查询</button>
+                    </div>-->
+      </div>
+    </form>
+    <table class="wxtables mgt15">
+      <colgroup>
+      <col width="2%">
+      <col width="20%">
+      <col width="10%">
+      <col width="15%">
+      <col width="20%">
+      <col width="38%">
+      </colgroup>
+      <thead>
+        <tr>
+          <td><i class="icon_check"></i></td>
+          <td>分类名称</td>
+          <td>图标</td>
+          <!--<td style="text-align:center">显隐操作</td>-->
+          <td>排序</td>
+          <td >创建时间</td>
+          <td class="center">操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="cache" item="vo" >
+          <tr>
+            <td class="center"><input type="checkbox" class="checkbox table-ckbs" data-id="9788"></td>
+            <td>{$vo.classname}</td>
+            <td><img src="{$vo.pic}" width="30" alt=""></td>
+            <td>{$vo.sort}</td>
+            <td>{$vo.create_at|date="Y-m-d H:i:s",###}</td>
+            <td class="center"><a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}" data-pic="{$vo.pic}" data-title="{$vo.classname}" data-renk="{$vo.sort}">编辑</a> <a href="{:U('/Supplier/Gongygoods/delSku/id')}/{$vo.id}" class="btn btn-warning j-delClass" title="删除" onclick="return confirm('确定要删除吗？')" data-id="{$vo.id}">删除</a> 
+              <!-- <a href="javascript:;" class="btn btn-warning j-able" data-able="enable" title="禁用" data-id="9788">禁用</a>
+                          --></td>
+          </tr>
+         
+          <foreach name="vo.data" item="vo1" >
+          <tr>
+            <td class="center"><input type="checkbox" class="checkbox table-ckbs" data-id="9788"></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;|-{$vo1.classname}</td>
+            <td><img src="{$vo1.pic}" width="30" alt=""></td>
+            <td>{$vo1.sort}</td>
+            <td>{$vo1.create_at|date="Y-m-d H:i:s",###}</td>
+            <td class="center">
+            <a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo1.id}" data-pic="{$vo1.pic}" data-fid="{$vo1.pid}" data-title="{$vo1.classname}" data-renk="{$vo1.sort}">编辑</a> 
+          
+            
+            <a href="{:U('/Supplier/Gongygoods/delSku/id')}/{$vo1.id}" class="btn btn-warning j-delClass" title="删除" onclick="return confirm('确定要删除吗？')" data-id="{$vo1.id}">删除</a> 
+              <!-- <a href="javascript:;" class="btn btn-warning j-able" data-able="enable" title="禁用" data-id="9788">禁用</a>
+                          --></td>
+          </tr>
+          </foreach>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl"> <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a> 
+        <!--<a href="javascript;" class="btn btn-primary btn_table_delAll">批量删除</a></div>-->
+        <div class="fr"> 
+          <!--<div class="paginate">-->
+          
+          <div class="pages"> 
+            <!--</div>-->
+            {$page} 
+          </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">添加sku</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 263px;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>sku名称：</label>
+      <div class="form-controls">
+        <input type="text" class="input classname" name="classname" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>上级sku：</label>
+      <div class="form-controls">
+      <select name='fid' style='padding:5px;border: 1px solid #ccc;width:182px' id='fid'>
+      <option value="0">--顶级sku--</option>
+          <foreach name="cate" item="vo" >
+          <option value="{$vo.id}">{$vo.classname}</option>
+          </foreach>
+      </select>
+        <span class="fi-help-text"></span> </div>
+    </div>
+    
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>分类排序：</label>
+      <div class="form-controls">
+        <input type="text" class="input" id="addsort" name="serial" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+    
+    
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<div class="jbox editfenlei disshow">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">修改sku</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 263px;">
+    
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>sku名称：</label>
+      <div class="form-controls">
+        <input type="text" class="input classname" name="classname" id="editclassname">
+        <span class="fi-help-text"></span> </div>
+    </div>
+    
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>上级sku：</label>
+      <div class="form-controls">
+      <select name='fid' style='padding:5px;border: 1px solid #ccc;width:182px' id='editfid'>
+      <option value="0">--顶级sku--</option>
+      <foreach name="cate" item="vo" >
+      <option value="{$vo.id}">{$vo.classname}</option>
+      </foreach>
+      </select>
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>分类排序：</label>
+      <div class="form-controls">
+        <input type="text" class="input sort" name="serial" id="editsort" >
+        <input type="hidden" class="input sort" name="serial" id="categoryid" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+    
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editcategory">确定</a><a
+            href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+
+    $("#addcategory").click(function(){
+        var classname = $('.classname').val();  //分类名称
+		var fid = $('#fid').val();
+        var sort = $('#addsort').val();           //排序
+
+        if (classname == '') {
+            alert("sku名称必填！");
+            return false;
+        }
+		
+        if(!sort.match(/^[0-9]*$/)){
+            alert("请填写正确的排序！");
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Supplier/Gongygoods/addSku')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                classname: classname,
+        				fid:       fid,
+                sort:      sort
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+        })
+    })
+</script> 
+<!--添加分类end--> 
+
+<!--修改分类--> 
+<script type="text/javascript">
+    var categoryid;
+    $(".j-editClass").click(function(){
+        $('.editfenlei').show();
+        $('#albums-overlay').show();
+        var categoryname=$(this).attr('data-title');
+        var categoryid=$(this).attr('data-id');
+	    var fid=$(this).attr('data-fid');
+        var sort=$(this).attr('data-renk');
+        
+        $('#editclassname').val(categoryname);
+		$('#editfid').val(fid);
+        $('#editsort').val(sort);
+        $('#categoryid').val(categoryid);
+    })
+
+    $("#editcategory").click(function(){
+        var classname = $('#editclassname').val();  //分类名称
+		var fid = $('#editfid').val();  //分类名称
+		var sort = $('#editsort').val();           //排序
+        var categoryid = $('#categoryid').val();           //排序
+
+//alert(categoryid);
+        if (classname == '') {
+            alert("分类名称必填！");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Supplier/Gongygoods/editSku')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                classname: classname,
+				        fid: fid,
+                sort: sort,
+                categoryid:categoryid
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script> 
+<!--修改分类end-->

@@ -1,0 +1,87 @@
+<include file="Public:head"/>
+
+<body>
+
+<!--head --> 
+<div class="head_box" style=" background:#4a89db">
+
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">手机号登录</div>
+<div class="clear"></div>
+
+</div>
+<!--head -->
+
+
+
+<div class="warpper_box">
+<div class="shoujihao">
+<div class="shoujihao_l">手机号</div>
+<div class="shoujihao_r">
+<input  type="tel" onFocus="if (this.value == '请输入11位手机号') {this.value = '';}" onBlur="if (this.value == '') {this.value = '请输入11位手机号';}"  value="请输入11位手机号"  type="text" >
+</div>
+<div class="clear"></div>
+</div>
+<div class="shoujihao_btn">
+<a href="javascript:void(0);">获取短信验证码</a>
+</div>
+</div>
+
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+
+<div class="loading"></div>
+<div class="sccg sccg01">
+	<div style="margin-top:15px;"><i class="fa fa-spinner fa-pulse fa-2x" style=" color:#fff"></i></div>
+	<p style="color:#fff;font-family:微软雅黑">短信发送中...</p>
+</div>
+</body>
+<script>
+$(document).ready(function (){
+    $('.shoujihao_btn a').click(function(){
+            var tel =   $("input[type='tel']").val();
+            if(tel==''||tel=='请输入11位手机号'){
+                alert('请输入11位手机号');
+                return false;
+            }else{
+                var reg= /^[1][358][0-9]{9}$/;
+                var r = tel.match(reg);     
+                if(r==null) {  
+                alert('对不起，您输入的手机格式不正确!');
+                $("input[type='tel']").focus()
+                return  false;
+                }
+            }  
+            $.ajax({
+                url:'__HOST__/User/getMessage',
+                data:{
+                    tel:tel,
+                },
+                beforeSend:function(){
+                  $('.loading').show();
+                  $('.sccg01').stop().fadeIn(10);
+                },
+                type:'post',
+                dataType:'json',
+                success: function(e){
+                $('.loading').hide();
+                $('.sccg01').stop().fadeOut();
+                if(e.status==1){
+                     dialog.showTips("发送成功！","","__HOST__/User/login1/");
+                   
+                }else{
+                        alert('发送失败');
+                    }
+                }
+            })
+    });
+})
+</script>
+</html>

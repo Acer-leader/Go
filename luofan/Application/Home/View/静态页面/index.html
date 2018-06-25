@@ -1,0 +1,958 @@
+<include file="Public:header" />
+</head>
+<body>
+
+<include file="Public:top" />
+<!-- ========================================== -->
+
+<!--banner-->
+<div class="banner_box">
+    <div class="swiper-container swiper1">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="ban_box" style="background:url(__IMAGES__/ban1.jpg) no-repeat center center;height:400px">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ban_box" style="background:url(__IMAGES__/ban2.jpg) no-repeat center center;height:400px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ban_info_box">
+        <div class="index_container">
+            <div class="ban_dk_box">
+                <div class="ban_dk_r">
+                    <div class="form_tab wyao_dk_form">
+                        <form action="#">
+                            <div class="item">
+                                <div class="dk_info">类型</div>
+                                <div class="xinyong_dk ui-select">
+                                	<input type="hidden" value="2" id="input_leixing">
+                                    <div class="input_leixing select-value"><span>信用贷款</span><div class="banlist_btn"><img src="__IMAGES__/ban_btn1.png" width="100%" alt=""/></div></div>
+                                    <div class="dklx_list select-list">
+                                        <ul>
+                                            <li data-val="1">信用贷款</li>
+                                            <li data-val="2">房产贷款</li>
+                                            <li data-val="3">汽车贷款</li>
+                                            <li data-val="4">企业贷款</li>
+                                            <li data-val="5">应急贷款</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="item">
+                                <div class="dk_info">金额</div>
+                                <div class="xinyong_dk ui-select">
+                                	<input type="hidden" value="0" id="input_yongtu">
+                                    <div class="input_leixing select-value"><span>不限</span><div class="banlist_btn"><img src="__IMAGES__/ban_btn1.png" width="100%" alt=""/></div></div>
+                                    <div class="dklx_list select-list">
+                                        <ul>
+                                            <li data-val="1">1万以下</li>
+                                            <li data-val="2">1-5万</li>
+                                            <li data-val="3">5-10万</li>
+                                            <li data-val="4">10-20万</li>
+                                            <li data-val="5">20-40万</li>
+                                            <li data-val="6">40万以上</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="item">
+                                <div class="dk_info">贷款期限</div>
+                                <div class="xinyong_dk ui-select">
+                                	<input type="hidden" value="0" id="input_qixian">
+                                    <div class="input_leixing select-value"><span>不限</span><div class="banlist_btn"><img src="__IMAGES__/ban_btn1.png" width="100%" alt=""/></div></div>
+                                    <div class="dklx_list select-list">
+                                        <ul>
+                                            <li data-val="1">不限</li>
+                                            <li data-val="2">1-6个月</li>
+                                            <li data-val="3">6个月-1年</li>
+                                            <li data-val="4">1年-3年</li>
+                                            <li data-val="5">3年-10年</li>
+                                            <li data-val="6">10年以上</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <input type="submit" class="ui_btn" value="搜索"/>
+                            <div class="clear"></div>
+                        </form>
+                    </div>
+                    <div class="form_tab sqing_dk_form">
+                        <form action="#">
+                            <div class="sq_item" style="margin-top: 30px;">
+                                <input type="text" class="sqing_input" placeholder="贷款金额" onblur="this.placeholder='贷款金额'" onfocus="this.placeholder=''"/> <span class="col_ff">万元</span>
+                            </div>
+                            <div class="sq_item">
+                                <input type="text" class="sqing_input" placeholder="您的姓氏" onblur="this.placeholder='您的姓氏'" onfocus="this.placeholder=''"/>
+                                <span class="col_ff">
+                                    <input type="radio" name="xingbie" checked="checked"/>先生&nbsp;
+                                    <input type="radio" name="xingbie"/>女士
+                                </span>
+                            </div>
+                            <div class="sq_item">
+                                <input type="text" class="sqing_input" placeholder="联系手机" onblur="this.placeholder='联系手机'" onfocus="this.placeholder=''"/> <span class="col_ff">万元</span>
+                            </div>
+                            <div class="sq_item">
+                                <input type="text" class="sqing_yzm" placeholder="图形验证码" onblur="this.placeholder='图形验证码'" onfocus="this.placeholder=''"/>
+                                <img src="__IMAGES__/yzm.png" class="yzm_img1" alt=""/>
+                            </div>
+                            <div class="sq_item">
+                                <input type="text" class="sqing_yzm" placeholder="验证码" onblur="this.placeholder='验证码'" onfocus="this.placeholder=''"/>
+                                <button class="get_yzm">获取验证码</button>
+                            </div>
+                            <input type="submit" value="免费贷款" class="sqing_sub"/>
+                            <div class="clear"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="ban_dk_l">
+                    <div class="wysq_dk wysq_dk1  wid50" style="margin-bottom: 6px">
+                        <i class="icon icon-loan"></i> 搜索贷款
+                    </div>
+                    <div class="wysq_dk wysq_dk2">
+                        <i class="icon icon-p2p"></i> 申请贷款
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <a href="#" class="ban_btn one_btn btn_ts">1</a>
+        <a href="#" class="ban_btn two_btn">2</a>
+    </div>
+    
+</div>
+<!--banner-->   
+    
+<!--  / warpper  -->
+<div class="warpper">
+
+
+		<!--  / index_sec1  -->
+        <div class="index_sec1">
+            <div class="index_container">
+                <div class="four_advan_box">
+                    <div class="index_row">
+                        <div class="index1_list">
+                        	<img src="__IMAGES__/index1_1.jpg" width="100%"/>
+                            <div class="index1_wz index1_wz1">
+                            	<h3>放贷快</h3>
+                                <h4>最快当天放贷</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="index1_list">
+                        	<img src="__IMAGES__/index1_2.jpg" width="100%"/>
+                            <div class="index1_wz index1_wz2">
+                            	<h3>利率低</h3>
+                                <h4>最低月利率0.6%</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="index1_list">
+                        	<img src="__IMAGES__/index1_3.jpg" width="100%"/>
+                            <div class="index1_wz index1_wz3">
+                            	<h3>额度高</h3>
+                                <h4>最高可贷1000万</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="index1_list">
+                        	<img src="__IMAGES__/index1_4.jpg" width="100%"/>
+                            <div class="index1_wz index1_wz4">
+                            	<h3>门槛低</h3>
+                                <h4>月入3000即可贷</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  / index_sec1  -->
+	
+
+    <!--  / index_sec2  -->
+    <div class="index_sec index_sec2" id="daikuan1">
+    <div class="index_container">
+		<div class="index2_left">
+        	<div class="index2_top index2_top1">
+            	<img src="__IMAGES__/ind2_1.jpg" />
+                <div class="index2_top_wz">
+                	<h2>房产抵押贷款</h2>
+                    <h4>
+                    	最高可达评估<span>8成</span>
+                    </h4>
+                </div>
+                <div class="ind2_bg"></div>
+                <a href="gedai.html" class="ind2_more"><span>查看详细</span></a>
+            </div>
+        	<div class="index2_top">
+            	<img src="__IMAGES__/ind2_4.jpg" />
+                <div class="index2_top_wz">
+                	<h2>经营贷款</h2>
+                    <h4>
+                    	有营业执照即可<span>申请</span>
+                    </h4>
+                </div>
+                <div class="ind2_bg"></div>
+                <a href="gedai.html" class="ind2_more"><span>查看详细</span></a>
+            </div>
+        </div>  
+		<div class="index2_center">
+        	<div class="index2_top">
+            	<img src="__IMAGES__/ind2_2.jpg" />
+                <div class="index2_top_wz  index2_top_wz_ts">
+                	<h2>信用贷款</h2>
+                    <h4>
+                    	无抵押，<span>无担保</span>
+                    </h4>
+                </div>
+                <div class="ind2_bg"></div>
+                <a href="gedai.html" class="ind2_more"><span>查看详细</span></a>
+          </div>
+        </div> 
+		<div class="index2_left">
+        	<div class="index2_top index2_top1">
+            	<img src="__IMAGES__/ind2_3.jpg" />
+                <div class="index2_top_wz">
+                	<h2>保障贷款</h2>
+                    <h4>
+                    	全程代办，<span>安全担保</span>
+                    </h4>
+                </div>
+                <div class="ind2_bg"></div>
+                <a href="gedai.html" class="ind2_more"><span>查看详细</span></a>
+            </div>
+        	<div class="index2_top">
+            	<img src="__IMAGES__/ind2_5.jpg" />
+                <div class="index2_top_wz">
+                	<h2>应急贷款</h2>
+                    <h4>
+                    	最快<span>当天</span>放款
+                    </h4>
+                </div>
+                <div class="ind2_bg"></div>
+                <a href="gedai.html" class="ind2_more"><span>查看详细</span></a>
+            </div>
+        </div>    
+        <div class="clear"></div>   
+    </div>
+    </div>
+    <!--  / index_sec2  -->
+
+	     <!--  / index_sec3  -->
+        <div class="index_sec index_sec3" id="fangd1">
+            <div class="index_container">
+                <div class="sec3_tit">
+                    <span>房贷</span>
+                </div>
+                <div class="sec3_l_img">
+                    <img src="__IMAGES__/sec3_l_img.png" width="100%" alt=""/>
+                </div>
+                <div class="sec3_l">
+                    <div class="see3_l_t">
+                        <div class="s3_l_tit">房贷信息  <div class="jiantou"><img src="__IMAGES__/jt1.png" width="100%" alt=""/></div></div>
+                        <div class="see3_l_t_info">
+                            <div class="s3_l_info_l ts_lv">
+                                <ul>
+                                    <li><a href="newsdot.html"><div class="infon_l"><span>• </span>房地产税如何征收才合理...</div><div class="new_date">2017-12-30</div></a></li>
+                                    <li><a href="newsdot.html"><div class="infon_l"><span>• </span>银行调整房贷利率至9折...</div><div class="new_date">2017-12-30</div></a></li>
+                                    <li><a href="newsdot.html"><div class="infon_l"><span>• </span>降了！一线城市房价四连降...</div><div class="new_date">2017-12-30</div></a></li>
+                                    <li style="border: none"><a href="newsdot.html"><div class="infon_l"><span>• </span>买房如何应对购房陷阱...</div><div class="new_date">2017-12-30</div></a></li>
+                                </ul>
+                            </div>
+                            <div class="s3_l_info_r ts_lv">
+                                <ul>
+                                    <li><a href="newsdot.html"><div class="infon_l"><span>• </span>房地产市场容不下害群之马...</div><div class="new_date">2017-12-30</div></a></li>
+                                    <li><a href="newsdot.html"><div class="infon_l"><span>• </span>银行调整房贷利率至9折...</div><div class="new_date">2017-12-30</div></a></li>
+                                    <li><a href="newsdot.html"><div class="infon_l"><span>• </span>降了！一线城市房价四连降...</div><div class="new_date">2017-12-30</div></a></li>
+                                    <li style="border: none"><a href="newsdot.html"><div class="infon_l"><span>• </span>买房如何应对购房陷阱...</div><div class="new_date">2017-12-30</div></a></li>
+                                </ul>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+                    <div class="sec3_l_b">
+                        <div class="s3_l_tit">买房工具 <div class="jiantou"><img src="__IMAGES__/jt1.png" width="100%" alt=""/></div></div>
+                        <div class="sqw_info_box">
+                            <div class="see3_l_b_box">
+                                <div class="see3_l_b_info">
+                                    <a href="javascript:void(0);">
+                                        <div class="sqw_box">
+                                            <div class="sqw_box_l">算</div>
+                                            <div class="sqw_box_r">
+                                                <h3>房贷计算器</h3>
+                                                <h4>最新利率，精确计算</h4>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);">
+                                        <div class="sqw_box">
+                                            <div class="sqw_box_l">器</div>
+                                            <div class="sqw_box_r">
+                                                <h3>房贷计算器</h3>
+                                                <h4>最新利率，精确计算</h4>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);">
+                                        <div class="sqw_box">
+                                            <div class="sqw_box_l">屋</div>
+                                            <div class="sqw_box_r">
+                                                <h3>房贷计算器</h3>
+                                                <h4>最新利率，精确计算</h4>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sec3_r">
+                    <div class="s3_l_tit ts_s3_l_tit">热门房贷银行 <div class="jiantou"><img src="__IMAGES__/jt1.png" width="100%" alt=""/></div></div>
+                    <div class="sec3_r_info ts_lv">
+                    <div class="sec3_r_cot" style="overflow:hidden;">
+                    <div id="demo_1" style="overflow-y:auto;height: 260px;width: 110%;">
+                    	<div id="marqueeee" height="auto">
+                        	<ul id="demo3">
+                                <li><a href="javascript:void(0);"><span><img src="__IMAGES__/yh1.jpg" /> 杭州公积金</span><h3>基准</h3><h4>3.25%</h4><div class="clear"></div></a></li>
+                                <li><a href="javascript:void(0);"><span><img src="__IMAGES__/yh2.jpg" /> 汇丰银行</span><h3>8.5折</h3><h4>4.17%</h4><div class="clear"></div></a></li>
+                                <li><a href="javascript:void(0);"><span><img src="__IMAGES__/yh3.jpg" /> 杭州银行</span><h3>8.8折</h3><h4>4.31%</h4><div class="clear"></div></a></li>
+                                <li><a href="javascript:void(0);"><span><img src="__IMAGES__/yh4.jpg" /> 中信银行</span><h3>9折</h3><h4>4.41%</h4><div class="clear"></div></a></li>
+                                <li><a href="javascript:void(0);"><span><img src="__IMAGES__/yh5.jpg"/> 广发银行</span><h3>9折</h3><h4>4.41%</h4><div class="clear"></div></a></li>
+                                <li><a href="javascript:void(0);"><span><img src="__IMAGES__/yh6.jpg"/> 民生银行</span><h3>9折</h3><h4>4.41%</h4><div class="clear"></div></a></li>
+                                <li><a href="javascript:void(0);"><span><img src="__IMAGES__/yh7.jpg"/> 光大银行</span><h3>9折</h3><h4>4.41%</h4><div class="clear"></div></a></li>
+                            </ul>
+                            <ul id="demo4"></ul>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <!--  / index_sec3  -->
+
+
+    <!--  / index_sec4  -->
+    <div class="index_sec index_sec4" id="xinyk1">
+        <div class="index_container">
+            <div class="sec4_tit">
+                <span>信用卡</span>
+            </div>
+            <div class="sec3_l_img">
+                <img src="__IMAGES__/sec3_l_img2.png" width="100%" alt=""/>
+            </div>
+            <div class="sec3_l">
+                <div class="see4_l_t">
+                    <div class="s3_l_tit">热门信用卡<div class="jiantou"><img src="__IMAGES__/jt2.png" width="100%" alt=""/></div></div>
+                    <div class="see3_l_t_info ts_sec4_l_t_info">
+                        <div class="s3_l_info_l ts_cheng">
+                            <ul>
+                                <li><a href="newsdot.html"><div class="infon_l"><span>• </span>【平安】来融360办平安银行...</div><div class="new_date">2017-12-30</div></a></li>
+                                <li><a href="newsdot.html"><div class="infon_l"><span>• </span>【中信】足不出户办美签...</div><div class="new_date">2017-12-30</div></a></li>
+                                <li><a href="newsdot.html"><div class="infon_l"><span>• </span>【交行】白金卡刷6笔 首年免...</div><div class="new_date">2017-12-30</div></a></li>
+                                <li><a href="newsdot.html"><div class="infon_l"><span>• </span>【农业】乐游天下——留学生活...</div><div class="new_date">2017-12-30</div></a></li>
+                                <li><a href="newsdot.html"><div class="infon_l"><span>• </span>【兴业】【玩转积分】积分转不...</div><div class="new_date">2017-12-30</div></a></li>
+                                <li><a href="newsdot.html"><div class="infon_l"><span>• </span>【农业】全国——“积分当钱花...</div><div class="new_date">2017-12-30</div></a></li>
+                                <li><a href="newsdot.html"><div class="infon_l"><span>• </span>【浦发】尊尚高端医疗礼遇，私...</div><div class="new_date">2017-12-30</div></a></li>
+                                <li><a href="newsdot.html"><div class="infon_l"><span>• </span>【农业】全国——“小积分享大...</div><div class="new_date">2017-12-30</div></a></li>
+                                <li style="border: none"><a href="newsdot.html"><div class="infon_l"><span>• </span>【平安】来融360办平安银行...</div><div class="new_date">2017-12-30</div></a></li>
+                            </ul>
+                        </div>
+                        <div class="s3_l_info_r">
+                            <div class="sec4_cen_three">
+                                <div class="three_cn">
+                                    <img src="__IMAGES__/zhengquan.jpg" />
+                                    <h3>实名认证</h3>
+                                </div>
+                                <div class="three_cn">
+                                    <img src="__IMAGES__/chengnuo.jpg" />
+                                    <h3>不收费承诺</h3>
+                                </div>
+                                <div class="three_cn">
+                                    <img src="__IMAGES__/miansui.jpg" />
+                                    <h3>免费服务</h3>
+                                </div>
+                            </div>
+                            <div class="sec4_rig_two">
+                                <div class="chezhu_zxdk">
+                                    <h3>农行金穗QQ联名</h3>
+                                    <img src="__IMAGES__/card6.jpg" />
+                            
+                                </div>
+                                <div class="pingan_ynk">
+                                    <h3>花旗礼享卡</h3>
+                                  
+                                     <img src="__IMAGES__/card.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sec4_r">
+                <div class="sec4_r_main">
+                    <div class="s3_l_tit ts_s3_l_tit ts_s3_l_tit_xy">热门发卡银行<div class="jiantou"><img src="__IMAGES__/jt2.png" width="100%" alt=""/></div></div>
+                    <div class="sec3_r_info ts_sec3_r_info ts_cheng">
+                    <div class="sec3_r_cot" style="overflow:hidden;">
+                    <div id="demo" style="overflow-y:auto;height: 100px;width: 110%;">
+                    	<div id="marqueeee" height="auto">
+                        	<ul id="demo1">
+                                <li><span><img src="__IMAGES__/yh1.jpg" /> 杭州公积金</span><h3>基准</h3><h4>3.25%</h4><div class="clear"></div></li>
+                                <li><span><img src="__IMAGES__/yh2.jpg" /> 汇丰银行</span><h3>8.5折</h3><h4>4.17%</h4><div class="clear"></div></li>
+                                <li><span><img src="__IMAGES__/yh3.jpg" /> 杭州银行</span><h3>8.8折</h3><h4>4.31%</h4><div class="clear"></div></li>
+                                <li><span><img src="__IMAGES__/yh1.jpg" /> 杭州公积金</span><h3>基准</h3><h4>3.25%</h4><div class="clear"></div></li>
+                                <li><span><img src="__IMAGES__/yh2.jpg" /> 汇丰银行</span><h3>8.5折</h3><h4>4.17%</h4><div class="clear"></div></li>
+                                <li><span><img src="__IMAGES__/yh3.jpg" /> 杭州银行</span><h3>8.8折</h3><h4>4.31%</h4><div class="clear"></div></li>
+                            </ul>
+                            <ul id="demo2"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+
+                <div class="sec4_r_b_info">
+                    <div class="s3_l_tit ts_s3_l_tit ts_s3_l_tit_xy">热点<div class="jiantou"><img src="__IMAGES__/jt2.png" width="100%" alt=""/></div></div>
+                    <div class="ts_pad1">
+                        <ul>
+                            <li><a href="newsdot.html"><span>• </span>平安银行车主信用卡好不好，...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>2017年微信给信用卡还款...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>申卡进度查询　４招搞定...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>年度最神信用卡：浦发运通A...</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!--  / index_sec4  -->
+	
+    <div class="guangg">
+    	<div class="index_container">
+        <div class="swiper-container swiper3">
+        <div class="swiper-wrapper">
+        	<div class="swiper-slide">
+        	<a href="gedai.html"><img src="__IMAGES__/guangg.jpg" /></a>
+            </div>
+            <div class="swiper-slide">
+        	<a href="gedai.html"><img src="__IMAGES__/guangg1.jpg" /></a>
+            </div>
+        </div>
+        <div class="swiper-pagination pagination3">
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!--sec5-->
+    <div class="index_sec index_sec5" id="gonglue1">
+        <div class="index_container">
+            <div class="sec5_l">
+                <div class="sec5_tit"><img src="__IMAGES__/btitle.png" width="240" alt=""/></div>
+                <div class="sec5_l_b">
+                    <div class="sec5_l_b_l" style="border-right:1px solid #ddd;">
+                        <ul>
+                            <li><a href="newsdot.html"><span>• </span>仅凭身份证小额快速贷款是否...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>互联网科技的发展，让金融变得方便的同时，也带来了一些麻烦...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>贷款总是被秒拒 你可能进了信...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>医保卡里剩好多钱，可以给家人...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>强力推荐！芝麻信用分速至75...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>“培训贷”陷阱隐现 “百度有...</a></li>
+                        </ul>
+                    </div>
+                    <div class="sec5_l_b_l">
+                        <ul>
+                            <li><a href="newsdot.html"><span>• </span>仅凭身份证小额快速贷款是否...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>互联网科技的发展，让金融变得方便的同时，也带来了一些麻烦...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>贷款总是被秒拒 你可能进了信...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>医保卡里剩好多钱，可以给家人...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>强力推荐！芝麻信用分速至75...</a></li>
+                            <li><a href="newsdot.html"><span>• </span>“培训贷”陷阱隐现 “百度有...</a></li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+            <div class="sec3_r ts_sec5_r sec3_r_wd" style="float: right">
+                <div class="s3_l_tit ts_s3_l_tit  ts_s3_l_tit_wd" >问答<div class="jiantou"><img src="__IMAGES__/jt3.png" width="100%" alt=""/></div></div>
+                <div class="wenda">
+                    <input type="text" class="wenda_txt" placeholder="请输入您的问题" onblur="this.placeholder='请输入您的问题'" onfocus="this.placeholder=''"/>
+                    <input type="submit" class="wenda_btn" />
+                    <div class="clear"></div>
+                </div>
+
+                <div class="sec3_r_info sec5_wenda">
+                    <ul>
+                        <li><img src="__IMAGES__/question.jpg" alt=""/>我可以贷款吗， 联系我...</li>
+                        <li><img src="__IMAGES__/question.jpg" alt=""/>我可以贷款么？ 我今年二十了...</li>
+                        <li><img src="__IMAGES__/question.jpg" alt=""/>贷款 银行负债5万 我想在贷...</li>
+                        <li><img src="__IMAGES__/question.jpg" alt=""/>可以贷款吗？ 我工资每个月5...</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+    <!--sec5-->
+
+    <!--  / index_sec6  -->
+    <div class="index_sec index_sec6">
+		<div class="index_container">
+        	<div class="index6_box">
+            	<div class="index6_list index6_list1">
+                	<div class="index6_top">
+                    	<h4>关于洛凡</h4>
+                        <div class="index6_img1">
+                        	<a href="gedai.html">
+                        	<img src="__IMAGES__/logo2.png" />
+                            </a>
+                        </div>
+                        <a href="gedai.html" class="index6_more">查看更多 ></a>
+                    </div>
+                    <div class="index6_bottom">
+                    	<h4><a href="#">牛哄哄( www.niu19.com )，宁波市洛凡实业有限公司	，成立于2015年10月，是中国领先的移动金融智选平台。我们致力于为个人消费者和小微企业提供金融产品的搜索、推荐和申请服务，业务范围涵盖贷款、信用卡与理财。</a></h4>
+                    </div>
+                </div>
+            	<div class="index6_list index6_list2">
+                	<div class="index6_top">
+                    	<h4>贷款资讯</h4>
+                        <h5>及时更新信息，掌握最新资讯<br />专业让贷款更简单</h5>
+                        <div class="index6_img">
+                        	<a href="news.html">
+                        	<img src="__IMAGES__/ind6_2.jpg" />
+                            </a>
+                        </div>
+                        <a href="news.html" class="index6_more index6_more1">查看更多 ></a>
+                    </div>
+                    <div class="index6_bottom">
+                    	<ul>
+                        	<li><a href="newsdot.html"><span>• </span>网贷借款限额超标违规严...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>银川一区长将贷款转借开...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>个人住房贷款还款知识全...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>卡牛推贷款红包月活动...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>网贷榜单三连发 恒昌贷款...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>贷款买房 如何避免和补救...</a></li>
+                        </ul>
+                    </div>
+                </div>
+            	<div class="index6_list index6_list2">
+                	<div class="index6_top">
+                    	<h4>常见问题</h4>
+                        <h5>看完这些获贷成功宝典，助你轻松申贷<br />想不成功都难，现在就开始吧</h5>
+                        <div class="index6_img">
+                        	<a href="credit">
+                        	<img src="__IMAGES__/ind6_3.jpg" />
+                            </a>
+                        </div>
+                        <a href="#" class="index6_more index6_more1">查看更多 ></a>
+                    </div>
+                    <div class="index6_bottom">
+                    	<ul>
+                        	<li><a href="newsdot.html"><span>• </span>贷款 急需10万元。那个公司...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>贷款 您有1个贷记卡账户，其...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>贷款 你好 我想贷款3万...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>贷款 十九岁可以贷款吗？...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>可以贷款吗？ 我想贷2000...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>贷款 我需要2万急用...</a></li>
+                        </ul>
+                    </div>
+                </div>
+            	<div class="index6_list index6_list2">
+                	<div class="index6_top">
+                    	<h4>新手必读</h4>
+                        <h5>贷款前遇到问题时，别捉急<br />答案统统在这里</h5>
+                        <div class="index6_img">
+                        	<a href="#">
+                        	<img src="__IMAGES__/ind6_4.jpg" />
+                            </a>
+                        </div>
+                        <a href="#" class="index6_more index6_more1">查看更多 ></a>
+                    </div>
+                    <div class="index6_bottom">
+                    	<ul>
+                        	<li><a href="newsdot.html"><span>• </span>贷款买房 如何避免和补救...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>贷款 你好 我想贷款3万...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>网贷榜单三连发 恒昌贷款..</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>贷款买房 如何避免和补救..</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>贷款 我需要7万急用...</a></li>
+                        	<li><a href="newsdot.html"><span>• </span>贷款 我需要2万急用...</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <!--  / index_sec6  -->
+
+	<!--  / index_sec7  -->
+    <div class="index_sec index_sec7">
+		<div class="index_container">
+        	<div class="index7_box">
+            	<div class="index7_top">
+                	<h4>合作机构</h4>
+                    <div class="swiper2_jt">
+                    	<a href="javascript:void(0);" class="arrow-left arrow-left2"><img src="__IMAGES__/ind7_left1.png"></a>
+                    	<a href="javascript:void(0);" class="arrow-right arrow-right2"><img src="__IMAGES__/ind7_right1.png"></a>
+                    </div>
+                </div>
+            	<div class="index7_bottom">
+                	<div class="swiper-container swiper2">
+                    	<div class="swiper-wrapper">
+                        	<div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-01.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-13.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-02.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-14.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-03.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-15.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-04.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-16.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-05.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-17.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-06.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-18.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-07.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-19.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-08.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-20.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-09.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-21.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-10.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-22.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                            	<div class="bank_list">
+                                	<img src="__IMAGES__/bank-11.png"/>
+                                </div>
+                                <div class="bank_list">
+                                	<img src="__IMAGES__/bank-12.png"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  / index_sec7  -->
+    
+</div>
+<!--  / warpper  -->
+
+<div class="left_nav">
+    <ul>
+        <li id="daikuan">
+            <a href="javascript:void(0);"  class="nav_list nav_list1">
+           		<i class="daik"></i>
+                贷款
+            </a>
+        </li>
+        <li id="fangd">
+            <a href="javascript:void(0);" class="nav_list nav_list2">
+           		<i class="baox"></i>
+                房贷
+            </a>
+        </li>
+        <li id="xinyk">
+            <a href="javascript:void(0);" class="nav_list nav_list3">
+           		<i class="xinyom"></i>
+                信用卡
+            </a>
+        </li>
+        <li id="gonglue">
+            <a href="javascript:void(0);" class="nav_list nav_list4">
+           		<i class="lica"></i>
+                攻略
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<!-- ========================================== -->
+<include file="Public:right" />
+<include file="Public:footer" />
+<!-- ========================================== -->
+
+</body>
+
+
+    <script src="__JS__/index.js"></script>
+	<script src="__JS__/swiper.min.js"></script>
+<script>
+
+
+
+window.onload=function(){$(window).scrollTop(0);}
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 8,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+	var mySwiper3 = new Swiper('.swiper3',{
+		pagination: '.pagination3',
+		loop:true,
+		autoplay:5000, 
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipePrev()
+	})
+	  
+	$('.arrow-right3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipeNext()
+	})
+	$(document).ready(function(){
+	$(window).load(function(){
+		
+	$(".swiper1").height($(".swiper1 .ban_box ").height());
+		$('.swiper2,.swiper2 .swiper-slide').height(($('.bank_list').height()+10)*2);
+
+		$('.swiper3').height($('.swiper3 img').height());
+		
+        $(".index6_list2").height($(".index6_list1").height());
+		
+	})
+	$(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+		$('.swiper2,.swiper2 .swiper-slide').height(($('.bank_list').height()+10)*2);
+
+		$('.swiper3').height($('.swiper3 img').height());
+		
+        $(".index6_list2").height($(".index6_list1").height());
+	});
+})
+</script>
+
+
+<script>
+/*$('.btn_bg').click(function(){
+	$('.background').addClass('remove');
+	$('html').css('overflow','auto');
+	setTimeout(function(){
+		$('.background').css('display','none')
+	},500)
+})*/
+
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>$('.index_sec3').offset().top-$(window).height()){
+		$('.left_nav').stop().animate({'opacity':'1','z-index':'1'},400)
+		$('.nav_list1').parent().addClass('active');
+	}else{
+		$('.left_nav').stop().animate({'opacity':'0','z-index':'-1'},400)
+	}
+	if(scrollT>$('.index_sec2').offset().top-$(window).height()*0.4){
+		$('.nav_list1').parent().addClass('active');
+		$('.nav_list1').parent().siblings().removeClass('active');
+	}
+	if(scrollT>$('.index_sec3').offset().top-$(window).height()*0.4){
+		$('.nav_list2').parent().addClass('active');
+		$('.nav_list2').parent().siblings().removeClass('active');
+	}
+	if(scrollT>$('.index_sec4').offset().top-$(window).height()*0.4){
+		$('.nav_list3').parent().addClass('active');
+		$('.nav_list3').parent().siblings().removeClass('active');
+	}
+	if(scrollT>$('.index_sec5').offset().top-$(window).height()*0.7){
+		$('.nav_list4').parent().addClass('active');
+		$('.nav_list4').parent().siblings().removeClass('active');
+	}
+	
+	if(scrollT>$('.index_sec7').offset().top-$(window).height()){
+		$('.left_nav').stop().animate({'opacity':'0','z-index':'-1'},400)
+	}
+	
+
+	
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})
+
+
+var name_id;
+	$('.left_nav li').click(function(){
+		name_id=$(this).attr('id');
+		$("html, body").stop().animate({ scrollTop: $('#'+name_id+'1').offset().top -300}, 1000,function(){
+			$('.left_nav li#name_id').addClass('active');
+			$('.left_nav li#name_id').siblings().removeClass('active');
+		});
+	})
+
+
+
+var speed=50;
+   var tmp;
+   var demo2=document.getElementById('demo2');
+   var demo1=document.getElementById('demo1');
+   var demo=document.getElementById('demo');
+   demo2.innerHTML=demo1.innerHTML;
+   function Marquee(){
+   if(demo2.offsetTop-demo.scrollTop<=0)
+   demo.scrollTop-=demo1.offsetHeight
+   else{
+    tmp= demo.scrollTop;
+   demo.scrollTop++;
+	if (demo.scrollTop == tmp){
+		demo.scrollTop = 0;
+	}
+   }
+   }
+   var MyMar=setInterval(Marquee,speed)
+   demo.onmouseover=function() {clearInterval(MyMar)}
+   demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
+
+
+
+var speed=50;
+   var demo4=document.getElementById('demo4');
+   var demo3=document.getElementById('demo3');
+   var demo_1=document.getElementById('demo_1');
+   demo4.innerHTML=demo3.innerHTML;
+   function Marquee1(){
+   if(demo4.offsetTop-demo_1.scrollTop<=0)
+   demo_1.scrollTop-=demo3.offsetHeight
+   else{
+	var tmp1=demo_1.scrollTop; 
+   demo_1.scrollTop++;
+	if (demo_1.scrollTop == tmp1){
+		demo_1.scrollTop = -5;
+	}
+   }
+   }
+   var MyMar1=setInterval(Marquee1,speed);
+   demo_1.onmouseover=function() {clearInterval(MyMar1)}
+   demo_1.onmouseout=function() {MyMar1=setInterval(Marquee1,speed)}
+
+function fnTabBoxFade(Focus,Hide,Show){
+	$(Focus).siblings().removeClass("focus");
+	$(Focus).addClass("focus");
+	$(".TabHide"+Hide).hide();
+	$("#TabShow"+Show).fadeIn("fast");
+};
+</script>
+
+</html>

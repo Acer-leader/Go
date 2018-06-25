@@ -1,0 +1,111 @@
+<include file="Public:head"/>
+
+
+
+<body>
+
+<!--head --> 
+<div class="head_box" style=" background:#4a89db">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">我要提问</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+
+
+
+<div class="warpper_box">
+	<div class="ask_box">
+		<textarea name="title" class="myhuida" rows="6" data-role="none" placeholder="您要提问的详细内容"></textarea>
+		<input  placeholder="请输入您的邮箱"  type="text" class="email">
+		<input type="hidden" name="classid" id="classid" value="{$classid}"/>
+	</div>
+	<div class="shoujihao_btn">
+		<a href="#" class="myttiwen">提交问题</a>
+	</div>
+</div>
+
+
+
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+<script>
+		
+
+$(document).ready(function (){
+
+})
+
+$('.myttiwen').click(function(){
+        var title = $('.myhuida').val();
+        if(!title){
+            alert('请输入提问内容！');
+            $(".title").focus();
+            return false;
+        }
+        var email = $('.email').val();
+        if(!email){
+        	alert('请输入您的邮箱！');
+        	$(".title").focus();
+        	return false;
+        }else{
+        	var reg=  /^[a-zA-Z0-9_\-]+@[\w]+\.[a-z]+(\.[a-z]+)?$/; 
+        	var r = email.match(reg);
+        	if(r==null) {  
+	          alert('请输入你正确的邮箱');
+	          $(".email").focus();
+	          return  false;
+	        }
+        }
+        var classid = $('#classid').val();
+        $.ajax({
+            url:"{:U('Iphone/News/addTiwen')}",
+            data:{title:title,email:email,classid:classid},
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status){
+                    alert(data.info);
+                    window.location.href = "{:U('Iphone/News/wenda/classid/"+classid+"')}";
+                }else{
+                    alert(data.info);
+                }
+            }
+        })
+    })
+
+/*$('.mytijiao').click(function(){
+        var content = $('.myhuida').val();
+        if(!content){
+            alert('您还没输入解答内容！');return false;
+        }
+        var pid = "{$res['id']}";
+        $.ajax({
+            url:"{:U('Credit/addAnswer')}",
+            data:{
+                id:pid,
+                content:content,
+            },
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status){
+                    window.location.href = "{:U('Credit/answer',array('id'=>$res['id']))}";
+                }else{
+                    alert(data.info);
+                }
+            }
+        })
+    })*/
+
+</script>
+</html>

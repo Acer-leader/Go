@@ -1,0 +1,52 @@
+[ 2017-11-08T14:35:48+08:00 ] 127.0.0.1 /Admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-11-08T14:35:48+08:00 ] 127.0.0.1 /Admin/User/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-11-08T14:35:48+08:00 ] 127.0.0.1 /Admin/User/verify_c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-11-08T14:35:59+08:00 ] 127.0.0.1 /Admin/User/verify_c?0.4831086269285194
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-11-08T14:36:00+08:00 ] 127.0.0.1 /Admin/User/verify_c?0.5774304111354085
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-11-08T15:36:20+08:00 ] 127.0.0.1 /Admin/User/verify_c?0.3021146997609385
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-11-08T15:36:24+08:00 ] 127.0.0.1 /admin/User/checkloginajax
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `app_user` [ RunTime:0.0520s ]
+SQL: SELECT * FROM `app_user` WHERE `username` = 'admin' AND `password` = 'e10adc3949ba59abbe56e057f20f883e'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `app_user` [ RunTime:0.0090s ]
+SQL: UPDATE `app_user` SET `last_login`='1510126584' WHERE `id` = 1 [ RunTime:0.0010s ]
+
+[ 2017-11-08T15:36:24+08:00 ] 127.0.0.1 /admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-11-08T15:36:25+08:00 ] 127.0.0.1 /admin/Index/__IMAGE__/kqmy.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+

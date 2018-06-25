@@ -1,0 +1,71 @@
+<include file="Public:head"/>
+<link href="__CSS__/fx.css" type="text/css"  rel="stylesheet" />
+<style>
+.fenxiao_my_topB h2{ margin:0;border:0; text-decoration:none; list-style:none; font-family:"微软雅黑"; font-size:16px;text-align: center;}
+</style>
+
+
+<body>
+<!--head -->
+
+
+<div class="head_box houtai">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" style=" line-height:30px;color:#357ce2" ></i></a>
+<a href="__HOST__/Index/" class="shouye" style=" line-height:24px; color:#357ce2" >首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_right">
+<a class="grzx" href="__HOST__/Distribution/fx_my"><img src="__IMAGES__/grzx.png"></a>
+</div>
+<div class="head_box_center"  style=" color:#555; line-height:35px;" >绑定银行卡</div>
+<div class="clear"></div>
+
+</div>
+<!--head --> 
+
+<div class="fenxiao_my">
+<div class="fenxiao_my_topB">
+ <h3 class="fenxiao_my_num_two">账户余额</h3>
+ <h2>￥ &nbsp;888.00</h2>
+  </div>
+  <div class="fenxiao_my_bottomA">
+    	<div class="fenxiao_my_num_one_A">
+        
+        	<span>提现卡</span>
+             <if condition="$tixian['card_num'] neq null">
+               <a href="javascript:void(0);" style="border:0;float:right;font-size:14px;color:#aaa;line-height: 36px;">**** **** **** {$tixian.card_num|msubstr=-4,4,'utf-8',false}</a>
+            <!-- <a style="display:block;"><span style="width:100%">**** **** **** {$tixian.card_num|msubstr=-4,4,'utf-8',false}</span></a> -->
+            <else/>
+            <a href="__HOST__/Distribution/fx_bdyhk" style="border:0;float:right;font-size:14px;color:#aaa;line-height: 36px;">绑定银行卡</a>
+
+            </if>
+            
+         
+        </div>
+        <div class="fenxiao_my_num_one_A">
+        	<span>提现金额</span><input class="tx"  onfocus="this.placeholder = '';" onblur="this.placeholder = '全部提现';"  placeholder="全部提现" type="text">
+        </div> 
+        
+ 		
+   </div>   
+		<div class="fenxiao_button ">
+        	<a href="#" style=" margin:0"><input type="button" value="申请提现" style="width:100%;"></a>
+            <a href="__HOST__/Distribution/fx_zhangdan"><h2>查看交易记录</h2></a>
+        </div>    
+</div>
+
+<!--foot-->
+<div class="foot_box">
+<include file="Public:footer"/>
+</div>
+<!--foot-->
+
+</body>
+<script>
+$(document).ready(function(){
+	$('.fx_dk').height($(window).height())
+})
+</script>
+
+</html>

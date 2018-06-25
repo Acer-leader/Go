@@ -1,0 +1,104 @@
+<include file="Public:head"/>
+
+</head>
+
+<body>
+<include file="Public:header"/>
+<!--header-->
+
+
+<!--  / warpper  -->
+<div class="warpper">
+
+<div class="register_box">
+    <div class="index_container">
+        <div class="register_cot">
+        <div class="register_cot_left"><img src="__IMAGES__/bg_login.png" /></div>
+            <form>
+                <div class="register_top">
+                    <div class="register_desc">注册</div>
+                    <div class="register_more"> 已有帐号？ <a href="{:U('User/Login')}">登录</a></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="register_bottom">
+                    <div class="register_list">
+                        <input class="person_name register_name" type="text" placeholder="请输入您的昵称" onfocus="this.placeholder=''"/>
+                    </div>
+                    <div class="register_list">
+                        <div class="register_radio">
+                            <label><div class="radio"><span class="sex checked"><input class="seee" name="sex" checked type="radio" value="1"></span></div>先生</label>
+                            <label><div class="radio"><span class="sex"><input class="seee" name="sex" type="radio" value="2"></span></div>女士</label>
+                        </div>
+                    </div>
+                    <div class="register_list register_list1">
+                        <input class="telephone register_phone" type="text" maxlength="11" placeholder="请输入您的手机号" onfocus="this.placeholder=''" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                    </div>
+                   
+                    <div class="register_list register_list1">
+                        <div class="register_left">
+                            <input class="code register_num" type="text" placeholder="输入验证码" onfocus="this.placeholder=''" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                        </div>
+                        <div class="register_right">
+                            <input type="text" class="btn register_dx_tj" id="getCode" value="获取" readonly />
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="register_list  register_list1 ">
+                        <input type="text" placeholder="密码 6至20位字母、数字组合" class="password register_password" onfocus="this.placeholder=''"/>
+                    </div>
+                    <div class="register_list  register_list1 ">
+                        <input type="text" placeholder="确认密码 6至20位字母、数字组合" class="repassword register_password" onfocus="this.placeholder=''"/>
+                    </div>
+                    <div class="register_list  register_list1 register_list_ts">
+                        <div class="checkbox_box">
+                        <input class="checkbox" checked type="checkbox" value='1' name='agree'/><a href="{:U('Home/User/shengming')}" target="_blank">同意<i style="color:red">洛凡金融服务协议</i></a>
+                        </div>
+                    </div>
+                    <div class="register_list">
+                        <input type="text" class="btn register_ce" id="reg" value="提交注册"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
+<!--  / warpper  -->
+
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<include file="Public:RegLoginCom"/>
+<script>
+
+$(document).ready(function(){
+    $('.register_radio label').click(function(){
+        if($(this).find('span').hasClass('checked')){
+        }else{
+            $(this).find('span').addClass('checked');
+            $(this).siblings('label').find('span').removeClass('checked');
+        }
+    })
+})
+
+
+$(window).scroll(function(){
+    var scrollT=$(window).scrollTop();
+    if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+        $('.right_nav').css('display','block');
+    }else{
+        $('.right_nav').css('display','none');
+    }
+
+})
+</script>
+
+</html>

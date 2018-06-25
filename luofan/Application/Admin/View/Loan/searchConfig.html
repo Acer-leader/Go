@@ -1,0 +1,207 @@
+<include file="Public:head"/>
+
+<link rel="stylesheet" href="__CSS__/lists.css">
+<link rel="stylesheet" href="__CSS__/component-min.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/>
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">客服列表</h1>
+    <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加配置</a>
+
+    <!--<form action="" method="post">-->
+      <!--<div class="tables-searchbox newcearchbox" style="margin-left: 300px;display:none;">-->
+        <!--<input type="text" placeholder="手机号/QQ号" class="input" name="name" value="" >-->
+        <!--<button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>-->
+        <!--&lt;!&ndash;<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;产品导出</a>&ndash;&gt;-->
+      </div>
+    <!--</form>-->
+    <!-- end tabs -->
+      <div class="tabs clearfix mgt10" style="margin-bottom:10px;">
+      <a href="{:U('Admin/Loan/searchConfig/type/1')}" class=" tabs_a fl <eq name="_GET['type']" value="1">active</eq><eq name="_GET['type']" value="">active</eq> ">金额</a>
+      <a href="{:U('Admin/Loan/searchConfig/type/2')}" class=" tabs_a fl <eq name="_GET['type']" value="2">active</eq> ">期限</a>
+      </div>
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+      <col width="2%">
+      <col width="5%">
+      <col width="10%">
+      <col width="10%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="13%">
+      <col width="25%">
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+          <td><i class="icon_check"></i></td>
+          <td>ID</td>
+          <td>下限</td>
+          <td>上限</td>
+          <td>类型</td>
+          <td>添加时间</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="limit_list" item="vo">
+          <tr>
+            <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+            <td>{$vo.id}</td>
+            <td>{$vo.start}</td>
+            <td>{$vo.end}</td>
+            <td>
+                <switch name="vo.type">
+                  <case value="1">金额</case>
+                  <case value="2">期限</case>
+                </switch>
+            </td>
+            <td class="class_name">{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+            <td>
+              <a class="btn btn-primary editService" href="javascript:;"  data-id="{$vo.id}" data-start="{$vo.start}" data-end="{$vo.end}"
+               data-type="{$vo.type}">编辑</a>
+              <a class="btn btn-danger" href="{:U('Admin/Loan/delSearch',array('id'=>$vo['id']))}">删除</a>
+            </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl"> <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+        <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>
+        <div class="fr">
+          <div class="pages" style="width:auto;"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+</div>
+</div>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="width:500px;">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">添加配置</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <input type="hidden" name="id" id="id" value="">
+  <div class="jbox-container" style="height: 263px;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>选择类型：</label>
+      <div class="form-controls">
+        <select name="type" id="type">
+          <option value="1" selected>金额</option>
+          <option value="2">期限</option>
+        </select>
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>起始：</label>
+      <div class="form-controls">
+        <input type="text" id="start" name="start"  class="input title">
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>终止：</label>
+      <div class="form-controls">
+        <input type="text" id="end" name="end"  class="input title">
+        <span class="fi-help-text"></span> </div>
+    </div>
+
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+          href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+        $('#start').val("");
+        $('#end').val("");
+    })
+  $(".editService").on("click",function(){
+        var id = $(this).attr("data-id");
+        var start = $(this).attr("data-start");
+        var end = $(this).attr('data-end');
+        var type = $(this).attr('data-type');
+      $("#type").val(type);
+      $("#id").val(id);
+      $('#start').val(start);
+      $('#end').val(end);
+      $('.addfenlei').show();
+      $('#albums-overlay').show();
+  });
+</script>
+<script>
+    $(".btn_table_delAll").click(function(){
+        if(!confirm("确定删除所有选中的搜索配置？")){
+            return false;
+        }
+        var ids = "";
+        $(".table-ckbs:checked").each(function(i){
+            ids += $(this).attr("data-id")+"-"
+        })
+        if(!ids){
+            alert("请选择要删除的客服！");return false;
+        }
+        $.post("{:U('Admin/Loan/delSearch')}" ,{ids:ids}, function (data){
+            alert(data.info);
+            if(data.status){
+                window.location.reload();
+            }
+        })
+    })
+
+</script>
+<script type="text/javascript">
+    $("#addcategory").click(function() {
+        var post = {};
+        post.start = $("#start").val();
+        post.end = $("#end").val();
+        post.type = $("#type").val();
+        post.id = $('#id').val();
+
+        if (!post.start) {
+            alert("请填写起始值");
+            $("#service_name").focus();
+            return false;
+        }
+        if (!post.end) {
+            alert("请填写终止值");
+            $("#service_phone").focus();
+            return false;
+        }
+        if (!post.type) {
+            alert("请填写类型");
+            $("#service_qq").focus();
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Admin/Loan/searchConfig')}",
+            type: "post",
+            dataType: "json",
+            data: post,
+            success: function (data) {
+                dialog.showTips(data.info, "firm", function () {
+                    window.location.reload();
+                });
+            }
+        })
+    })
+</script>

@@ -1,0 +1,163 @@
+[ 2017-09-07T18:03:03+08:00 ] 127.0.0.1 /admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-09-07T18:03:03+08:00 ] 127.0.0.1 /Admin/User/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:03:03+08:00 ] 127.0.0.1 /Admin/User/verify_c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-09-07T18:03:11+08:00 ] 127.0.0.1 /admin/User/checkloginajax
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `app_user` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `app_user` WHERE `username` = 'admin' AND `password` = 'e10adc3949ba59abbe56e057f20f883e'  [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `app_user` [ RunTime:0.0080s ]
+SQL: UPDATE `app_user` SET `last_login`='1504778591' WHERE `id` = 1 [ RunTime:0.0050s ]
+
+[ 2017-09-07T18:03:11+08:00 ] 127.0.0.1 /admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:03:11+08:00 ] 127.0.0.1 /admin/Index/__IMAGE__/kqmy.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:04:18+08:00 ] 127.0.0.1 /Admin/news/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-09-07T18:04:18+08:00 ] 127.0.0.1 /Admin/news/__IMAGE__/kqmy.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:10:46+08:00 ] 127.0.0.1 /Admin/loan/listsloan
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-09-07T18:10:46+08:00 ] 127.0.0.1 /Admin/loan/__IMAGE__/kqmy.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:10:47+08:00 ] 127.0.0.1 /Admin/loan/persongonglue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-09-07T18:10:50+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/93
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:10:52+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/__IMAGE__/kqmy.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:11:19+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/93
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-09-07T18:11:37+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/93
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:15:20+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/93
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: syntax error, unexpected '=', expecting ')'
+
+[ 2017-09-07T18:15:34+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/93
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:15:57+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/93
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:15:59+08:00 ] 127.0.0.1 /Admin/loan/persongonglue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:16:15+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/93/id/3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:16:16+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/93/id/__IMAGE__/kqmy.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:18:32+08:00 ] 127.0.0.1 /Admin/news/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:18:42+08:00 ] 127.0.0.1 /Admin/News/delCate/id/37
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:18:43+08:00 ] 127.0.0.1 /Admin/news/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:18:46+08:00 ] 127.0.0.1 /Admin/loan/listsloan
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T18:18:48+08:00 ] 127.0.0.1 /Admin/loan/persongonglue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-09-07T18:18:52+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/93/id/3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-09-07T19:18:26+08:00 ] 127.0.0.1 /Admin/Loan/addNews/pid/93/id/3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T19:18:29+08:00 ] 127.0.0.1 /Admin/loan/persongonglue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T19:18:39+08:00 ] 127.0.0.1 /Admin/loan/housegonglue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-07T19:18:43+08:00 ] 127.0.0.1 /Admin/loan/cargonglue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+

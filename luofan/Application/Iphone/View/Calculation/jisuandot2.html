@@ -1,0 +1,162 @@
+<include file="Public:head"/>
+
+<body>
+
+<!--head --> 
+<div class="head_box" style=" background:#29c98d">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">计算结果</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+
+
+<div class="warpper_box">
+  <div class="shuchu_box">
+    <h5>每月等额还款</h5>
+    <table cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="calc_td1">贷款总金额</td>
+          <td class="calc_td2"><span style="color:#666" id="zongjine">{$dkTotal}</span>元</td>
+        </tr>
+        <tr>
+          <td class="calc_td1">还贷月数</td>
+          <td class="calc_td2"><span style="color:#666" id="month">{$dkm}</span>月</td>
+        </tr>
+        <tr>
+          <td class="calc_td1">每月还款</td>
+          <td class="calc_td2">
+          <span style="color:#EE6868" id="yuehuan">
+            <foreach name="bx_res.lx" item="vo" key="k">
+                {$vo} 第{$k+1}期<br>
+            </foreach>
+          </span>
+            </td>
+        </tr>
+        <tr>
+          <td class="calc_td1">总支付利息</td>
+          <td class="calc_td2"><span style="color:#EE6868" id="zonglixi">{$bx_res.lxTotal}</span>元</td>
+        </tr>
+        <tr>
+          <td class="calc_td1">本息合计</td>
+          <td class="calc_td2"><span style="color:#EE6868" id="benxiheji">{$bx_total}</span>元</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    
+  </div>
+    <div class="shuchu_box">
+    <h5>逐月递减还款</h5>
+    <table cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="calc_td1">贷款总金额</td>
+          <td class="calc_td2"><span style="color:#666" id="zongjine">{$dkTotal}</span>元</td>
+        </tr>
+        <tr>
+          <td class="calc_td1">还贷月数</td>
+          <td class="calc_td2"><span style="color:#666" id="month">{$dkm}</span>月</td>
+        </tr>
+        <tr>
+          <td class="calc_td1">每月还款</td>
+          <td class="calc_td2">
+          <span style="color:#EE6868" id="yuehuan">
+            <foreach name="bj_res.lx" item="vo" key="k">
+                {$vo} 第{$k+1}期<br>
+            </foreach>
+            </span><!-- 元<br />每月递减：<span>0</span>元 --></td>
+        </tr>
+        <tr>
+          <td class="calc_td1">总支付利息</td>
+          <td class="calc_td2"><span style="color:#EE6868" id="zonglixi">{$bj_res.lxTotal}</span>元</td>
+        </tr>
+        <tr>
+          <td class="calc_td1">本息合计</td>
+          <td class="calc_td2"><span style="color:#EE6868" id="benxiheji">{$bj_total}</span>元</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="calc_zy">
+    <h6>注：此结果仅供参考，实际应缴费以当地为准</h6>
+     </div>
+  </div>
+
+  <div class="calc_intro">
+                        	<div class="calc_tit">
+                                 <h4><i class="fa fa-angle-double-right"></i>工具简介</h4>
+                            </div>
+                            <div class="calc_wz">
+                            	<h5>等额本金还款计算器（每月偿还本金相同，月还款总额逐月递减），将帮助用户计算在不同的借款期限、不同的贷款利息下，采用等额本息还款方式时，需要支付的月供、利息总额和还款总额。每月等额还款即等额本息还款法，指借款人每月按相等的金额偿还贷款本息，其中每月贷款利息按月初剩余贷款本金计算并逐月结清。</h5>
+                            </div>
+                        </div>
+</div>
+<include file="Public:footer1"/>
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+<script>
+		
+
+$(document).ready(function (){
+
+      
+	function stopPropagation(e) {
+		if (e.stopPropagation) 
+		e.stopPropagation();
+		else 
+		e.cancelBubble = true;
+	}
+	
+	$(document).bind('click',function(){
+		$('.calc_ul').slideUp()
+		$('.calc_js').fadeOut(300)
+	});
+	
+	$(".calc_sele i,.calc_bottom_btn,div.calc_input").bind('click',function(e){
+		stopPropagation(e);
+	});
+	
+	$('div.calc_input').click(function(){
+		$(this).parent().siblings('.calc_ul').slideToggle()
+	})
+	
+	$('.calc_ul li').click(function(){
+		$(this).parent().parent().siblings('.calc_sele').find('.calc_input').html($(this).html())
+		$(this).parent().parent().siblings('.calc_sele').find('.calc_input').val($(this).html())
+	})
+	
+	$('.calc_sele i').click(function(){
+		$(this).parent().siblings('.calc_ul').slideToggle()
+	})
+	$('.calc_bottom_btn').click(function(){
+		$(this).siblings('.calc_js').fadeIn(300)
+	})
+	
+	$('.calc_close a').click(function(){
+		$('.calc_js').fadeOut(300)
+	})
+	
+	$('input[name=edu]').click(function(){
+		$('.calc_radio').hide(0)
+		$('.calc_radio'+$(this).val()).fadeIn(100)
+	})
+	
+	
+
+
+ 
+})
+
+</script>
+</html>

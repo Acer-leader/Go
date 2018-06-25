@@ -1,0 +1,199 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">提现列表</h1>
+
+
+            <div class="alert alert-info disable-del">目前有 <span style="font-size:16px;">{$count}</span> 个提现，共计{$sum}元金额。{$count1}个已处理，共计{$sum1}元金额。{$count2}个未处理，共计{$sum2}元金额。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                    <div class="tables-searchbox clearfix">
+                        <div class="fl">
+                            <form action="">
+                                <input type="text" class="input" name="title" id="title" value="{$title}" placeholder="姓名/手机号/卡号">
+
+                                <!-- <select class="select" name="isexamine">
+                                    <option value="">--请选择--</option>
+                                    <option value="0" <eq name="isexamine" value="0">selected="selected"</eq>>未审核</option>
+                                    <option value="1" <eq name="isexamine" value="1">selected="selected"</eq>>通过审核</option>
+                                    <option value="2" <eq name="isexamine" value="2">selected="selected"</eq>>审核失败</option>
+                                    <option value="3" <eq name="isexamine" value="2">selected="selected"</eq>>申请审核</option>
+                                </select> -->
+
+                                <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                        class="gicon-search white"></i>查询
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+
+    <div class="tabs clearfix mgt15">
+                <div class="tabs clearfix mgt15">
+                    <a href="{:U('Admin/Finance/index')}" class="<eq name="_GET['type']" value="">active</eq> tabs_a fl">所有申请({$count})</a>
+                    <a href="{:U('Admin/Finance/index/type/0')}" class="<eq name="_GET['type']" value="0">active</eq> tabs_a fl">未处理({$count0})</a>
+                    <a href="{:U('Admin/Finance/index/type/1')}" class="<eq name="_GET['type']" value="1">active</eq> tabs_a fl">已提现({$count1})</a>
+                    <a href="{:U('Admin/Finance/index/type/2')}" class="<eq name="_GET['type']" value="2">active</eq> tabs_a fl">未提现({$count2})</a>
+            </div>
+    </div>
+                <!-- end tables-searchbox -->
+                <table class="wxtables" style="text-align:center;">
+                    <colgroup>
+                        <col width="1%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>姓名/预留号码</td>
+                        <td>银行</td>
+                        <td>支行</td>
+                        <td>卡号</td>
+                        <td>金额</td>
+                        <td>申请时间</td>
+                        <td>操作时间</td>
+                        <td>操作人员</td>
+                        <td>状态</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="cache" item="vo">
+                    <tr>
+                        <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>
+                        <td><p> {$vo.username}<br/>{$vo.telephone}</p></td>
+                        <!-- <td><p>{$vo.vip}</p></td> -->
+                        <td><p>{$vo.bank_name}</p></td>
+                        <td><p>{$vo.bank_branch}</p></td>
+                        <td><p>{$vo.bank_no}</p></td>
+                        <td><p>¥{$vo.money}</p></td>
+                        <td><p>{$vo.create_at|date="Y-m-d H:i:s",###}</p></td>
+                        <td><p>
+                        <notempty name="vo['deal_at']">
+                        {$vo.deal_at|date="Y-m-d H:i:s",###}
+                        </notempty>
+                        </p></td>
+                        <td><p>{$vo.admin}</p></td>
+                        <td><p>
+                        <switch name="vo['status']">
+                            <case value="0">申请中</case>
+                            <case value="1"><b style="color:green;">已处理</b></case>
+                            <case value="2"><b style="color:red;">已拒绝</b></case>
+                        </switch>
+                        </p></td>
+                        <td>
+                            <p>
+                                <eq name="vo['status']" value="0">
+                                <a href="JavaScript:void(0);" class="btn btn-warning tixian" title="提现" data-id="{$vo.id}" data-name="{$vo['username']}" data-money="{$vo['money']}" data-bank_no="{$vo['bank_no']}">提现</a>
+
+                                <a href="JavaScript:void(0);" class="btn btn-danger jujue" title="拒绝" data-id="{$vo.id}">拒绝</a>
+                                <else />
+                                <a href="JavaScript:void(0);" class="btn btn-success" title="拒绝" data-id="{$vo.id}">已处理</a>
+                                </eq>
+
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl" style="display:none;">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<script>
+$(function(){
+    $(".tixian").click(function(){
+        var id      = $(this).attr("data-id");
+        var name    = $(this).attr("data-name");
+        var money    = $(this).attr("data-money");
+        var bank_no = $(this).attr("data-bank_no");
+        if(!id){
+            alert("无效的选择！");return false;
+        }
+        if(!confirm("确认要为"+name+"的"+bank_no+"卡，提现"+money+"？操作不可逆！")){
+            return false;
+        }
+        $.post("{:U('admin/Finance/tixian')}",{id:id},function(data){
+            alert(data.info);
+            if(data.status == 1){
+                window.location.reload();
+            }
+        },"json")
+    })
+    $(".jujue").click(function(){
+        var id = $(this).attr("data-id");
+        if(!id){
+            alert("无效的选择！");return false;
+        }
+        if(!confirm("确认拒绝提现？操作不可逆！")){
+            return false;
+        }
+        $.post("{:U('admin/Finance/jujue')}",{id:id},function(data){
+            alert(data.info);
+            if(data.status == 1){
+                window.location.reload();
+            }
+        },"json")
+    })
+
+})
+</script>
+
+<include file="Public:foot"/>

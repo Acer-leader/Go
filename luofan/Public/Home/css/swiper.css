@@ -1,0 +1,333 @@
+
+.swiper-container {
+	width:100%;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+	-webkit-backface-visibility:hidden;
+	-moz-backface-visibility:hidden;
+	-ms-backface-visibility:hidden;
+	-o-backface-visibility:hidden;
+	backface-visibility:hidden;
+	/* Fix of Webkit flickering */
+	z-index:1;
+}
+.swiper-wrapper {
+	position:relative;
+	width:100%;
+	height:100%;
+	-webkit-transition-property:-webkit-transform, left, top;
+	-webkit-transition-duration:0s;
+	-webkit-transform:translate3d(0px,0,0);
+	-webkit-transition-timing-function:ease;
+	
+	-moz-transition-property:-moz-transform, left, top;
+	-moz-transition-duration:0s;
+	-moz-transform:translate3d(0px,0,0);
+	-moz-transition-timing-function:ease;
+	
+	-o-transition-property:-o-transform, left, top;
+	-o-transition-duration:0s;
+	-o-transform:translate3d(0px,0,0);
+	-o-transition-timing-function:ease;
+	-o-transform:translate(0px,0px);
+	
+	-ms-transition-property:-ms-transform, left, top;
+	-ms-transition-duration:0s;
+	-ms-transform:translate3d(0px,0,0);
+	-ms-transition-timing-function:ease;
+	
+	transition-property:transform, left, top;
+	transition-duration:0s;
+	transform:translate3d(0px,0,0);
+	transition-timing-function:ease;
+
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+.swiper-free-mode > .swiper-wrapper {
+	-webkit-transition-timing-function: ease-out;
+	-moz-transition-timing-function: ease-out;
+	-ms-transition-timing-function: ease-out;
+	-o-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	margin: 0 auto;
+}
+.swiper-slide {
+	width:100%;
+	height:100%;
+	float: left;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+/* IE10 Windows Phone 8 Fixes */
+.swiper-wp8-horizontal {
+	-ms-touch-action: pan-y;
+}
+.swiper-wp8-vertical {
+	-ms-touch-action: pan-x;
+}
+
+/* ===============================================================
+Your custom styles, here you need to specify container's and slide's
+sizes, pagination, etc.
+================================================================*/
+.swiper-container {
+	/* Specify Swiper's Size: */
+
+	/*width:200px;
+	height: 100px;*/
+}
+.swiper-slide {
+	/* Specify Slides's Size: */
+	
+	/*width: 100%;
+	height: 100%;*/
+}
+.swiper-slide-active {
+	/* Specific active slide styling: */
+	
+}
+.swiper-slide-visible {
+	/* Specific visible slide styling: */	
+
+}
+/* ===============================================================
+Pagination Styles
+
+================================================================*/
+.swiper-pagination {
+  position: absolute;
+  left: 0;
+  text-align: center;
+  bottom:15px;
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+/*基本点的样式*/
+.swiper-pagination-switch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background: #fff;
+
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+
+.swiper-active-switch {
+  background: #D02D13;    
+}
+.swiper-visible-switch {
+	/* Specific visible button style:	*/
+	
+}
+
+
+
+/*箭头的样式*/
+.arrow-left {
+  width: 17px;
+  height: 30px;
+  position:absolute;
+  z-index:1;
+  top:50%;
+  left:10px;
+  text-decoration:none;
+  color:#fff
+}
+.arrow-right {
+  width: 17px;
+  height: 30px;
+  position:absolute;
+  z-index:1;
+  top:50%;
+  right:10px;
+  text-decoration:none;
+  color:#fff
+}
+
+
+
+/*可以增加箭头：如下*/
+
+/*增加*/
+.arrow-left2 {
+	width: 20px;
+	height: 20px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	left: 0;
+	text-decoration:none;
+	color:#fff;
+	background-size: cover;
+}
+.arrow-right2 {
+
+	width: 20px;
+	height: 20px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	right: 0;
+	text-decoration:none;
+	color:#fff;
+}
+/*增加*/
+
+
+.arrow-left3 {
+	width: 24px;
+	height: 56px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	left: 0;
+	text-decoration:none;margin-top: -25px;
+	color:#fff;
+}
+.arrow-right3 {
+	width: 24px;
+	height: 56px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	right: -1px;
+	text-decoration:none;margin-top: -25px;
+	color:#fff;
+}
+
+.arrow-left4 {
+	width: 24px;
+	height: 56px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	left: 0;
+	text-decoration:none;margin-top: -25px;
+	color:#fff;
+}
+.arrow-right4 {
+	width: 24px;
+	height: 56px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	right: -1px;
+	text-decoration:none;margin-top: -25px;
+	color:#fff;
+}
+
+.arrow-left4_1 {
+	width: 24px;
+	height: 56px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	left: 0;
+	text-decoration:none;margin-top: -25px;
+	color:#fff;
+}
+.arrow-right4_1 {
+	width: 24px;
+	height: 56px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	right: -1px;
+	text-decoration:none;margin-top: -25px;
+	color:#fff;
+}
+
+
+
+.arrow-left5 {
+	width: 24px;
+	height: 56px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	left: 0;
+	text-decoration:none;margin-top: -25px;
+	color:#fff;
+}
+.arrow-right5 {
+	width: 24px;
+	height: 56px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	right: -1px;
+	text-decoration:none;margin-top: -25px;
+	color:#fff;
+}
+
+
+.arrow-left6 {
+	width: 24px;
+	height: 56px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	left: 0;
+	text-decoration:none;margin-top: -25px;
+	color:#fff;
+}
+.arrow-right6 {
+	width: 24px;
+	height: 56px;
+	position:absolute;margin-top: -25px;
+	z-index:1;
+	top:50%;
+	right: -1px;
+	text-decoration:none;
+	color:#fff;
+}
+
+.arrow-left6_1 {
+	width: 24px;
+	height: 56px;
+	position:absolute;
+	z-index:1;
+	top:50%;
+	left: 0;
+	text-decoration:none;margin-top: -25px;
+	color:#fff;
+}
+.arrow-right6_1 {
+	width: 24px;
+	height: 56px;
+	position:absolute;margin-top: -25px;
+	z-index:1;
+	top:50%;
+	right: -1px;
+	text-decoration:none;
+	color:#fff;
+}
+
+
+
+.pagination3 .swiper-pagination-switch,.pagination4 .swiper-pagination-switch,.pagination5 .swiper-pagination-switch,.pagination6 .swiper-pagination-switch{
+	width: 10px!important;
+	height: 10px!important;
+}
+
+
+
+
+

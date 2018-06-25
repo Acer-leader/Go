@@ -1,0 +1,170 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">专卖店列表</h1>
+            <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count}</span> 个专卖店。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <div class="clearfix"> <a href="{:U('admin/store/addStore')}" class="btn btn-success fl BtnAddClass">添加专卖店</a>
+                <!-- <label >
+                <a style="margin-left: 5px;" class="btn btn-success fl exportStore">导入专卖店</a>
+                  <form id="excel" style="visibility: hidden;width:0px;height:0px;" action="{:U('Admin/Store/uploadExcel')}" method="post" enctype="multipart/form-data"><input name="excel" type="file" style="width:0px;height:0px;" class="" value=""></form>
+                </label>
+                <a style="margin-left:5px;" class="btn btn-success fl subExcel">提交</a> -->
+            </div>
+
+
+            <div class="tablesWrap">
+                <div class="tables-searchbox">
+                    <div>
+
+                        <input type="text" class="input" name="name" id="name" value="{$title}" placeholder="专卖店名称">
+
+                        <button class="btn btn-primary" onclick="search_m()" style="vertical-align:-2px;"><i
+                                class="gicon-search white"></i>查询
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+                <!-- end tables-searchbox -->
+                <table class="wxtables">
+                    <colgroup>
+                        <col width="1%">
+                        <col width="20%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="20%">
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="14%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>专卖店名称</td>
+                        <td>省份</td>
+                        <td>地级市</td>
+                        <td>区、县级市</td>
+                        <td>地址</td>
+                        <td>电话</td>
+                        <!--<td>邮箱</td>-->
+                        <td>操作</td>
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+                    <foreach name="store" item="vo">
+                        <tr>
+                            <td><input type="checkbox" class="checkbox table-ckbs check" data-id="{$vo.id}" value="{$vo.id}" data-name=""></td>
+                            <td><p> {$vo.name}</p></td>
+                            <td><p> {$vo.province}</p></td>
+                            <td><p> {$vo.city}</p></td>
+                            <td><p>{$vo.district}</p></td>
+                            <td><p> {$vo.address}</p></td>
+                            <td><p>{$vo.tel}</p></td>
+                            <!--<td><p>{$vo.email}</p></td>-->
+                            <td>
+                                <a href="{:U('admin/store/editstore',array('id'=>$vo[id]))}" class="btn btn-primary" title="编辑" >编辑</a>
+                                <a href="{:U('/Admin/store/delStore/id')}/{$vo.id}" class="btn btn-warning j-delClass" title="删除" onclick="return confirm('确定要删除吗？')" data-id="{$vo.id}">删除</a>
+
+
+                                <br>
+
+                            </td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                        <a href="javascript:;"  style="background-color:#f0ad4e;border-color:#eea236;"  class="btn btn-primary del">删除</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<!-- end container -->
+<script>
+    function search_m(){
+        var name=$('#name').val();
+        if(name != ''){
+            location.href="{:U('/Admin/Store/store')}?name="+name;
+        }else{
+            location.href="{:U('/Admin/Store/store')}";
+        }
+    }
+
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        $('.del').click(function(){
+            var Id ='';
+            if($('.check:checked').length ==0){
+                alert('请选择要删除的专卖店');return false;
+            }
+            if(confirm('确定删除多个专卖店吗！')){
+                $('.check:checked').each(function(){
+                    Id = Id + $(this).val() + '_';
+                });
+
+                $.post("{:U('Admin/Store/storealldel')}",{'id':Id},function(data){
+                    if(data.status==1){
+                        alert(data.info);
+                        location.reload();
+                    }
+                },'json');
+            }
+        })
+    })
+</script>
+
+
+
+
+<include file="Public:foot"/>

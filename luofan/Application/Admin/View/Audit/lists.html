@@ -1,0 +1,280 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+            <h1 class="content-right-title">待审核列表</h1>
+
+            <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count}</span> 个代理商。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                    <div class="tables-searchbox">
+                        <div class="fl" style="display: inline-block;">
+                            <form action="{:U('Admin/Audit/lists')}" style="display: inline-block;">
+                                <input type="text" class="input" name="title" id="title" value="{$title}" placeholder="名字/手机号">
+                                <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                        class="gicon-search white"></i>查询
+                                </button>
+                            </form>
+
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                <div class="tabs clearfix mgt10" style="margin-bottom:10px;">
+                    <!--<a href="{:U('/Admin/audit/lists')}" class="<eq name="_GET['is_check']" value="">active</eq> tabs_a fl">全部({$count|default=0})</a>-->
+                    <a href="{:U('/Admin/audit/lists/is_check/0')}" class="<eq name="_GET['is_check']" value="0">active</eq><eq name="_GET['is_check']" value="">active</eq> tabs_a fl">待审核({$count0|default="0"})</a>
+                    <a href="{:U('/Admin/audit/lists/is_check/1')}" class="<eq name="_GET['is_check']" value="1">active</eq> tabs_a fl">通过({$count1|default="0"})</a>
+                    <a href="{:U('/Admin/audit/lists/is_check/2')}" class="<eq name="_GET['is_check']" value="2">active</eq> tabs_a fl">驳回({$count2|default="0"})</a>
+                </div>
+
+                <!-- end tables-searchbox -->
+                <table class="wxtables" style="text-align:center;">
+                    <colgroup>
+                        <col width="2%">
+                        <col width="10%">
+                        <col width="23%">
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead width="100%">
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>ID</td>
+                        <td>代理商</td>
+                        <td>联系电话</td>
+                        <td>注册时间</td>
+                        <td>审核状态</td>
+                        <td >操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="memberlist" item="vo">
+                    <tr>
+                        <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.personname}</td>
+                        <td>{$vo.telephone}</td>
+                        <td><?php echo (date("Y-m-d H:i:s",$vo['add_time']));?></td>
+                        <td class="status">
+                            <switch name="vo.is_check">
+                                <case value="0"><p>待审核</p></case>
+                                <case value="1"><b style='color:#398439;'>通过</b></case>
+                                <case value="2"><b style='color:red;'>驳回</b></case>
+                            </switch>
+                        </td>
+                        <td>
+                            <p>
+                                <a class="btn btn-primary" href="{:U('Admin/Audit/setAuthority',array('id'=>$vo['id']))}">权限设置</a>
+                                <a href="{:U('/Admin/Audit/destail/id')}/{$vo.id}" class="btn btn-success">查看详情</a>
+								<eq name="vo['is_sale']" value="1">
+								<a href="{:U('/Admin/Audit/mxamine/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="审核" data-supplierid="{$vo.id}" >查看审核</a>
+								</eq>
+                                <switch name="vo.is_check">
+                                    <case value="0">
+                                        <a href="JavaScript:void(0);" class="btn btn-warning changeStatus " data-id="{$vo.id}" title="审核" data-supplierid="{$vo.user_id}" >审核</a>
+                                    </case>
+									<case value="1">
+										<eq name="vo['status']" value="0">
+											<a href="JavaScript:void(0);" class="btn btn-warning dongjie " title="冻结" data-status="0" data-supplierid="{$vo.id}" >冻结</a>
+										<else/>
+											<a href="JavaScript:void(0);" class="btn btn-danger dongjie " title="解冻" data-status="1"  data-supplierid="{$vo.id}" >解冻</a>
+										</eq>
+									</case>
+                                    <default />                 
+                                </switch>
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+
+<!-- end container -->
+
+
+
+	<div class="jbox editfenlei disshow">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">审核</div>
+            <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <input type="hidden" name="supplierid" id="supplierid" value="" />
+        <input type="hidden" name="id" id="id" value="" />
+        <div class="jbox-container" style="height: 253px;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>审核意见：</label>
+                <div class="form-controls">
+                <textarea id="shenhemsg" cols="30" rows="10" name="msg" style="padding:10px" ></textarea>
+                <span class="fi-help-text"></span></div>
+            </div>
+
+			
+        </div>
+        <div class="jbox-buttons">
+            <!-- <input type="button" class="btn btn-warning shenhejc" data-type="jiechu" value="解除"> -->
+            <input type="button" class="btn btn-primary shenheqr" data-type="queren" value="审核通过">
+            <input type="button" class="btn btn-danger  shenhebh" data-type="bohui" value="驳回">
+            <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a>
+        </div>
+
+</div>
+
+<script>
+    $(".BtnAddClass").click(function(){
+        $('.gy_import').show();
+    })
+
+    $(".cancle").click(function(){
+        $('.gy_import').hide();
+        $(this).parent().parent('.jbox').hide();
+    })
+
+$(function(){
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+
+
+
+})
+</script>
+
+<include file="Public:foot"/>
+
+
+
+<script>
+
+$(".changeStatus").click(function(){
+    var supplierid=$(this).attr('data-supplierid');
+    $('.editfenlei #supplierid').val(supplierid);
+    var id = $(this).attr('data-id');
+    $('.editfenlei #id').val(id);
+    $('.editfenlei').show();
+    $('#albums-overlay').show();
+})
+
+$(".cancle").click(function(){
+    $(this).parents('.jbox').hide();
+    $('#albums-overlay').hide();
+})
+
+$(".shenheqr").click(function(){
+$("this").attr({"disabled":"disabled"});
+    var post={};
+    post.supplier_id     = $('.editfenlei #supplierid').val();
+    post.msg             = $("#shenhemsg").val();
+    post.status          = 1;
+    post.id              = $('.editfenlei #id').val();
+    if(post.msg==""){
+        alert('请填写审核意见！');return false;
+    }
+    $.post("{:U('/Admin/Audit/shenhe')}" ,post, function (data){
+        dialog.showTips(data.info, "warn", function (){
+                  window.location.reload();
+                });
+      })
+
+
+})
+
+$(".shenhebh").click(function(){
+    $("this").attr({"disabled":"disabled"});
+    var post={};
+    post.supplier_id = $('.editfenlei #supplierid').val();
+    post.msg        = $("#shenhemsg").val();
+    post.status     = 2;   
+    if(post.msg==""){
+        alert('请填写审核意见！');return false;
+    }
+    $.post("{:U('/Admin/Audit/shenhe')}" ,post, function (data){
+        dialog.showTips(data.info, "warn", function (){
+            window.location.reload();
+        });
+    })
+    
+
+
+})
+
+
+
+</script>
+
+
+
+<script>
+	$(".dongjie").click(function(){
+		var type = $(this).attr("data-status");
+		var id   = $(this).attr("data-supplierid");
+		var _this = $(this);
+        $.post("{:U('admin/member/changexiaodai')}",{id:id},function(data){
+            if(data.status == 1){
+                var p = _this.parent().parent().parent().find(".status p");
+                p.html(data.info);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("解冻")
+                    p.css("color","red")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("冻结")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+	
+	})
+
+</script>

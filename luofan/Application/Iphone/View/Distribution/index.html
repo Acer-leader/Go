@@ -1,0 +1,170 @@
+<include file="Public:head"/>
+<link href="__CSS__/fx.css" type="text/css"  rel="stylesheet" />
+<body>
+
+
+<!--head -->
+
+
+<div class="head_box houtai">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" style=" line-height:30px;color:#357ce2" ></i></a>
+<a href="__HOST__/Index/" class="shouye" style=" line-height:24px; color:#357ce2" >首页</a>
+<div class="clear"></div>
+</div>
+
+<div class="head_box_right">
+
+<a class="grzx" href="__HOST__/Distribution/fx_my"><img src="__IMAGES__/grzx.png"></a>
+
+
+</div>
+
+<div class="head_box_center" style=" color:#555; line-height:35px;">代理中心</div>
+<div class="clear"></div>
+
+</div>
+<!--head --> 
+
+
+<div class="tab_houtai">
+<ul>
+<li style="border-bottom:2px #fed11e solid">
+<a href="__HOST__/Distribution/">
+<img src="__IMAGES__/houtai_yj.svg" />
+<h4 style=" color:#fed11e">佣金产品</h4>
+</a>
+</li>
+<li>
+<a href="__HOST__/Distribution/houtai1">
+<img src="__IMAGES__/houtai_kh.svg" />
+<h4>客户列表</h4>
+</a>
+</li>
+<li>
+<a href="__HOST__/Distribution/houtai">
+<img src="__IMAGES__/houtai_ws.svg" />
+<h4>常见问题</h4>
+</a>
+</li>
+<li>
+<a href="__HOST__/Distribution/houtai2">
+<img src="__IMAGES__/houtai_wd.svg"/>
+<h4>查网贷</h4>
+</a>
+</li>
+<div class="clear"></div>
+</ul>
+</div>
+
+
+
+<div class="warpper_box">
+    
+    
+    <div class="houtaiYj_top">
+    	<div class="houtaiYj_tit">
+        	<h2>代理产品</h2>
+            <h3>（有效规则：新用户注册申请）</h3>
+        </div>
+    </div>
+    
+  <div class="xindai">
+    <foreach name="new" item="vo">
+        <a href="__HOST__/Distribution/fx_share_gd/card_id/{$vo.card_id}" ><div class="yangshi"   style="border:#338bff 2px solid;padding: 18px 0; margin: 5px 5px;width: 30%;height:90px;border-radius:10px;">
+    <h2 style="font-size: 18px; padding-bottom: 5px;">{$vo.card_title}</h2>
+  <!--   <h3>借款成功</h3>
+    <h3>返佣<span>120元</span></h3> -->
+    </div>
+      </a>
+    
+    </foreach>
+
+ <!-- 
+ 	<a href="__HOST__/Distribution/fx_share_gd/id/1"> <div class="yangshi"    style="border:#338bff 2px solid;padding: 18px 0; margin: 5px 5px;width: 30%;border-radius:10px;">
+    	<h2 style="font-size: 18px; padding-bottom: 5px;">信而富</h2>
+    	<h3>注册提交返<span>4</span>元</h3>
+   	 	<h3>借款返<span>18</span>元</h3>
+		</div>  
+    </a>
+    
+ 	<a href="__HOST__/Distribution/fx_share_gd/id/1"> <div class="yangshi"    style="border:#338bff 2px solid;padding: 18px 0; margin: 5px 5px;width: 30%;border-radius:10px;">
+    	<h2 style="font-size: 18px; padding-bottom: 5px;">现金卡</h2>
+    	<h3>借款成功</h3>
+   	 	<h3>返佣<span>40</span>元</h3>
+		</div></a>  
+        
+        
+ 	<a href="__HOST__/Distributionfx_share_gd/id/1"> <div class="yangshi"    style="border:#338bff 2px solid;padding: 18px 0; margin: 5px 5px;width: 30%;border-radius:10px;">
+    	<h2 style="font-size: 18px; padding-bottom: 5px;">浦发信用卡</h2>
+    	<h3>核卡成功</h3>
+   	 	<h3>返佣<span>40元</span></h3>
+		</div> </a> 
+        
+        
+ 	<a href="__HOST__/Distribution/fx_share_gd/id/1"> <div class="yangshi"    style="border:#338bff 2px solid;padding: 18px 0; margin: 5px 5px;width: 30%;border-radius:10px;">
+    	<h2 style="font-size: 18px; padding-bottom: 5px;">民生信用卡</h2>
+    	<h3>核卡成功</h3>
+   	 	<h3>返佣<span>40</span>元</h3>
+		</div>  </a>
+        
+        
+ 	<a href="__HOST__/Distribution/fx_share_gd/id/1"> <div class="yangshi"   style="border:#338bff 2px solid;padding: 18px 0; margin: 5px 5px;width: 30%;border-radius:10px;">
+    	<h2 style="font-size: 18px; padding-bottom: 5px;">借了花</h2>
+    	<h3>借款成功</h3>
+   	 	<h3>返佣<span>2</span>个点</h3>
+		</div> </a> 
+        
+        
+ 	<a href="__HOST__/Distribution/fx_share_gd/id/1"> <div class="yangshi"  style="border:#338bff 2px solid;padding: 18px 0; margin: 5px 5px;width: 30%;border-radius:10px;">
+    	<h2 style="font-size: 18px; padding-bottom: 5px;">苹果贷</h2>
+    	<h3>借款成功</h3>
+   	 	<h3>返佣<span>2</span>个点</h3>
+		</div> </a> 
+        
+        
+ 	<a href="__HOST__/Distribution/fx_share_gd/id/1"> <div class="yangshi" style="border:#338bff 2px solid;padding: 18px 0; margin: 5px 5px;width: 30%;border-radius:10px;" >
+    	<h2 style="font-size: 18px; padding-bottom: 5px;">信业信用卡</h2>
+    	<h3>借款成功</h3>
+   	 	<h3>返佣<span>70元</span></h3>
+		</div>  </a>
+        
+        
+ 	<a href="__HOST__/Distribution/fx_share_gd/id/1"> <div class="yangshi"  style="border:#338bff 2px solid;padding: 18px 0; margin: 5px 5px;width: 30%; border-radius:10px;">
+    	<h2 style="font-size: 18px; padding-bottom: 5px;">豆豆钱</h2>
+    	<h3>借款成功</h3>
+   	 	<h3>返佣<span>50</span>元</h3>
+		</div>  </a> -->
+        
+        <div class="clear"></div>
+</div>
+    
+    
+    
+    
+    
+</div>
+
+
+
+
+
+
+
+<!--foot-->
+<include file="public:footer"/>
+<!--foot-->
+
+</body>
+
+<script>	
+
+
+	
+$(document).ready(function (){
+
+})
+</script>
+
+</html>
+

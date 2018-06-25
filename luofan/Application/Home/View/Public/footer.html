@@ -1,0 +1,118 @@
+<div class="footer">
+    <div class="index_container">
+        <div class="footer_top">
+            <div class="footernav">
+                <div class="footer_left">
+                    <ul class="footer_nav">
+                        <li>
+                            <ul class="footer_list">
+                                <li class="footer_first">关于我们</li>
+                                <li>公司动态</li>
+                                <li>加入我们</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="footer_list">
+                                <li class="footer_first">联系我们</li>
+                                <li>法律声明</li>
+                                <li>保密承诺</li>
+                            </ul>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+
+                <div class="footer_center">
+                    <div><img src="__IMAGES__/shuxian.jpg" class="l_shuxian" alt=""/></div>
+                    <div><img src="__IMAGES__/shuxian.jpg" class="r_shuxian" alt=""/></div>
+                    <div class="ewm_wz">
+                        <h4>洛凡金融</h4>
+                        <span>{$web_config.company_desc}</span>
+                    </div>
+                    <div class="erweima"><img src="{$web_config.servise_ewm}" width="100"/></div>
+                </div>
+                <div class="footer_right">
+                    <div class="footer_right_top">
+                        <div class="contact_num">
+                            <div class="contact_wz"><span>客服热线</span><br />（工作时间 8:00-22:00）</div>
+                            <h3>{$web_config.servise_phone}</h3>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="footer_right_bottom">
+                        <h5>地址：{$web_config.company_address}</h5>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <volist name="footer" id="val">
+			<if condition="($controller_name neq 'Index')  ">
+			
+			
+			
+				<eq name="val['title']" value="友情链接"> 
+				
+				<else/> 
+					<div class="footer_city">
+						<div class="footer_city_first">{$val.title}</div>
+						<ul class="footer_city_list">
+							<volist name="val.data" id="vv">
+							<li><a href="{$vv.url}">{$vv.content}</a></li>
+							</volist>
+							<i onclick="if ($(this).parent().hasClass('show')) { $(this).parent().removeClass('show') } else { $(this).parent().addClass('show'); };"></i>
+							<div class="clear"></div>
+						</ul>
+						<div class="clear"></div>
+					</div>
+				</eq>
+			
+			<else/>
+				<div class="footer_city">
+					<div class="footer_city_first">{$val.title}</div>
+					<ul class="footer_city_list">
+						<volist name="val.data" id="vv">
+						<li><a href="{$vv.url}">{$vv.content}</a></li>
+						</volist>
+						<i onclick="if ($(this).parent().hasClass('show')) { $(this).parent().removeClass('show') } else { $(this).parent().addClass('show'); };"></i>
+						<div class="clear"></div>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</if>
+            </volist>
+            <div class="footer_city1">{$web_config.copyright}</div>
+            <div class="foot_box_right">
+                <div id="footer_unohacha">
+                    <div style="display:none;"><a href="http://www.unohacha.com/">网站建设,网页设计,高端网站</a></div>
+                    <iframe src="/Public/Home/unohacha/index.html" width="110" height="40" scrolling="no" allowtransparency="true" frameborder="0" style="background-color:transparent" title="UNOHACHA 吾诺瀚卓"></iframe>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#share').click(function(){
+          var  post ={};
+          post.url  =   "{$url}";
+          post.card_id  =   "{$infoloan.id}";
+          $.ajax({
+            url:"__HOST__/Loan/sharedo",
+            data:post,
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status){
+                   //dialog.showTips('分享成功',"","__HOST__/Distribution/fx_erweima/card_id/{$infoloan.id}/fenxiao_id/{$fenxiao_id}");
+                    window.location.href="__HOST__/Distribution/fx_erweima/card_id/{$infoloan.id}/fenxiao_id/{$fenxiao_id}";
+                }else{
+                    dialog.showTips(data.info,"warn");return false;
+                }
+            }
+        })
+        
+    })
+
+</script> 

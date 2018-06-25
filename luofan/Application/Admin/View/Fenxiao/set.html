@@ -1,0 +1,121 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+   <!--  <link href="__CALENDAR__/prettify/prettify.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="__CALENDAR__/prettify/prettify.js"></script>
+    <script type="text/javascript" src="__CALENDAR__/lhgcore.min.js"></script>
+    <script type="text/javascript" src="__CALENDAR__/lhgcalendar.min.js"></script> -->
+<style>
+	.imgnav{
+		max-height: 30px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.imgwrapper{
+		display: block;
+		width: 78px;
+		height: 78px;
+		overflow: hidden;
+	}
+	.imgwrapper img{
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border:0;
+	}
+	.spanpd10{
+		margin:10px;
+	}
+	.wxtables.wxtables-sku.newtable{
+		width: 40%;
+		margin: 0;
+	}
+	.img-list li{
+		width: 60px;
+		height:60px;
+	}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+	</style>
+
+	<!-- <script type="text/javascript">
+
+     J(function(){
+         J('#inp1').calendar();
+     })
+    </script> -->
+<div class="container">
+  <div class="inner clearfix">   <include file="Public:left" />
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">添加服务信息</h1>
+      
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">基本信息</h3>
+
+
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>账号：</label>
+            <div class="form-controls">
+              <input type="text" class="input" name="user_num" value="{$pay['user_num']}"  >
+          </div>
+          </div>
+
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>金额：</label>
+            <div class="form-controls">
+              <input type="text" class="input" name="jine" value="{$pay['jine']}"  >
+          </div>
+          </div>
+			   <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>充值方式：</label>
+            <div class="form-controls">
+              <select name="type" class="select" name="type">
+                <option <eq name="pay.type" value="1">selected</eq> value="1">微信</option>
+                <option <eq name="pay.type" value="2">selected</eq> value="2">支付宝</option>
+              </select>
+          </div>
+          </div>
+        <div class="panel-single panel-single-light mgt20 txtCenter"> <a href="" class="btn" onclick="history.back()">返回</a>
+        <input type="hidden" name="id" value="{$pay['id']}">
+        <input type="submit" id="sub" class="btn btn-primary" value="保存">
+        </div>
+      </form>
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+
+</div>
+
+<include file="Public:foot"/>
+
+
+
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+
+
+<script>
+	$('.sub_tijiao').click(function(){
+	
+	
+	
+	})
+
+</script>
+
+
+

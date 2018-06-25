@@ -1,0 +1,433 @@
+<include file="Public:head"/>
+<style>
+.news_center3_wz h4 {
+    color: #333;
+    font-size: 16px;
+    line-height: 28px;
+    margin: 0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+.news1_center3_list_ts{
+    border:none !important;
+}
+.news1_right_list li {
+    padding: 15px 0px !important;
+}
+</style>
+<script>
+$(function(){
+    $(".img").each(function(){
+        var li = $(this).parent().find(".news3_list_first");
+        var img = li.attr("data-img");
+        $(this).attr('src',img);
+    })
+    $(".change_color[data-key=1]").addClass('shuxian_one');
+    $(".change_color[data-key=2]").addClass('shuxian_two');
+    $(".change_color[data-key=3]").addClass('shuxian_three');
+    $(".change_color[data-key=4]").addClass('shuxian_four');
+    $(".change_color[data-key=5]").addClass('shuxian_five');
+    $(".change_color[data-key=6]").addClass('shuxian_six');
+    $(".change_color[data-key=7]").addClass('shuxian_seven');
+    $(".change_color[data-key=8]").addClass('shuxian_eight');
+    $(".change_color[data-key=2]").parent().parent(".news3_tit").addClass('news3_tit2');
+    $(".change_color[data-key=3]").parent().parent(".news3_tit").addClass('news3_tit3');
+    $(".change_color[data-key=4]").parent().parent(".news3_tit").addClass('news3_tit4');
+    $(".change_color[data-key=5]").parent().parent(".news3_tit").addClass('news3_tit5');
+    $(".change_color[data-key=6]").parent().parent(".news3_tit").addClass('news3_tit6');
+    $(".change_color[data-key=7]").parent().parent(".news3_tit").addClass('news3_tit7');
+    $(".change_color[data-key=8]").parent().parent(".news3_tit").addClass('news3_tit8');
+})
+</script>
+<script>
+$(function(){
+    var val = $(".news1_right_list_first h5 p").html();
+    console.log(val);
+    if(val){
+        val     = val.substr(0,20)+"...";
+        $(".news1_right_list_first h5 p").remove();
+        $(".news1_right_list_first h5").html("<p style='padding:0px;margin:0px;'>"+val+"</p>");
+    }
+    var val1 = $(".news1_center_wz1 h5 p").html();
+    if(val1){
+        val1     = val1.substr(0,50)+"...";
+        $(".news1_center_wz1 h5 p").remove();
+        $(".news1_center_wz1 h5").html("<p style='padding:0px;margin:0px;'>"+val1+"</p>");
+    }
+    var val2 = $(".news_center3_wz h5 p").html();
+    if(val2){
+        val2     = val2.substr(0,20)+"...";
+        $(".news_center3_wz h5 p").remove();
+        $(".news_center3_wz h5").html("<p style='padding:0px;margin:0px;'>"+val2+"</p>");
+    }
+    var val3 = $(".news1_right3_list_wz h5 p").html();
+    if(val3){
+        val3     = val3.substr(0,20)+"...";
+        $(".news1_right3_list_wz h5 p").remove();
+        $(".news1_right3_list_wz h5").html("<p >"+val3+"</p>");
+    }
+    var val4 = $(".news1_center2_wz h5 p").html();
+    if(val4){
+        val4     = val4.substr(0,80)+"...";
+        $(".news1_center2_wz h5 p").remove();
+        $(".news1_center2_wz h5").html("<p >"+val4+"</p>");
+    }
+})
+</script>
+</head>
+<body>
+<include file="Public:header"/>
+<!--header-->
+<!--  / warpper  -->
+<div class="warpper">
+    <!--news_box1-->
+    <div class="news_box ">
+        <div class="index_container">
+            <div class="infonav_top">
+                <div class="infonav_top_con">
+                    当前位置：
+                <a href="index.html">资讯</a> &gt;
+                <a href="javascript:void(0)">信用生活</a>
+                </div>
+            </div>
+            <div class="news1_box">
+                <div class="news1_left">
+                    <ul class="news1_left_list">
+                        <volist name='leftres' id="v">
+                        <li>
+                            <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                            <div class="news1_left_img">
+                                <img src="{$v.logo_pic}" width="100%"/>
+                            </div>
+                            <div class="news1_left_wz">
+                                <h4>{$v.news_title}</h4>
+                                <span>查看详情</span>
+                            </div>
+                            <div class="clear"></div>
+                            </a>
+                        </li>
+                        </volist>
+                    </ul>
+                    <div class="news_left2">
+                        <h3>{$res1.classname}</h3>
+                        <a href="{:U('News/newslist',array('id'=>"$pid1"))}">
+                        <div class="news_rm">更多<span><img src="__IMAGES__/news_rm1.png" width="100%"/></span></div></a>
+                     </div>
+                    <ul class="news1_left_list">
+                        <volist name='res1.data' id="v" offset="0" length="1">
+                            <li class="news1_left_list_ts">
+                                <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                                    <div class="news1_left_tit">
+                                        <span>{$v.news_title}</span>
+                                    </div>
+                                    <img src="{$v.logo_pic}" width="100%"/>
+                                </a>
+                            </li>
+                        </volist>
+                        <volist name='res1.data' id="v" offset="1" length="7">
+                            <li>
+                                <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                                <div class="news1_left_img">
+                                    <img src="{$v.logo_pic}" width="100%"/>
+                                </div>
+                                <div class="news1_left_wz">
+                                    <h4>{$v.news_title}</h4>
+                                    <span>查看详情</span>
+                                </div>
+                                <div class="clear"></div>
+                                </a>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+                <div class="news1_center">
+                    <div class="news1_center1">
+                        <div class="news1_center_top">
+                        <volist name="upores" id="v">
+                            <div class="news1_center_list">
+                                <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                                    <img src="{$v.logo_pic}" width="100%"/>
+                                    <div class="news1_center_wz">
+                                        <img src="__IMAGES__/news_center_zz.png" width="100%"/>
+                                        <div class="news1_center_wz1">
+                                            <h4>{$v.news_title}</h4>
+                                            <h5> <?php
+                                                $str = $vo['detail'];
+                                                $str = htmlspecialchars_decode($str);
+                                                $str = stripslashes($str);
+                                                $str = strip_tags($str);
+                                                if($str)
+                                                echo mb_substr($str,0,40,'utf-8')."....";
+                                                ?></h5>
+                                            <span>查看详情</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </volist>
+                        </div>
+                        <div class="news1_center_bottom">
+                        <div class="news1_center_left">
+                        <volist name="upfres" id="v" offset="0" length="2">
+                            <div class="news1_center_list news1_center_list_ts">
+                                <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                                    <img src="{$v.logo_pic}" width="100%"/>
+                                    <div class="news1_center_wz">
+                                    <img src="__IMAGES__/news_center_zz.png" width="100%"/>
+                                    <div class="news1_center_wz1">
+                                        <h4>{$v.news_title}</h4>
+                                        <span>查看详情</span>
+                                    </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </volist>
+                        </div>
+                        <div class="news1_center_right">
+                        <volist name="upfres" id="v" offset="2" length="2">
+                            <div class="news1_center_list news1_center_list_ts">
+                            <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                                <img src="{$v.logo_pic}" width="100%"/>
+                                <div class="news1_center_wz">
+                                <img src="__IMAGES__/news_center_zz.png" width="100%"/>
+                                <div class="news1_center_wz1">
+                                    <h4>{$v.news_title}</h4>
+                                    <span>查看详情</span>
+                                </div>
+                                </div>
+                                </a>
+                            </div>
+                        </volist>
+                        </div>
+                        <div class="clear"></div>
+                        </div>
+                    </div>
+                    <volist name="uptres" id="v">
+                    <div class="news1_center2">
+                        <div class="news1_center2_img">
+                            <img src="{$v.logo_pic}" width="100%"/>
+                        </div>
+                        <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                        <div class="news1_center2_wz">
+                            <h4>{$v.news_title}</h4>
+                            <h5> <?php
+                            $str = $vo['detail'];
+                            $str = htmlspecialchars_decode($str);
+                            $str = stripslashes($str);
+                            $str = strip_tags($str);
+                            if($str)
+                            echo mb_substr($str,0,40,'utf-8')."....";
+                            ?></h5>
+                            <span>查看详情</span>
+                        </div>
+                        </a>
+                        <div class="clear"></div>
+                    </div>
+                    </volist>
+                    <div class="news1_center1">
+                        <div class="news1_center_top">
+                        <volist name="unores" id="v">
+                            <div class="news1_center_list">
+                                <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                                    <img src="{$v.logo_pic}" width="100%"/>
+                                    <div class="news1_center_wz">
+                                    <img src="__IMAGES__/news_center_zz.png" width="100%"/>
+                                    <div class="news1_center_wz1">
+                                        <h4>{$v.news_title}</h4>
+                                        <h5>{$v['detail']|htmlspecialchars_decode|stripslashes}</h5>
+                                        <span>查看详情</span>
+                                    </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </volist>
+                        </div>
+                    </div>
+                    <div class="news1_center3">
+                        <div class="news1_center3_left">
+                        <volist name="unfres" id="v" offset="0" length="2">
+                            <div class="news1_center3_list news1_center3_list_ts">
+                            <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                                <img src="{$v.logo_pic}" width="100%"/>
+                                <div class="news_center3_wz">
+                                    <h4>{$v.news_title}</h4>
+                                    <h5>{$v['detail']|htmlspecialchars_decode|stripslashes}</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                </a>
+                            </div>
+                        </volist>
+                        </div>
+                        <div class="news1_center3_right">
+                        <volist name="unfres" id="v" offset="2" length="2">
+                            <div class="news1_center3_list news1_center3_list_ts">
+                            <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                                <img src="{$v.logo_pic}" width="100%"/>
+                                <div class="news_center3_wz">
+                                    <h4>{$v.news_title}</h4>
+                                    <h5>{$v['detail']|htmlspecialchars_decode|stripslashes}</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                </a>
+                            </div>
+                        </volist>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="news1_right">
+                    <ul class="news1_right_list">
+                    <volist name="rightres" id="v">
+                        <li class="news1_right_list_first">
+                            <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                                <h4>{$v.news_title}</h4>
+                                <h5>{$v['detail']|htmlspecialchars_decode|stripslashes}</h5>
+                                <span>查看详情</span>
+                            </a>
+                        </li>
+                    </volist>
+                    <script>
+                        //$(".news1_right_list").children('li').eq(2).html('');
+                        //$(".news1_right_list").children('li').eq(2).html('<img src="__IMAGES__/news1_right2.jpg" width="100%"/>');
+                        $(".news1_right_list").children('li').eq(1).after('<li class="news1_right_list_first"><img src="__IMAGES__/news1_right2.jpg" width="100%"/></li>');
+                    </script>
+                    </ul>
+                    <div class="news1_right2">
+                        <h3>{$res2['classname']}</h3>
+                        <a href="{:U('News/newslist',array('id'=>"$pid2"))}"><div class="news_rm">更多<span><img src="__IMAGES__/news_rm1.png" width="100%"/></span></div></a>
+                    </div>
+                    <ul class="news1_right3_list">
+                    <volist name="res2.data" id="v">
+                        <li>
+                            <a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                                <h4>{$v.news_title}</h4>
+                                <div class="news1_right3_list_wz">
+                                    <h5>{$v['detail']|htmlspecialchars_decode|stripslashes}</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                <div class="news1_right3_list_img">
+                                    <img src="{$v.logo_pic}" width="100%" />
+                                </div>
+                                <div class="clear"></div>
+                            </a>
+                        </li>
+                    </volist>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <!--news_box1-->
+    <!--news_box3-->
+    <div class="news_box news_box3">
+        <div class="index_container">
+            <div class="news3_box">
+                <div class="news3_box_top">
+                <volist name="news_list" id="v" offset="0" length="4" key="k">
+                    <div class="news3_list">
+                        <div class="news3_tit">
+                            <h4><span data-key="{$k}" class='change_color'></span>{$v.one_cate}</h4>
+                            <a href="{:U('Index/newlist')}"><div class="news_rm">更多<span><img src="__IMAGES__/news_rm2.png" width="100%"/></span></div></a>
+                        </div>
+                        <img src="__IMAGES__/news3_1.jpg" width="270" height="180" class="img" />
+                        <ul class="news3_list_wz">
+                        <volist name="v.data" id="vv" offset="0" length="3">
+                            <li class="news3_list_first" data-img="{$vv.logo_pic}"><a href="{:U('News/newsDot1',array('id'=>$vv['id']))}">{$vv.news_title}</a></li>
+                        </volist>
+                        </ul>
+                    </div>
+                </volist>
+                    <div class="clear"></div>
+                </div>
+                <div class="news3_box_bottom">
+<volist name="news_list" id="v" offset="4" length="8" key="k">
+                    <div class="news3_list">
+                        <div class="news3_tit news3_tit5">
+                            <h4><span class="shuxian_five change_color" data-key="{$k+4}"></span>{$v.one_cate}</h4>
+                            <a href="{:U('Index/newlist')}"> <div class="news_rm">更多<span><img src="__IMAGES__/news_rm6.png" width="100%"/></span></div></a>
+                        </div>
+                        <img src="__IMAGES__/news3_5.jpg" width="270" height="180" class="img"/>
+                        <ul class="news3_list_wz news3_list_wz5">
+                            <volist name="v.data" id="vv" offset="0" length="3">
+                                <li class="news3_list_first" data-img="{$vv.logo_pic}"><a href="{:U('News/newsDot1',array('id'=>$vv['id']))}">{$vv.news_title}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+</volist>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--news_box3-->
+</div>
+<!--  / warpper  -->
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+</body>
+<script>
+$(function(){
+    $(".news1_left_list").children('li').eq(0).addClass('news1_left_list_first');
+})
+</script>
+<script>
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+var mySwiper2 = new Swiper('.swiper2',{
+        loop:true,
+        autoplay:5000,
+        spaceBetween: 0,
+        slidesPerView : 4,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.fangdai_lt').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipePrev()
+    })
+    $('.fangdai_rt').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipeNext()
+    })
+</script>
+<script>
+$(document).ready(function(){
+    $(window).load(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+        $('.swiper2').height($('.swiper2 img').height()+60)
+    })
+    $(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+        $('.swiper2').height($('.swiper2 img').height()+60)
+    });
+})
+$(window).scroll(function(){
+    var scrollT=$(window).scrollTop();
+    if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+        $('.right_nav').css('display','block');
+    }else{
+        $('.right_nav').css('display','none');
+    }
+})
+</script>
+
+</html>

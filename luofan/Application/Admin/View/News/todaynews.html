@@ -1,0 +1,132 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__/lists.css">
+<script type="text/javascript" src="__JS__/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/>
+
+
+  <div class="content-right fl">
+    <h1 class="content-right-title">今日头条列表</h1>
+    <a href="{:U('/Admin/News/todaycontent')}" class="btn btn-success">发布资讯</a>
+    <form action="{:U('/Admin/News/todaynews')}" method="get">
+      <div class="tables-searchbox newcearchbox">
+          <input type="text" placeholder="标题" class="input" name="news_title" value="{$news_title}" >
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+
+      </div>
+</form>
+    <!-- end tabs -->
+    <!-- <div class="tabs clearfix mgt15" style="    margin-top: 40px;">
+        <a href="{:U('/Admin/News/personList/cate_id')}" class="<eq name="_GET['is_real']" value="">active</eq> tabs_a fl">/a>
+    </div> -->
+    <table class="wxtables mgt10" style="text-align:center;">
+      <thead>
+        <tr class="po_list">
+          <td><i class="icon_check"></i></td>
+          <td>ID</td>
+          <td>图片</td>
+          <td>标题</td>
+          <td>作者</td>
+          <td>发布时间</td>          
+          <td>来源</td>
+          <td>排序</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="list" item="vo">
+          <tr>
+            <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+            <td>{$vo.id}</td>
+            <td><img src="{$vo.logo_pic}" width="100px"></td>
+            <td>{$vo.news_title}</td>
+            <td>{$vo.author}</td>
+            <td>{$vo.release_time}</td>
+            <td>{$vo.source}</td>
+            <td>{$vo.sort}</td>
+            <!-- 
+            <td data-hot="{$vo.is_hot}" data-id="{$vo['id']}" ><if condition="($vo.is_hot eq 1)"> <span class="changeHot" style='color:#0C0;font-size:20px;cursor:pointer;'>√</span ><else/><span class="changeHot" style='color:#C00;font-size:20px;cursor:pointer;'>×</span></if></td>
+            <td> {$vo.sort} </td>
+            <td class="class_name">{$vo.add_time|date="Y-m-d H:i:s",###}</td> -->
+            <td>
+              <switch name="vo.status">
+                  <case value="0">
+                      <a href="JavaScript:void(0);" class="btn btn-warning changeStatus" title="禁用" data-id="{$vo.id}">禁用</a>
+                  </case>
+                  <case value="1">
+                      <a href="JavaScript:void(0);" class="btn btn-success changeStatus" title="启用" data-id="{$vo.id}">启用</a>                      
+                  </case>
+              </switch>
+              <a href="{:U('/Admin/News/todaycontent/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+              <a href="javaScript:;" data-id="{$vo['id']}"  class="btn j-delClass btn-danger delone" title="删除" onclick="btn_del({$vo['id']})">删除</a>
+              </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+        <a href="javascript:;" class="btn btn-primary" onclick="btn_del()">删除</a>
+        <div class="fr">
+          <div class="pages"> {$page} </div>
+          <!-- end paginate -->
+        </div>
+      </div>
+      <!-- end tables-btmctrl -->
+
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+</div>
+
+<!-- end container -->
+<include file="Public:foot"/>
+<script>
+function btn_del(id){
+        if(!id){
+            var id ='';
+            if($('.check:checked').length ==0){
+                alert('请选择要删除的数据');return false;
+            }
+            $('.check:checked').each(function(){
+                id = id + $(this).attr("data-id") + '_';
+            });
+        }
+        dialog.showTips("确定要删除吗?","firm",function(){
+        $.ajax({
+            url: "{:U('/admin/News/deltoday')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id: id
+            }
+        }).done(function (res) {
+            if (res.status == 1) {
+                dialog.showTips(res.info,"",res.url);
+            } else {
+                dialog.showTips(res.info,"warn");
+            }
+        })
+    })
+}
+$(".changeStatus").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('/admin/news/statustoday')}",{id:id},function(data){
+            if(data.status == 1){
+                dialog.showTips("操作成功","",1);
+            }else{
+                 dialog.showTips("操作失败","warn");
+            }
+        },"json")
+    })
+
+
+</script>

@@ -1,0 +1,294 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">供应商列表</h1>
+
+
+            <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count}</span> 个供应商。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                    <div class="tables-searchbox">
+                        <div class="fl" style="display: inline-block;">
+                            <form action="{:U('Admin/Supplier/index')}" style="display: inline-block;">
+                                <input type="text" class="input" name="title" id="title" value="{$title}" placeholder="真实公司名字/手机号">
+                                <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                        class="gicon-search white"></i>查询
+                                </button>
+                            </form>
+                            <a  style="display:inline-block;margin-left:20px;vertical-align:-2px;" href="{:U('Admin/Supplier/gy_export')}" class="btn btn-warning">供应商导出</a>
+                            <a  style="display:inline-block;margin-left:20px;vertical-align:-2px;" href="javascript:void(0)" class="btn btn-warning BtnAddClass ">供应商导入</a>
+                            <a  style="display:inline-block;margin-left:20px;vertical-align:-2px;" href="/Uploads/File/supplier_list.csv" class="btn btn-success  ">模板下载</a>
+
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+
+                <div class="tabs clearfix mgt10" style="margin-bottom:10px;">
+                    <a href="{:U('/Admin/Supplier/cwindex')}" class="<eq name="_GET['is_check']" value="">active</eq> tabs_a fl">全部({$count | default="0"})</a>
+                    <a href="{:U('/Admin/Supplier/cwindex/is_check/0')}" class="<eq name="_GET['is_check']" value="0">active</eq> tabs_a fl">待审核({$count0 | default="0"})</a>
+                    <a href="{:U('/Admin/Supplier/cwindex/is_check/1')}" class="<eq name="_GET['is_check']" value="1">active</eq> tabs_a fl">通过({$count1 | default="0"})</a>
+                    <a href="{:U('/Admin/Supplier/cwindex/is_check/2')}" class="<eq name="_GET['is_check']" value="2">active</eq> tabs_a fl">驳回({$count2 | default="0"})</a>
+                </div>
+
+                <!-- end tables-searchbox -->
+                <table class="wxtables" style="text-align:center;">
+                    <colgroup>
+                        <col width="2%">
+                        <col width="5%">
+                        <col width="15%">
+                        <col width="10%">
+                        <col width="15%">
+                        
+                        <col width="15%">
+                        <col width="5%">
+                        <col width="10%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead width="100%">
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>ID</td>
+                        <td>公司名字</td>
+                        <td>供应商编码</td>
+                        <td>联系电话</td>
+                        <td>注册时间</td>
+                        <td>排序</td>
+                        <td>审核状态</td>
+                        <td >操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="memberlist" item="vo">
+                    <tr>
+                        <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.username}</td>
+                        <td>{$vo.license_number}</td>
+                        <td>{$vo.telephone}</td>
+
+                        <td><?php echo (date("Y-m-d H:i:s",$vo['add_time']));?></td>
+                        <td>{$vo.sort}</td>
+
+                        <td class="status">
+                            <switch name="vo.caiwu_status">
+                                <case value="0"><p>未审核</p></case>
+                                <case value="1"><b style='color:#398439;'>通过</b></case>
+                                <case value="2"><b style='color:red;'>驳回</b></case>
+                            </switch>
+                        </td>
+                       
+                        <td>
+                            <p>
+                                <a href="{:U('/Admin/Supplier/detail/id')}/{$vo.id}" class="btn btn-success">查看详情</a>
+								<eq name="vo['caigou_status']" value="1">
+								<a href="{:U('/Admin/Supplier/mxamine/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="审核" data-supplierid="{$vo.id}">查看审核</a>
+								</eq>
+                                <switch name="vo.caiwu_status">
+                                    <case value="0">
+                                        <a href="JavaScript:void(0);" class="btn btn-warning changeStatus" title="审核" data-supplierid="{$vo.id}">审核</a>
+                                    </case>
+                                    <default />
+                                    
+                                </switch>
+
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+
+<!-- end container -->
+
+<div class="jbox addfenlei disshow gy_import" style="height:224px;">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">上传文件</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <form action="{:U('Admin/supplier/gy_import')}" enctype="multipart/form-data" method="post">
+        <div class="jbox-container" style="height:100px;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>上传csv文件：</label>
+                <div class="form-controls">
+                    <input type="file" class="input classname" name="file">
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons"><button type="submit" class="jbox-buttons-ok btn btn-primary" id="addfile">确定</button><a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </form>
+</div>
+
+<script>
+    $(".BtnAddClass").click(function(){
+        $('.gy_import').show();
+    })
+
+    $(".cancle").click(function(){
+        $('.gy_import').hide();
+        $(this).parent().parent('.jbox').hide();
+    })
+
+$(function(){
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(".changeVip").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('Admin/Supplier/cw_shenhe')}",{id:id},function(data){
+            if(data.status == 1){
+                var p = _this.parent().parent().parent().find(".is_sale p");
+                p.html(data.info);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("解除审核")
+                    p.css("color","green")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("财务审核")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+    })
+})
+</script>
+
+<include file="Public:foot"/>
+
+
+<div id="albums-overlay" class="disshow"></div>
+  <div class="jbox editfenlei disshow">
+    <form action="/admin/gygoods/cg_jujue" method="post" id="shenhe">
+      <div class="jbox-title">
+        <div class="jbox-title-txt">财务审核</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+      
+      <input type="hidden" name="supplierid" id="supplierid" value="" />
+
+
+      <div class="jbox-container" style="height: 253px;">
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>审核意见：</label>
+                <div class="form-controls">
+                <textarea id="shenhemsg" cols="30" rows="6" name="msg" style="padding:10px" ></textarea>
+                <span class="fi-help-text"></span>
+                </div>
+        </div>
+      </div>
+      <div class="jbox-buttons">
+        <input type="button" class="btn btn-primary shenheqr" data-type="queren" value="审核通过">
+        <input type="button" class="btn btn-danger  shenhebh" data-type="bohui" value="驳回">
+        <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a>
+      </div>
+    </form>
+  </div>
+
+<script>
+
+$(".changeStatus").click(function(){
+    var supplierid=$(this).attr('data-supplierid');
+    $('.editfenlei #supplierid').val(supplierid);
+    $('.editfenlei').show();
+    $('#albums-overlay').show();
+})
+
+$(".cancle").click(function(){
+    $(this).parents('.jbox').hide();
+    $('#albums-overlay').hide();
+})
+
+$(".shenheqr").click(function(){
+    $("this").attr({"disabled":"disabled"});
+    var post={};
+    post.supplier_id=$('.editfenlei #supplierid').val();
+    post.msg        = $("#shenhemsg").val();
+    post.type       = 2;
+    post.status     = 1;  
+    if(post.msg==""){
+        alert('请填写审核意见！');return false;
+    }
+    $.post("{:U('/Admin/Supplier/shenhe')}" ,post, function (data){
+        dialog.showTips(data.info, "warn", function (){
+                  window.location.reload();
+                });
+      })
+
+
+})
+
+$(".shenhebh").click(function(){
+    $("this").attr({"disabled":"disabled"});
+    var post={};
+    post.supplier_id = $('.editfenlei #supplierid').val();
+    post.msg        = $("#shenhemsg").val();
+    post.type       = 2;
+    post.status     = 2;   
+    if(post.msg==""){
+        alert('请填写审核意见！');return false;
+    }
+    $.post("{:U('/Admin/Supplier/shenhe')}" ,post, function (data){
+        dialog.showTips(data.info, "warn", function (){
+                  window.location.reload();
+                });
+      })
+
+
+})
+
+
+
+</script>

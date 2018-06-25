@@ -1,0 +1,328 @@
+<include file="Public:head"/>
+
+<body>
+
+
+<!--head -->
+<div class="head_box" style=" background:#fe9a3a">
+<include file="Public:header1"/>
+</div>
+<!--head --> 
+<style>
+
+.small_gengduo{
+
+    padding-top: 87px;
+}
+.small_gengduo .active a {
+    background: #6eaedb; 
+	display:block;
+    color:#fff !important;	
+	border: 1px #6eaedb solid;
+}
+</style>
+
+
+
+
+<div class="warpper_box">
+
+<div class="ny_menu_box chedai_color">
+<ul>
+<li><a href="__HOST__/PersonLoan/">个贷</a></li>
+<li><a href="__HOST__/HouseLoan/">房贷</a></li>
+<li class="active"><a href="__HOST__/CarLoan/">车贷</a></li>
+<li><a href="__HOST__/Credit/">信用卡</a></li>
+<li><a href="__HOST__/News/">资讯</a></li>
+<div class="clear"></div>
+</ul>
+</div>
+<div class="gedai_search_box" >
+
+<ul class="gedai_search_box_title">
+<li style=" width:26%"><a href="javascript:void(0);">职业身份<img src="__IMAGES__/blue_sj1.png" /></a></li>
+<li style=" width:26%"><a href="javascript:void(0);">房产类型<img src="__IMAGES__/blue_sj1.png" /></a></li>
+<li style=" width:24%"><a href="javascript:void(0);">是否有车<img src="__IMAGES__/blue_sj1.png" /></a></li>
+<li style=" width:22%"><a href="javascript:void(0);">更多<img src="__IMAGES__/blue_sj1.png" /></a></li>
+<div class="clear"></div>
+</ul>
+
+<div class="gedai_search_box_list">
+<foreach name="type1" item="v" key="k">
+<ul>
+<foreach name="v.typeid" item="v1">
+<li><a href="__HOST__/CarLoan/index/type{$k+1}/{$v1.id}">{$v1.classname}</a></li>
+</foreach>
+</ul>
+
+</foreach>
+
+
+
+<ul class="small_gengduo">
+<!-- <ul> -->
+<foreach name="type2" item="v" key="k">
+<li>
+<div class="small_biaoti">{$v.classname}</div>
+<div class="small_gengduo_list">
+<foreach name="v.typeid" item="v1" key="k1">
+<div class="small_gengduo_list_xk"  data-id="{$v1.id}" data-pid="{$v.id}"><a href="javascript:void(0);" >{$v1.classname}</a></div>
+</foreach>
+<!-- <div class="small_gengduo_list_xk"><a href="javascript:void(0);">1年内逾期少于3次或者少于90天</a></div>
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">无信用卡或贷款</a></div> -->
+<div class="clear"></div>
+</div>
+</li>
+</foreach>
+<!-- <li>
+<div class="small_biaoti">机构类型</div>
+<div class="small_gengduo_list">
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">银行</a></div>
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">小贷公司</a></div>
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">典当行</a></div>
+<div class="clear"></div>
+</div>
+</li>
+<li>
+<div class="small_biaoti">抵押类型</div>
+<div class="small_gengduo_list">
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">房屋抵押</a></div>
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">车辆抵押</a></div>
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">其他抵押</a></div>
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">无抵押</a></div>
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">信用卡</a></div>
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">担保</a></div>
+<div class="clear"></div>
+</div>
+</li>
+<li>
+<div class="small_biaoti">还款方式</div>
+<div class="small_gengduo_list">
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">分期还款</a></div>
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">到期还款</a></div>
+<div class="small_gengduo_list_xk"><a href="javascript:void(0);">随借随还</a></div>
+<div class="clear"></div>
+</div>
+</li> -->
+<div  style=" height:100px;"></div>
+
+
+
+
+<div class="xkzx_btns">
+<a href="javascript:void(0);" class="release_btns">重置</a>
+<a href="javascript:void(0);" class="submit_btns">完成</a>
+</div>
+</ul>
+
+
+
+
+</div>
+
+
+
+<div class="black_bg"></div>
+</div>
+<div class="ny_gedai_box">
+<div class="ny_gedai_box_title"><span></span>热门车贷</div>
+<ul>
+<foreach name="carloan" item="vo">
+<li>
+<a href="__HOST__/CarLoan/car_dot/id/{$vo.id}">
+<div class="ny_gedai_box_list_l">
+<img src="__ROOT__{$vo.logo_pic1}" />
+</div>
+<div class="ny_gedai_box_list_r">
+<div class="ny_gedai_box_list_r_top">
+{$vo.title}
+</div>
+<div class="ny_gedai_box_list_r_bottom">
+<div class="ny_gedai_box_list_r_bottom_list">
+<dl>
+<dt>贷款金额： </dt>
+<dd><span class="num_red">{$vo.money|number_format=###,2,'.',''}~{$vo.money1|number_format=###,2,'.',''}</span> 万</dd>
+</dl>
+<dl>
+<dt>月管理费： </dt>
+<dd><span class="num_red">{$vo.lnsm}</span> %</dd>
+</dl>
+</div>
+<div class="ny_gedai_box_list_r_bottom_btn">查看详情</div>
+</div>
+</div>
+<div class="clear"></div>
+</a>
+</li>
+</foreach>
+
+</ul>
+<div class="page"> {$page} </div>
+</div>
+
+<div class="ny_gedai_gl">
+<div class="ny_gedai_gl_title ny_chedai_gl_title"><span></span>贷款攻略</div>
+<ul>
+<foreach name="cargonlve" item="vo">
+<li><a href="__HOST__/CarLoan/newsDetail/id/{$vo.id}">{$vo.news_title}</a></li>
+</foreach>
+
+</ul>
+</div>
+
+</div>
+
+<include file="Public:footer1"/>
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+
+<script>
+
+$('.release_btns').click(function(){
+
+    $('.small_gengduo_list_xk').removeClass('active');
+})
+
+$('.submit_btns').click(function(){
+    var id  = '';
+    var pid =   '';
+  
+    $('.small_gengduo_list_xk').each(function(){
+    
+        if($(this).hasClass('active')){
+            id      =   id  + $(this).attr('data-id')+ '-';
+            pid     =   pid + $(this).attr('data-pid')+'-';
+
+        }
+      
+    });
+
+    if(id==''){
+        alert('请选择至少一项！');
+        return false;
+    }
+    var post    =   {};
+    post.id     =   id;
+    post.pid    =   pid;
+    post.cate_id    =   3;    
+        $.ajax({
+            url:'__HOST__/PersonLoan/getsearch',
+            data:post,
+            type:'post',
+            dataType:'json',
+            success: function(data){
+                if(data.status==1){
+                    $('.ny_gedai_box').find('ul').remove();
+                    $('.ny_gedai_box').find('.page').remove();
+                    $('.ny_gedai_box').append(data.info);
+                    $('.gedai_search_box_title li').click();
+                    $('html,body').css('overflow-y','scroll');
+                    
+                    //console.dir(data.info);
+                    //window.location.href="Weixin/Credit/search";
+                }else{
+                    alert(data.info);
+                }
+            }
+        });
+    
+  
+  
+})       
+$(document).ready(function (){
+    $(window).load(function (){
+        $(".swiper1").height($(".hot_house_list img").height()+10)
+    })
+ 
+            var mySwiper = new Swiper('.swiper1', {
+                loop: true,
+                autoplay: 5000,
+                spaceBetween: 0,
+                slidesPerView : 2,
+                paginationClickable: true,
+                autoplayDisableOnInteraction: false,
+            })  
+    $('.ny_gedai_xuanze_r a').click(function(){
+        var search  =   $('.input1').val();
+        if(search=="万元"){
+            search  =   "";
+        }
+        window.location.href="__HOST__/CarLoan/card_search/cateid/2/search/"+search;
+    });
+
+})
+ $(document).ready(function (){
+    $('.ny_gedai_xuanze_r a').click(function(){
+        var search  =   $('.input1').val();
+        if(search=="万元"){
+            search  =   "";
+        }
+        window.location.href="__HOST__/CarLoan/card_search/cateid/1/search/"+search;
+    });
+    
+    
+    
+      var show = false;
+	  var index ;
+	 $(".gedai_search_box_title li").click(function(){
+	  	index = $(this).index();
+			 if($(".gedai_search_box_list ul").eq(index).css('display')=="none"){
+				 
+				 $(".gedai_search_box_list ul").eq(index).show().siblings().hide();
+				 
+				 $(".black_bg , .gedai_search_box_list").show()
+				$('html,body').css('overflow-y','hidden');
+			 }else{
+				 $(".gedai_search_box_list ul").eq(index).hide()
+				 $(".black_bg , .gedai_search_box_list").hide()
+				  $('html,body').css('overflow-y','scroll');
+				}
+				
+				
+				
+$(".small_gengduo_list_xk").click(function() {
+    $(this).addClass("active").siblings().removeClass("active");
+});
+	
+				
+})
+		
+             $(".gedai_search_box_list ul li").click(function(){
+             // $(".gedai_search_box_list ul").hide();
+	         // $(".black_bg , .gedai_search_box_list").hide()
+			  
+})
+
+ $(".black_bg").click(function(){
+		   $(".gedai_search_box_list ul").hide();
+		    $(".black_bg , .gedai_search_box_list").hide();
+		 })
+
+ 
+
+$(window).scroll(function(){
+
+	if($(window).scrollTop()>0){
+		$(".gedai_search_box_title").addClass("dingwei");
+		$(".gedai_search_box_list").addClass("pad");
+	}else{
+		$(".gedai_search_box_title").removeClass("dingwei");
+		$(".gedai_search_box_list").removeClass("pad");
+	}
+})
+
+/*$('.gedai_search_box_title li').eq(3).click(function(){
+	$('html,body').css('overflow-y','hidden');
+})*/
+$('.small_gengduo li').click(function(){
+	 $(".gedai_search_box_list ul").show();
+})	 
+
+
+}) 
+</script>
+</html>

@@ -1,0 +1,424 @@
+<include file="Public:head"/>
+<style>
+    .btn-success {
+        margin-top: 12px;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">产品分类列表</h1>
+            <div class="alert alert-info disable-del">
+                <h4>提示</h4>
+                删除分类会删除分类下面所有的产品 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div>
+            <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加分类</a>
+</div>
+            <table class="wxtables mgt15">
+                <colgroup>
+                    <col width="3%">
+                    <col width="5%">
+                    <col width="20%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="20%">
+                    <col width="20%">
+                </colgroup>
+                <thead>
+                <tr >
+                    <td><i class="icon_check"></i></td>
+                    <td align="center">序号</td>
+                    <td>分类名称</td>
+                    <td align="center">图标</td>
+                    <!--<td style="text-align:center">显隐操作</td>-->
+                    <td align="center">排序</td>
+                    <td align="center" >创建时间</td>
+                    <td class="center">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="cache" item="vo" key="k" >
+                    <tr>
+                        <td class="center"><input type="checkbox" class="checkbox table-ckbs check" data-id="{$vo.id}"></td>
+                        <td align="center">{$k+1}</td>
+                        <td >{$vo.classname}</td>
+                        <td align="center"><img src="{$vo.pic}" width="30" alt=""></td>
+                        <td align="center">{$vo.sort}</td>
+                        <td align="center">{$vo.create_at|date="Y-m-d H:i:s",###}</td>
+                        <td class="center">
+                            <a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}" data-pic="{$vo.pic}" data-title="{$vo.classname}" data-renk="{$vo.sort}">编辑</a>
+                            <a href="javaScript:;" class="btn btn-danger j-delClass" title="删除" onclick="btn_del({$vo['id']})">删除</a>
+
+                        </td>
+                    </tr>
+
+                    <foreach name="vo.data" item="vo1" key="kk" >
+                        <tr>
+                            <td class="center"><input type="checkbox" class="checkbox table-ckbs check" data-id="{$vo1.id}"></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;|{$k+1}-{$kk+1}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;|-{$vo1.classname}</td>
+                            <td align="center"><img src="{$vo1.pic}" width="30" alt=""></td>
+                            <td align="center">{$vo1.sort}</td>
+                            <td align="center">{$vo1.create_at|date="Y-m-d H:i:s",###}</td>
+                            <td class="center">
+                                <a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo1.id}" data-pic="{$vo1.pic}" data-fid="{$vo1.pid}" data-title="{$vo1.classname}" data-renk="{$vo1.sort}">编辑</a>
+                                <a href="javaScript:;" class="btn btn-danger j-delClass" title="删除" onclick="btn_del({$vo1['id']})" >删除</a>
+                            </td>
+                        </tr>
+                    </foreach>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                    <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                   <!-- <a href="javascript:;" class="btn btn-danger btn_table_delAll" onclick="btn_del()">批量删除</a>-->
+                </div>
+                <div class="fr">
+                    <!--<div class="paginate">-->
+
+                    <div class="pages">
+                        <!--</div>-->
+                        <!-- <if condition="$count gt 3">    {$page} </if> -->
+                    </div>
+                    <!-- end paginate -->
+                </div>
+            </div>
+            <!-- end tables-btmctrl -->
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<!-- end container -->
+<include file="Public:foot"/>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">添加分类</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>分类名称：</label>
+            <div class="form-controls">
+                <input type="text" class="input classname" name="classname" >
+                <span class="fi-help-text"></span> </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>上级分类：</label>
+            <div class="form-controls">
+                <select name='fid' style='padding:5px;border: 1px solid #ccc;width:182px' id='fid'>
+                    <option value="0">--顶级分类--</option>
+                    <foreach name="servicetype" item="vo" >
+                        <option value="{$vo.id}">{$vo.classname}</option>
+                    </foreach>
+                </select>
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems" style=" height:60px;">
+            <label class="fi-name"><span class="colorRed"></span>上传图片：</label>
+            <div class="form-controls images">
+                <div class="showimg"></div>
+                <div class="imagesadd">+</div>
+                <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="addimage" >
+                <div class="progress">
+                    <div class="bar"></div>
+
+                </div>
+                <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小（宽90高90）</span>
+            </div>
+        </div>
+
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>分类排序：</label>
+            <div class="form-controls">
+                <input type="text" class="input" id="addsort" name="serial" >
+                <span class="fi-help-text">注：越大越靠前</span> </div>
+        </div>
+
+
+    </div>
+    <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addservicetypegory">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<div class="jbox editfenlei disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">修改分类</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>分类名称：</label>
+            <div class="form-controls">
+                <input type="text" class="input classname" name="classname" id="editclassname">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>上级分类：</label>
+            <div class="form-controls">
+                <select name='fid' style='padding:5px;border: 1px solid #ccc;width:182px' id='editfid'>
+                    <option value="0">--顶级分类--</option>
+                    <foreach name="servicetype" item="vo" >
+                        <option value="{$vo.id}">{$vo.classname}</option>
+                    </foreach>
+                </select>
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems" style=" height:60px;">
+            <label class="fi-name"><span class="colorRed"></span>上传图片：</label>
+            <div class="form-controls images">
+                <div class="showimg showimgedit"></div>
+                <div class="imagesadd">+</div>
+                <input type="file"  accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="editimage" >
+                <div class="progress">
+                    <div class="bar"></div>
+
+                </div>
+                <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小（宽90高90）</span>
+            </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>分类排序：</label>
+            <div class="form-controls">
+                <input type="text" class="input sort" name="serial" id="editsort" >
+                <input type="hidden" class="input sort" name="serial" id="servicetypegoryid" >
+                <span class="fi-help-text">注：越大越靠前</span> </div>
+        </div>
+
+    </div>
+    <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editservicetypegory">确定</a><a
+            href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(function () {
+        var progress = $(".img");
+        var bar = $('.bar') ;
+        var percent = $('.percent');
+        var progress = $('.progress');
+        $("#addimage").wrap("<form id='myupload' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#addimage").change(function(){ //选择文件
+            $("#myupload").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    bar.width(percentVal); //上传进度条宽度变宽
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="addpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.showimg').html(img);
+                    $("#addimage").val('');
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+
+    $(function () {
+        var progress = $(".img");
+        var bar = $('.bar') ;
+        var percent = $('.percent');
+        var progress = $('.progress');
+        $("#editimage").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#editimage").change(function(){ //选择文件
+            $("#myupload1").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    bar.width(percentVal); //上传进度条宽度变宽
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="editpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.showimgedit').html(img);
+                    $("#editimage").val('');
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+
+
+</script>
+<script>
+
+</script>
+
+<!--添加分类-->
+<script type="text/javascript">
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+</script>
+<script type="text/javascript">
+    $("#addservicetypegory").click(function(){
+        var classname = $('.classname').val();  //分类名称
+        var fid = $('#fid').val();
+        var pic = $('#addpic').val();  //父分类id
+        var sort = $('#addsort').val();           //排序
+
+        if (classname == '') {
+            alert("分类名称必填！");
+            return false;
+        }
+
+        if(!sort.match(/^[0-9]*$/)){
+            alert("请填写正确的排序！");
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Admin/Index/addServicetype')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                classname: classname,
+                fid:       fid,
+                pic:       pic,
+                sort:      sort
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+<!--添加分类end-->
+
+<!--修改分类-->
+<script type="text/javascript">
+    var servicetypegoryid;
+    $(".j-editClass").click(function(){
+        $('.editfenlei').show();
+        $('#albums-overlay').show();
+        var servicetypegoryname=$(this).attr('data-title');
+        var servicetypegoryid=$(this).attr('data-id');
+        var fid=$(this).attr('data-fid');
+        var pic=$(this).attr('data-pic');
+        var sort=$(this).attr('data-renk');
+
+        $('#editclassname').val(servicetypegoryname);
+        $('#editfid').val(fid);
+        $('#editsort').val(sort);
+        $('#servicetypegoryid').val(servicetypegoryid);
+        if(pic!=""){
+
+            var img = '<img src="'+pic+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="editpic" value="'+pic+'"></input>';
+            $('.showimgedit').html(img);
+
+        }else{
+            $('.showimgedit').html('');
+        }
+
+
+
+
+    })
+
+    $("#editservicetypegory").click(function(){
+        var classname = $('#editclassname').val();  //分类名称
+        var fid = $('#editfid').val();  //分类名称
+        var pic = $('#editpic').val();
+        var sort = $('#editsort').val();           //排序
+        var servicetypegoryid = $('#servicetypegoryid').val();           //排序
+
+//alert(servicetypegoryid);
+        if (classname == '') {
+            alert("分类名称必填！");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Admin/Index/editServicetype')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                classname: classname,
+                fid: fid,
+                pic: pic,
+                sort: sort,
+                servicetypegoryid:servicetypegoryid
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+<!--修改分类end-->
+
+<!--删除分类 1-->
+<script>
+    function btn_del(id){
+        if(confirm('确定要删除吗？')){
+            if(!id){
+                var id ='';
+                if($('.check:checked').length ==0){
+                    alert('请选择要删除的数据');return false;
+                }
+                $('.check:checked').each(function(){
+                    id = id + $(this).attr("data-id") + '_';
+                });
+            }
+            $.ajax({
+                url: "{:U('/Admin/Index/servicetype_del')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: id
+                }
+            }).done(function (res) {
+                if (res.status == 1) {
+                    dialog.showTips(res.info,"",res.url);
+                } else {
+                    dialog.showTips(res.info,"warn");
+                }
+            })
+        }
+    }
+</script>
+<!--删除分类 2-->

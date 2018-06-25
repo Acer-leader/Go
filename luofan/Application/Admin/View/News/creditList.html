@@ -1,0 +1,208 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__/lists.css">
+<script type="text/javascript" src="__JS__/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/>
+
+
+  <div class="content-right fl">
+    <h1 class="content-right-title">{$classname}列表</h1>
+    <div class="alert alert-info disable-del">
+      <h4>提示</h4>
+      目前有信用贷资讯{$count}条 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div>
+     <a href="{:U('/Admin/News/addNews',array('pid'=>$pid))}" class="btn btn-success">发布资讯</a>
+  <form action="{:U('/Admin/News/houseList')}" method="get">
+      <div class="tables-searchbox newcearchbox">
+          <select name="classname" id="classname" class="select">
+            <option value="">所有分类</option>
+            <foreach name="sel" item="vo">
+                 <option value="{$vo.id}" <if condition="$vo.id eq $cate_id">selected="selected"</if>>{$vo.classname}</option>
+            </foreach>
+                </select>
+          <input type="text" placeholder="资讯标题" class="input" name="name" value="{$title}" >
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+      </div>
+  </form>
+
+    <!-- <div class="tabs clearfix mgt15" style="margin-top: 40px;">
+      <foreach name="sel" item="vo">
+        <a href="{:U('/Admin/News/personList/cate_id')}" class="<eq name="_GET['is_real']" value="">active</eq> tabs_a fl">{$vo.classname}</a>
+      </foreach>
+    </div> -->
+    <!-- end tabs -->
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+      <col width="5%">
+      <col width="5%">
+      <col width="10%">
+      <col width="20%">
+      <col width="10%">
+      <col width="10%">
+      <col width="5%">
+      <col width="15%">
+      <col width="15%">
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+          <td><i class="icon_check"></i></td>
+          <td>ID</td>
+          <td>所属分类</td>
+          <td>资讯标题</td>
+          <td>封面图</td>
+          <td>是否热门</td>
+          <td>排序</td>
+          <td>添加时间</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="cache" item="vo">
+          <tr>
+            <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+            <td>{$vo.id}</td>
+            <td>{$vo.cate_name}</td>
+            <td>{$vo.news_title}</td>
+            <td><img src="{$vo.logo_pic}" width="100px"></td>
+            <td data-hot="{$vo.is_hot}" data-id="{$vo['id']}" ><if condition="($vo.is_hot eq 1)"> <span class="changeHot" style='color:#0C0;font-size:20px;cursor:pointer;'>√</span ><else/><span class="changeHot" style='color:#C00;font-size:20px;cursor:pointer;'>×</span></if></td>
+            <td> {$vo.sort} </td>
+            <td class="class_name">{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+            <td>
+              <a href="{:U('/Admin/News/addNews',array('pid'=>$pid,'id'=>$vo['id']))}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+              <a href="javaScript:;" data-id="{$vo['id']}"  class="btn j-delClass btn-warning delone" title="删除" >删除</a>
+              </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+        <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>
+        <div class="fr">
+          <div class="pages"> {$page} </div>
+          <!-- end paginate -->
+        </div>
+      </div>
+      <!-- end tables-btmctrl -->
+
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+</div>
+
+<!-- end container -->
+<include file="Public:foot"/>
+<script>
+$(".changeHot").click(function(){
+  var _this= $(this);
+  var id  = $(this).parent('td').attr('data-id');
+    $.post("{:U('Admin/News/changeHot')}", {id:id}, function(data){
+      if(data.status == 1){
+        _this.css({color:"#0C0"}).html("√");
+      }else if(data.status == 2){
+        _this.css({color:"#c00"}).html("×");
+      }else{
+        alert(data.info);
+      }
+    }, "json")
+})
+
+  $(".change-status").click(function (){
+    var _this= $(this)
+    var id   = $(this).attr("data-id");
+    var item = $(this).attr("data-item");
+    $.post("{:U('Admin/News/changeStatus')}", {id:id,item:item}, function(data){
+      if(data.status == 1){
+        _this.css({color:"#0C0"}).html("√");
+      }else if(data.status == 2){
+        _this.css({color:"#c00"}).html("×");
+      }else{
+        alert(data.info);
+      }
+    }, "json")
+  })
+  $(".change-all-status").click(function (){
+    if(!confirm("确定改变所有选中产品的状态？")){
+      return false;
+    }
+    var ids = "";
+    var item = $(this).attr("data-item");
+    $(".table-ckbs:checked").each(function(i){
+      ids += $(this).attr("data-id")+"-"
+    })
+    if(!ids){
+      alert("请选择产品！");return false;
+    }
+    $.post("{:U('Admin/News/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+      if(data.status){
+        window.location.reload();
+      }else{
+        alert(data.info);
+      }
+    })
+  })
+  $(".change-is_sale").click(function (){
+    var id   = $(this).attr("data-id");
+    var item = "is_sale";
+    $.post("{:U('Admin/News/changeStatus')}", {id:id,item:item}, function(data){
+      if(data.status){
+        window.location.reload()
+      }else{
+        alert(data.info);
+      }
+    }, "json")
+  })
+  $(".btn_table_delAll").click(function(){
+    if(!confirm("确定删除所有选中的产品？")){
+      return false;
+    }
+    var ids = "";
+    $(".table-ckbs:checked").each(function(i){
+      ids += $(this).attr("data-id")+"-"
+    })
+    if(!ids){
+      alert("请选择产品！");return false;
+    }
+    $.post("{:U('Admin/News/delNews')}" ,{ids:ids}, function (data){
+      alert(data.info);
+      if(data.status){
+        window.location.reload();
+      }
+    })
+  })
+
+  $(".delone").click(function(){
+
+    var id = $(this).attr("data-id");
+//    alert(id);
+//    return;
+    if(confirm("您确定要删除吗?")){
+      $.ajax({
+        url: "{:U('/Admin/News/delnews')}",
+        type: "post",
+        dataType: "json",
+        data: {
+          id: id,
+        }
+      }).done(function (g) {
+        if (g.status == 1) {
+          dialog.showTips(g.info,"firm",function(){
+            window.location.reload();
+          });
+
+        } else {
+          alert(g.info);
+        }
+      })
+    }
+  })
+
+
+
+</script>

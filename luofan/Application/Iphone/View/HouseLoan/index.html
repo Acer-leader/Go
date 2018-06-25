@@ -1,0 +1,188 @@
+<include file="Public:head"/>
+<body>
+
+
+<!--head -->
+<div class="head_box" style=" background:#ff8aa3">
+
+<include file="Public:header1"/>
+
+</div>
+<!--head --> 
+
+
+
+
+<div class="warpper_box">
+
+<div class="ny_menu_box fangdai_color">
+<ul>
+<li><a href="__HOST__/PersonLoan/">个贷</a></li>
+<li  class="active"><a href="__HOST__/HouseLoan/">房贷</a></li>
+<li><a href="__HOST__/CarLoan/">车贷</a></li>
+<li><a href="__HOST__/Credit/">信用卡</a></li>
+<li><a href="__HOST__/News/">资讯</a></li>
+<div class="clear"></div>
+</ul>
+</div>
+
+
+
+
+<div class="hot_house">
+<div class="ny_gedai_box_title ny_fangdai_box_title"><span></span>热评户型</div>
+<div class="swiper-container swiper1"  style="width:130%">
+ <div class="swiper-wrapper" >
+    <foreach name="house" item="vo">
+    <div class="swiper-slide" >
+        <div class="hot_house_list">
+            <img src="__ROOT__{$vo.logo_pic}" width="100%"/>
+        </div>
+    </div>
+    </foreach>
+ </div>
+</div>
+</div>
+
+<div class="ny_gedai_xuanze">
+<div class="ny_gedai_xuanze_l">
+<input class="input1" type="text" value="万元" onfocus="this.value=''" onblur="if(this.value==''){this.value='万元'}" />
+</div>
+<div class="ny_gedai_xuanze_r">
+<a href="javascript:void(0);">搜索</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="ny_gedai_box">
+<div class="ny_gedai_box_title ny_fangdai_box_title"><span></span>杭州热门房贷</div>
+<ul>
+<foreach name="carloan" item="vo">
+<li>
+<a href="__HOST__/CarLoan/car_dot/id/{$vo.id}">
+<div class="ny_gedai_box_list_l">
+<img src="__ROOT__{$vo.logo_pic1}" />
+</div>
+<div class="ny_gedai_box_list_r">
+<div class="ny_gedai_box_list_r_top">
+{$vo.title}
+</div>
+<div class="ny_gedai_box_list_r_bottom">
+<div class="ny_gedai_box_list_r_bottom_list">
+<dl>
+<dt>贷款金额： </dt>
+<dd><span class="num_red">{$vo.money|number_format=###,2,'.',''}~{$vo.money1|number_format=###,2,'.',''}</span> 万</dd>
+</dl>
+<dl>
+<dt>月管理费： </dt>
+<dd><span class="num_red">{$vo.lnsm}</span> %</dd>
+</dl>
+</div>
+<div class="ny_gedai_box_list_r_bottom_btn">查看详情</div>
+</div>
+</div>
+<div class="clear"></div>
+</a>
+</li>
+</foreach>
+</ul>
+</div>
+
+
+
+<div class="ny_gedai_gl">
+<div class="ny_gedai_gl_title ny_fangdai_gl_title"><span></span>贷款攻略</div>
+<ul>
+<foreach name="cargonlve" item="vo">
+<li><a href="__HOST__/CarLoan/newsDetail/id/{$vo.id}">{$vo.news_title}</a></li>
+</foreach>
+</ul>
+</div>
+
+<div class="ny_gedai_wd">
+<div class="ny_gedai_wd_title"><span></span>贷款问答</div>
+<ul>
+<li>
+<a href="wendadot.html">
+<div class="ny_gedai_wd_tiwen">
+逾期多久会上征信黑名单？黑户如何申请贷款？
+</div>
+<div class="ny_gedai_wd_huida">
+首先小伙伴们一定要明白征信黑名单并非真实存在，因为央行征信报告只是用户用记录的客观展示，征信中心并不会进行评价。只有在该用户申请信用卡、贷款时，金融机构才会在去的授权的情况
+</div>
+</a>
+</li>
+<li>
+<a href="wendadot.html">
+<div class="ny_gedai_wd_tiwen">
+逾期多久会上征信黑名单？黑户如何申请贷款？
+</div>
+<div class="ny_gedai_wd_huida">
+首先小伙伴们一定要明白征信黑名单并非真实存在，因为央行征信报告只是用户用记录的客观展示，征信中心并不会进行评价。只有在该用户申请信用卡、贷款时，金融机构才会在去的授权的情况
+</div>
+</a>
+</li>
+<li>
+<a href="wendadot.html">
+<div class="ny_gedai_wd_tiwen">
+逾期多久会上征信黑名单？黑户如何申请贷款？
+</div>
+<div class="ny_gedai_wd_huida">
+首先小伙伴们一定要明白征信黑名单并非真实存在，因为央行征信报告只是用户用记录的客观展示，征信中心并不会进行评价。只有在该用户申请信用卡、贷款时，金融机构才会在去的授权的情况
+</div>
+</a>
+</li>
+<li>
+<a href="wendadot.html">
+<div class="ny_gedai_wd_tiwen">
+逾期多久会上征信黑名单？黑户如何申请贷款？
+</div>
+<div class="ny_gedai_wd_huida">
+首先小伙伴们一定要明白征信黑名单并非真实存在，因为央行征信报告只是用户用记录的客观展示，征信中心并不会进行评价。只有在该用户申请信用卡、贷款时，金融机构才会在去的授权的情况
+</div>
+</a>
+</li>
+</ul>
+</div>
+
+</div>
+
+
+
+
+  <include file="Public:footer1"/>
+
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+
+<script>
+        
+$(document).ready(function (){
+    $(window).load(function (){
+        $(".swiper1").height($(".hot_house_list img").height()+10)
+    })
+ 
+            var mySwiper = new Swiper('.swiper1', {
+                loop: true,
+                autoplay: 5000,
+                spaceBetween: 0,
+                slidesPerView : 2,
+                paginationClickable: true,
+                autoplayDisableOnInteraction: false,
+            })  
+    $('.ny_gedai_xuanze_r a').click(function(){
+        var search  =   $('.input1').val();
+        if(search=="万元"){
+            search  =   "";
+        }
+        window.location.href="__HOST__/CarLoan/card_search/cateid/2/search/"+search;
+    });
+
+})
+  
+</script>
+</html>

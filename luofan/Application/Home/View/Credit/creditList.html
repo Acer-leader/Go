@@ -1,0 +1,549 @@
+<include file="Public:head"/>
+</head>
+
+<body>
+<include file="Public:header"/>
+
+<!--header-->
+
+<!--  / warpper  -->
+<div class="warpper">
+
+   <div class=""></div>
+
+   <!--creditlist_box1-->
+   <div class="creditlist_box1" style="padding-top: 40px;">
+   	<div class="index_container">
+    	 <div class="infonav_top">
+                <div class="infonav_top_con">
+                	当前位置：
+                <a href="../HouseLoan/index.html">信用卡</a> &gt;
+                <a href="javascript:void(0)">选卡中心</a>
+                </div>
+            </div>
+
+      <div class="credit_sx">
+            <foreach name="c_t_r" item="vo" key="kk" >
+                <notempty name="vo">
+                <gt name="kk" value="3"><div class="credit_sx1"></gt>
+                <dl class="credit_list">
+                    <dt>{$vo.classname}：</dt>
+                    <dd>
+                        <a href="javascript:void(0);" class="active" data-filter="all">不限</a>
+                        <foreach name="vo['r_r']" item="v" >
+                            <eq name="kk" value="0">
+                            <a href="{:U('Home/Credit/creditList',array('shortname'=>$v['shortname']))}" data-pid="{$v.pid}" data-filter="{$v.id}">{$v.classname}</a>
+                            <else/>
+                                <a href="javascript:;" data-pid="{$v.pid}" data-filter="{$v.id}">{$v.classname}</a>
+                            </eq>
+                        </foreach>
+                    </dd>
+                    <div class="creditlist_more">
+                        <a href="javascript:void(0);">
+                            <span>更多</span><i class="fa fa-angle-down"></i>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                </dl>
+                <gt name="kk" value="3"></div></gt>
+        </notempty>
+            </foreach>
+        </div>
+        <div class="creditlist1_bottom">
+        	<h5>共找到<span class="count">{$count}款</span>信用卡</h5>
+            <a href="javascript:void(0);" class="creditlist_sx">展开更多筛选</a>
+        </div>
+    </div>
+   </div>
+
+   <!--creditlist_box1-->
+
+
+   <!--creditlist_box2-->
+   <div class="creditlist_box2" style="padding-bottom: 10px;">
+   	<div class="index_container">
+    	<div class="che3_box">
+            <div class="common_tit">
+            	<span>信用卡申请</span>
+            </div>
+            <div class="creditlist2_box">
+                <foreach name="res" item="v" key="k" >
+                    <div class="filtr-item" data-category="0">
+                        <div class="chedai3_list chedai3_list1">
+                            <div class="chedai3_wz">
+                                <div class="chedai3_list_left chedai3_list_left1">
+                                    <div class="chedai3_list_img1">
+                                        <a href="{:U('Credit/card_dot',array('id'=>$v['id']))}">
+                                            <img src="{$v.logo_img}" >
+                                        </a>
+                                    </div>
+
+                                </div>
+                                <div class="chedai3_list_right chedai3_list_right1">
+                                    <div class="chedai3_list_bottom">
+                                        <div class="chedai3_bottom_left">
+                                            <h5>{$v.creditname}</h5>
+                                            <h4>{$v.intro}</h4>
+                                        </div>
+                                        <div class="chedai3_bottom_center">
+                                            <dl>
+                                                <dt>系列等级：{$v.series}</dt>
+                                                <dd></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>系列币种：{$v.currency}</dt>
+                                                <dd></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>取现费用：{$v.fee}</dt>
+                                                <dd></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>年费政策：{$v.annual_fee}</dt>
+                                                <dd></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="chedai3_more chedai3_more3">
+                                            <a href="{:U('Credit/card_dot',array('id'=>$v['id']))}">免费申请</a>
+                                            <h4><span>{$v.apply|default=0}</span>人申请</h4>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="credit_xz">
+                                <div class="chedai3_list_left chedai3_list_left1">
+                                    <div class="chedai3_list_img1">
+                                        <a href="{:U('Credit/card_dot',array('id'=>$v['id']))}">
+                                            <img src="{$v.logo_img}" >
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="chedai3_list_right chedai3_list_right1">
+                                    <div class="chedai3_list_bottom">
+                                        <div class="chedai3_bottom_left">
+                                            <h5>{$v.creditname}</h5>
+                                            <h4>{$v.intro}</h4>
+                                        </div>
+                                        <div class="chedai3_bottom_center">
+                                            <dl>
+                                                <dt>系列等级：{$v.series}</dt>
+                                                <dd></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>系列币种：{$v.annual_fee}</dt>
+                                                <dd></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>取现费用：{$v.fee}</dt>
+                                                <dd></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>年费政策：{$v.annual_fee}</dt>
+                                                <dd></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="credit_xia">
+                                    <div class="credit_small">
+                                        <a href="{:U('Credit/card_dot',array('id'=>$v['id']))}"><img src="{$v.logo_img}" width="80"></a>
+                                        <a href="{:U('Credit/card_dot',array('id'=>$v['id']))}"><img src="{$v.logo_img}" width="80"></a>
+                                    </div>
+                                    <div class="chedai3_more chedai3_more1 chedai3_more2">
+                                        <a href="{:U('Credit/card_dot',array('id'=>$v['id']))}">免费申请</a>
+                                        <h4><span>{$v.apply|default=0}</span>人申请</h4>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </foreach>
+                <div class="clear"></div>
+                <div class="pages"> {$page} </div>
+            </div>
+        </div>
+    </div>
+   </div>
+
+   <!--creditlist_box3-->
+	<div class="chaxun_box chaxun_box5" style="padding: 10px 0 50px;">
+    	<div class="index_container">
+        	<div class="chaxun5">
+            	<div class="chaxun5_left">
+                    <div class="chaxun_tit">
+                        <h4><span>本周热门卡</span></h4>
+                    </div>
+                    <div class="chaxun5_cot">
+                    	<!--<div class="chaxun5_cot_left">-->
+                        	<!--<div class="chaxun5_cot_top"><img src="__IMAGES__/chaxun5_jian.png"></div>-->
+                            <!--<div class="table">-->
+                            <!--<div class="table_cell">-->
+                            <!--<div class="chaxun5_cot_cot">-->
+                            	<!--<h4>{$c_c_res['0']['creditname']}</h4>-->
+                                <!--<img src="{$c_c_res['0']['logo_img']}" width="100%"/>-->
+                                <!--<notempty name="c_c_res['0']['favorable1']"><h5><i class="fa fa-angle-right"></i>{$c_c_res['0']['favorable1']}</h5></notempty>-->
+                                <!--&lt;!&ndash;<h5><i class="fa fa-angle-right"></i>{$c_c_res['0']['favorable1']}</h5>&ndash;&gt;-->
+                                <!--<notempty name="c_c_res['0']['favorable2']"><h5><i class="fa fa-angle-right"></i>{$c_c_res['0']['favorable2']}</h5></notempty>-->
+                                <!--&lt;!&ndash;<h5><i class="fa fa-angle-right"></i>{$c_c_res['0']['favorable2']}</h5>&ndash;&gt;-->
+                                <!--<notempty name="c_c_res['0']['favorable3']"><h5><i class="fa fa-angle-right"></i>{$c_c_res['0']['favorable3']}</h5></notempty>-->
+                                <!--<div class="chaxun5_bt"><a href="{:U('Credit/card_dot',array('id'=>$c_c_res['0']['id']))}">免费申请</a></div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    	<div class="chaxun5_cot_right" style="width: 100%;">
+                        <div class="chaxun5_right_cot" style="border-left: solid 0px #ddd;">
+                            <foreach name="c_c_res" item="vo" key="k" >
+                                <if condition="$k gt 0 ">
+                                    <div class="chaxun5_cot_list">
+                                        <div class="chaxun5_cot_cot">
+                                            <h4>{$vo.creditname}</h4>
+                                            <img src="{$vo.logo_img}" width="100%"/>
+                                            <div class="chaxun5_bt"><a href="{:U('Credit/card_dot',array('id'=>$vo['id']))}">免费申请</a></div>
+                                        </div>
+                                    </div>
+                                    <else /></if>
+                            </foreach>
+
+                        <foreach name="cardlist" item="card">
+                        	<div class="chaxun5_cot_list">
+                            	<div class="chaxun5_cot_cot">
+                                    <h4>{$card.creditname}</h4>
+                                    <img src="{$card.logo_img}" width="100%"/>
+                                    <div class="chaxun5_bt"><a href="{:U('Credit/card_dot',array('id'=>$card['id']))}">免费申请</a></div>
+                                </div>
+                            </div>
+                        </foreach>
+                        	<!--<div class="chaxun5_cot_list">-->
+                            	<!--<div class="chaxun5_cot_cot">-->
+                                    <!--<h4>中信银行标准IC信用卡</h4>-->
+                                    <!--<img src="__IMAGES__/chaxun5_1.jpg" width="100%"/>-->
+                                    <!--<div class="chaxun5_bt"><a href="#">免费申请</a></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        	<!--<div class="chaxun5_cot_list">-->
+                            	<!--<div class="chaxun5_cot_cot">-->
+                                    <!--<h4>中信银行标准IC信用卡</h4>-->
+                                    <!--<img src="__IMAGES__/chaxun5_1.jpg" width="100%"/>-->
+                                    <!--<div class="chaxun5_bt"><a href="#">免费申请</a></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        	<!--<div class="chaxun5_cot_list">-->
+                            	<!--<div class="chaxun5_cot_cot">-->
+                                    <!--<h4>中信银行标准IC信用卡</h4>-->
+                                    <!--<img src="__IMAGES__/chaxun5_1.jpg" width="100%"/>-->
+                                    <!--<div class="chaxun5_bt"><a href="#">免费申请</a></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        	<!--<div class="chaxun5_cot_list">-->
+                            	<!--<div class="chaxun5_cot_cot">-->
+                                    <!--<h4>中信银行标准IC信用卡</h4>-->
+                                    <!--<img src="__IMAGES__/chaxun5_1.jpg" width="100%"/>-->
+                                    <!--<div class="chaxun5_bt"><a href="#">免费申请</a></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        	<!--<div class="chaxun5_cot_list">-->
+                            	<!--<div class="chaxun5_cot_cot">-->
+                                    <!--<h4>中信银行标准IC信用卡</h4>-->
+                                    <!--<img src="__IMAGES__/chaxun5_1.jpg" width="100%"/>-->
+                                    <!--<div class="chaxun5_bt"><a href="#">免费申请</a></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        	<!--<div class="chaxun5_cot_list">-->
+                            	<!--<div class="chaxun5_cot_cot">-->
+                                    <!--<h4>中信银行标准IC信用卡</h4>-->
+                                    <!--<img src="__IMAGES__/chaxun5_1.jpg" width="100%"/>-->
+                                    <!--<div class="chaxun5_bt"><a href="#">免费申请</a></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="clear"></div>
+                        </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            	<div class="chaxun5_right">
+                    <div class="chaxun_tit">
+                        <h4><span>本周主题卡</span></h4>
+                        <a href="#" class="chaxun_more">更多</a>
+                    </div>
+                    <div class="chaxun5_cot1">
+                    	<div class="chaxun5_cot1_list">
+                        	<a href="javascrip:void(0);"><img src="__IMAGES__/chaxun5_r1.jpg" />加油返现</a>
+                        </div>
+                    	<div class="chaxun5_cot1_list">
+                        	<a href="javascrip:void(0);"><img src="__IMAGES__/chaxun5_r2.jpg" />航空里程</a>
+                        </div>
+                    	<div class="chaxun5_cot1_list">
+                        	<a href="javascrip:void(0);"><img src="__IMAGES__/chaxun5_r3.jpg" />办卡有礼</a>
+                        </div>
+                    	<div class="chaxun5_cot1_list">
+                        	<a href="javascrip:void(0);"><img src="__IMAGES__/chaxun5_r4.jpg" />购物优惠</a>
+                        </div>
+                    	<div class="chaxun5_cot1_list">
+                        	<a href="javascrip:void(0);"><img src="__IMAGES__/chaxun5_r5.jpg" />网络联名卡</a>
+                        </div>
+                    	<div class="chaxun5_cot1_list">
+                        	<a href="javascrip:void(0);"><img src="__IMAGES__/chaxun5_r6.jpg" />卡通卡面</a>
+                        </div>
+                    	<div class="chaxun5_cot1_list">
+                        	<a href="javascrip:void(0);"><img src="__IMAGES__/chaxun5_r7.jpg" />时尚达人</a>
+                        </div>
+                    	<div class="chaxun5_cot1_list">
+                        	<a href="javascrip:void(0);"><img src="__IMAGES__/chaxun5_r8.jpg" />酒店商旅</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+   <!--creditlist_box-->
+
+</div>
+<!--  / warpper  -->
+
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<script>
+
+    var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+    var mySwiper2 = new Swiper('.swiper2',{
+        loop:true,
+        autoplay:5000,
+        spaceBetween: 0,
+        slidesPerView : 8,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.arrow-left2').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipePrev()
+    })
+
+    $('.arrow-right2').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipeNext()
+    })
+
+
+
+    var mySwiper3 = new Swiper('.swiper3',{
+        pagination: '.pagination3',
+        loop:true,
+        autoplay:5000,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.arrow-left3').on('click', function(e){
+        e.preventDefault()
+        mySwiper3.swipePrev()
+    })
+
+    $('.arrow-right3').on('click', function(e){
+        e.preventDefault()
+        mySwiper3.swipeNext()
+    })
+</script>
+
+
+<script>
+
+
+
+    $(document).ready(function(){
+        $(window).load(function(){
+            $(".swiper1").height($(".swiper1 .ban_box ").height());
+			$('.chedai3_list_right ').height($('.chedai3_list_left'));
+        })
+        $(window).resize(function(){
+            $(".swiper1").height($(".swiper1 .ban_box ").height());
+        });
+
+
+    })
+
+
+    $(window).scroll(function(){
+        var scrollT=$(window).scrollTop();
+        if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+            $('.right_nav').css('display','block');
+        }else{
+            $('.right_nav').css('display','none');
+        }
+
+    })
+</script>
+<script>
+    function fnTabBoxFade(Focus,Hide,Show){
+        $(Focus).siblings().removeClass("card_active");
+        $(Focus).addClass("card_active");
+        $(".TabHide"+Hide).hide();
+        $("#TabShow"+Show).fadeIn("fast");
+    };
+</script>
+
+<script>
+    var card_type_ids = {};
+    /**更多**/
+    $(".creditlist_more a").click(function(e){
+        var ticon = $(this).find("i");
+        tspan = $(this).find("span");
+        if($(this).hasClass("zk")){
+            $(this).parent().siblings("dd").css("height","30");
+            ticon.removeClass("fa-angle-up");
+            ticon.addClass("fa-angle-down");
+            tspan.html("更多");
+            $(this).removeClass("zk")
+        }else{
+            $(this).parent().siblings("dd").css("height","auto");
+            ticon.removeClass("fa-angle-down");
+            ticon.addClass("fa-angle-up");
+            tspan.html("收起");
+            $(this).addClass("zk")
+        }
+    });
+
+    /**credit_item**/
+    function itemC(){
+        var TTR,TT,THIPP;
+        $(".credit_item").bind('click', function(){
+            var _this = $(this);
+            var pid = _this.attr('data-pid');
+            var id = _this.attr('data-filter');
+            var bank = "{:$_GET['shortname']}";
+            //console.log(bank);return false;
+            delete card_type_ids[pid];
+            //console.log(card_type_ids);
+            $.ajax({
+                url:"{:U('Credit/creation')}",
+                data: {card_type_ids:card_type_ids,bank:bank},
+                dataType:'json',
+                type:'post',
+                success:function(g){
+                    $('.creditlist2_box').empty();
+                    $('.creditlist2_box').append(g.info);
+                    $('.count').html(g.count+'款');
+//                        if(data.status == 0){
+//                            alert(data.info);
+//                        }else{
+//                            dialog.showTips(data.info,'firm',function(){
+//                                window.location.reload();
+//                            });
+//                        }
+                }
+            });
+            TTR = $(this).find("span").text();
+            $(".credit_sx dd a").each(function(){
+                TT = $(this).text();
+                THI = $(this);
+                THIPP = $(this).parent().parent("dl");
+                if(TTR==TT){
+                    THIPP.css("display","block");
+                    THI.parent().find('a:first').addClass('active');
+                    THI.removeClass('active');
+                }
+            })
+            $(this).remove();
+            $('#aclick').click();
+        });
+    }
+    $(".credit_sx dd a").click(function(e){
+        var _this = $(this);
+        if($(this).text()=="不限"){
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active')
+        }else if($(this).attr("data-pid") == 15){
+
+        }else{
+            var zhiclass;
+            THIP = $(this).parents("dl");
+            //console.log(THIP);
+            if($(this).hasClass("active")){
+
+            }else{
+                var pid = _this.attr('data-pid');
+                var id = _this.attr('data-filter');
+                var bank = "{:$_GET['shortname']}";
+                //console.log(pid);
+                card_type_ids[pid] = id;
+                $.ajax({
+                    url:"{:U('Credit/creation')}",
+                    data: {card_type_ids:card_type_ids,bank:bank},
+                    dataType:'json',
+                    type:'post',
+                    success:function(g){
+                        $('.creditlist2_box').empty();
+                        $('.creditlist2_box').append(g.info);
+                        $('.count').html(g.count+'款');
+                    }
+                });
+                $(this).addClass("active");
+                $(this).siblings().removeClass("active")
+                zhiclass = $(this).parent("dd").siblings("dt").text();
+                zhicon = $(this).text();
+                var filter = $(this).attr('data-filter');
+//                console.log(zhicon);
+                tianjaneir="<div class='credit_item' data-pid='"+pid+"' data-filter='"+filter+"'><a href='javascript:void(0);'><b>"+zhiclass+"</b><span>"+zhicon+"</span><i class='fa fa-times'></i></a></div>";
+                $(".creditlist1_top").append(tianjaneir);
+                itemC();
+            }
+            THIP.css("display","none");
+        }
+    });
+    /**展开筛选**/
+    $(".creditlist_sx").click(function(){
+        var $this=$(this);
+        if($this.hasClass("on")){
+            $(".credit_sx1").slideUp();
+            $this.removeClass("on").html("展开更多筛选");
+        }else{
+            $(".credit_sx1").slideDown();
+            $this.addClass("on").html("收起更多筛选");
+        }
+    })
+
+    $('.chedai3_list').hover(function(){
+        $(this).parent().css('z-index','2');
+        $(this).find('.credit_xz').fadeIn(1000);
+    },function(){
+        $(this).find('.credit_xz').stop().fadeOut(500);
+        $(this).parent().css('z-index','0');
+    })
+
+</script>
+<!--<script src="__JS__/jquery.filterizr.js"></script>-->
+<script>
+</script>
+</html>

@@ -1,0 +1,169 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">用户下单错误日志列表</h1>
+
+
+            <div class="alert alert-info disable-del">目前有 <span style="font-size:16px;">{$count}</span> 条错误日志。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                    <div class="tables-searchbox clearfix">
+                        <div class="fl">
+                            <form action="">
+                                <input type="text" class="input" name="title" id="title" value="{$title}" placeholder="姓名/手机号/">
+                                <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                        class="gicon-search white"></i>查询
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+
+    <div class="tabs clearfix mgt15">
+                <div class="tabs clearfix mgt15">
+                    <a href="{:U('Admin/Order/errorReport')}" class="<eq name="_GET['type']" value="">active</eq> tabs_a fl">所有错误({$count})</a>
+                    <a href="{:U('Admin/Order/errorReport/type/0')}" class="<eq name="_GET['type']" value="0">active</eq> tabs_a fl">未处理({$count1})</a>
+                    <a href="{:U('Admin/Order/errorReport/type/1')}" class="<eq name="_GET['type']" value="1">active</eq> tabs_a fl">已处理({$count2})</a>
+            </div>
+    </div>
+                <!-- end tables-searchbox -->
+                <table class="wxtables" style="text-align:center;">
+                    <colgroup>
+                        <col width="1%">
+                        <col width="5%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>ID</td>
+                        <td>用户名/手机号</td>
+                        <td>订单号/支付平台单号</td>
+                        <td>商品</td>
+                        <td>错误信息</td>
+                        <td>时间</td>
+                        <td>状态</td>
+                        <td>操作人员</td>
+                        <td>操作时间</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="cache" item="vo">
+                    <tr>
+                        <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>
+                        <td><p> {$vo.id}</p></td>
+                        <td><p>{$vo.person_name}<br/>{$vo.telephone}</p></td>
+                        <td><p>{$vo.order_no}<br/>{$vo.trade_no}</p></td>
+                        <td><p>{$vo.goods_name}</p></td>
+                        <td><p>{$vo.msg}</p></td>
+                        <td><p>{$vo.create_at|date="Y-m-d H:i:s",###}</p></td>
+                        <td><p>
+                        <switch name="vo['status']">
+                            <case value="0"><b style="color:red;">未处理</b></case>
+                            <case value="1"><b style="color:green;">已处理</b></case>
+                        </switch>
+                        </p></td>
+                        <td><p>{$vo.admin}</p></td>
+                        <td><p>
+                        <notempty name="vo['deal_at']">
+                        {$vo.deal_at|date="Y-m-d H:i:s",###}
+                        </notempty>
+                        </p></td>
+                        <td>
+                            <p>
+                                <eq name="vo['status']" value="0">
+                                <a href="##" class="btn btn-success dealerror" title="处理错误报告" data-id="{$vo.id}" data-name="{$vo['person_name']}" data-order_no="{$vo['order_no']}">处理</a>
+                                </eq>
+                                <a href="{:U('Admin/Order/errorReportDetail',array('id'=>$vo['id']))}" class="btn btn-primary" title="查看详情">查看详情</a>
+
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <!-- <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a> -->
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<script>
+$(function(){
+    $(".dealerror").click(function(){
+        var id      = $(this).attr("data-id");
+        var name    = $(this).attr("data-name");
+        var order_no = $(this).attr("data-order_no");
+        if(!id){
+            alert("无效的选择！");return false;
+        }
+        if(!confirm("确认已处理"+name+"用户的"+order_no+"订单的错误报告？操作不可逆！")){
+            return false;
+        }
+        $.post("{:U('admin/Order/dealErrorReport')}",{id:id},function(data){
+            alert(data.info);
+            if(data.status == 1){
+                window.location.reload();
+            }
+        },"json")
+    })
+
+})
+</script>
+
+<include file="Public:foot"/>

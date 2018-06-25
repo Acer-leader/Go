@@ -1,0 +1,361 @@
+<include file="Public:head"/>
+</head>
+
+<body>
+
+
+<!--header-->
+<include file="Public:header"/>
+<!--header-->
+
+
+
+<div class="wrapper">
+	<div class="fx_login">
+    	<div class="fx_logo">
+        	<img src="__IMAGES__/fx_logo.png" />
+        </div>
+        <div class="fx_cot">
+        	<ul>
+            	<li class="active"><a href="__HOST__/Login/fx_register">注册</a></li>
+            	<li><a href="__HOST__/Login/fx_login">登录</a></li>
+                <div class="clear"></div>
+            </ul>
+            
+            <div class="fx_cont">
+            	<div class="fx_cont_li fx_cont_li1">
+                	<input type="text" placeholder="请输入您的姓名" class="person_name" onblur="this.placeholder='请输入您的姓名'" onfocus="this.placeholder=''"/>
+                </div>
+            	<div class="fx_cont_li">
+                	<input type="tel" placeholder="请输入您的手机号" class="telephone" onblur="this.placeholder='请输入您的手机号'" onfocus="this.placeholder=''"/>
+                </div>
+            	<div class="fx_cont_li">
+                	<input type="text" placeholder="请输入获取验证码" class="code" onblur="this.placeholder='请输入获取验证码'" onfocus="this.placeholder=''" style="padding-right:62px;"/>
+                    <a href="#" class="fx_yzm" id="fx_yzm">获取验证码</a>
+                </div>
+            	<div class="fx_cont_li fx_cont_li2">
+                	<input type="password" placeholder="请输入您的密码" class="password" onblur="this.placeholder='请输入您的密码'" onfocus="this.placeholder=''"/>
+                </div>
+                <div class="fx_cont_li fx_cont_li2">
+                	<input type="password" placeholder="请再次输入您的密码" class="repassword" onblur="this.placeholder='请再次输入您的密码'" onfocus="this.placeholder=''"/>
+                </div>
+                <div class="fx_rad">
+                	<label><input type="checkbox"  name="agree"/>阅读并接受<a href="#">《牛哄哄用户协议》</a></label>
+                </div>
+                
+                <div class="fx_btn">
+                	<input type="submit" id="zhuce" value="注册"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+</body>
+
+
+    <script src="js/index.js"></script>
+	<script src="js/swiper.min.js"></script>
+<script type="text/javascript">
+    var wait = 60;
+  $("#fx_yzm").click(function (){
+    var _this = $(this)
+    if (_this.attr("disabled")) {
+        return false;
+    }
+    var telephone = $(".telephone").val();
+    if(!telephone){
+      dialog.showTips("请填写手机号！","warn");return false;
+    }else if(!telephone.match(/^1[35789][0-9]{9}$/)){
+      dialog.showTips("手机号码格式错误！","warn");return false;
+
+    }
+    $.post("__HOST__/Login/getMessage", {'telephone':telephone,'code_type':7}, function (data){
+      if(data.status==1){
+        dialog.showTips("验证码发送成功，请注意查收！","warn");
+        // 计时
+        time(_this);
+      }else{
+        dialog.showTips(data.info,"warn");return false;
+      }
+    },"json")
+  })
+</script>
+<script>
+  var wait = 60;
+  function time(o) {
+    //localStorage.aux_reTime=wait;
+    if (wait == 0) {
+      o.removeAttr("disabled");
+      o.html("重新获取");
+      wait = 60;
+    } else {
+      o.attr("disabled", true);
+      o.html("重新发送(" + wait + ")");
+      wait--;
+      setTimeout(function () {
+          time(o)
+      }, 1000);
+    }
+  }
+</script>   
+<script>
+    $('#zhuce').click(function(){
+        var post={};
+        post.person_name = $('.person_name').val();
+
+        post.telephone   = $('.telephone').val();
+        post.code        = $('.code').val();
+        post.password    = $('.password').val();
+        post.repassword  = $('.repassword').val();
+        post.is_agree    =  $('input:checkbox[name=agree]:checked').val();      
+        post.fid         =  "{$fid}";
+        post.url         = "{$url}";
+        if(!post.person_name){
+            alert('请输入您的姓名！');return false;
+        }
+        if(!post.telephone){
+            alert('请输入您的手机号！');return false;
+        }
+        if(!post.telephone.match(/^1[35789][0-9]{9}$/)){
+            alert('手机号码格式错误!');return false;
+        }
+        if(!post.code){
+             alert('请输入手机验证码！');return false;
+        }
+        if(!post.password){
+            alert('请输入密码！');return false;
+        }
+        if(!post.password.match(/^[a-zA-Z0-9]{6,20}$/)){
+            alert('请输入6~20位字母数字密码！');return false;
+        }
+        if(!post.repassword){
+            alert('请输入确认密码！');return false;
+        }
+        if(!post.repassword.match(/^[a-zA-Z0-9]{6,10}$/)){
+            alert('确认密码格式错误！');return false;
+        }
+        if(post.password !== post.repassword ){
+             alert('两次密码不一致！');return false;
+        }
+
+        if(!post.is_agree){
+            alert('请同意用户协议');return false;
+        }
+     
+        $.ajax({
+            url:"__HOST__/Login/doReg",
+            data:post,
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status==1){
+                    window.location.href="__HOST__/Distribution/fx_my";
+                }else{
+                    dialog.showTips(data.info,"warn");return false;
+                }
+            }
+        })
+
+    })
+</script>    
+    
+<script>
+
+
+
+window.onload=function(){$(window).scrollTop(0);}
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 8,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+	var mySwiper3 = new Swiper('.swiper3',{
+		pagination: '.pagination3',
+		loop:true,
+		autoplay:5000, 
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipePrev()
+	})
+	  
+	$('.arrow-right3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipeNext()
+	})
+	$(document).ready(function(){
+	$(window).load(function(){
+		
+	$(".swiper1").height($(".swiper1 .ban_box ").height());
+		$('.swiper2,.swiper2 .swiper-slide').height(($('.bank_list').height()+10)*2);
+
+		$('.swiper3').height($('.swiper3 img').height());
+		
+        $(".index6_list2").height($(".index6_list1").height());
+		
+	})
+	$(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+		$('.swiper2,.swiper2 .swiper-slide').height(($('.bank_list').height()+10)*2);
+
+		$('.swiper3').height($('.swiper3 img').height());
+		
+        $(".index6_list2").height($(".index6_list1").height());
+	});
+})
+</script>
+
+
+<script>
+/*$('.btn_bg').click(function(){
+	$('.background').addClass('remove');
+	$('html').css('overflow','auto');
+	setTimeout(function(){
+		$('.background').css('display','none')
+	},500)
+})*/
+
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>$('.index_sec3').offset().top-$(window).height()){
+		$('.left_nav').stop().animate({'opacity':'1','z-index':'1'},400)
+		$('.nav_list1').parent().addClass('active');
+	}else{
+		$('.left_nav').stop().animate({'opacity':'0','z-index':'-1'},400)
+	}
+	if(scrollT>$('.index_sec2').offset().top-$(window).height()*0.4){
+		$('.nav_list1').parent().addClass('active');
+		$('.nav_list1').parent().siblings().removeClass('active');
+	}
+	if(scrollT>$('.index_sec3').offset().top-$(window).height()*0.4){
+		$('.nav_list2').parent().addClass('active');
+		$('.nav_list2').parent().siblings().removeClass('active');
+	}
+	if(scrollT>$('.index_sec4').offset().top-$(window).height()*0.4){
+		$('.nav_list3').parent().addClass('active');
+		$('.nav_list3').parent().siblings().removeClass('active');
+	}
+	if(scrollT>$('.index_sec5').offset().top-$(window).height()*0.7){
+		$('.nav_list4').parent().addClass('active');
+		$('.nav_list4').parent().siblings().removeClass('active');
+	}
+	
+	if(scrollT>$('.index_sec7').offset().top-$(window).height()){
+		$('.left_nav').stop().animate({'opacity':'0','z-index':'-1'},400)
+	}
+	
+
+	
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})
+
+
+var name_id;
+	$('.left_nav li').click(function(){
+		name_id=$(this).attr('id');
+		$("html, body").stop().animate({ scrollTop: $('#'+name_id+'1').offset().top -300}, 1000,function(){
+			$('.left_nav li#name_id').addClass('active');
+			$('.left_nav li#name_id').siblings().removeClass('active');
+		});
+	})
+
+
+
+var speed=50;
+   var tmp;
+   var demo2=document.getElementById('demo2');
+   var demo1=document.getElementById('demo1');
+   var demo=document.getElementById('demo');
+   demo2.innerHTML=demo1.innerHTML;
+   function Marquee(){
+   if(demo2.offsetTop-demo.scrollTop<=0)
+   demo.scrollTop-=demo1.offsetHeight
+   else{
+    tmp= demo.scrollTop;
+   demo.scrollTop++;
+	if (demo.scrollTop == tmp){
+		demo.scrollTop = 0;
+	}
+   }
+   }
+   var MyMar=setInterval(Marquee,speed)
+   demo.onmouseover=function() {clearInterval(MyMar)}
+   demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
+
+
+
+var speed=50;
+   var demo4=document.getElementById('demo4');
+   var demo3=document.getElementById('demo3');
+   var demo_1=document.getElementById('demo_1');
+   demo4.innerHTML=demo3.innerHTML;
+   function Marquee1(){
+   if(demo4.offsetTop-demo_1.scrollTop<=0)
+   demo_1.scrollTop-=demo3.offsetHeight
+   else{
+	var tmp1=demo_1.scrollTop; 
+   demo_1.scrollTop++;
+	if (demo_1.scrollTop == tmp1){
+		demo_1.scrollTop = -5;
+	}
+   }
+   }
+   var MyMar1=setInterval(Marquee1,speed);
+   demo_1.onmouseover=function() {clearInterval(MyMar1)}
+   demo_1.onmouseout=function() {MyMar1=setInterval(Marquee1,speed)}
+
+function fnTabBoxFade(Focus,Hide,Show){
+	$(Focus).siblings().removeClass("focus");
+	$(Focus).addClass("focus");
+	$(".TabHide"+Hide).hide();
+	$("#TabShow"+Show).fadeIn("fast");
+};
+</script>
+
+</html>

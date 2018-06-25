@@ -1,0 +1,218 @@
+<include file="Public:head"/>
+</head>
+
+<body>
+
+
+<!--header-->
+<include file="Public:header"/>
+<!--header-->
+
+
+
+<!--  / warpper  -->
+<div class="warpper">
+	<!--gedai_box1-->
+	<div class="box_main">
+		<div class="index_container">
+		<!--left-->
+        <include file="Public:left"/>
+    	
+    	<!--right-->
+    	<div class="per_right">
+    		<div class="clien_tip">
+    			<span>佣金产品</span>
+    		</div>
+    		<div class="clien_con">
+    			<div class="cline_list">
+    				<div class="cline_lf">产品种类：</div>
+    				<ul class="cline_lr">
+    					<a href="__HOST__/Distribution/fx_commission"><li><span <if condition="$cate_id eq null">class="cline_cl"</if>>全部</span></li></a>
+    					<a href="__HOST__/Distribution/fx_commission/cate_id/1"><li><span  <eq name="cate_id" value="1">class="cline_cl"</eq>>个贷</span></li></a>
+    					<a href="__HOST__/Distribution/fx_commission/cate_id/2" ><li><span  <eq name="cate_id" value="2">class="cline_cl"</eq>>房贷</span></li></a>
+    					<a href="__HOST__/Distribution/fx_commission/cate_id/3"><li><span  <eq name="cate_id" value="3">class="cline_cl"</eq>>车贷</span></li></a>
+    					<!-- <a href="__HOST__/Distribution/fx_commission"><li><span>信用卡</span></li></a> -->
+    				</ul>
+    				<div class="clear"></div>
+    			</div>
+    			
+    	<!-- 		<div class="cline_list">
+    				<div class="cline_lf">所属代理商：</div>
+    				<ul class="cline_lr">
+    					<input type="text" placeholder="" value="003566">
+    				</ul>
+    				<div class="clear"></div>
+    			</div> -->
+    		</div>
+    		
+    		<div class="comm_main">
+    			<ul class="comm_con">
+                   <!-- <if condition="empty($new)"><div style="margin-left:39px;">暂无佣金产品</div></if>  -->
+                    <foreach name="new" item="vo">
+                    <li>
+    					<div class="comm_pho">
+    						<img src="__ROOT__{$vo.logo_pic1}"></div>
+    					<div class="comm_cc" style="">
+    						<h2 style="white-space:nowrap;overflow: hidden;text-overflow: ellipsis;  ">{$vo.card_title}</h2>
+    		<!-- 				<h3><span>借款成功</span></h3>
+    						<h3>返佣<span>120元</span></h3> -->
+    					</div>
+    					<div class="comm_tu"><a href="__HOST__/Distribution/fx_erweima/card_id/{$vo.card_id}/fenxiao_id/{$vo.fenxiao_id}"><span>立即推广</span></a></div>
+    					<div class="clear"></div>
+    				</li>
+                    
+                    </foreach>
+    				
+    			</ul>
+    			<div class="clear"></div>
+    		</div>
+    		
+    		
+    		
+    		
+    		<div class="wenda3_page" style="text-align:center">{$page}</div>
+ <!--    		<div class="page_con">
+    			<span class="page_jl">1280条记录1/80页</span>
+    			<span class="page_btn">1</span>
+    			<span>首页</span>
+    			<span>上一页</span>
+    			<span>上一页</span>
+    			<span>指定页</span>
+    			<span>尾页</span>
+    		</div> -->
+    		
+    		
+    		
+    	</div>
+    	
+    	<div class="clear"></div>
+	</div>
+	
+
+</div>
+</div>
+<!--  / warpper  -->
+
+
+
+
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<script>
+
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 8,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+	var mySwiper3 = new Swiper('.swiper3',{
+		pagination: '.pagination3',
+		loop:true,
+		autoplay:5000, 
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipePrev()
+	})
+	  
+	$('.arrow-right3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipeNext()
+	})
+	var mySwiper4 = new Swiper('.swiper4',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 4,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.fangdai_lt').on('click', function(e){
+		e.preventDefault()
+		mySwiper4.swipePrev()
+	})
+	  
+	$('.fangdai_rt').on('click', function(e){
+		e.preventDefault()
+		mySwiper4.swipeNext()
+	})
+</script>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+	$(window).load(function(){
+		$(".swiper1").height($(".swiper1 .ban_box ").height());
+		$(".swiper3").height($(".swiper3 img ").height());
+		$('.gedai4_right').height($('.gedai4_left').height()+42)
+		$('.swiper4').height($('.swiper4 img').height()+60)
+		
+	})
+	$(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+		$(".swiper3").height($(".swiper3 img ").height());
+		$('.gedai4_right').height($('.gedai4_left').height()+42)
+		$('.swiper4').height($('.swiper4 img').height()+60)
+	});
+
+	
+})	
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})	
+</script>
+
+</html>

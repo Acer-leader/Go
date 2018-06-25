@@ -1,0 +1,198 @@
+<include file="Public:head"/>
+
+<style>
+    .ftnormal {line-height: 25px!important;}
+    .btn{vertical-align: baseline;}
+    .newinput{ width:145px;}
+    .select.mini{width: 110px;}
+    .vtal-2{vertical-align: -2px;}
+    .shady{ background:#000; opacity:0.5; width:100%; height:100%; position:fixed; top:0; left:0; z-index:111111; display:none; }
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+<script type="text/javascript">
+    J(function(){
+        J('#starttime').calendar();
+        J('#endtime').calendar();
+    });
+</script>
+
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left"/>
+        <!-- end content-left -->
+        <div class="shady" id="heemu"></div>
+        <img src="" id="em" style="position:fixed;width:34%;margin:auto;left:0;right:0;display:none;z-index:11111111111111;cursor:pointer;" onclick="this.style.display='none',document.getElementById('heemu').style.display='none'"/>
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">所有订单</h1>
+
+            <form action="{:U('Admin/Order/index')}" method="post">
+                <div class="tables-searchbox">
+                    <input type="text" placeholder="ID/手机号/昵称/订单号" class="input newinput" name="keywords" value="{$keywords}">
+                    <input type="text"  name="starttime" id="starttime" value="{$starttime}" placeholder="订单起始时间" class="input Wdate mini" >
+                    <span class="mgr5">至</span>
+                    <input type="text"  name="endtime"  id="endtime" value="{$endtime}"  placeholder="订单结束时间" class="input Wdate mini" >
+                    <button class="btn btn-primary vtal-2"><i class="gicon-search white"></i>查询</button>
+                    <a href="{:U('Admin/order/orderExport',array('status'=>$_GET['order_status']))}" ><button class="btn btn-success vtal-2 " style="float: right;">导出</button></a>
+                </div>
+            </form>
+
+
+            <div class="tabs clearfix mgt15">
+
+                <div class="tabs clearfix mgt15">
+                    <a href="{:U('Admin/Order/index')}" class="<eq name="_GET['order_status']" value="">active</eq> tabs_a fl">所有订单({$count})</a>
+                    <a href="{:U('Admin/Order/index/order_status/0')}" class="<eq name="_GET['order_status']" value="0">active</eq> tabs_a fl">已取消({$count0})</a>
+                    <a href="{:U('Admin/Order/index/order_status/1')}" class="<eq name="_GET['order_status']" value="1">active</eq> tabs_a fl">待付款({$count1})</a>
+                    <a href="{:U('Admin/Order/index/order_status/2')}" class="<eq name="_GET['order_status']" value="2">active</eq> tabs_a fl">待发货({$count2})</a>
+                    <a href="{:U('Admin/Order/index/order_status/3')}" class="<eq name="_GET['order_status']" value="3">active</eq> tabs_a fl">待收货({$count3})</a>
+                    <a href="{:U('Admin/Order/index/order_status/4')}" class="<eq name="_GET['order_status']" value="4">active</eq> tabs_a fl">待评价({$count4})</a>
+                    <a href="{:U('Admin/Order/index/order_status/5')}" class="<eq name="_GET['order_status']" value="5">active</eq> tabs_a fl">已完成({$count5})</a>
+                    <a href="{:U('Admin/Order/index/order_status/6')}" class="<eq name="_GET['order_status']" value="6">active</eq> tabs_a fl">退款中({$count6})</a>
+                    <a href="{:U('Admin/Order/index/order_status/7')}" class="<eq name="_GET['order_status']" value="7">active</eq> tabs_a fl">退款完成({$count7})</a>
+                    <a href="{:U('Admin/Order/index/order_status/8')}" class="<eq name="_GET['order_status']" value="8">active</eq> tabs_a fl">用户删除({$count7})</a>
+                </div>
+                <table class="wxtables table-order mgt20">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td align="center">下单用户</td>
+                        <td align="center">订单金额</td>
+                        <td align="center">实际支付</td>
+                        <td align="center">支付时间</td>
+                        <td align="center">支付类型</td>
+                        <td align="center">操作</td>
+                    </tr>
+                    </thead>
+                </table>
+
+
+                <table class="wxtables table-order mgt20">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="15%">
+                    </colgroup>
+
+                    <volist name="cache" id="vo">
+                        <thead>
+                        <tr>
+                            <td colspan="6" class="ftnormal" style="background-color:#F2F8FC;">
+                                <input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" name="id" value="{$vo.id}">
+                                <span>订单编号：<b>{$vo.order_no}</b></span>
+                                <span class="mgl15">{$vo.order_time|date="Y-m-d H:i:s",###}</span>
+                            <span class="mgl15 colorRed">
+                                <switch name="vo.order_status">
+                                    <case value="0">已取消</case>
+                                    <case value="1">待付款</case>
+                                    <case value="2">待发货</case>
+                                    <case value="3">待收货</case>
+                                    <case value="4">待评价</case>
+                                    <case value="5">已完成</case>
+                                    <case value="6">退款中</case>
+                                    <case value="7">退款完成已关闭</case>
+                                    <case value="8">前台订单删除</case>
+                                </switch>
+                            </span>
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td valign="middle" class="Center" style="padding-top:15px;vertical-align: inherit;">
+                                <p><b>用户：</b>{$vo.person_name}</p>
+                                <p><b>电话：</b>{$vo.telephone}</p>
+                            </td>
+                            <td valign="middle" align="Center" class="txtCenter">
+                                <p><b>¥{$vo.total_price|default="0.00"}</b></p>
+                            </td>
+                            <td valign="middle" align="center" class="txtCenter" style="color: red;">
+                                <p><b>¥{$vo.pay_price}</b></p>
+                            </td>
+                            <td valign="middle" align="center"  class="txtCenter">
+                                <notempty name="vo['pay_time']">
+                                    <p>{$vo.pay_time|date="Y-m-d H:i:s",###}</p>
+                                </notempty>
+                            </td>
+                            <td valign="middle" align="center"  class="txtCenter">
+                                <p>
+                                    <switch name="vo.pay_way">
+                                        <case value="1">支付宝支付</case>
+                                    </switch>
+                                </p>
+                            </td>
+
+                            <td valign="top" style="vertical-align: inherit;">
+                                <p>
+                                    <a href="{:U('Admin/Order/orderDetail')}/id/{$vo.id}" class="btn btn-mini btn-primary">查看详情</a>
+                                    <switch name="vo['order_status']">
+                                        <case value="2">
+                                            <a href="javascript:;" class="btn btn-mini btn-success daifahuo" data-id="$vo['id']" data-order="{$vo['order_no']}" >发货</a>
+                                        </case>
+
+                                        <case value="6">
+                                            <a href="javascript:;" class="btn btn-mini btn-success" onclick="alert_return({$vo['id']})">同意退款</a>
+                                            <a href="javascript:;" class="btn btn-mini btn-warning" onclick="de_return({$vo['id']})">拒绝退款</a>
+                                        </case>
+
+                                    </switch>
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <volist name="vo.goods" id="val">
+                            <tr>
+                                <td colspan="2"><a href="javascript:void(0)" class="block" target="_blank" title="">
+                                    <div class="table-item-img" style="float:clear"> 
+										<a href="{:U('Admin/Goods/editGoods',array('id'=>$val['goods_id']))}">
+											<img src="{$val.goods_pic}" alt="">
+										</a> 
+									</div>
+                                    <div class="table-item-info">
+                                        <p>商品名称：{$val.goods_name}</p>
+                                        <p>{$val.sku_info}</p>
+                                    </div>
+                                </a></td>
+                                <td >商品单价：￥{$val.goods_price}</td>
+                                <td >数量：{$val.goods_nums}</td>
+                                <td >商品小计：￥{$val['goods_price']*$val['goods_nums']}</td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </volist>
+                </table>
+                <div class="tables-btmctrl clearfix mgt10">
+                    <div class="fl" style="float:none;">
+                    </div>
+
+                    <div class="pages" style="float:none;width:100%;text-align:center;padding-top:10px;">
+                        <if condition="$count gt 10">   {$page}</if>
+                    </div>
+                </div>
+                <form action="" method="post" id="ids">
+                    <input type="hidden" name="ids" value="">
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<include file="Public:foot"/>
+
+<include file="Public:AdminOrder"/>

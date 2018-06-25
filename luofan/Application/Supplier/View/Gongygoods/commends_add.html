@@ -1,0 +1,322 @@
+<include file="Public:head"/>
+<style>
+	.imgnav{
+		max-height: 30px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.imgwrapper{
+		display: block;
+		width: 78px;
+		height: 78px;
+		overflow: hidden;
+	}
+	.imgwrapper img{
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border:0;
+	}
+	.spanpd10{
+		margin:10px;
+	}
+	.wxtables.wxtables-sku.newtable{
+		width: 40%;
+		margin: 0;
+	}
+	.img-list li{
+		width: 60px;
+		height:60px;
+	}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+.del_btn{margin-left:10px;padding:2px 10px;border: 1px solid #ddd;background-color: #e8fffc; }
+	</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+<script type="text/javascript" src="__JS__/datepicker/WdatePicker.js"></script>
+<div class="container">
+  <div class="inner clearfix"> <include file="Public:left"/>
+    <!-- end content-left -->
+    <div class="content-right fl">
+      <h1 class="content-right-title">添加推荐搭配</h1>
+      <input type="hidden" id="j-isSid" value="0">
+      <!-- 是否选择了淘宝类目 -->
+      <input type="hidden" id="j-hasNorms" value="1">
+      <!-- 淘宝类目下是否有属性 -->
+      <input type="hidden" id="supplier" value="">
+      <form aciton="{:U('/Supplier/Gongygoods/commends')}" enctype="multipart/form-data" method="POST" id="add_step2" onsubmit="return toVaild()">
+        <!-- end 基本信息 -->
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">搭配详情</h3>
+          <input type="hidden" id="j-hasNormss" value="{$id}" name="zid">
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>商品：</label>
+            <select class="adds" style="width:100px">
+            <foreach name="goods" item="vo">
+              <option value="{$vo.id}" data-price="{$vo.oprice}">{$vo.goods_name}--{$vo.goods_des}</option>
+            </foreach>
+            </select>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>添加的商品：</label>
+            <div class="form-controls" id="add_goods" style="padding-left:30px;">
+              <span class="fi-help-text"></span>
+              <volist name="group_list" id="g_vo" key="g_k">
+                <div class='zhi'><input name='{$g_vo.goods_id}[]' type='hidden' value='goodid{$g_vo.goods_id}' />{$g_vo.goods_name}--{$g_vo.goods_des}&nbsp;&nbsp;&nbsp;<input name='{$g_vo.goods_id}[]' value='{$g_vo.goods_price}' /><buttion class='del_btn'>删除</buttion></div>
+              </volist>
+            </div>
+          </div>
+          
+       <!-- <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>搭配图片：</label>
+            <div class="form-controls pdt5 j-imglistPanel">
+              <div class="baotuan_showimge fl mgr10"></div>
+                <div class="btnimage fl">选择图片
+                    <input type="file"  accept="image/jpg,image/jpeg,image/png" name="baotuan" id="baotuan" class="file" >
+                </div>
+                <div class="baotuan_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" /><span class="baotuan_percent">80%</span></div>
+                &lt;!&ndash; <span class="fi-help-text fl lh30 mgl10">建议大小（宽500px高377px）</span> &ndash;&gt;
+            </div>
+        </div>-->
+
+          <!--<div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>套餐总价：</label>
+            <div class="form-controls" id="zong_price">
+              <span class="fi-help-text">0</span>
+            </div>
+          </div>-->
+
+		    </div>
+
+        <!-- end 详情及其它 -->
+
+        <div class="panel-single panel-single-light mgt20 txtCenter">
+          <a href="{:U('Supplier/Gongygoods/goodsList')}" class="btn">取消</a>
+          <input type="submit" class="btn btn-primary" value="保存">
+        </div>
+      </form>
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<!--选择分类-->
+<script type="text/javascript">
+    $(document).on('change','.adds',function(){
+        var form = $(".adds").find("option:selected").val();
+        var name = $(".adds").find("option:selected").html();
+        var yprice=$(".adds").find("option:selected").attr('data-price');
+        $('#add_goods').append("<div class='zhi'><input name='"+form+"[]' type='hidden' value='goodid"+form+"' />"+name+"&nbsp;&nbsp;&nbsp;<input name='"+form+"[]' value='"+yprice+"' /><buttion class='del_btn'>删除</buttion></div>");
+    });
+    $(document).on('click','.del_btn',function(){
+        $(this).parent('.zhi').remove();
+    });
+
+
+</script>
+
+
+<script type="text/javascript">
+
+  $("#j-select_category_id").click(function(){
+      $('.select-fenlei').show();
+      /*$('#albums-overlay').show();*/
+  })
+  $(".cancle").click(function(){
+      $(this).parent().parent('.jbox').hide();
+      /*$('#albums-overlay').hide();*/
+  })
+
+  $("#select_class").click(function(){
+      var clssid=$("#select_class_id  option:selected").val();
+      var classname=$("#select_class_id option:selected" ).text();
+     $('#class_id').val(clssid);
+     $('#class_name').val(classname);
+      $(this).parent().parent('.jbox').hide();
+      /*$('#albums-overlay').hide();*/
+  })
+
+        $("#j-select_series_id").click(function(){
+            $('.select-series').show();
+            $('#albums-overlay1').show();
+        })
+        $(".cancle").click(function(){
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay1').hide();
+        })
+
+        $("#select_series").click(function(){
+            var seriesid=$("#select_series_id  option:selected").val();
+            var seriesname=$("#select_series_id option:selected" ).text();
+            $('#series_id').val(seriesid);
+            $('#series_name').val(seriesname);
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay1').hide();
+        })
+</script>
+<!--选择分类-end->
+
+
+<!--上传图片-->
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+
+
+<script>
+
+  $("input[name=oprice]").change(function(){
+    var oprice = $(this).val();//市场价
+    var integral  =oprice*("{$rate}");
+    integral  = Math.floor(integral*100)/100;
+    $("input[name=integral]").val(integral);
+    var s_integral = Math.floor(integral*("{$tage}")*100)/100;
+    $("input[name=s_integral]").val(s_integral);
+  })
+
+</script>
+
+
+<script type="text/javascript">
+
+  function delImg(obj){
+    if(!confirm("删除这张图片？")){
+      return false;
+    }
+    var id = $(obj).attr("data-id")
+    if(id){
+      alert(1);
+      return false;
+    }
+    $(obj).next("input").remove();
+    $(obj).remove();
+  }
+  $(function () {
+    var percent = $('.xuanze_percent');
+    var progress = $('.xuanze_percent');
+    $("#xuanze").wrap("<form id='myupload1' action='{:U('/Supplier/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#xuanze").change(function(){ //选择文件
+      $("#myupload1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="logo_pic" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.xuanze_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    }); 
+    var percent = $('.xuanze_percent1');
+    var progress = $('.xuanze_percent1');
+    $("#xuanze1").wrap("<form id='myupload2' action='{:U('/Supplier/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#xuanze1").change(function(){ //选择文件
+      $("#myupload2").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="logo_pic" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.xuanze_showimge1').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+
+
+
+    var percent = $('.duoxuan_percent');
+    var progress = $('.duoxuan_percent');
+    $("#duoxuan").wrap("<form id='myupload' action='{:U('/Supplier/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#duoxuan").change(function(){ //选择文件
+      $("#myupload").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80"  class="mgr10 mgt10 " onclick="delImg(this)"><input type="hidden" name="pic1[]" id="pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          console.log(img);
+          $('.duoxuan_showimge').append(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+
+    var percent = $('.baotuan_percent');
+    var progress = $('.baotuan_percent');
+    $("#baotuan").wrap("<form id='baotuan1' action='{:U('/Supplier/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#baotuan").change(function(){ //选择文件
+      $("#baotuan1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="pic" id="pic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.baotuan_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+
+  });
+function add_re(r){
+  $('#restriction'+r).show();
+  }
+function del_re(r){
+  $('#restriction'+r).hide();
+  }
+</script>
+<!--上传图片-end->

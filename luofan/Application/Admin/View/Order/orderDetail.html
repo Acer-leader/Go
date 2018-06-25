@@ -1,0 +1,333 @@
+<include file="Public:head"/>
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">订单详情</h1>
+      <div class="panel-single panel-single-light">订单编号： <span class="order-title">{$cache.order_no}</span></div>
+
+      <ul class="wizard">
+	  
+      <li class="wizard-item <egt name="cache.pay_status" value="0">complete</egt>" >
+      <dl class="wizard-item-content">
+      <dt class="wizard-ic-step">
+      <span class="wizard-icstp-num">1</span>
+      <span class="wizard-icstp-title">待付款</span>
+      <span class="wizard-icstp-date">{$cache.order_time|date="Y-m-d H:i:s",###}</span>
+      </dt>
+      <dd class="wizard-ic-desc" style="width:100px;"></dd>
+      </dl>
+      </li>
+	  
+      <li class="wizard-item <egt name="cache.pay_status" value="1">complete</egt>">
+      <dl class="wizard-item-content">
+      <dt class="wizard-ic-step">
+      <span class="wizard-icstp-num">2</span>
+      <span class="wizard-icstp-title">已付款/待发货</span>
+      <span class="wizard-icstp-date"><neq name="cache.pay_time" value="0">{$cache.pay_time|date="Y-m-d H:i:s",###}</neq></span>
+      </dt>
+      <dd class="wizard-ic-desc" style="width:100px;"></dd>
+      </dl>
+      </li>
+	  
+      <li class="wizard-item <eq name="cache.is_send" value="1">complete</eq>">
+      <dl class="wizard-item-content">
+      <dt class="wizard-ic-step">
+      <span class="wizard-icstp-num">3</span>
+      <span class="wizard-icstp-title">已发货/待收货</span>
+      <span class="wizard-icstp-date"><neq name="cache.shipping_time" value="0">{$cache.shipping_time|date="Y-m-d H:i:s",###}</neq></span>
+      </dt>
+      <dd class="wizard-ic-desc" style="width:100px;"></dd>
+      </dl>
+      </li>
+	  
+      <li class="wizard-item <eq name="cache.is_confirm" value="1">complete</eq>">
+      <dl class="wizard-item-content">
+      <dt class="wizard-ic-step">
+      <span class="wizard-icstp-num">4</span>
+      <span class="wizard-icstp-title">已签收/待评价</span>
+      <span class="wizard-icstp-date"><notempty name="cache.receive_time" >{$cache.receive_time|date="Y-m-d H:i:s",###}</notempty></span>
+      </dt>
+	  <dd class="wizard-ic-desc" style="width:100px;"></dd>
+	  </dl>
+      </li>
+	  
+      <li class="wizard-item <notempty name="cache.c_time">complete</notempty>">
+      <dl class="wizard-item-content">
+      <dt class="wizard-ic-step">
+      <span class="wizard-icstp-num">5</span>
+      <span class="wizard-icstp-title">已评价/已完成</span>
+      <span class="wizard-icstp-date"><notempty name="cache.c_time">{$cache.c_time|date="Y-m-d H:i:s",###}</notempty></span>
+      </dt>
+	  
+	  <eq name="cache.order_status" value="6">
+      <dd class="wizard-ic-desc" style="width:100px;"></dd>
+      </dl>
+      </li>
+      <li class="wizard-item <eq name="cache.order_status" value="6">complete</eq>">
+      <dl class="wizard-item-content">
+      <dt class="wizard-ic-step">
+      <span class="wizard-icstp-num">6</span>
+      <span class="wizard-icstp-title">退款？</span>
+      <span class="wizard-icstp-date"></span>
+      </dt>
+       </eq>
+      </dl>
+      </li>
+
+      </ul>
+
+      <div class="chartBox mgt30">
+        <div class="cb-title">订单信息</div>
+        <div class="cb-contain">
+          <ul class="info-table mgl15">
+            <li class="long"> <span class="bold">订单状态：</span> <span> <span class="colorRed">
+              <!-- 0待接受 1 申请中 2 任务开始 3任务完成  4确认任务完成 5 取消任务 6退款 7任务结束 -->
+              <switch name="cache.order_status">
+                <case value="0">已取消</case>
+              	<case value="1">待付款</case>
+                <case value="2">已付款/待发货</case>
+                <case value="3">已发货/待收货</case>
+                <case value="4">已签收/待评价</case>
+                <case value="5">已评价/已完成</case>
+                <case value="6">退款中</case>
+                <case value="7">退款完成已关闭</case>
+                <case value="8">前台订单删除</case>
+                 </switch>
+              </span> </span>
+            </li>
+            <li class="long"> <span class="bold">用户姓名：</span> <span><a href="{:U('Admin/Member/detail',array('id'=>$cache['user_id']))}"> {$cache.user.realname}</a> </span> </li>
+            <li class="long"> <span class="bold">用户昵称：</span> <span><a href="{:U('Admin/Member/detail',array('id'=>$cache['user_id']))}"> {$cache.user.person_name}</a> </span> </li>
+            <li class="long"> <span class="bold">联系方式：</span> <span><a href="javascript:void(0);"> {$cache.user.telephone}</a> </span> </li>
+            <li class="long"> <span class="bold">支付类型：</span> <span><a href="javascript:void(0);">
+            <switch name="cache.pay_way">
+              <case value="1">支付宝支付</case>
+              <case value="2">微信支付</case>
+              <case value="3">货到付款</case>
+              <case value="4">积分支付</case>
+              <case value="5">积分+微信</case>
+            </switch>
+            </a> </span> </li>
+           <!--  <li class="long"> <span class="bold">用户留言：</span> <span><a href="javascript:void(0);"> {$cache.liuyan}</a> </span> </li> -->
+          </ul>
+        </div>
+
+        <div class="cb-title">收货人信息</div>
+          <div class="cb-contain">
+            <ul class="info-table mgl15">
+              <li class="long"> <span class="bold">收货人：</span> <span><a href="javascript:void(0);"> {$cache.consignee}</a> </span> </li>
+              <li class="long"> <span class="bold">联系方式：</span> <span><a href="javascript:void(0);"> {$cache.mobile}</a> </span> </li>
+              <li class="long"> <span class="bold">收货地址：</span> <span><a href="javascript:void(0);"> {$cache.province}{$cache.city}{$cache.district}{$cache.address}</a> </span> </li>
+            </ul>
+        </div>
+      </div>
+
+     <!-- <div class="chartBox mgt30">
+        <div class="cb-title">发票信息</div>
+          <div class="cb-contain">
+            <ul class="info-table mgl15">
+              <li class="long"> <span class="bold">发票类型：</span> <span>
+                <switch name="cache['invoice_type']">
+                  <case value="1">纸质发票-冠名发票</case>
+                  <case value="2">纸质发票-增值专票</case>
+                  <case value="3">纸质发票-增值普票</case>
+                  <case value="4">电子发票-增值专票</case>
+                  <case value="5">电子发票-增值普票</case>
+                </switch>
+              </span>
+              <li class="long"> <span class="bold">发票抬头：</span> <span>{$cache.invoice_title}</span>
+              </li>
+              <notempty name="cache['invoice_company']">
+              <li class="long"> <span class="bold">公司名称：</span> <span>{$cache.invoice_company}</span> </li>
+              <li class="long"> <span class="bold">纳税人识别号：</span> <span>{$cache.invoice_taxpayer_id}</span> </li>
+              <li class="long"> <span class="bold">注册地址：</span> <span>{$cache.invoice_address}</span> </li>
+              <li class="long"> <span class="bold">注册电话：</span> <span>{$cache.invoice_phone}</span> </li>
+              <li class="long"> <span class="bold">开户银行：</span> <span>{$cache.invoice_bank}</span> </li>
+              <li class="long"> <span class="bold">银行账户：</span> <span>{$cache.invoice_bank_account}</span> </li>
+              </notempty>
+            </ul>
+          </div>
+      </div>-->
+
+      <table class="wxtables mgt15">
+        <colgroup>
+        <col width="40%">
+        <col width="10%">
+        <col width="10%">
+        <col width="10%">
+        </colgroup>
+        <thead>
+          <tr>
+            <td>商品名</td>
+            <td>商品单价</td>
+            <td>数量</td>
+            <td>小计</td>
+          </tr>
+        </thead>
+        <tbody>
+          <foreach name="cache[goods]" item="vo">
+            <tr>
+              <td><a href="javascript:void(0)" class="block" target="_blank" title="">
+                <div class="table-item-img"> <a href="{:U('Admin/Goods/editGoods',array('id'=>$vo['goods_id']))}"><img src="{$vo.goods_pic}" alt=""></a> </div>
+                <div class="table-item-info">
+                  <p>商品名称：{$vo.goods_name}</p>
+                  <p>{$vo.sku_info}</p>
+                   </div>
+                </a></td>
+              <td>¥{$vo.goods_price}</td>
+              <td>{$vo.goods_nums}</td>
+             <td>{$vo['goods_price']*$vo['goods_nums']}</td>
+            </tr>
+            <notempty name="vo['comment']">
+            <tr>
+              <td colspan="2">[评价内容]:<br>{$vo['comment']}</td>
+             <!--  <td>[类型]
+                <switch name="vo['comment'][type]">
+                  <case value="1"><b style="color:red;">好评</b></case>
+                  <case value="2"><b style="color:blue;">中评</b></case>
+                  <case value="3"><b style="color:black;">差评</b></case>
+                </switch>
+              </td> -->
+              <td colspan="2">[评价时间]:<br>{$vo['c_time']|date="Y-m-d H:i:s",###}</td>
+            </tr>
+            </notempty>
+          </foreach>
+        </tbody>
+      </table>
+
+
+
+      <div class="chartBox mgt30">
+        <div class="cb-title">物流信息</div>
+        <button id="gengaiwuliu" class="cb-title" style="float:right;color:red;">更改物流单号</button>
+        <div class="cb-contain">
+          <ul class="info-table mgl15">
+            <li class="long"> <span class="bold">物流公司：</span> <span><a href="javascript:void(0);">
+              {$cache.express_name}
+            </a> </span> </li>
+            <li class="long"> <span class="bold">物流单号：</span> <span><a href="javascript:void(0);">
+              {$cache.express_no}
+            </a> </span> </li>
+            <li class="long"> <span class="bold">物流费：</span> <span><a href="javascript:void(0);">
+            {$cache['express_fee']}</a> </span> </li>
+            <li class="long">
+              <span class="bold">物流详情：</span>
+              <foreach name="express" item="v">
+              <p>{$v['AcceptTime']} {$v['AcceptStation']}</p>
+              </foreach>
+            </li>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="clearfix">
+        <ul class="cache-statistics fr">
+
+         
+          <li class="formitems" style="text-align:right">
+            <div class="form-controls" style="text-align:right;margin-right:10px;">
+            <b>订单总金额： </b>¥{$cache.total_fee}</div>
+          </li>
+
+
+
+          <li class="formitems" style="text-align:right">
+            <div class="form-controls" style="text-align:right;margin-right:10px; color:red">
+            <b>实际支付金额： </b>￥{$cache.pay_price}</div>
+          </li>
+ 
+          <li class="txtCenter" style="text-align:right;margin-right:10px;">
+            <a href="javascript:;" data-id="" class="btn btn-primary" style=" visibility:hidden" id="j-order-modify">修改价格</a>
+            <a href="javascript:history.back(-1);" data-id="" class="btn btn-primary" id="j-order-close">返回</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+
+<div class="jbox editfenlei disshow quxiao" style="height:255px;" id="updatewuliu">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">发货信息</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container">
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>快递公司：</label>
+      <div class="form-controls">
+
+        <select name="express_name" id="">
+          <foreach name="express_list" item="vo">
+            <option value="{$vo['express_ma']}">{$vo['express_company']}</option>
+          </foreach>
+        </select>
+
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>快递单号：</label>
+      <div class="form-controls">
+        <input type="text" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" class="input describe1" name="express_no">
+        <input type="hidden" name="order_id" value="{$cache.id}">
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <!-- <div class="formitems">
+        <label class="fi-name"><span class="colorRed"></span>快递价格：</label>
+        <div class="form-controls">
+            <input type="text" class="input describe2" name="express_fee">
+            <span class="fi-help-text"></span> </div>
+    </div> -->
+    <div class="jbox-buttons" style="text-align:center;">
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="fahuo">确定发货</a>
+      <a href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a>
+    </div>
+  </div>
+</div>
+
+
+<include file="Public:foot"/>
+<script>
+  $(document).ready(function(){
+    $(".cancle").click(function(){
+      $(this).parent().parent('.jbox').hide();
+      $('#updatewuliu').hide();
+      $(".quxiao").hide();
+    })
+    $("#gengaiwuliu").click(function(){
+      $("#updatewuliu").show();
+    })
+    $("#fahuo").click(function(){
+      var wuliu_name = $("#updatewuliu select[name=express_name]").val();
+      var wuliu_no = $("#updatewuliu input[name=express_no]").val();
+      var order_id = $("#updatewuliu input[name=order_id]").val();
+      $.ajax({
+        url: "{:U('/Admin/Order/update_express')}",
+        type: "post",
+        dataType: "json",
+        data: {
+          order_id: order_id,
+          express_name:wuliu_name,
+          express_no:wuliu_no
+        }
+      }).done(function (g) {
+        if (g.status == 1) {
+          alert(g.info);
+          window.location.reload();
+        } else {
+          alert(g.info);
+        }
+
+      })
+    })
+  })
+</script>

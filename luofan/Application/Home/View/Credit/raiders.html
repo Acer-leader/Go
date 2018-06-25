@@ -1,0 +1,497 @@
+<include file="Public:head"/>
+
+</head>
+
+<body>
+<include file="Public:header"/>
+
+<!--header-->
+
+<!--  / warpper  -->
+<div class="warpper">
+
+	<div class="gonglue_box gonglue_box1">
+    	<div class="index_container">
+        	<div class="creditlist1_top">
+                <div class="creditlist1_top_cot">
+                当前位置：
+                <a href="{:U('Index/index')}">洛凡</a> &gt;
+                <a href="javascript:void(0)">信用卡攻略</a>
+                </div>
+            </div>
+        	<div class="gonglue1_box">
+                <div class="gonglue1_top">
+            		<div class="gonglue1_left">
+                    	<div class="gonglue1_top_list">
+                        	<div class="swiper-container swiper1">
+                            	<a href="javascript:void(0);" class="arrow-left gonglue_l"><img src="__IMAGES__/gonglue_l.png"  /></a>
+                            	<a href="javascript:void(0);" class="arrow-right gonglue_r"><img src="__IMAGES__/gonglue_r.png"  /></a>
+                            	<div class="swiper-wrapper">
+                                	<div class="swiper-slide">
+                                    	<a href="newsdot.html">
+                                    	<img src="__IMAGES__/gonglue1_1.jpg" width="100%"/>
+                                        </a>
+                                    </div>
+                                	<div class="swiper-slide">
+                                    	<a href="newsdot.html">
+                                    	<img src="__IMAGES__/gonglue1_2.jpg" width="100%"/>
+                                        </a>
+                                    </div>
+                                	<div class="swiper-slide">
+                                    	<a href="newsdot.html">
+                                    	<img src="__IMAGES__/gonglue1_3.jpg" width="100%"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gonglue1_top_bottom">
+                            <div class="gonglue1_bg">
+                                <h4 style="position:relative;opacity:1;filter:alpha(opacity=100);-moz-opacity:1;-khtml-opacity:1;">刷兴业银行信用卡 送百万大众点评现金券</h4>
+                                <h4>下卡神速，最快1天！推荐几款容易入手的信用卡！</h4>
+                                <h4>周六信用卡羊毛精选，招行不过了中行high了</h4>
+                            </div>
+                            </div>
+                        </div>
+                    	<div class="gonglue1_top_list gonglue1_top_list1">
+                        	<div class="gonglue_tit" style="padding-left:0;">
+                            	<h4>今日头条</h4>
+                            </div>
+                            <div class="gonglue1_wz">
+                            	<ul>
+                            	<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 简单谈谈刷流水办卡的思路和方法！</a></li>
+                            	<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 哪家银行的信用卡比较好申请？这几家你都试过么？</a></li>
+                            	<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 你的信用卡额度为什么被降低了？</a></li>
+                            	<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 信用卡终极必杀技之77天超长免息期，带你赚钱带你飞</a></li>
+                            	<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 你还在犹豫办哪家信用卡？十家银行信用卡特点神总结</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="gonglue1_right">
+                    	<div class="gonglue_tit gonglue_tit1">
+                        	<h4>热门关键字</h4>
+                            <a href="javascript:void(0);">换一批</a>
+                        </div>
+                        <div class="gonglue1_right_cot">
+                            <foreach name="seo" item="vo" >
+                                <a href="javascript:void(0);">{$vo.seo}</a>
+                            </foreach>
+
+                        	<!--<a href="javascript:void(0);"> 申请 </a>
+                        	<a href="javascript:void(0);"> 积分 </a>
+                        	<a href="javascript:void(0);"> 手续费 </a>
+                        	<a href="javascript:void(0);"> 提额 </a>
+                        	<a href="javascript:void(0);"> 理财 </a>
+                        	<a href="javascript:void(0);"> 申卡 </a>
+                        	<a href="javascript:void(0);"> 额度 </a>
+                        	<a href="javascript:void(0);"> 优惠 </a>
+                        	<a href="javascript:void(0);"> 取现 </a>-->
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="gonglue1_bottom">
+                	<div class="gonglue1_list">
+                    	<div class="gonglue_tit gonglue_tit2">
+                        	<h4>信用卡攻略</h4>
+                            <a href="{:U('Credit/gonglue')}">更多</a>
+                        </div>
+                    <div class="gonglue1_wz gonglue1_wz1">
+                         <ul>
+                             <foreach name="s_r1" item="vo" >
+                                 <li><a href="{:U('Credit/newsDetail',array('id'=>$vo['id'],'types'=>'4','type'=>'1'))}"><i class="fa fa-angle-right"></i>{$vo.news_title}</a></li>
+                             </foreach>
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 信用卡被全额罚息 你该如何应对？（附应对方案）</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 信用卡审批员自曝：大额度信用卡批卡10大内部技巧！</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 1分钟告诉你，信用卡怎样操作提额最快</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 简单谈谈刷流水办卡的思路和方法！</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 火热的招商信用卡秒批通道解析！</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 哪家银行的信用卡比较好申请？这几家你都试过么？</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 信用卡终极必杀技之77天超长免息期，带你赚钱带你飞</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 你还在犹豫办哪家信用卡？十家银行信用卡特点神总结</a></li>-->
+                         </ul>
+                    </div>
+                    </div>
+                	<div class="gonglue1_list">
+                    	<div class="gonglue_tit gonglue_tit3">
+                        	<h4>信用卡须知</h4>
+                            <a href="{:U('Credit/gonglue1',array('types'=>'4','type'=>'2'))}">更多</a>
+                        </div>
+                    <div class="gonglue1_wz gonglue1_wz1">
+                         <ul>
+                             <foreach name="s_r2" item="vo" >
+                                 <li><a href="{:U('Credit/newsDetail',array('id'=>$vo['id'],'types'=>'4','type'=>'2'))}"><i class="fa fa-angle-right"></i>{$vo.news_title}</a></li>
+                             </foreach>
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 中国银行开启预审额度查询 8大提额方法</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 深扒：网上代办信用卡背后 不为人知的秘密！</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 各家银行信用卡风控和综合评定是怎么回事情!</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 你的信用卡额度为什么被降低了？</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 各家银行信用卡风控和综合评定是怎么回事情!</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 11家银行信用卡优缺点大PK，看看哪家信用卡适合你？</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 工商银行信用卡终于可以自助提额了！你要提么？</a></li>-->
+                            <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 四大国有银行信用卡大比拼，中行提额难，工行手续费低</a></li>-->
+                         </ul>
+                    </div>
+                    </div>
+                	<div class="gonglue1_list" style="margin-right:0;">
+                    	<div class="gonglue_tit gonglue_tit4">
+                        	<h4>图解信用卡</h4>
+                            <a href="{:U('Credit/gonglue1',array('types'=>'4','type'=>'3'))}">更多</a>
+                        </div>
+                    <div class="gonglue1_wz gonglue1_wz1 gonglue1_wz2">
+                    	<div class="gonglue1_wz2_cot">
+                            <foreach name="s_r3" item="vo" >
+                                <a href="{:U('Credit/newsDetail',array('id'=>$vo['id'],'types'=>'4','type'=>'3'))}">
+                                    <div class="gonglue1_wz_list">
+                                        <img src="{$vo.logo_pic}" width="100%" />
+                                        <h5>{$vo.news_title}</h5>
+                                    </div>
+                                </a>
+                            </foreach>
+                       <!-- <a href="newsdot.html">
+                    	<div class="gonglue1_wz_list">
+                        	<img src="__IMAGES__/gonglue1_5_1.jpg" width="100%" />
+                            <h5>细讲招行提额到10万的辛苦历程！</h5>
+                        </div>
+                        </a>
+                        <a href="newsdot.html">
+                    	<div class="gonglue1_wz_list gonglue1_wz_list1">
+                        	<img src="__IMAGES__/gonglue1_5_2.jpg" width="100%" />
+                            <h5>信用卡还款遇瓶颈，分期付款与最低还款都是坑？</h5>
+                        </div>
+                        </a>
+                        <a href="newsdot.html">
+                    	<div class="gonglue1_wz_list">
+                        	<img src="__IMAGES__/gonglue1_5_3.jpg" width="100%" />
+                            <h5>申卡很难？这些技巧保你一下一个准儿！</h5>
+                        </div>
+                        </a>
+                        <a href="newsdot.html">
+                    	<div class="gonglue1_wz_list gonglue1_wz_list1">
+                        	<img src="__IMAGES__/gonglue1_5_4.jpg" width="100%" />
+                            <h5>银行为什么不给你发大额信用卡，这才是真正原因！</h5>
+                        </div>
+                        </a>-->
+                    	<div class="clear"></div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gonglue_box gonglue_box2">
+    	<div class="index_container">
+        	<a href="javascript:void(0);">
+    		<img src="__IMAGES__/gonglue2.jpg" width="100%"/>
+            </a>
+        </div>
+    </div>
+
+    <div class="gonglue_box gonglue_box3">
+    	<div class="index_container">
+        	<div class="gonglue3">
+               <div class="gonglue1_list gonglue1_list_ts">
+                   <div class="gonglue_tit gonglue_tit5">
+                       <h4>达人专栏</h4>
+                       <a href="{:U('Credit/gonglue1',array('types'=>'4','type'=>'4'))}">更多</a>
+                   </div>
+                   <div class="gonglue1_wz gonglue1_wz1">
+                       <ul>
+                           <foreach name="s_r4" item="vo" >
+                               <li><a href="{:U('Credit/newsDetail',array('id'=>$vo['id'],'types'=>'4','type'=>'4'))}"><i class="fa fa-angle-right"></i>{$vo.news_title}</a></li>
+                           </foreach>
+                           <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 工行超低利息放款，我只要固定额度就好！</a></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 算个账 | 中信小神卡淘宝V卡 一年收益是多少？</a></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 6大白金网申开放，申卡前一定要知道这些！！！</a></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 羊毛日报丨4月7日 一大波交行新活动来袭</a></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 刷卡费率知多少？这些银行不会告诉你的秘密</a></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 羊毛日报丨4月6日 光大COSTA咖啡满100元减50元</a></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 已在朋友圈传疯的建行信用卡下卡法！手把手拆招！</a></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 重磅|一篇长文3张表 读懂中国银行境内/境外消费送钱活动</a></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="gonglue1_list" style="margin-right:0;">
+                    	<div class="gonglue_tit gonglue_tit6">
+                        	<h4>银行信用卡中心</h4>
+                        </div>
+                        <div class="gonglue3_cot">
+                            <foreach name="c_t_res" item="vo" key="k" >
+                                <div class="gonglue3_list">
+                                    <a href="{:U('Credit/creditList',array('id'=>$vo['id']))}">
+                                        <img src="{$vo.logo_pic}" width="40" />
+                                        {$vo.classname}信用卡中心
+                                    </a>
+                                </div>
+                            </foreach>
+                        	<!--<div class="gonglue3_list">
+                            	<a href="javascript:void(0);">
+                            	<img src="__IMAGES__/gonglue3_1.png" width="40" />
+                                中信银行信用卡中心
+                                </a>
+                            </div>
+                        	<div class="gonglue3_list gonglue3_list1">
+                            	<a href="javascript:void(0);">
+                            	<img src="__IMAGES__/gonglue3_2.png" width="40" />
+                                交通银行信用卡中心
+                                </a>
+                            </div>
+                        	<div class="gonglue3_list">
+                            	<a href="javascript:void(0);">
+                            	<img src="__IMAGES__/gonglue3_3.png" width="40" />
+                                兴业银行信用卡中心
+                                </a>
+                            </div>
+                        	<div class="gonglue3_list gonglue3_list1">
+                            	<a href="javascript:void(0);">
+                            	<img src="__IMAGES__/gonglue3_4.png" width="40" />
+                                光大银行信用卡中心
+                                </a>
+                            </div>
+                        	<div class="gonglue3_list">
+                            	<a href="javascript:void(0);">
+                            	<img src="__IMAGES__/gonglue3_5.png" width="40" />
+                                招商银行信用卡中心
+                                </a>
+                            </div>
+                        	<div class="gonglue3_list gonglue3_list1">
+                            	<a href="javascript:void(0);">
+                            	<img src="__IMAGES__/gonglue3_6.png" width="40" />
+                                平安银行信用卡中心
+                                </a>
+                            </div>
+                        	<div class="gonglue3_list gonglue3_list2">
+                            	<a href="javascript:void(0);">
+                            	<img src="__IMAGES__/gonglue3_7.png" width="40" />
+                                浦发银行信用卡中心
+                                </a>
+                            </div>
+                        	<div class="gonglue3_list gonglue3_list1 gonglue3_list2">
+                            	<a href="javascript:void(0);">
+                            	<img src="__IMAGES__/gonglue3_8.png" width="40" />
+                                民生银行信用卡中心
+                                </a>
+                            </div>-->
+                        </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        	<div class="gonglue3_bottom">
+               <div class="gonglue1_list gonglue1_list_ts">
+                   <div class="gonglue_tit gonglue_tit7">
+                       <h4>信用卡薅羊毛</h4>
+                       <a href="{:U('Credit/gonglue1',array('types'=>'4','type'=>'5'))}">更多</a>
+                   </div>
+                   <div class="gonglue1_wz gonglue1_wz1">
+                       <ul>
+                           <foreach name="s_r5" item="vo" >
+                               <li><a href="{:U('Credit/newsDetail',array('id'=>$vo['id'],'types'=>'4','type'=>'5'))}"><i class="fa fa-angle-right"></i>{$vo.news_title}</a><div class="gonglue3_r">回复  <span>{$vo.add_time|date='Y-m-d H:i:s',###}</span></div><div class="clear"></div></li>
+                               <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i>{$vo.news_title}</a></li>-->
+                           </foreach>
+                           <!--<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 周五信用卡羊毛精选，微信逢五减五，浦发1积分爆品抽奖</a><div class="gonglue3_r">回复  <span>2017-04-07 11:21</span></div><div class="clear"></div></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 周四信用卡羊毛精选，浦发1积分抢699元儿童安全座椅</a><div class="gonglue3_r">回复  <span>2017-04-06 11:43</span></div><div class="clear"></div></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 周六信用卡羊毛精选，招行不过了中行high了</a><div class="gonglue3_r">回复  <span>2017-04-01 14:24</span></div><div class="clear"></div></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 刷兴业银行信用卡 送百万大众点评现金券</a><div class="gonglue3_r">回复  <span>2017-03-31 09:48</span></div><div class="clear"></div></li>
+                           <li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 周四信用卡羊毛精选，浦发开包有惊喜</a><div class="gonglue3_r">回复  <span>2017-03-30 11:06</span></div><div class="clear"></div></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="gonglue1_list" style="margin-right:0;">
+                    	<div class="gonglue_tit gonglue_tit8">
+                        	<h4>关注我们</h4>
+                        </div>
+                        <div class="gonglue3_cot1">
+                        	<div class="gonglue3_img"><img src="__IMAGES__/gonglue3_ewm.png" width="100%" /></div>
+                        	<div class="gonglue3_img"><img src="__IMAGES__/gonglue3_ewm2.png" width="100%" /></div>
+                            <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="gonglue_box gonglue_box4">
+    	<div class="index_container">
+        	<a href="javascript:void(0);">
+    		<img src="__IMAGES__/gonglue4.jpg" width="100%"/>
+            </a>
+        </div>
+    </div>
+
+    <div class="gonglue_box gonglue_box5">
+    	<div class="index_container">
+            		<div class="gonglue1_list">
+                    	<div class="gonglue_tit gonglue_tit9">
+                        	<h4>最新资讯</h4>
+                            <a href="{:U('Credit/gonglue1',array('types'=>'4','type'=>'6'))}">更多</a>
+                        </div>
+                    <div class="gonglue1_wz gonglue1_wz1">
+                         <ul>
+                            <li><a href="newsdot.html"><span class="orange-bg">1</span></i> 信用卡逾期全额罚息仍是常态 12家银行仅3家分段计息</a></li>
+                            <li><a href="newsdot.html"><span class="orange-bg">2</span></i> 这几家银行信用卡全额罚息 看你是哪家？</a></li>
+                            <li><a href="newsdot.html"><span class="orange-bg">3</span></i> 信用卡逾期有多坑？全额罚息真的会终止么？</a></li>
+                            <li><a href="newsdot.html"><span>4</span></i> 剁手党恶意透支信用卡从“卡奴”变成“囚徒”的真实案例！</a></li>
+                            <li><a href="newsdot.html"><span>5</span></i> 一个小白申办下200万以上信用卡的经历</a></li>
+                            <li><a href="newsdot.html"><span>6</span></i> 信用卡加油哪家银行最优惠？给你省钱的“攻略”</a></li>
+                            <li><a href="newsdot.html"><span>7</span></i> 支付宝放大招！联合广发有米金融推出“好借钱”</a></li>
+                            <li><a href="newsdot.html"><span>8</span></i> 别轻信大额信用卡“神话”！这名男子被骗近2万元！</a></li>
+                         </ul>
+                    </div>
+                    </div>
+            		<div class="gonglue1_list">
+                    	<div class="gonglue_tit gonglue_tit10">
+                        	<h4>最热资讯</h4>
+                            <a href="#">更多</a>
+                        </div>
+                    <div class="gonglue1_wz gonglue1_wz1">
+                         <ul>
+                            <li><a href="newsdot.html"><span class="orange-bg">1</span></i> 除了i白金，中信银行还有哪张信用卡值得办？</a></li>
+                            <li><a href="newsdot.html"><span class="orange-bg">2</span></i> 教你一招：招行信用卡取现正确姿势是这样的！</a></li>
+                            <li><a href="newsdot.html"><span class="orange-bg">3</span></i> 5大信用卡管理APP测评，哪个更好用？</a></li>
+                            <li><a href="newsdot.html"><span>4</span></i> 除了i白金，中信银行还有哪张信用卡值得办？</a></li>
+                            <li><a href="newsdot.html"><span>5</span></i> 教你一招：招行信用卡取现正确姿势是这样的！</a></li>
+                            <li><a href="newsdot.html"><span>6</span></i> 信用卡欠款5万，分期和最低还款哪个划算？</a></li>
+                            <li><a href="newsdot.html"><span>7</span></i> “中信途牛Visa卡”免年费 境外笔笔10%返现！</a></li>
+                            <li><a href="newsdot.html"><span>8</span></i> 民生银行Ebates海淘卡开放申请 海淘享返利</a></li>
+                         </ul>
+                    </div>
+                    </div>
+            		<div class="gonglue1_list" style="margin-right:0;">
+                    	<div class="gonglue_tit gonglue_tit11">
+                        	<h4>信用卡专题</h4>
+                            <a href="{:U('Credit/gonglue1',array('types'=>'4','type'=>'6'))}">更多</a>
+                        </div>
+                     <div class="gonglue1_wz gonglue1_wz1 gonglue1_wz2">
+                    	<div class="gonglue1_wz2_cot">
+                            <foreach name="s_r6" item="vo" >
+                                <div class="gonglue1_wz_list">
+                                    <a href="{:U('Credit/newsDetail',array('id'=>$vo['id'],'types'=>'4','type'=>'6'))}">
+                                        <img src="{$vo.logo_pic}" width="100%">
+                                        <h5>{$vo.news_title}</h5>
+                                    </a>
+                                </div>
+                            </foreach>
+                    	<!--<div class="gonglue1_wz_list">
+                        	<a href="newsdot.html">
+                        	<img src="__IMAGES__/gonglue5_1.jpg" width="100%">
+                            <h5>中秋刷卡必备指南</h5>
+                            </a>
+                        </div>
+                    	<div class="gonglue1_wz_list gonglue1_wz_list1">
+                        	<a href="newsdot.html">
+                        	<img src="__IMAGES__/gonglue5_2.jpg" width="100%">
+                            <h5>信用卡潜规则大卸妆</h5>
+                            </a>
+                        </div>
+                    	<div class="gonglue1_wz_list">
+                        	<a href="newsdot.html">
+                        	<img src="__IMAGES__/gonglue5_3.jpg" width="100%">
+                            <h5>大额信用卡申卡指南</h5>
+                            </a>
+                        </div>
+                    	<div class="gonglue1_wz_list gonglue1_wz_list1">
+                        	<a href="newsdot.html">
+                        	<img src="__IMAGES__/gonglue5_4.jpg" width="100%">
+                            <h5>618购物狂欢节  最强神卡助攻</h5>
+                            </a>
+                        </div>-->
+                    	<div class="clear"></div>
+                        </div>
+                    </div>
+                    </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+</div>
+<!--  / warpper  -->
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<script>
+
+	var mySwiper1 = new Swiper('.swiper1',{
+		loop:true,
+		autoplay:5000,
+        grabCursor: true,
+        spaceBetween: 0,
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false ,
+		onSlideChangeStart: function(){
+			$('.gonglue1_bg h4').eq(mySwiper1.activeLoopIndex).siblings().stop().animate({'opacity':'0'},500);
+			$('.gonglue1_bg h4').eq(mySwiper1.activeLoopIndex).stop().animate({'opacity':'1'},500);
+		}
+    });
+	$('.gonglue_l').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipePrev()
+	})
+
+	$('.gonglue_r').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipeNext()
+	})
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000,
+		spaceBetween: 0,
+		slidesPerView : 4,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.fangdai_lt').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+
+	$('.fangdai_rt').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+
+</script>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+	$(window).load(function(){
+		$(".swiper1").height($(".swiper1 .swiper-slide img ").height());
+
+	})
+	$(window).resize(function(){
+		$(".swiper1").height($(".swiper1 .swiper-slide img ").height());
+	});
+
+
+})
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})
+</script>
+
+</html>

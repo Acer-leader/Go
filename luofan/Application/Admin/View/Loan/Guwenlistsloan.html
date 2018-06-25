@@ -1,0 +1,521 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__JqColor__/css/colpick.css" type="text/css"/>
+<!-- 颜色选择器插件 -->
+<style>
+.btn-success {
+	margin-top: 12px;
+}
+.formitems #addimage1 {
+	width: 80px;
+	height: 56px;
+	padding: 0px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+	cursor: pointer;
+	opacity: 0;
+}
+.formitems #addimage2 {
+	width: 80px;
+	height: 56px;
+	padding: 0px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+	cursor: pointer;
+	opacity: 0;
+}
+.formitems #editimage1 {
+	width: 80px;
+	height: 56px;
+	padding: 0px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+	cursor: pointer;
+	opacity: 0;
+}
+.formitems #editimage2 {
+	width: 80px;
+	height: 56px;
+	padding: 0px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+	cursor: pointer;
+	opacity: 0;
+}
+</style>
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">顾问列表</h1>
+    <!--<div class="alert alert-info disable-del">
+      <h4>提示</h4>
+      删除分类会删除分类下面所有的产品 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div>-->
+    <form action="" method="post">
+      <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加</a>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="javascript:history.back(-1);" class="btn btn-success">返回</a>
+        <!--div class="tables-searchbox fr">
+          <input type="text" placeholder="分类名称" class="input" name="class_name" value="">
+          <button class="btn"><i class="gicon-search"></i>查询</button>
+        </div-->
+      </div>
+    </form>
+    <table class="wxtables mgt15">
+      <colgroup>
+      <col width="2%">
+      <col width="10%">
+      <col width="10%">
+      <col width="15%">
+      <col width="10%">
+      <col width="10%">
+      <col width="20%">
+      </colgroup>
+      <thead>
+        <tr>
+          <td>id</td>
+          <td>姓名</td>
+          <td>图标/简介</td>
+          <td>热线</td>
+          <td>排序</td>
+          <td>创建时间</td>
+          <td class="center">操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="lists" item="vo" >
+          <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.name}</td>
+            <td><img src="{$vo.pic}" width="30" title="{$vo.des}"></td>
+            <td>{$vo.telphone}</td>
+            <td>{$vo.sorts}</td>
+            <td>{$vo.create_at|date="Y-m-d H:i:s",###}</td>
+            <td class="center">
+            <a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}" data-des="{$vo.des}" data-telphone="{$vo.telphone}" data-qq_num="{$vo.qq_num}" data-wx_img="{$vo.wx_img}" data-pic="{$vo.pic}" data-bank="{$vo.bank_id}" data-name="{$vo.name}" data-sorts="{$vo.sorts}" >编辑</a>
+             <a href="{:U('/Admin/Loan/Delguwenlistsloan/id')}/{$vo.id}" class="btn btn-warning j-delClass" title="删除" onclick="return confirm('确定要删除吗？')" data-id="{$vo.id}">删除</a> 
+            </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    
+  </div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/>
+
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="height:auto;">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">添加</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: auto;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>姓名：</label>
+      <div class="form-controls">
+        <input type="text" class="input name" name="name">
+        <span class="fi-help-text"></span> </div>
+    </div>
+  
+    <div class="formitems" style=" height:60px;">
+      <label class="fi-name"><span class="colorRed"></span>上传首页展示图片：</label>
+      <div class="form-controls images">
+        <div class="showimg"></div>
+        <div class="imagesadd">+</div>
+        <input type="file" accept="image/jpg,image/jpeg,image/png,image/svg" class="input sort" name="serial" id="addimage" >
+        <div class="progress">
+          <div class="bar"></div>
+        </div>
+        <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小（宽173高260）</span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>热线：</label>
+      <div class="form-controls">
+        <input type="text" class="input telphone" name="telphone" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>简介：</label>
+      <div class="form-controls">
+        <textarea style="width:182px;height:70px;max-width:182px;max-height:70px;" id="des" name="des" ></textarea>
+        <span class="fi-help-text">换行&lt;br/&gt;</span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>联系QQ：</label>
+      <div class="form-controls">
+        <input type="text" class="input" id="qq_num" name="sorts" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems" style=" height:60px;">
+      <label class="fi-name"><span class="colorRed"></span>微信二维码：</label>
+      <div class="form-controls images">
+        <div class="showimg1"></div>
+        <div class="imagesadd">+</div>
+        <input type="file" accept="image/jpg,image/jpeg,image/png,image/svg" class="input sort" name="serial" id="wx_img" style="width: 80px;height: 56px;padding: 0px;position: absolute;top: 0px;left: 0px;z-index: 10;cursor: pointer;opacity: 0;">
+        <div class="progress">
+          <div class="bar"></div>
+        </div>
+        <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小（宽120高120）</span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>排序：</label>
+      <div class="form-controls">
+        <input type="text" class="input" id="addsorts" name="sorts" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<div class="jbox editfenlei disshow" style="height:auto;">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">修改</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: auto;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>姓名：</label>
+      <div class="form-controls">
+        <input type="text" class="input name" name="name" id="editname">
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems" style=" height:60px;">
+      <label class="fi-name"><span class="colorRed"></span>上传首页展示图片：</label>
+      <div class="form-controls images">
+        <div class="showimg showimgedit"></div>
+        <div class="imagesadd">+</div>
+        <input type="file"  accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="editimage" >
+        <div class="progress">
+          <div class="bar"></div>
+        </div>
+        <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小（宽50高50）</span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>热线：</label>
+      <div class="form-controls">
+        <input type="text" class="input telphone" name="edittelphone" id="edittelphone">
+        <span class="fi-help-text"></span> </div>
+    </div>
+   
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>简介：</label>
+      <div class="form-controls">
+        <textarea style="width:182px;height:70px;max-width:182px;max-height:70px;" id="editdes" name="des" ></textarea>
+        <span class="fi-help-text">换行&lt;br/&gt;</span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>联系QQ：</label>
+      <div class="form-controls">
+        <input type="text" class="input" id="aqq_num" name="sorts" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems" style=" height:60px;">
+      <label class="fi-name"><span class="colorRed"></span>微信二维码：</label>
+      <div class="form-controls images">
+        <div class="ashowimg1"></div>
+        <div class="imagesadd">+</div>
+        <input type="file" accept="image/jpg,image/jpeg,image/png,image/svg" class="input sort" name="serial" id="awx_img" style="width: 80px;height: 56px;padding: 0px;position: absolute;top: 0px;left: 0px;z-index: 10;cursor: pointer;opacity: 0;">
+        <div class="progress">
+          <div class="bar"></div>
+        </div>
+        <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小（宽120高120）</span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>排序：</label>
+      <div class="form-controls">
+        <input type="text" class="input sorts" name="sorts" id="editsorts" >
+        <input type="hidden" class="input id" name="id" id="editid" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editcategory">确定</a><a
+            href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script> 
+<script src="__JqColor__/js/colpick.js" type="text/javascript"></script> 
+<script type="text/javascript">
+$(".cancle").click(function(){
+	$(this).parent().parent('.jbox').hide();
+	$('#albums-overlay').hide();
+})
+$(function () {
+	var progress = $(".img");
+	var bar = $('.bar') ;
+	var percent = $('.percent');
+	var progress = $('.progress');
+    $("#addimage").wrap("<form id='myupload' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#addimage").change(function(){ //选择文件
+        $("#myupload").ajaxSubmit({
+            dataType:  'json', //数据格式为json
+            beforeSend: function() { //开始上传
+                progress.show(); //显示进度条
+                var percentVal = '0%';
+                bar.width(percentVal);
+                percent.html(percentVal);
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+                var percentVal = percentComplete + '%'; //获得进度
+                bar.width(percentVal); //上传进度条宽度变宽
+                percent.html(percentVal); //显示上传进度百分比
+            },
+            success: function(data) { //成功
+                var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="addpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                $('.showimg').html(img);
+                $("#addimage").val('');
+                progress.hide();
+            },
+            error:function(xhr){ //上传失败
+                //console.log(xhr.status)
+            }
+        });
+    });
+
+    $("#wx_img").wrap("<form id='myupload2' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#wx_img").change(function(){ //选择文件
+        $("#myupload2").ajaxSubmit({
+            dataType:  'json', //数据格式为json
+            beforeSend: function() { //开始上传
+                progress.show(); //显示进度条
+                var percentVal = '0%';
+                bar.width(percentVal);
+                percent.html(percentVal);
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+                var percentVal = percentComplete + '%'; //获得进度
+                bar.width(percentVal); //上传进度条宽度变宽
+                percent.html(percentVal); //显示上传进度百分比
+            },
+            success: function(data) { //成功
+                var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="wx_img" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                $('.showimg1').html(img);
+                $("#wx_img").val('');
+                progress.hide();
+            },
+            error:function(xhr){ //上传失败
+                //console.log(xhr.status)
+            }
+        });
+    });
+    $("#awx_img").wrap("<form id='myupload3' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#awx_img").change(function(){ //选择文件
+        $("#myupload3").ajaxSubmit({
+            dataType:  'json', //数据格式为json
+            beforeSend: function() { //开始上传
+                progress.show(); //显示进度条
+                var percentVal = '0%';
+                bar.width(percentVal);
+                percent.html(percentVal);
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+                var percentVal = percentComplete + '%'; //获得进度
+                bar.width(percentVal); //上传进度条宽度变宽
+                percent.html(percentVal); //显示上传进度百分比
+            },
+            success: function(data) { //成功
+                var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="awx_img" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                $('.ashowimg1').html(img);
+                $("#awx_img").val('');
+                progress.hide();
+            },
+            error:function(xhr){ //上传失败
+                //console.log(xhr.status)
+            }
+        });
+    });
+
+
+});
+$(function () {
+	var progress = $(".img");
+	var bar = $('.bar') ;
+	var percent = $('.percent');
+	var progress = $('.progress');
+	$("#editimage").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+	$("#editimage").change(function(){ //选择文件
+		$("#myupload1").ajaxSubmit({
+			dataType:  'json', //数据格式为json
+			beforeSend: function() { //开始上传
+				progress.show(); //显示进度条
+				var percentVal = '0%';
+				bar.width(percentVal);
+				percent.html(percentVal);
+			},
+			uploadProgress: function(event, position, total, percentComplete) {
+				var percentVal = percentComplete + '%'; //获得进度
+				bar.width(percentVal); //上传进度条宽度变宽
+				percent.html(percentVal); //显示上传进度百分比
+			},
+			success: function(data) { //成功
+				var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="editpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+				$('.showimgedit').html(img);
+				$("#editimage").val('');
+				progress.hide();
+			},
+			error:function(xhr){ //上传失败
+				//console.log(xhr.status)
+			}
+		});
+	});
+});
+</script> 
+<script>
+
+</script> 
+
+<!--添加分类--> 
+
+<script type="text/javascript">
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+        $("#color").focus(function(){
+        $("#picker").attr("style","display:block,position:absolute !important;");
+        })
+        $('#picker').colpick({
+          flat:true,
+          layout:'hex',
+          submit:0
+      });
+    })
+</script> 
+<script type="text/javascript">
+    $("#addcategory").click(function(){
+      var name     = $('.name').val();  //分类名称
+	  var telphone = $('.telphone').val();  //分类名称
+	  var pic      = $('#addpic').val();
+	  var des      = $('#des').val();
+      var bank_id  = $('select[name="bank_id"]').val();
+      var sorts    = $('#addsorts').val();           //排序
+      var qq_num   = $.trim($("#qq_num").val());
+      var wx_img   = $("[name='wx_img']").val();
+        if (name == '') {
+            alert("姓名必填！");
+            return false;
+        }
+
+        if (telphone == '') {
+            alert("热线必填！");
+            return false;
+        }
+        if (qq_num == '') {
+            alert("请填写该顾问的QQ号码！");
+            return false;
+        }
+
+        if(!sorts.match(/^[0-9]*$/)){
+            alert("请填写正确的排序！");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Admin/Loan/Addeditguwenlistsloan')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                name: name,
+				telphone:telphone,
+        		cate_id:"{$cate_id}",
+                pic: pic,
+                sorts:sorts,
+                des:des,
+                bank_id:bank_id,
+                qq_num:qq_num,
+                wx_img:wx_img
+            }
+        }).done(function (g) {
+			alert(g.info);
+			window.location.reload();
+        })
+    })
+</script> 
+<!--添加分类end--> 
+
+<!--修改分类--> 
+<script type="text/javascript">
+    var categoryid;
+    $(".j-editClass").click(function(){
+        $('.editfenlei').show();
+        $('#albums-overlay').show();
+		
+       //data-id="{$vo.id}" data-des="{$vo.des}" data-telphone="{$vo.telphone}" data-pic="{$vo.pic}" data-name="{$vo.name}" data-sorts="{$vo.sorts}"
+	   
+        var editid      =$(this).attr('data-id');
+    	var editname    =$(this).attr('data-name');
+    	var editdes     =$(this).attr('data-des');
+    	var edittelphone=$(this).attr('data-telphone');
+        var editpic     =$(this).attr('data-pic'); 
+        var editsorts   =$(this).attr('data-sorts');
+        var bank_id     =$(this).attr('data-bank');
+        var qq_num     =$(this).attr('data-qq_num');
+        var wx_img     =$(this).attr('data-wx_img');
+       
+        $('#editname').val(editname);
+        $('#edittelphone').val(edittelphone);
+        $('#editdes').val(editdes);
+		$('#editid').val(editid);
+        $('#editsorts').val(editsorts);
+        $('#aqq_num').val(qq_num);
+        $("#bank_name option[value="+bank_id+"]").attr('selected',true);
+        if(editpic.length > 0){
+            var img = '<img src="'+editpic+'" width="80" height="56" style="margin-top:-28px;background-color:"><input type="hidden" name="pic" id="editpic" value="'+editpic+'"></input>';
+            $('.showimgedit').html(img);
+        }else{
+            $('.showimgedit').html('');
+        }
+        if(wx_img.length > 0){
+            var img = '<img src="'+wx_img+'" width="80" height="56" style="margin-top:-28px;background-color:"><input type="hidden" name="awx_img"  value="'+wx_img+'"></input>';
+            $('.ashowimg1').html(img);
+        }else{
+            $('.ashowimg1').html('');
+        }
+    })
+
+    $("#editcategory").click(function(){
+		var id       = $('#editid').val();  console.log(id);
+        var name     = $('#editname').val();  console.log(name);
+		var editdes  = $('#editdes').val();  console.log(editdes);
+        var pic      = $('#editpic').val();  console.log(pic);
+		var sorts    = $('#editsorts').val();    console.log(sorts);
+        var edittelphone = $('#edittelphone').val();  console.log(edittelphone);
+        var bank_id = $('#bank_name').val();
+        var qq_num = $('#aqq_num').val();
+        var wx_img = $("[name='awx_img']").val();
+        if (name == '') {
+            alert("分类名称必填！");
+            return false;
+        }
+		if (edittelphone == '') {
+            alert("热线必填！");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Admin/Loan/Addeditguwenlistsloan')}",
+            type: "post",
+            dataType: "json",
+            data: {
+              bank_id:bank_id,
+				id:id,
+               	name: name,
+				telphone:edittelphone,
+        		cate_id:"{$cate_id}",
+                pic: pic,
+                sorts:sorts,
+				des:editdes,
+                qq_num: qq_num,
+                wx_img: wx_img
+
+            }
+        }).done(function (g) {
+            alert(g.info);
+			window.location.reload();
+        })
+    })
+</script> 
+<!--修改分类end-->

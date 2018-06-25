@@ -1,0 +1,246 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+<style>
+    .imgnav{
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .imgwrapper{
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .imgwrapper img{
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border:0;
+    }
+    .spanpd10{
+        margin:10px;
+    }
+    .wxtables.wxtables-sku.newtable{
+        width: 40%;
+        margin: 0;
+    }
+    .img-list li{
+        width: 60px;
+        height:60px;
+    }
+    .cst_h3 span{font-weight: normal;}
+    #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+    .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+    .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+    #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+    #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+    #xuanze2:hover{ background:#E6E6E6; }
+    .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+    .formitems .fi-name{
+        width:300px !important;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left" />
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">邮件服务器设置</h1>
+            <!--<form action="" enctype="multipart/form-data" method="post" id="web_config_form" >-->
+                <div class="panel-single panel-single-light mgt20">
+                    <h3 class="cst_h3 mgb20">设置基本信息</h3>
+                    <notempty name="memberdetail.email">
+                        <div class="formitems">
+                            <label class="fi-name"><span class="colorRed">*</span>绑定邮箱：</label>
+                            <div class="form-controls">
+                                <input type="text" class="input"  value="{$memberdetail.email}" readonly id="old_email" name="old_email" />
+                                <span class="lh30 mgl10"></span>
+                            </div>
+                        </div>
+                    </notempty>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>绑定邮箱：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input"   id="email" name="email" />
+                            <span class="lh30 mgl10"></span>
+                        </div>
+
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>验证码：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input" style="width:60px;" id="code" name="code" />
+                            <div class="btn btn-primary" id="emailcode" style="font-size: 6px !important;">点击获取验证码</div>
+                            <span class="lh30 mgl10"></span>
+                        </div>
+
+                    </div>
+                    <!--<div class="formitems">-->
+                        <!--<label class="fi-name"><span class="colorRed"></span>发送邮件服务器地址(SMTP) :</label>-->
+                        <!--<div class="form-controls">-->
+                            <!--<input type="hidden" class="input" name="id" value="{$cache.id}" placeholder="">-->
+                            <!--<input type="text" class="input" name="service" value="{$cache.service}" placeholder="发送邮件服务器地址" />-->
+                            <!--<span style="color: red;">注：邮件服务器主机地址。如果本机可以发送邮件则设置为localhost</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="formitems">-->
+                        <!--<label class="fi-name"><span class="colorRed">*</span>服务器端口:</label>-->
+                        <!--<div class="form-controls">-->
+                            <!--<input type="text" class="input" value="{$cache.port}"  name="port" placeholder="25" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" />-->
+                            <!--<span style="color: red;">注：默认为25</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="formitems">-->
+                        <!--<label class="fi-name"><span class="colorRed">*</span> 邮件发送帐号:</label>-->
+                        <!--<div class="form-controls">-->
+                            <!--<input type="text" class="input" value="{$cache.username}"  name="username" placeholder="邮件发送帐号"  />-->
+                            <!--<span style="color: red;">注：发送邮件所需的认证帐号</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="formitems">-->
+                        <!--<label class="fi-name"><span class="colorRed">*</span> 帐号密码:</label>-->
+                        <!--<div class="form-controls">-->
+                           <!--&lt;!&ndash; <input type="password" class="input" value="{$cache.password}"  name="password" placeholder="帐号密码"  />&ndash;&gt;-->
+                            <!--<input type="password" class="input" value=""  name="password" placeholder="帐号密码"  />-->
+                            <!--<span style="color:red;">注：发送邮件所需的认证帐号密码</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="formitems">-->
+                        <!--<label class="fi-name"><span class="colorRed">*</span>邮件回复地址:	</label>-->
+                        <!--<div class="form-controls">-->
+                            <!--<input type="text" class="input" value="{$cache.return}"  name="return" placeholder="邮件回复地址"  />-->
+                            <!--<span style="color: red;">注：邮件回复地址</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="formitems">-->
+                        <!--<label class="fi-name"><span class="colorRed">*</span>邮件发送地址:	</label>-->
+                        <!--<div class="form-controls">-->
+                            <!--<input type="text" class="input" value="" id="emaill"  placeholder="邮件发送地址"  />-->
+                            <!--<span style="color: red;">注：输入对方邮箱发送测试邮件！</span>-->
+                        <!--</div>-->
+                        <!--<p class="btn btn-success" id="submitmail" style="float:right;">发送测试邮件</p>-->
+                    <!--</div>-->
+
+                    <div class="panel-single panel-single-light mgt20 txtCenter">
+                        <button class="btn btn-primary" id="btn-submit">保存</button>
+                    </div>
+                </div>
+            <!--</form>-->
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<!--编辑保存 1-->
+<script>
+    $("#btn-submit").click(function(){
+        var post = {};
+        post.email = $("#email").val();
+        if(post.email == "" || post.email == null)
+        {
+            $('#email').focus();alert('请填写邮箱');return false;
+        }
+        post.code = $('#code').val();
+        if(post.code == "" || post.code == null)
+        {
+            $('#code').focus();alert('请填写验证码');return false;
+        }
+        //var data = $("#web_config_form").serialize();
+        $.post("{:U('/Supplier/Index/emailConfig')}", post, function(res){
+            if(res['status'] == 1){
+                dialog.showTips(res.info, "warn", function (){
+                    window.location.reload();
+                });
+            }else{
+                dialog.showTips(res.info, "warn");
+            }
+        })
+        return false;
+
+    });
+
+//    $("#submitmail").click(function(){
+//
+//        var email = $("#emaill").val();
+//        if(!email){
+//            alert("请输入测试邮件发送地址");
+//            $("#emaill").focus();
+//            return false;
+//        }
+//        $.post("{:U('/Admin/Index/CeshiMail')}", {email:email}, function(res){
+//            if(res['status']){
+//                dialog.showTips(res.info, "warn", function (){
+//                    //window.location.reload();
+//                });
+//            }else{
+//                dialog.showTips(res.info, "warn");
+//            }
+//        })
+//    })
+
+
+
+</script>
+<script>
+    //邮箱验证码
+    $("#emailcode").click(function(){
+        var _this = $(this)
+        if (_this.attr("disabled")) {
+            return false;
+        }
+
+        var email    = $("#email").val();
+        if(!email){
+            dialog.showTips("请填写邮箱帐号！","warn");return false;
+        }
+        var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/; //验证邮箱的正则表达式
+        if(!reg.test(email))//判断
+        {
+            dialog.showTips("邮箱格式错误！","warn");return false;
+        }
+
+        $.post("{:U('Supplier/Index/sendemail')}", {email:email}, function(data){
+            console.log(data);
+            if(data.status==1){
+
+                dialog.showTips(data.info,"warn");
+                $(this).css("background",'#b5b2b0');
+
+                time(_this);
+            }else{
+                dialog.showTips(data.info,"warn");
+            }
+        },"json")
+
+    })
+    var wait = 60;
+    function time(o) {
+        // localStorage.aux_reTime=wait;
+        if (wait == 0) {
+            o.css("background",'#4e2601');
+            o.removeAttr("disabled");
+            o.html("重新获取");
+            wait = 60;
+        } else {
+            o.attr("disabled", true);
+            o.html("重新发送(" + wait + ")");
+            wait--;
+            setTimeout(function () {
+                time(o)
+            }, 1000);
+        }
+    }
+</script>
+<!--编辑保存 2-->

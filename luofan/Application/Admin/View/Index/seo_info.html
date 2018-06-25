@@ -1,0 +1,578 @@
+<include file="Public:head"/>
+<style>
+.btn-success {
+	margin-top: 12px;
+}
+</style>
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">SEO三个关键字列表</h1>
+    <div class="alert alert-info disable-del">
+      <h4>提示</h4>
+      删除控制器会删除下面所有的方法 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div>
+    <form action="" method="post">
+      <div class="clearfix"> 
+      <a href="javascript:;" class="btn btn-success fl addattr" style='margin-right:20px;'>添加控制器</a>
+          <a href="javascript:;" class="btn btn-success fl BtnAddClass" style='margin-right:20px;'>添加方法</a>
+     <!-- <a href="{:U('Admin/Goods/setSku',array('id'=>$_GET['goods_id']))}" style="margin-top:12px;margin-left:50px;" class="btn fl">返回</a> -->
+
+      </div>
+    </form>
+    <table class="wxtables mgt15">
+      <colgroup>
+      <!-- <col width="2%"> -->
+      <col width="25%">
+      <!--<col width="10%">-->
+      <col width="20%">
+      <col width="20%">
+      <col width="38%">
+      </colgroup>
+      <thead>
+        <tr>
+          <!-- <td><i class="icon_check"></i></td> -->
+          <td>控制器名称</td>
+          <td>排序</td>
+          <td >创建时间</td>
+          <td class="center">操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="cache" item="vo" key="k1">
+          <tr class="inactive{$k1}"  style="background-color: #d9edf7;border-color: #bce8f1;">
+            <!-- <td class="center"><input type="checkbox" class="checkbox table-ckbs" data-id="9788"></td> -->
+            <td>{$vo.classname}/{$vo.controller}</td>
+            <td>{$vo.sort}</td>
+            <td>{$vo.create_at|date="Y-m-d H:i:s",###}</td>
+            <td class="center">
+			<a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}" data-controller="{$vo.controller}" data-title="{$vo.classname}" data-renk="{$vo.sort}">编辑</a> 
+			</td>
+          </tr>
+            <?php $ii=0;?>
+          <foreach name="vo.data" item="vo1" >
+              <?php $ii++;?>
+          <tr <if condition="$ii gt $v1['nodes']['count']">class="ins_son{$k1} last"<else/>class="ins_son{$k1}"</if> style="display:none;">
+            <!-- <td class="center"><input type="checkbox" class="checkbox table-ckbs" data-id="9788"></td> -->
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;|-{$vo1.name}</td>
+            <!--<td><img src="{$vo1.pic}" width="30" alt=""></td>-->
+            <td>{$vo1.sort}</td>
+            <td>{$vo1.add_time|date="Y-m-d H:i:s",###}</td>
+            <td class="center">
+            <a href="javascript:void(0);" class="btn btn-primary j-delClassval" title="编辑" data-id="{$vo1.id}" data-fid="{$vo1.fid}"  data-function="{$vo1.function}" data-name="{$vo1.name}" data-title="{$vo1.title}" data-keywords="{$vo1.keywords}" data-description="{$vo1.description}" data-renk="{$vo1.sort}">编辑</a>
+          
+            
+           </td>
+          </tr>
+          </foreach>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl"> <!--<a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a> -->
+        <!--<a href="javascript;" class="btn btn-primary btn_table_delAll">批量删除</a></div>-->
+        <div class="fr"> 
+          <!--<div class="paginate">-->
+          
+          <div class="pages"> 
+            <!--</div>-->
+            {$page} 
+          </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei addtitleval disshow" style="width:500px">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">添加方法</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 263px;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>方法名称：</label>
+      <div class="form-controls">
+        <input type="text" class="input classname" name="classname" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>方法：</label>
+      <div class="form-controls">
+        <input type="text" class="input function" name="function" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+
+	
+	 <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>所属分类：</label>
+      <div class="form-controls">
+      <select name='fid' style='padding:5px;border: 1px solid #ccc;width:182px' id='fid'>
+     <!-- <option value="0">&#45;&#45;顶级属性&#45;&#45;</option>-->
+          <foreach name="cate" item="vo" >
+          <option value="{$vo.id}">{$vo.classname}/{$vo.controller}</option>
+          </foreach>
+      </select>
+        <span class="fi-help-text"></span> </div>
+    </div>
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>标题：</label>
+      <div class="form-controls">
+        <!-- <input type="text" class="input title" name="title" > -->
+		<textarea style="height:100px;width:250px;" class="input title" name="title" >{$cache.title}</textarea>
+        <span class="fi-help-text"></span> </div>
+    </div>
+
+	  <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>关键字：</label>
+      <div class="form-controls">
+        <!-- <input type="text" class="input keywords" name="keywords" > -->
+		<textarea style="height:100px;width:250px;" class="input keywords" name="keywords" >{$cache.keywords}</textarea>
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>描述：</label>
+      <div class="form-controls">
+        <!-- <input type="text" class="input description" name="description" > -->
+		<textarea style="height:100px;width:250px;" class="input description" name="description" >{$cache.description}</textarea>
+        <span class="fi-help-text"></span> </div>
+    </div>
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>排序：</label>
+      <div class="form-controls">
+        <input type="text" class="input" id="addsort" name="serial" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+    
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+    <div class="jbox addtitle addfenlei  disshow">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">添加控制器</div>
+            <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <div class="jbox-container" style="height: 263px;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>控制器名称：</label>
+                <div class="form-controls">
+                    <input type="text" class="input classname" name="classname" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>控制器：</label>
+                <div class="form-controls">
+                    <input type="text" class="input controller" name="controller" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>排序：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" id="addsorts" name="serial" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addskuval">确定</a><a
+                href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+
+    <div class="jbox editfenlei addfenlei  disshow">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">编辑控制器</div>
+            <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <div class="jbox-container" style="height: 263px;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>控制器名称：</label>
+                <div class="form-controls">
+                    <input type="text" class="input classname" name="classname" >
+                    <input type="hidden" class="input sort" id="categoryid" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>控制器：</label>
+                <div class="form-controls">
+                    <input type="text" class="input controller" name="controller" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>排序：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" id="editsorts" name="sort" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="edittitle">确定</a><a
+                href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+
+<div class="jbox editattrval addfenlei disshow" style="width: 500px">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">编辑方法名称</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>方法名称：</label>
+            <div class="form-controls">
+                <input type="text" class="input classname" name="classname" >
+                <input type="hidden" class="input" name="valid" >
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>方法：</label>
+            <div class="form-controls">
+                <input type="text" class="input function" name="function" >
+                <span class="fi-help-text"></span> </div>
+        </div>
+        
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>标题：</label>
+            <div class="form-controls">
+                <!-- <input type="text" class="input title" name="title" > -->
+				<textarea style="height:100px;width:250px;" class="input title" name="title" ></textarea>
+                <span class="fi-help-text"></span> </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>关键字：</label>
+            <div class="form-controls">
+                <!-- <input type="text" class="input keywords" name="keywords" > -->
+				<textarea style="height:100px;width:250px;" class="input keywords" name="keywords" ></textarea>
+                <span class="fi-help-text"></span> </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>描述：</label>
+            <div class="form-controls">
+                <!-- <input type="text" class="input description" name="description" > -->
+				<textarea style="height:100px;width:250px;" class="input description" name="description" ></textarea>
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>排序：</label>
+            <div class="form-controls">
+                <input type="text" class="input" name="sort" >
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+    </div>
+    <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addval">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+
+    var count = parseInt("{$count}")+1;
+    for(var kkk=0;kkk<=count;kkk++) {
+        (function (kkk) {
+            $(document).on('click', ".inactive" + kkk, function (){
+                if ($(this).nextAll('.ins_son'+kkk).css('display') == 'none') {
+                    $(this).nextAll('.ins_son'+kkk).show();
+                } else {
+                    $(this).nextAll('.ins_son'+kkk).hide();
+                    $(this).nextAll('.ins_sun'+kkk).hide();
+                    $(this).nextAll('.ins_suns'+kkk).hide();
+                }
+            });
+            $(document).on('click', ".ins_son"+kkk, function(){
+                if($(this).hasClass('last')){
+                    if($(this).nextUntil('.ins_son'+kkk).css('display') == 'none'){
+                        $(this).next('.ins_son'+kkk).show();
+                    }else{
+                        $(this).nextAll('.ins_sun'+kkk).hide();
+                        $(this).nextAll('.ins_suns'+kkk).hide();
+                    }
+                }else{
+                    if($(this).nextUntil('.ins_son'+kkk).css('display') == 'none'){
+                        $(this).nextUntil('.ins_son'+kkk).show();
+                    }else{
+                        $(this).nextAll('.ins_sun'+kkk).hide();
+                        $(this).nextAll('.ins_suns'+kkk).hide();
+                    }
+                }
+
+            });
+        })(kkk);
+    }
+
+
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    
+
+</script>
+
+
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(".BtnAddClass").click(function(){
+        $('.addtitleval').show();
+        $('#albums-overlay').show();
+    })
+	
+	$("#val").click(function(){
+        $('#addfenlei').show();
+        $('#overlay').show();
+    })
+    $(".addattr").click(function(){
+        $('.addtitle').show();
+        $('#albums-overlay').show();
+    });
+
+	
+
+    $("#addcategory").click(function(){
+        var classname = $('.addtitleval .classname').val();  //方法名称
+        var function1 = $('.addtitleval .function').val();  //方法
+        var sort = $('#addsort').val();           //排序
+        var title = $('.addtitleval .title').val();  //标题
+        var keywords = $('.addtitleval .keywords').val();  //关键字
+        var description = $('.addtitleval .description').val();  //描述
+		    var fid=$("#fid").val();
+        if (classname == '') {
+            alert("方法名称必填！");
+            return false;
+        }
+        if (function1 == '') {
+            alert("方法必填！");
+            return false;
+        }
+        if (title == '') {
+            alert("标题必填！");
+            return false;
+        }
+        if (keywords == '') {
+            alert("关键字必填！");
+            return false;
+        }
+		    if (description == '') {
+            alert("描述必填！");
+            return false;
+        }
+        if(!sort.match(/^[0-9]*$/)){
+            alert("请填写正确的排序！");
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Admin/Index/add_seo_val')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                classname: classname,
+                function: function1,
+                title: title,
+                keywords: keywords,
+                description: description,
+                sort:      sort,
+				        fid:fid,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+        })
+    });
+    $("#addskuval").click(function(){
+        var classname = $('.addtitle .classname').val();  //控制器名称
+        var controller = $('.addtitle .controller').val();  //控制器
+        var sort = $('#addsorts').val();           //排序
+        //var fid=$("#fid").val();
+        if (classname == '') {
+            alert("控制器名称必填！");
+            return false;
+        }
+        if (controller == '') {
+            alert("控制器必填！");
+            return false;
+        }
+
+        if(!sort.match(/^[0-9]*$/)){
+            alert("请填写正确的排序！");
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Admin/Index/add_seo_attr')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                classname: classname,
+                controller: controller,
+                sort:      sort
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+        })
+    })
+	
+	
+
+</script> 
+<!--添加分类end--> 
+
+<!--修改分类--> 
+<script type="text/javascript">
+    function delImg(obj) {
+        if (!confirm("删除这张图片？")) {
+            return false;
+        }
+        var id = $(obj).attr("data-id")
+        if (id) {
+            alert(1);
+            return false;
+        }
+        // $(obj).next("input").remove();
+        $(obj).parent().remove();
+        $(obj).remove();
+    }
+    var categoryid;
+    $(".j-editClass").click(function(){
+        $('.editfenlei').show();
+        $('#albums-overlay').show();
+        var categoryname=$(this).attr('data-title');//控制器名称
+        var categoryid=$(this).attr('data-id');
+	    //var fid=$(this).attr('data-fid');
+        var sort=$(this).attr('data-renk');
+        var controller = $(this).attr('data-controller');//控制器
+
+        
+        $(".editfenlei input[name=classname]").val(categoryname);
+        $(".editfenlei input[name=controller]").val(controller);
+		//$('#editfid').val(fid);
+        $(".editfenlei input[name=sort]").val(sort);
+        $('#categoryid').val(categoryid);
+    });
+
+    $("#edittitle").click(function(){
+        var classname = $(".editfenlei input[name=classname]").val();  //控制器名称
+        var controller = $(".editfenlei input[name=controller]").val();  //控制器
+		    var sort = $(".editfenlei input[name=sort]").val();           //排序
+			  var categoryid = $('#categoryid').val();           //排序
+        if (classname == '') {
+            alert("控制器名称必填！");
+            return false;
+        }
+        if (controller == '') {
+            alert("控制器必填！");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Admin/Index/edit_seo_attr')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                classname: classname,
+                controller: controller,
+                sort: sort,
+                categoryid:categoryid,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+
+    $(".j-delClassval").click(function(){
+        $('.editattrval').show();
+        $('#albums-overlay').show();
+        var categoryname=$(this).attr('data-name');//方法名称
+        var function1 =$(this).attr('data-function');//方法
+        var title =$(this).attr('data-title');//标题
+        var keywords =$(this).attr('data-keywords');//关键字
+        var description =$(this).attr('data-description');//描述
+        var categoryid=$(this).attr('data-id');
+        var fid=$(this).attr('data-fid');
+        var sort=$(this).attr('data-renk');
+        $(".editattrval input[name=classname]").val(categoryname);
+        $(".editattrval input[name=function]").val(function1);
+        $(".editattrval textarea[name=title]").val(title);
+        $(".editattrval textarea[name=keywords]").val(keywords);
+        $(".editattrval textarea[name=description]").val(description);
+        //$('#editfid').val(fid);
+        $(".editattrval input[name=sort]").val(sort);
+        $(".editattrval input[name=valid]").val(categoryid);  //控制器id
+    });
+
+    $("#addval").click(function(){
+		var post ={};
+        post.classname = $(".editattrval input[name=classname]").val();  //方法名称
+        post.function1 = $(".editattrval input[name=function]").val();  //方法
+
+        post.title = $(".editattrval textarea[name=title]").val();  //标题
+        post.keywords = $(".editattrval textarea[name=keywords]").val();  //关键字
+        post.description = $(".editattrval textarea[name=description]").val();  //描述
+
+        post.sort = $(".editattrval input[name=sort]").val();           //排序
+        post.valid = $(".editattrval input[name=valid]").val();
+
+        if (post.classname == '') {
+            alert("方法名称必填！");
+            return false;
+        }
+        if (post.function1 == '') {
+            alert("方法必填！");
+            return false;
+        }
+        if (post.title == '') {
+            alert("标题必填！");
+            return false;
+        }
+        if (post.keywords == '') {
+            alert("关键字必填！");
+            return false;
+        }
+        if (post.description == '') {
+            alert("描述必填！");
+            return false;
+        }
+		console.log(post);
+		$.post("{:U('/Admin/Index/edit_seo_val')}", post, function (data){
+		  if(data.status==1){
+			dialog.showTips(data.info,"warn",function(){
+				window.location.reload();
+			});
+			
+		  }else{
+			dialog.showTips(data.info,"warn");return false;
+		  }
+		},"json")
+	
+	
+    })
+</script> 
+<!--修改分类end-->

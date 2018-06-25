@@ -1,0 +1,194 @@
+<include file="Public:head"/>
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:distributionleft" />
+        <!-- end content-left -->
+        <div class="content-right fl">
+            <h1 class="content-right-title">会员列表</h1>
+            <!-- <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count}</span> 名会员。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a>
+            </div> -->
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                    <div class="tables-searchbox">
+                        <div class="fl">
+                            <form action="{:U('admin/member/index')}">
+                                <input type="text" class="input" name="title" id="title" value="{$title}" placeholder="真实姓名/手机号">
+
+                                <select class="select" name="isexamine">
+                                    <option value="">--请选择--</option>
+                                    <option value="0" <eq name="isexamine" value="0">selected="selected"</eq>>未审核</option>
+                                    <option value="1" <eq name="isexamine" value="1">selected="selected"</eq>>通过审核</option>
+                                    <option value="2" <eq name="isexamine" value="2">selected="selected"</eq>>审核失败</option>
+                                    <option value="3" <eq name="isexamine" value="2">selected="selected"</eq>>申请审核</option>
+                                </select>
+
+                                <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                        class="gicon-search white"></i>查询
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+  
+                <!-- end tables-searchbox -->
+                <table class="wxtables" style="text-align:center;">
+                    <colgroup>
+                        <col width="1%">
+                        <col width="2%">
+                        <col width="10%">
+                        <col width="8%">
+                        <col width="6%">
+                        <col width="6%">
+                        <col width="6%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>分销名称</td>
+                        <td>购买金额</td>
+                        <td>PV</td>
+                        <td>一级佣金</td>
+                        <td>二级佣金</td>
+                        <td>三级佣金</td>
+                        <td>扣除积分</td>
+                        <td>可购买次数</td>
+                        <td>更新时间</td>
+                        <td>更新人员</td>
+                        <td>状态</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="cache" item="vo">
+                    <tr>
+                        <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>
+                        <td><p>{$vo.title}</p></td>
+                        <td><p>¥{$vo.money}</p></td>
+                        <td><p>¥{$vo.pv}</p></td>
+                        <td><p>¥{$vo.level_one}</p></td>                      
+                        <td><p>¥{$vo.level_two}</p></td>                      
+                        <td><p>¥{$vo.level_three}</p></td>                      
+                        <td>{$vo.take_off}%</td>
+                        <td>
+                            <if condition="$vo['pay_num'] gt 0">
+                            {$vo['pay_num']}次
+                            <else />
+                            无限次
+                            </if>
+                        </td>
+                        <td class="change_at">
+                            <notempty name="vo['change_at']">
+                            {$vo['change_at']|date="Y-m-d H:i:s",###}
+                            </notempty>
+                        </td>
+                        <td class="admin_name">
+                            {$vo['admin_name']}
+                        </td>
+                        <td class="status">
+                            <switch name="vo['status']">
+                                <case value="0"><p style="color:red;">未启用</p></case>
+                                <case value="1"><p>已启用</p></case>
+                            </switch>
+                        </td>
+                        <td>
+                            <p>
+                                <!-- <a href="{:U('/Admin/Distribution/configDetail/id')}/{$vo.id}" class="btn btn-success">查看详情</a> -->
+                                <a href="{:U('admin/Distribution/editConfig',array('id'=>$vo['id']))}" class="btn btn-primary" title="编辑">编辑</a>
+                                <switch name="vo.status">
+                                    <case value="1">
+                                        <a href="JavaScript:void(0);" class="btn btn-warning changeStatus" title="停用" data-id="{$vo.id}">停用</a>
+                                    </case>
+                                    <case value="0">
+                                        <a href="JavaScript:void(0);" class="btn btn-danger changeStatus" title="启用" data-id="{$vo.id}">启用</a>
+                                    </case>
+                                </switch>
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="examine">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<!-- end container -->
+<script>
+$(function(){
+
+
+    $(".changeStatus").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('Admin/Distribution/changeStatus')}",{id:id},function(data){
+            if(data.status == 1){
+                var parent = _this.parent().parent().parent()
+                var p = parent.find(".status p");
+                p.html(data.info);
+                parent.find(".change_at").html(data.change_at);
+                parent.find(".admin_name").html(data.admin_name);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("启用")
+                    p.css("color","red")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("停用")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+    })
+})
+
+</script>
+
+<include file="Public:foot"/>

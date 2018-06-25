@@ -1,0 +1,60 @@
+<include file="Public:head"/>
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:left" />
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">预约商品详情</h1>
+
+    <foreach name="res" item="vo">
+      <div class="chartBox mgt30">
+        <div class="cb-title">商品信息</div>
+        <div class="cb-contain">
+          <ul class="info-table mgl15">
+            <li class="long"> <span class="bold">预约状态：</span> <span> <span class="colorRed">
+
+              <switch name="vo.status">
+                <case value="3">待接受的预约</case>
+                <case value="4">被取消的预约</case>
+                <case value="5">接受的预约</case>
+                <case value="6">处理中的预约</case>
+                <case value="7">已完成的预约</case>
+                <default />
+                未知 </switch>
+              </span> </span>
+            </li>
+            <li class="long"> <span class="bold">预约人姓名：</span> <span><a href="javascript:void(0);"> {$vo.name}</a> </span> </li>
+            <li class="long"> <span class="bold">预约人电话：</span> <span><a href="javascript:void(0);"> {$vo.phone}</a> </span> </li>
+            <li class="long"> <span class="bold">预约人所在地：</span> <span><a href="javascript:void(0);"> {$vo.province}{$vo.city}</a> </span> </li>
+            <li class="long"> <span class="bold">商品名称：</span> <span><a href="javascript:void(0);"> {$vo.goods_name}</a> </span> </li>
+            <li class="long"> <span class="bold">商品图片：</span> <span><a href="javascript:void(0);"><img src="{$vo.index_pic}" style="width:600px;height:300px;"></a> </span> </li>
+            <li class="long"> <span class="bold">sku描 述：</span> <span><a href="javascript:void(0);"> <br />{$vo.sku_info}</a> </span> </li>
+            <li class="long"> <span class="bold">原    价：</span> <span><a href="javascript:void(0);"> <s>{$vo.oprice}</s></a> </span> </li>
+            <li class="long"> <span class="bold">现    价：</span> <span><a href="javascript:void(0);"> {$vo.price}</a> </span> </li>
+          </ul>
+        </div>
+      </div>
+      </foreach>
+      <notempty name="cache['log']">
+
+      </notempty>
+      <div class="clearfix">
+        <ul class="order-statistics fr">
+          <li class="formitems" style="text-align:right">
+            <div class="form-controls" style="text-align:right;margin-right:10px;">
+
+          </li>
+          <li class="txtCenter" style="text-align:right;margin-right:10px;">
+            <a href="javascript:;" data-id="2197883" class="btn btn-primary" style=" visibility:hidden" id="j-order-modify">修改价格</a>
+            <a href="javascript:history.back(-1);" data-id="2197883" class="btn btn-primary" id="j-order-close">返回</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>

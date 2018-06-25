@@ -1,0 +1,151 @@
+<include file="Public:head"/>
+<style>
+.youhui_box_r h4 p{margin-top:0;}
+</style>
+<body>
+
+
+<!--head -->
+<div class="head_box" style=" background:#6eaedb">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">信用卡优惠</div>
+<div class="clear"></div>
+</div>
+<!--head --> 
+
+
+
+
+<div class="warpper_box">
+
+
+<div class="gedai_search_box">
+
+<ul class="gedai_search_box_title">
+<li style=" width:48%;border-right: 1px #e5e5e5 solid; "><a href="#">所有银行<i class="fa fa-angle-down" ></i></a></li>
+<li style=" width:48%"><a href="#">所有优惠<i class="fa fa-angle-down" ></i></a></li>
+
+<div class="clear"></div>
+</ul>
+
+<div class="gedai_search_box_list">
+
+<ul>
+<foreach name="cate1_type" item="vo" key="k">
+<li><a href="javascript:void(0)" class="card_type" data-id={$vo.id}><span><img src="__ROOT__{$vo.pic}" /></span>{$vo.classname}</a></li>
+</foreach>
+</ul>
+
+<ul>
+<foreach name="cate_type" item="vo" key="k">
+	<li><a href="javascript:void(0)" class="type_id" data-type_id="{$vo.id}">{$vo.classname}</a></li>
+</foreach>
+</ul>
+
+</div>
+
+<div class="black_bg"></div>
+</div>
+
+
+
+<div class="youhui_box">
+<ul>
+<input type="hidden" name="card_type" value="{$c_id}" id="card_type"/>
+<input type="hidden" name="type_id" value="{$t_id}" id="type_id"/>
+	<foreach name="f_list" item="vo" key="k">
+		<li>
+			<a href="__HOST__/Credit/discountdot/id/{$vo.id}">
+				<div class="youhui_box_l"><img src="__ROOT__{$vo.logo_pic}" /></div>
+				<div class="youhui_box_r">
+				<h3>{$vo.news_title}</h3>
+				<h4>
+				{$vo.detail|htmlspecialchars_decode|stripslashes}                                                    
+				</h4>
+				</div>
+				<div class="clear"></div> 
+			</a>
+		</li>
+	</foreach>
+</ul>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+
+<script>
+
+$('.card_type').click(function(){
+	var card_id = $(this).attr('data-id');
+	$('#card_type').val(card_id);
+	var c_id = $('#card_type').val();
+	var t_id = $('#type_id').val();
+	window.location.href="__HOST__/Credit/discount/c_id/"+c_id+"/t_id/"+t_id
+})
+$('.type_id').click(function(){
+	var type_id = $(this).attr('data-type_id');
+	$('#type_id').val(type_id);
+	var c_id = $('#card_type').val();
+	var t_id = $('#type_id').val();
+	window.location.href="__HOST__/Credit/discount/c_id/"+c_id+"/t_id/"+t_id
+})		
+
+$(document).ready(function (){
+
+      var show = false;
+	  var index ;
+	 $(".gedai_search_box_title li").click(function(){
+	  	index = $(this).index();
+			 if($(".gedai_search_box_list ul").eq(index).css('display')=="none"){
+				 
+				 $(".gedai_search_box_list ul").eq(index).show().siblings().hide();
+				 
+				 $(".black_bg").show()
+				 $('html,body').css('overflow-y','hidden');
+			 }else{
+				 $(".gedai_search_box_list ul").eq(index).hide()
+				 $(".black_bg").hide()
+				  $('html,body').css('overflow-y','scroll');
+				}
+				
+				
+				
+$(".small_gengduo_list_xk").click(function() {
+    $(this).addClass("active").siblings().removeClass("active");
+});
+	
+				
+})
+		
+             $(".gedai_search_box_list ul li").click(function(){
+              $(".gedai_search_box_list ul").hide();
+	          $(".black_bg").hide()
+			  
+})
+
+	 $(".black_bg").click(function(){
+		 
+		 $(".gedai_search_box_list ul").hide();
+		  $(".black_bg").hide()
+		 })
+ 
+})
+
+</script>
+</html>

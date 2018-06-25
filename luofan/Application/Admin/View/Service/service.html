@@ -1,0 +1,154 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+    <div class="inner clearfix">
+    <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">客服中心服务列表</h1>
+
+            <div class="clearfix"> <a href="{:U('admin/Service/addservice')}" class="btn btn-success fl BtnAddClass">添加</a>
+            </div>
+              
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                 
+                <!-- end tables-searchbox -->
+                <table class="wxtables">
+                    <colgroup>
+                        <col width="1%">
+                        <col width="5%">
+                        <col width="6%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>类别</td>
+                        <td>序号</td>
+                        <td>标题</td>
+                        <td>链接</td>
+                        <td>添加时间</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="info" item="vo">
+                    <tr>
+                 
+                        <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>
+                        <td><p>
+                            <switch name="vo[type]">
+                                <case value="1">关于金帝</case>
+                                <case value="2">新手指南</case>
+                                <case value="3">配送安装</case>
+                                <case value="4">售后服务</case>
+                                <case value="5">购物保障</case>
+                            </switch>
+                        </p></td>
+                        <td><p> {$vo.sort}</p></td>
+                        <td><p> {$vo.title|subtext=18}</p></td>
+                        <!--<td><p> {$vo.title_en|subtext=18}</p></td>-->
+
+                        <td><p> 
+                            <eq name="vo[type]" value="1">
+                                {$Think.server.HTTP_HOST}{:U('Home/service/service',array('id'=>$vo['id']))}
+                            </eq>
+                            <eq name="vo[type]" value="2">
+                                {$Think.server.HTTP_HOST}{:U('Home/service/service',array('id'=>$vo['id']))}
+                            </eq>
+                            <eq name="vo[type]" value="3">
+                                {$Think.server.HTTP_HOST}{:U('Home/service/service',array('id'=>$vo['id']))}
+                            </eq>
+                            <eq name="vo[type]" value="4">
+                                {$Think.server.HTTP_HOST}{:U('Home/service/service',array('id'=>$vo['id']))}
+                            </eq>
+                            <eq name="vo[type]" value="5">
+                                {$Think.server.HTTP_HOST}{:U('Home/service/service',array('id'=>$vo['id']))}
+                            </eq>
+                        </p></td>
+                        <td><p> {$vo.addtime}</p></td>
+
+
+                        <td>
+                            <p>
+
+                                <a href="{:U('admin/service/editservice',array('id'=>$vo[id]))}" class="btn btn-primary" title="编辑" >编辑</a>
+                                <a href="{:U('admin/service/delservice',array('id'=>$vo[id]))}" class="btn btn-primary" style="background-color:#f0ad4e;border-color: #eea236;" title="删除" >删除</a>
+                               
+
+
+                                <br>
+
+
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                        <!--<a href="javascript:;" class="btn btn-warning j-setUsersLevel">设置等级</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setAgent">设置分销商</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setGroup" data-type="0">设置分组</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setSuperior">设置上级</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setPwd">设置密码</a>-->
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<!-- end container -->
+<script>
+function search_m(){
+	var title=$('#title').val();
+	if(title != ''){
+		location.href="{:U('/Admin/Company/index')}/title/"+title;
+		}else{
+			location.href="{:U('/Admin/Company/index')}";
+			}
+	}
+</script>
+
+<include file="Public:foot"/>

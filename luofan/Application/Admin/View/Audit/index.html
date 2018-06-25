@@ -1,0 +1,385 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">供应商列表</h1>
+
+
+            <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count}</span> 个供应商。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                    <div class="tables-searchbox">
+                        <div class="fl" style="display: inline-block;">
+                            <form action="{:U('Admin/Supplier/index')}" style="display: inline-block;">
+                                <input type="text" class="input" name="title" id="title" value="{$title}" placeholder="真实公司名字/手机号">
+                                <!-- <select class="select" name="isexamine">
+                                    <option value="">--请选择--</option>
+                                    <option value="0" <eq name="isexamine" value="0">selected="selected"</eq>>未审核</option>
+                                    <option value="1" <eq name="isexamine" value="1">selected="selected"</eq>>通过审核</option>
+                                    <option value="2" <eq name="isexamine" value="2">selected="selected"</eq>>审核失败</option>
+                                    <option value="3" <eq name="isexamine" value="2">selected="selected"</eq>>申请审核</option>
+                                </select> -->
+                                <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                        class="gicon-search white"></i>查询
+                                </button>
+                            </form>
+                            <a  style="display:inline-block;margin-left:20px;vertical-align:-2px;" href="{:U('Admin/Supplier/gy_export')}" class="btn btn-warning">供应商导出</a>
+                            <a  style="display:inline-block;margin-left:20px;vertical-align:-2px;" href="javascript:void(0)" class="btn btn-warning BtnAddClass ">供应商导入</a>
+
+                        </div>
+
+                    </div>
+
+                <!-- end tables-searchbox -->
+                <table class="wxtables" style="text-align:center;">
+                    <colgroup>
+                        <col width="3%">
+                      <!--  <col width="2%">-->
+                        <col width="22%">
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="25%">
+                    </colgroup>
+                    <thead width="100%">
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>公司名字</td>
+                        <td>联系电话</td>
+                        <td>注册时间</td>
+
+                        <td width="10%">市场审核</td>
+                        <td>财务审核</td>
+                        <td >操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="memberlist" item="vo">
+                    <tr>
+                        <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>
+                        <!--<td><img src="{$vo.person_img}" alt="" width="50" ></td>-->
+                        <td><p> {$vo.username}</td>
+                         <td><p>{$vo.telephone}</p></td>
+                       <!-- <td>
+                            <p>
+                            <switch name="vo.sex">
+                                <case value="1">男</case>
+                                <case value="2">女</case>
+                            </switch>
+                            </p>
+                        </td>-->
+
+                        <td><?php echo (date("Y-m-d H:i:s",$vo['add_time']));?></td>
+                        <!--<td>{$vo.update_time|date="Y-m-d H:i:s",###}</td>-->
+
+                        <td class="status">
+                            <switch name="vo.is_check">
+                                <case value="0"><p>未审核</p></case>
+                                <case value="1"><p style='color:red;'>已审核</p></case>
+                            </switch>
+                        </td>
+                        <td class="is_sale">
+                            <switch name="vo.is_sale">
+                                <case value="0"><p>未审核</p></case>
+                                <case value="1"><p style='color:red;'>已审核</p></case>
+                            </switch>
+                        </td>
+                        <!-- <td class="status">
+                            <switch name="vo.isexamine">
+                                <case value="0"><p >未审核</p></case>
+                                <case value="1"><p style='color:green;'>通过审核</p></case>
+                                <case value="2"><p style='color:red;'>审核失败</p></case>
+                            </switch>
+                        </td> -->
+                        <td>
+                            <p>
+                                <a href="{:U('/Admin/Supplier/detail/id')}/{$vo.id}" class="btn btn-success">查看详情</a>
+                                <!-- <a href="{:U('Admin/Supplier/editMember',array('id'=>$vo['id']))}" class="btn btn-primary" title="编辑">编辑</a> -->
+                                <switch name="vo.is_check">
+                                    <case value="0">
+                                        <a href="JavaScript:void(0);" class="btn btn-warning changeStatus" title="审核" data-id="{$vo.id}">市场审核</a>
+                                    </case>
+                                    <case value="1">
+                                        <a href="JavaScript:void(0);" class="btn btn-danger changeStatus" title="解除审核" data-id="{$vo.id}">解除审核</a>
+                                    </case>
+                                </switch>
+                                <switch name="vo.is_sale">
+                                    <case value="0">
+                                        <a href="JavaScript:void(0);" class="btn btn-warning changeVip" title="上线" data-id="{$vo.id}">财务审核</a>
+                                    </case>
+                                    <case value="1">
+                                        <a href="JavaScript:void(0);" class="btn btn-danger changeVip" title="下线" data-id="{$vo.id}">解除审核</a>
+                                    </case>
+                                </switch>
+
+                              
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="width:500px">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">审核信息</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 263px;">
+    <input type="hidden" name="id">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>审核状态：</label>
+      <div class="form-controls">
+        <span class="fi-help-text isexamine"></span>
+      </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>身份证：</label>
+      <div class="form-controls">
+        <span class="fi-help-text cartid"></span> </div>
+    </div>
+    <div class="formitems" >
+        <label class="fi-name"><span class="colorRed"></span>身份证正面照：</label>
+        <div class="form-controls images">
+            <img width="300" src="" alt="" class="pic1">
+        </div>
+    </div>
+    <div class="formitems" >
+        <label class="fi-name"><span class="colorRed"></span>身份证背面照：</label>
+        <div class="form-controls images">
+            <img width="300" src="" alt="" class="pic2">
+        </div>
+    </div>
+
+    <div class="formitems" >
+        <label class="fi-name"><span class="colorRed"></span>手持身份证照片：</label>
+        <div class="form-controls images">
+            <img width="300" src="" alt="" class="pic3">
+        </div>
+    </div>
+
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>审核情况：</label>
+      <div class="form-controls">
+        <label>
+            <input type="radio" name="isexamine" value="1"><span>通过审核</span>
+        </label>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <label>
+            <input type="radio" name="isexamine" value="2"><span>审核失败</span>
+        </label>
+        <span class="fi-help-text examinemsg"></span> </div>
+    </div>
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>审核信息：</label>
+      <div class="form-controls">
+        <select name="examine_msg">
+            <option value="">——请选择——</option>
+            <option value="无效的身份证号码">无效的身份证号码</option>
+            <option value="身份证照片模糊">身份证照片模糊</option>
+            <option value="无效的身份证照片">无效的身份证照片</option>
+        </select>
+        <span class="fi-help-text examinemsg"></span> </div>
+    </div>
+
+
+
+
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="examine">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<!-- end container -->
+
+<div class="jbox addfenlei disshow gy_import" style="height:224px;">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">上传文件</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <form action="{:U('Admin/supplier/gy_import')}" enctype="multipart/form-data" method="post">
+        <div class="jbox-container" style="height:100px;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>上传csv文件：</label>
+                <div class="form-controls">
+                    <input type="file" class="input classname" name="file">
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons"><button type="submit" class="jbox-buttons-ok btn btn-primary" id="addfile">确定</button><a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </form>
+</div>
+
+<script>
+    $(".BtnAddClass").click(function(){
+        $('.gy_import').show();
+    })
+
+    $(".cancle").click(function(){
+        $('.gy_import').hide();
+        $(this).parent().parent('.jbox').hide();
+    })
+
+$(function(){
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    /*
+        <a href="JavaScript:void(0);" class="btn btn-success examine" title="审核" data-id="{$vo.id}" data-cardid="{$vo.card_id}" data-idcardpic1="{$vo.idcard_pic1}" data-idcardpic2="{$vo.idcard_pic2}" data-idcardpic3="{$vo.idcard_pic3}" data-isexamine="{$vo.isexamine}" data-examinemsg="{$vo.examine_msg}">审核</a>
+    */
+    $(".examine").click(function(){
+        var id            = $(this).attr("data-id")
+        var cartid        = $(this).attr("data-cardid")
+        var pic1          = $(this).attr("data-idcardpic1")
+        var pic2          = $(this).attr("data-idcardpic2")
+        var pic3          = $(this).attr("data-idcardpic3")
+        var isexamine     = $(this).attr("data-isexamine")
+        var examinemsg    = $(this).attr("data-examinemsg")
+        $(".addfenlei input[name=id]").val(id);
+        $(".addfenlei .cartid").html(cartid);
+        $(".addfenlei .pic1").attr("src",pic1);
+        $(".addfenlei .pic2").attr("src",pic2);
+        $(".addfenlei .pic3").attr("src",pic3);
+        switch(isexamine){
+            case "0":
+                var msg = "未审核";
+                break;
+            case "1":
+                var msg = "通过审核";
+                break;
+            case "2":
+                var msg = "拒绝通过审核";
+                break;
+        }
+        $(".addfenlei .isexamine").html(msg);
+        $(".addfenlei input[name=isexamine][value="+isexamine+"]").attr("checked","checked")
+        $(".addfenlei select[name=examine_msg] option[value="+examinemsg+"]").attr("selected","selected")
+        $("#albums-overlay").show()
+        $(".addfenlei").show()
+    })
+    $("#examine").click(function (){
+        var id            = $(".addfenlei input[name=id]").val()
+        var isexamine     = $(".addfenlei input[name=isexamine]:checked").val()
+        var examinemsg    = $(".addfenlei select[name=examine_msg]").val()
+        if(isexamine==2 && !examinemsg){
+            alert("请选择拒绝通过审核的原因");
+            return
+        }
+        $.post("{:U('Admin/Supplier/examine')}",{id:id,isexamine:isexamine,examinemsg:examinemsg},function(data){
+            alert(data.info)
+            if(data.status){
+                window.location.reload()
+            }
+        },"json")
+    })
+    // $("#search_m").click(function(){
+    //     var title=$('#title').val();
+    //     var
+    //     if(title != ''){
+    //         location.href="{:U('/Admin/Supplier/index')}/title/"+title;
+    //     }else{
+    //         location.href="{:U('/Admin/Supplier/index')}";
+    //     }
+    // })
+
+    //是否冻结
+    $(".changeStatus").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('Admin/Supplier/sc_shenhe')}",{id:id},function(data){
+            if(data.status == 1){
+                var p = _this.parent().parent().parent().find(".status p");
+                p.html(data.info);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("解除审核")
+                    p.css("color","red")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("市场审核")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+    })
+
+    //是否加盟
+    $(".changeVip").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('Admin/Supplier/cw_shenhe')}",{id:id},function(data){
+            if(data.status == 1){
+                var p = _this.parent().parent().parent().find(".is_sale p");
+                p.html(data.info);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("解除审核")
+                    p.css("color","green")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("财务审核")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+    })
+})
+</script>
+
+<include file="Public:foot"/>

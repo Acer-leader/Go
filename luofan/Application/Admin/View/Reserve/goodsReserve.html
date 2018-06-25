@@ -1,0 +1,159 @@
+<include file="Public:head"/>
+<!-- <link rel="stylesheet" href="../css/lists.css">
+ -->
+<div class="container">
+<div class="inner clearfix">
+
+<!-- start content-left -->
+<include file="Public:left"/>
+  <!-- end content-left -->
+  <div class="content-right fl">
+    <h1 class="content-right-title">商品预约列表</h1>
+    <!-- <a href="##" class="btn btn-success">发布产品</a> -->
+    <form action="{:U('Admin/Reserve/index')}" method="post">
+      <div class="tables-searchbox newcearchbox">
+
+        <input type="text" placeholder="姓名/电话" class="input" name="title" value="">
+        <!-- <input type="text" placeholder="商家编码" class="input" name="goods_no" value="" > -->
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+        <!--<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>-->
+        <!--产品导出</a>-->
+      </div>
+      <div class="tabs clearfix mgt10">
+      <a href="{:U('/Admin/Reserve/goodsReserve')}" class="<eq name="_GET['status']" value="">active</eq> tabs_a fl">全部({$count})</a>
+       <a href="{:U('/Admin/Reserve/goodsReserve/status/3')}" class="<eq name="_GET['status']" value="3">active</eq> tabs_a fl">待接受的预约({$count3})</a>
+       <a href="{:U('/Admin/Reserve/goodsReserve/status/4')}" class="<eq name="_GET['status']" value="4">active</eq> tabs_a fl">被取消的预约({$count4})</a>
+       <a href="{:U('/Admin/Reserve/goodsReserve/status/5')}" class="<eq name="_GET['status']" value="5">active</eq> tabs_a fl">接收的预约({$count5})</a>
+       <a href="{:U('/Admin/Reserve/goodsReserve/status/6')}" class="<eq name="_GET['status']" value="6">active</eq> tabs_a fl">处理中的预约({$count6})</a>
+       <a href="{:U('/Admin/Reserve/goodsReserve/status/7')}" class="<eq name="_GET['status']" value="7">active</eq> tabs_a fl">完成的预约({$count7})</a>
+        <!--<a href="{:U('/Admin/Goods/outstock')}" class=" tabs_a fl">已售罄(1)</a>-->
+        <!--<a href="{:U('/Admin/Goods/warn')}" class=" tabs_a fl">警戒(0)</a>-->
+
+      </div>
+    </form>
+    <!-- end tabs -->
+
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+      <col width="2%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="30%">
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+          <td><i class="icon_check"></i></td>
+          <td>ID</td>
+          <td>姓名<span></span></td>
+          <td>电话</td>
+          <td>所在地</td>
+          <td>
+          <eq name='res[0]["status"]' value='3'>预约时间</eq>
+          <eq name='res[0]["status"]' value='4'>取消时间</eq>
+          <eq name='res[0]["status"]' value='5'>接受时间</eq>
+          <eq name='res[0]["status"]' value='6'>处理时间</eq>
+          <eq name='res[0]["status"]' value='7'>完成时间</eq>
+          </td>
+          <td>预约状态</td>
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="res" item="vo">
+          <tr>
+            <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+            <td>{$vo['id']}</td>
+            <td>
+            <div class="goodswrap">
+
+                  <span style="height:auto">{$vo.name}</span>
+
+                </div></td>
+
+            <td class="class_name">
+              <span>{$vo.phone}</span>
+
+            </td>
+            <td class="class_name">
+              <span>{$vo.province}{$vo.city}</span>
+            </td>
+
+            <td class="class_name">
+              <span><?php echo date("Y-m-d H:i:s",$vo['request_time'])?></span>
+            </td>
+
+             <td class="class_name">
+              <span>{$vo.status_name}</span>
+            </td>
+        <eq name="vo['status']" value='3'>
+            <td>
+              <a href="{:U('/Admin/Reserve/acceptR/id')}/{$vo.id}" onclick="{if(!confirm('确定接收预约吗?'))return false;}" class="btn btn-primary j-editClass" title="接受">接受</a>
+              <a href="{:U('/Admin/Reserve/cancelR/id')}/{$vo.id}" onclick="{if(!confirm('确定取消预约吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">取消</a>
+               <a href="{:U('/Admin/Reserve/reserveDetail/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="查看详情">查看详情</a>
+              </td>
+        </eq>
+        <eq name="vo['status']" value='4'>
+         <td>
+              <a href="{:U('/Admin/Reserve/delR/id')}/{$vo.id}" onclick="{if(!confirm('确定删除预约吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">删除</a>
+               <a href="{:U('/Admin/Reserve/reserveDetail/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="查看详情">查看详情</a>
+              </td>
+        </eq>
+        <eq name="vo['status']" value='5'>
+              <td>
+
+              <a href="{:U('/Admin/Reserve/conductR/id')}/{$vo.id}" onclick="{if(!confirm('确定可以处理了吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">处理</a>
+               <a href="{:U('/Admin/Reserve/reserveDetail/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="查看详情">查看详情</a>
+              </td>
+        </eq>
+          <eq name="vo['status']" value='6'>
+              <td>
+
+              <a href="{:U('/Admin/Reserve/sucR/id')}/{$vo.id}" onclick="{if(!confirm('确定完成了吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">完成</a>
+               <a href="{:U('/Admin/Reserve/reserveDetail/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="查看详情">查看详情</a>
+              </td>
+        </eq>
+          <eq name="vo['status']" value='7'>
+              <td>
+              <a href="{:U('/Admin/Reserve/delR/id')}/{$vo.id}" onclick="{if(!confirm('确定删除已完成的预约吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">删除</a>
+               <a href="{:U('/Admin/Reserve/reserveDetail/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="查看详情">查看详情</a>
+              </td>
+        </eq>
+          </tr>
+          <!-- 商品信息 -->
+
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+        <!-- <a href="javascript:;" data-item="is_sale" class="btn btn-primary change-all-status">上架反选</a>
+        <a href="javascript:;" data-item="is_new" class="btn btn-primary change-all-status">新品反选</a>
+        <a href="javascript:;" data-item="is_jingxuan" class="btn btn-primary change-all-status">精选反选</a>
+        <a href="javascript:;" data-item="is_good" class="btn btn-primary change-all-status">好物反选</a>
+        <a href="javascript:;" data-item="is_cuxiao" class="btn btn-primary change-all-status">促销反选</a>
+        <a href="javascript:;" data-item="is_sku" class="btn btn-primary change-all-status">sku反选</a> -->
+        <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>
+        <!-- <div class="fr"> -->
+          <!-- end paginate -->
+        <!-- </div> -->
+      </div>
+      <!-- end tables-btmctrl -->
+      <div class="pages fl" style="width:600px">{$page}</div>
+
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+<include file="Public:foot"/>

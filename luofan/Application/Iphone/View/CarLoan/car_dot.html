@@ -1,0 +1,333 @@
+<include file="Public:head"/>
+<script src="__JS__/echarts.min.js"></script>
+<style>
+.active a {
+	border-bottom: 3px #338bff solid;
+	color: #338bff !important;
+	display: block;
+}
+</style>
+
+<body>
+
+<!--head --> 
+<div class="head_box" <switch name="res.cate_id">
+<case value="1">style=" background:#4988db"</case>
+<case value="2"> style=" background:#ff8aa3"</case>
+<case value="3">style=" background:#fe9a3a"</case>
+</switch>>
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center"><switch name="res.cate_id">
+<case value="1">个贷</case>
+<case value="2">房贷</case>
+<case value="3">车贷</case>
+</switch>详情</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+<div class="warpper_box">
+  <div class="gedai_xq">
+    <div class="gedai_xq_top">
+      <div class="gedai_xq_top_l"><img src="__ROOT__{$res.logo_pic1}" /></div>
+      <div class="gedai_xq_top_r">
+        <h4>{$res.title}</h4>
+        <h5>信用贷款 <span class="star"></span><if condition="$fenxiao_id neq null"><a href="javascript:void(0);" target="_blank" id="share">分享</a></if></h5>
+        
+        <ul class="gedai2_top_list">
+          <li><span>无需抵押</span></li>
+          <li><span>15天放款</span></li>
+          <li style=" margin-bottom:0px;"><span>上班族 可申请</span></li>
+          <div class="clear"></div>
+        </ul>
+      </div>
+      <div class="clear"></div>
+    </div>
+ 
+    <div class="gedai_xq_bot">
+      <div class="gedai_xq_bot_one">
+        <div class="gedai_xq_bot_one_l">
+          <h5>贷款金额：</h5>
+          <input name="" id="cost" type="text" value="{$res.money}"  onblur="setcost(this)" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9]+/,'');}).call(this)"  />万
+          <h4>额度范围：{$res.money}~{$res.money1}万</h4>
+        </div>
+        <div class="gedai_xq_bot_one_l" style=" margin-right:0">
+          <h5>贷款期限：</h5>
+          <input name="" id="limit" type="text" value="{$res.dkqx1}" onblur="setlimit(this)"  onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9]+/,'');}).call(this)"/>月
+          <h4>期限范围：{$res.dkqx}~{$res.dkqx1}个月</h4>
+        </div>
+        <input type="hidden" id="money" value="{$res.money}"/>
+        <input type="hidden" id="dkm" value="{$res.dkqx1}"/>
+        <input type="hidden" id="dkln" value="{$res.ylx}"/>
+        
+        <div class="clear"></div>
+      </div>
+      <div class="gedai_xq_bot_two" id="gedai_xq_bot_two" ></div>
+      <div class="gedai_xq_bot_three">
+        <ul>
+          <li>
+            <div class="gedai_xq_bot_three_l">总利息</div>
+            <div class="gedai_xq_bot_three_r" id="totallx">{$res['dkqx1']*$res['money']*$res['ylx']/100}万元</div>
+            <div class="clear"></div>
+          </li>
+          <li style=" margin-right:0px; border:none">
+            <div class="gedai_xq_bot_three_l">月供利息</div>
+            <div class="gedai_xq_bot_three_r">{$res.ylx}%/月</div>
+            <div class="clear"></div>
+          </li>
+          <div class="clear"></div>
+        </ul>
+      </div>
+      <div class="gedai_xq_bot_four">
+        <div class="gedaidot_tit_list"><span></span>利率低 </div>
+        <div class="gedaidot_tit_list gedaidot_tit_list2"> <span></span>放款快 </div>
+        <div class="gedaidot_tit_list gedaidot_tit_list3"> <span></span>手续简便 </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  <div class="gedai_xq_one">
+    <ul class="gedai_xq_one_title">
+      <li class="active"><a href="javascript:void(0)">申请条件</a></li>
+      <li><a href="javascript:void(0)">所需材料</a></li>
+      <li><a href="javascript:void(0)">利率说明</a></li>
+      <div class="clear"></div>
+    </ul>
+    <div class="gedai_xq_one_title_boxs" style="display:block">
+    {$res.sqtj|htmlspecialchars_decode|stripslashes}
+    </div>
+    <div class="gedai_xq_one_title_boxs" >
+    {$res.sxcl|htmlspecialchars_decode|stripslashes}
+    </div>
+    <div class="gedai_xq_one_title_boxs" >
+    {$res.dnjh|htmlspecialchars_decode|stripslashes}
+    </div>
+  </div>
+
+
+<div class="ny_gedai_gl">
+  <div class="ny_gedai_gl_title"><span></span>贷款攻略</div>
+  <ul>
+<foreach name="cargonlve" item="vo">
+<li><a href="__HOST__/CarLoan/newsDetail/id/{$vo.id}">{$vo.news_title}</a></li>
+</foreach>
+  </ul>
+</div>
+
+
+<div class="ny_gedai_wd">
+  <div class="ny_gedai_wd_title"><span></span>贷款问答</div>
+  <ul>
+  <foreach name="wd_list" item="vo" key="k">
+    <li>
+    <a href="##">
+      <div class="ny_gedai_wd_tiwen"> {$vo.title} </div>
+      <div class="ny_gedai_wd_huida"> 首先小伙伴们一定要明白征信黑名单并非真实存在，因为央行征信报告只是用户用记录的客观展示，征信中心并不会进行评价。只有在该用户申请信用卡、贷款时，金融机构才会在去的授权的情况 </div>
+    </a>
+    </li>
+  </foreach>
+   
+  </ul>
+</div>
+
+
+
+<div style=" width:100%; height:55px; background:#fff;"></div>
+
+<div class="gedai_shenqing">
+<a href="javascript:void(0);">申请贷款</a>
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="loading"></div>
+<div class="sccg sccg01">
+	<div style="margin-top:15px;"><i class="fa fa-spinner fa-pulse fa-2x" style=" color:#fff"></i></div>
+	<p style="color:#fff;font-family:微软雅黑">等待中...</p>
+</div>
+
+
+</body>
+<script>
+$('.gedai_shenqing>a').click(function(){
+    var money    =   $('#cost').val();
+    var qixian   =   $('#limit').val();
+    var ylx      =   "{$res.ylx}";
+    var card_id  =  "{$res.id}";
+    var shareuser_id    =   "{$shareuser_id}";
+    var user_id  =  "{$user_id}";  
+    var post     =   {};
+    post.money   =   money;
+    post.qixian  =   qixian;
+    post.ylx     =   ylx;
+    post.card_id     =   card_id;
+    post.shareuser_id     =   shareuser_id;
+    if(!user_id){
+
+        dialog.showTips('请登录',"","__HOST__/User/");
+           return false;
+    }
+    $.ajax({
+            url:"__HOST__/CarLoan/applydo",
+            data:post,
+            dataType:'json',
+            type:'post',
+            beforeSend:function(){
+                $('.loading').show();
+                $('.sccg01').stop().fadeIn(10);
+            },
+            success:function(data){
+                $('.loading').hide();
+                $('.sccg01').stop().fadeOut();
+                if(data.status){
+                   dialog.showTips('提交成功',"","__HOST__/Apply/sqdaikuan");
+                    //window.location.href="{:U('Iphone/Login/index')}";
+                }else{
+                    dialog.showTips(data.info,"warn");return false;
+                }
+            }
+        })
+        
+});
+
+$(document).ready(function (){
+
+var myChart = echarts.init(document.getElementById('gedai_xq_bot_two'));
+
+option = {
+
+    legend: {
+        orient : 'vertical',
+        x : 'left',
+        data:['贷款'+dktotal+'万/'+dkm+'个月','总利息'+(dkm*dktotal*dkln/100)+'万元']
+    },
+
+    series : [
+        {    
+            type:'pie',
+            radius : ['50%', '70%'],
+            avoidLabelOverlap: false,
+			hoverAnimation:false,
+            label: {
+                normal: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    show: true,
+             
+                }
+            },
+
+            data:[
+                {value:335, name:'贷款'+dktotal+'万/'+dkm+'个月',itemStyle:{
+					normal:{
+						color:'#4190f7'
+					}
+				}},
+                {value:200, name:'总利息'+(dkm*dktotal*dkln/100)+'万元',itemStyle:{
+					normal:{
+						color:'#f4cd5e'
+					}
+				}}
+         
+            ]
+        }
+    ]
+};
+                    
+myChart.setOption(option);                    
+
+
+
+	$(".gedai_xq_one_title li").click(function(){
+		var index = $(this).index();
+		$(".gedai_xq_one_title_boxs").hide();
+		$(".gedai_xq_one_title_boxs").eq(index).show();
+		})
+
+
+ $(".gedai_xq_one_title li").click(function() {
+    $(this).addClass("active").siblings().removeClass("active");
+   })
+})
+
+</script>
+<script>
+            var dktotal =   $('#money').val();
+            var dkm     =   $('#dkm').val();
+            var dkln    =   $('#dkln').val();
+            //console.dir(dktotal);
+            function setcost(obj){
+                var _this   =   $(obj);
+                if(_this.val()<{$res.money}||_this.val()>{$res.money1}){
+                    _this.val('');
+                    alert('请填写额度范围内的贷款金额');
+                    
+                }
+                if(_this.val()==''){
+                    _this.val('{$res.money}');    
+                }
+                var dktotal =    _this.val();
+                $('#money').val(dktotal);
+                dkm     =   $('#limit').val();
+                var totallx = dkm*dktotal*dkln/100
+                $('#totallx').html(totallx+'万元');
+                //return false;
+            }
+            function setlimit(obj){
+                var _this   =   $(obj);
+                if(_this.val()<{$res.dkqx}||_this.val()>{$res.dkqx1}){
+                    _this.val('');
+                    alert('请填写期限范围内的贷款期限');
+ 
+                }
+                if(_this.val()==''){
+                    _this.val('{$res.dkqx}');
+                     
+                }
+                var dkm         =   _this.val();
+                $('#money').val(dkm);
+                dktotal     =   $('#cost').val();
+                var totallx = dkm*dktotal*dkln/100
+                $('#totallx').html(totallx+'万元');
+                //return false;
+            }
+            //var totallx = dkm*dktotal*dkln/100
+            //$('#totallx').html('');
+</script>
+<script>
+    $('#share').click(function(){
+          var  post ={};
+          post.url  =   "{$url}";
+          post.pic  =   "{$pic}";
+          post.card_id  =   "{$res.id}";
+          $.ajax({
+            url:"__HOST__/CarLoan/sharedo",
+            data:post,
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status){
+                   dialog.showTips('分享成功',"","__HOST__/Distribution/fx_share_gd/card_id/{$res.id}");
+                    //window.location.href="{:U('Iphone/Login/index')}";
+                }else{
+                    dialog.showTips(data.info,"warn");return false;
+                }
+            }
+        })
+        
+    })
+
+</script>        
+     
+</html>

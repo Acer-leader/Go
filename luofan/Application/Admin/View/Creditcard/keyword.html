@@ -1,0 +1,297 @@
+<include file="Public:head"/>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">图片列表</h1>
+
+            <form action="" method="post">
+                <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加关键字</a>
+                </div>
+            </form>
+
+            <!--<div class="alert alert-info disable-del">共有 <span style="font-size:16px;">{$count}</span> 张图片。<a href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>-->
+            <div class="tablesWrap">
+                <table class="wxtables">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>关键字</td>
+						<td>添加时间</td>
+                        <td>排序</td>
+                        <td align="center">操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="keyword" item="vo">
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.title}</td>
+                            <td>{$vo.add_time|date='Y-m-d H:i:s',###}</td>
+                            <td>{$vo.sort}</td>
+                            <td align="right"><p style=" text-align:center">
+                                <a class="btn btn-primary j-editClass" data-title="{$vo.title}" data-id="{$vo.id}" data-sort="{$vo.sort}" >编辑</a>
+                                <a href="javaScript:;" class="btn btn-danger j-delClass deltekey" title="删除" data-id="{$vo.id}">删除</a>
+                            </td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <div class="tables-btmctrl clearfix">
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:foot"/>
+
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">添加关键字</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>关键字：</label>
+            <div class="form-controls">
+                <input type="text"  class="input title" name="keyword">
+                <span class="fi-help-text"></span> </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>排序：</label>
+            <div class="form-controls">
+                <input type="text" name="sort" class="input sort" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" >
+                <span class="fi-help-text">注：数值越大 越靠前</span> </div>
+        </div>
+    </div>
+    <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<div class="jbox editfenlei disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">修改广告</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+
+        
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed" ></span>关键字：</label>
+            <div class="form-controls">
+                <input type="text" class="input title" name="keyword1">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+       
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed" ></span>排序：</label>
+            <div class="form-controls">
+                <input type="text" class="input sort1" value="" name="sort1">
+                <span class="fi-help-text">注：数值越大 越靠前</span> </div>
+        </div>
+
+
+       
+    </div>
+    <div class="jbox-buttons">
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" data-id="" id="editcategory">确定</a>
+        <a href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(function () {
+        var progress = $(".img");
+        var bar = $('.bar') ;
+        var percent = $('.percent');
+        var progress = $('.progress');
+        $("#addimage").wrap("<form id='myupload' action='{:U('Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#addimage").change(function(){ //选择文件
+            $("#myupload").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    bar.width(percentVal); //上传进度条宽度变宽
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="addpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.showimg').html(img);
+                    $("#addimage").val('');
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+
+    $(function () {
+        var progress = $(".img");
+        var bar = $('.bar') ;
+        var percent = $('.percent');
+        var progress = $('.progress');
+        $("#editimage").wrap("<form id='myupload1' action='{:U('Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#editimage").change(function(){ //选择文件
+            $("#myupload1").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    bar.width(percentVal); //上传进度条宽度变宽
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="editpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.showimgedit').html(img);
+                    $("#editimage").val('');
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+
+
+</script>
+
+
+<!--添加广告-->
+<script type="text/javascript">
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+</script>
+<script type="text/javascript">
+    $("#addcategory").click(function(){
+        
+        var title = $("input[name='keyword']").val();
+        var sort = $("input[name='sort']").val();
+       
+        if (title == '') {
+            alert("关键字必填");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('Admin/Creditcard/setkey')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                title:title,
+                sort:sort,
+            },
+			success:function(data){
+				alert(data.info);
+				if(data.status){
+					window.location.reload();
+				}
+			}
+		})
+    })
+</script>
+<!--添加广告end-->
+
+<!--修改广告-->
+<script type="text/javascript">
+    var categoryid;
+    $(".j-editClass").click(function(){
+        var title = $(this).attr("data-title");
+        var id = $(this).attr("data-id");
+        var sort = $(this).attr("data-sort");
+        $("input[name='keyword1']").val(title);
+		$('#editcategory').attr('data-id',id);
+        $('input[name="sort1"]').val(sort);
+
+        $('.editfenlei').show();
+        $('#albums-overlay').show();
+    })
+
+    $("#editcategory").click(function(){
+        var title = $("input[name='keyword1']").val();
+        var sort = $('input[name="sort1"]').val();
+        var id = $(this).attr('data-id');
+        if (title == '') {
+            alert("关键字必填！");
+            return false;
+        }
+		
+        $.ajax({
+            url: "{:U('/Admin/Creditcard/setkey')}",
+            dataType: "json",
+			type:'post',
+            data: {
+				id:id,
+                title:title,
+                sort:sort,
+            },
+			success:function(data){
+				alert(data.info);
+				if(data.status){
+					window.location.reload();
+				}
+			}
+		})
+    })
+
+</script>
+<!--删除 1-->
+<script>
+$('.deltekey').click(function(){
+	var id = $(this).attr('data-id');
+	if(confirm('确定要删除吗？')){
+		$.ajax({
+			url: "{:U('/Admin/Creditcard/delkey')}",
+			type: "post",
+			dataType: "json",
+			data: {
+				id: id
+			},
+			success:function(data){
+				alert(data.info);
+				if(data.status){
+					window.location.reload();
+				}
+			}
+		})
+	}
+})
+</script>
+<!--删除 2-->

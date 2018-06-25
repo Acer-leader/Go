@@ -1,0 +1,308 @@
+<include file="Public:head"/>
+<link href="__CSS__/fx.css" type="text/css"  rel="stylesheet" />
+
+<body>
+
+
+<!--head -->
+
+
+<div class="head_box houtai">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" style=" line-height:30px;color:#357ce2" ></i></a>
+<a href="__HOST__/Index/" class="shouye" style=" line-height:24px; color:#357ce2" >首页</a>
+<div class="clear"></div>
+</div>
+
+
+<div class="head_box_right">
+<a class="grzx" href="__HOST__/Distribution/fx_my"><img src="__IMAGES__/grzx.png"></a>
+</div>
+
+<div class="head_box_center" style=" color:#555; line-height:35px;">代理中心</div>
+<div class="clear"></div>
+
+</div>
+<!--head --> 
+
+
+<div class="tab_houtai">
+<ul>
+<li >
+<a href="__HOST__/Distribution/">
+<img src="__IMAGES__/houtai_yj.svg" />
+<h4 style=" color:#000">佣金产品</h4>
+</a>
+</li>
+<li style="border-bottom:2px #00e5b9 solid">
+<a href="__HOST__/Distribution/houtai1">
+<img src="__IMAGES__/houtai_kh.svg" />
+<h4 style=" color:#00e5b9">客户列表</h4>
+</a>
+</li>
+<li>
+<a href="__HOST__/Distribution/houtai">
+<img src="__IMAGES__/houtai_ws.svg" />
+<h4>常见问题</h4>
+</a>
+</li>
+<li>
+<a href="__HOST__/Distribution/houtai2">
+<img src="__IMAGES__/houtai_wd.svg"/>
+<h4>查网贷</h4>
+</a>
+</li>
+<div class="clear"></div>
+</ul>
+</div>
+
+
+
+<div class="warpper_box">
+    <div class="houtai_custom">
+        <div class="houtai_custom_mes">
+        	<ul>
+            	<li>
+                	<span class="houtai_custom_ico"><i class="fa fa-volume-up"></i></span>
+                    <h2><span class="houtai_cus_span">结算周期：</span>月结，每月初前五个工作日结算上月数据</h2>
+                </li>
+                <li>
+                	<span class="houtai_custom_ico"><i class="fa fa-volume-up"></i></span>
+                    <h2><span class="houtai_cus_span">状态说明：</span>数据状态的显示非实时状态，待结算日显示各家状态</h2>
+                </li>
+                <li class="houtai_custom_red">
+                	<span class="houtai_custom_ico"><i class="fa fa-volume-up"></i></span>
+                    <h2><span class="houtai_cus_span">温馨提示：</span>民生信用卡、现金卡、玖富万卡属合作商户二维码，用户申请信息不显示详细状态，官方仅显示二维码下款总金额数据状态或总人数</h2>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="houtai_custom">
+        <div class="houtai_custom_tab">
+        	<ul>
+            	<li onclick="fnTabBoxFade(this,5,1);" class="active">
+                	<a href="javascript:void(0);">个贷</a>
+                </li>
+                <li onclick="fnTabBoxFade(this,5,2);">
+                	<a href="javascript:void(0);">房贷</a>
+                </li>
+                <li onclick="fnTabBoxFade(this,5,3);">
+                	<a href="javascript:void(0);">车贷</a>
+                </li>
+     <!--            <li onclick="fnTabBoxFade(this,5,4);">
+                	<a href="javascript:void(0);">信用卡</a>
+                </li> -->
+            </ul>
+        </div>
+        
+        <div class="houtai_custom_main">
+        
+        	<div id="TabShow1" class="TabHide5">
+            	<div class="houtai_custom_table">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <th scope="col">名字</th>
+                        <th scope="col">手机号码</th>
+                        <th scope="col">申请产品</th>
+                        <th scope="col">操作</th>
+                      </tr>
+                      <if condition="empty($person)">
+                        <tr><td colspan="4">暂无客户</td></tr>
+                      </if>
+                      <foreach name="person" item="vo">
+                       <tr>
+                        <td>{$vo.truename}</td>
+                        <td>{$vo.telephone}</td>
+                        <td>个人贷款</td>
+                        <td>
+                                <switch name="v.status">
+                                    <case value="2">
+                                    通过
+                                    </case>
+                                    <case value="3">
+                                    不通过
+                                    </case>
+                                    <default/>
+                                    <a href="javascript:void(0);" title="查看" style="color:#666" onclick="checked({$v.telephone})">正在审核</a>
+                                </switch>
+                        </td>
+                      </tr>
+                      </foreach>
+          
+                    </table>
+                </div>
+            </div>
+            <div id="TabShow2" class="TabHide5"  style=" display:none;" >
+            	<div class="houtai_custom_table">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <th scope="col">名字</th>
+                        <th scope="col">手机号码</th>
+                        <th scope="col">申请产品</th>
+                        <th scope="col">操作</th>
+                      </tr>
+                      <if condition="empty($house)">
+                        <tr><td colspan="4">暂无客户</td></tr>
+                      </if>
+                    <foreach name="house" item="vo">
+                       <tr>
+                        <td>{$vo.truename}</td>
+                        <td>{$vo.telephone}</td>
+                        <td>房贷</td>
+                        <td>
+                                <switch name="v.status">
+                                    <case value="2">
+                                    通过
+                                    </case>
+                                    <case value="3">
+                                    不通过
+                                    </case>
+                                    <default/>
+                                    <a href="javascript:void(0);" title="查看" style="color:#666" onclick="checked({$v.telephone})">正在审核</a>
+                                </switch>
+                        </td>
+                      </tr>
+                      </foreach>
+                    </table>
+                </div>
+            </div>
+            <div id="TabShow3" class="TabHide5"  style=" display:none;" >
+            	<div class="houtai_custom_table">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <th scope="col">名字</th>
+                        <th scope="col">手机号码</th>
+                        <th scope="col">申请产品</th>
+                        <th scope="col">操作</th>
+                      </tr>
+                      <if condition="empty($car)">
+                       <tr><td colspan="4">暂无客户</td></tr>
+                      </if>
+                    <foreach name="car" item="vo">
+                       <tr>
+                        <td>{$vo.truename}</td>
+                        <td>{$vo.telephone}</td>
+                        <td>车贷</td>
+                        <td>
+                                <switch name="v.status">
+                                    <case value="2">
+                                    通过
+                                    </case>
+                                    <case value="3">
+                                    不通过
+                                    </case>
+                                    <default/>
+                                    <a href="javascript:void(0);" title="查看" style="color:#666" onclick="checked({$v.telephone})">正在审核</a>
+                                </switch>
+                        </td>
+                      </tr>
+                      </foreach>
+                    </table>
+                </div>
+            </div>
+            <div id="TabShow4" class="TabHide5"  style=" display:none;" >
+            	<div class="houtai_custom_table">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <th scope="col">名字</th>
+                        <th scope="col">手机号码</th>
+                        <th scope="col">申请产品</th>
+                        <th scope="col">操作</th>
+                      </tr>
+                      <tr>
+                        <td>张三</td>
+                        <td>13500001234</td>
+                        <td>个人贷款</td>
+                        <td>003546</td>
+                      </tr>
+                      <tr>
+                        <td>张三</td>
+                        <td>13500001234</td>
+                        <td>个人贷款</td>
+                        <td>003546</td>
+                      </tr>
+                      <tr>
+                        <td>张三</td>
+                        <td>13500001234</td>
+                        <td>个人贷款</td>
+                        <td>003546</td>
+                      </tr>
+                      <tr>
+                        <td>张三</td>
+                        <td>13500001234</td>
+                        <td>个人贷款</td>
+                        <td>003546</td>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+        
+        	
+        </div>
+        
+        
+    </div>    
+</div>
+
+
+<!--foot-->
+<include file="public:footer" />
+<!--foot-->
+
+</body>
+
+<script>	
+function fnTabBoxShow(Focus,Hide,Show){
+	$(Focus).siblings().removeClass("active");
+	$(Focus).addClass("active");
+	$(".TabHide"+Hide).hide();
+	$("#TabShow"+Show).show();
+};
+
+function fnTabBoxSlide(Focus,Hide,Show){
+	$(Focus).siblings().removeClass("active");
+	$(Focus).addClass("active");
+	$(".TabHide"+Hide).hide();
+	$("#TabShow"+Show).slideDown("fast");
+};
+
+function fnTabBoxFade(Focus,Hide,Show){
+	$(Focus).siblings().removeClass("active");
+	$(Focus).addClass("active");
+	$(".TabHide"+Hide).hide();
+	$("#TabShow"+Show).fadeIn("fast");
+};
+
+
+function checked(telephone){
+    var post    =   {};
+    post.telephone  =   telephone;
+     $.ajax({
+            url:'__HOST__/Distribution/isapply',
+            data:post,
+            type:'post',
+            dataType:'json',
+            success: function(data){
+                var Content =  data['Content'];
+                if(Content){
+                    if(Content['Status']){
+                        alert('审核通过')
+                    }else{
+                        alert('正在审核');
+                    }
+                }else{
+                    alert('正在审核');
+                }
+
+  
+            }
+        })
+}	
+$(document).ready(function (){
+
+})
+</script>
+
+</html>
+

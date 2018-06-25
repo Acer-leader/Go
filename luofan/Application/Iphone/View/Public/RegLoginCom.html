@@ -1,0 +1,285 @@
+
+<!-- 注册时 获取手机短信验证码 1 -->
+<script type="text/javascript">
+    var wait = 60;
+  $("#getCode").click(function (){
+    var _this = $(this)
+    if (_this.attr("disabled")) {
+        return false;
+    }
+    var telephone = $(".telephone").val();
+    if(!telephone){
+      dialog.showTips("请填写手机号！","warn");return false;
+    }else if(!telephone.match(/^1[35789][0-9]{9}$/)){
+      dialog.showTips("手机号码格式错误！","warn");return false;
+
+    }
+    $.post("{:U('Home/User/getMessage')}", {'telephone':telephone,'code_type':1}, function (data){
+      if(data.status==1){
+        dialog.showTips("验证码发送成功，请注意查收！","warn");
+        // 计时
+        time(_this);
+      }else{
+        dialog.showTips(data.info,"warn");return false;
+      }
+    },"json")
+  })
+</script>
+<!-- 注册时 获取手机短信验证码 1 -->
+
+<!-- 手机验证码登录时 获取手机短信验证码 3 -->
+<script type="text/javascript">
+    var wait = 60;
+  $("#getCode1").click(function (){
+    var _this = $(this)
+    if (_this.attr("disabled")) {
+        return false;
+    }
+    var telephone   = $(".telephone1").val();
+    var verify_code = $(".verify_code1").val();
+    if(!telephone){
+      dialog.showTips("请填写手机号！","warn");return false;
+    }else if(!telephone.match(/^1[35789][0-9]{9}$/)){
+      dialog.showTips("手机号码格式错误！","warn");return false;
+    }
+    if(!verify_code){
+      dialog.showTips("请填写验证码！","warn");return false;
+    }
+    $.post("{:U('Home/User/getMessage')}", {'telephone':telephone,'verify_code':verify_code,'code_type':3}, function (data){
+      if(data.status==1){
+        dialog.showTips("验证码发送成功，请注意查收！","warn");
+        // 计时
+        time(_this);
+      }else{
+        dialog.showTips(data.info,"warn");return false;
+      }
+    },"json")
+  })
+</script>
+<!-- 手机验证码登录时 获取手机短信验证码 3 -->
+
+<!-- 手机验证码忘记时 获取手机短信验证码 2 -->
+<script type="text/javascript">
+    var wait = 60;
+  $("#getCode3").click(function (){
+    var _this = $(this)
+    if (_this.attr("disabled")) {
+        return false;
+    }
+    var telephone   = $(".telephone").val();
+    var verify_code = $(".verify_code1").val();
+    if(!telephone){
+      dialog.showTips("请填写手机号！","warn");return false;
+    }else if(!telephone.match(/^1[35789][0-9]{9}$/)){
+      dialog.showTips("手机号码格式错误！","warn");return false;
+    }
+    if(!verify_code){
+      dialog.showTips("请填写验证码！","warn");return false;
+    }
+    $.post("{:U('Home/User/getMessage')}", {'telephone':telephone,'verify_code':verify_code,'code_type':2}, function (data){
+      if(data.status==1){
+        dialog.showTips("验证码发送成功，请注意查收！","warn");
+        // 计时
+        time(_this);
+      }else{
+        dialog.showTips(data.info,"warn");return false;
+      }
+    },"json")
+  })
+</script>
+<!-- 手机验证码登录时 获取手机短信验证码 2 -->
+
+
+<script>
+  var wait = 60;
+  function time(o) {
+    //localStorage.aux_reTime=wait;
+    if (wait == 0) {
+      o.removeAttr("disabled");
+      o.val("重新获取");
+      wait = 60;
+    } else {
+      o.attr("disabled", true);
+      o.val("重新发送(" + wait + ")");
+      wait--;
+      setTimeout(function () {
+          time(o)
+      }, 1000);
+    }
+  }
+</script>
+
+<script>
+    $('#reg').click(function(){
+        var post={};
+        post.person_name = $('.person_name').val();
+        post.sex         = $('.seee:checked').val();
+        post.telephone   = $('.telephone').val();
+        post.code        = $('.code').val();
+        post.password    = $('.password').val();
+        post.repassword  = $('.repassword').val();
+        post.is_agree    =  $('input:checkbox[name=agree]:checked').val();      
+        if(!post.person_name){
+            alert('请输入您的昵称！');return false;
+        }
+        if(!post.telephone){
+            alert('请输入您的手机号！');return false;
+        }
+        if(!post.telephone.match(/^1[35789][0-9]{9}$/)){
+            alert('手机号码格式错误!');return false;
+        }
+        if(!post.code){
+             alert('请输入手机验证码！');return false;
+        }
+        if(!post.password){
+            alert('请输入密码！');return false;
+        }
+        if(!post.password.match(/^[a-zA-Z0-9]{6,10}$/)){
+            alert('密码格式错误！');return false;
+        }
+        if(!post.repassword){
+            alert('请输入确认密码！');return false;
+        }
+        if(!post.repassword.match(/^[a-zA-Z0-9]{6,10}$/)){
+            alert('确认密码格式错误！');return false;
+        }
+        if(post.password !== post.repassword ){
+             alert('两次密码不一致！');return false;
+        }
+
+        if(!post.is_agree){
+            alert('请同意服务协议');return false;
+        }
+        $.ajax({
+            url:"{:U('Home/User/doReg')}",
+            data:post,
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status){
+                    window.location.href="{:U('Home/Ucenter/index')}";
+                }else{
+                    dialog.showTips(data.info,"warn");return false;
+                }
+            }
+        })
+
+    })
+</script>
+
+
+<script>
+    $('#login').click(function(){
+        var telephone = $('.telephone').val();
+        var password  = $('.password').val();
+        if(!telephone){
+            alert('请输入你的手机号');return;
+        }
+        if(!telephone.match(/^1[35789][0-9]{9}$/)){
+            alert('手机号码格式错误!');return;
+        }
+        if(!password){
+            alert('请输入密码');return;
+        }
+        $.ajax({
+            url:"{:U('Home/User/doLogin')}",
+            data:{
+                telephone:telephone,
+                password:password,
+            },
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status){
+                    window.location.href=data.url;
+                }else{
+                  dialog.showTips(data.info,"warn");return false;                  
+                }
+            }
+        })
+    })
+</script>
+<script>
+    $('#forget').click(function(){
+        var telephone = $('.telephone').val();
+		var verify_code = $('.register_num').val()
+        var password  = $('.password').val();
+        var passwords  = $('.repassword').val();
+        if(!telephone){
+            alert('请输入你的手机号');return;
+        }
+        if(!telephone.match(/^1[35789][0-9]{9}$/)){
+            alert('手机号码格式错误!');return;
+        }
+		if(!verify_code){
+            alert('请输入验证码');return;
+        }
+        if(!password){
+            alert('请输入密码');return;
+        }
+		if(!passwords){
+            alert('请确认密码');return;
+        }
+		if(passwords !== password){
+            alert('两次密码不一致！');return;
+        }
+		$.ajax({
+            url:"{:U('Home/User/ajax_forget')}",
+            data:{
+                telephone:telephone,
+				code:verify_code,
+                password:password,
+                passwords:passwords,
+            },
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status){
+                    alert(data.info);
+					window.location.href="{:U('Home/User/login')}";
+                }else{
+                  alert(data.info);                 
+                }
+            }
+        })
+    })  
+</script>
+
+
+<script>
+    $('#Codelogin').click(function(){
+        var telephone    = $('.telephone1').val();
+        var verify_code  = $('.verify_code1').val();
+        var code         = $('.code1').val();
+
+        if(!telephone){
+            alert('请输入你的手机号');return;
+        }
+        if(!telephone.match(/^1[35789][0-9]{9}$/)){
+            alert('手机号码格式错误!');return;
+        }
+        if(!verify_code){
+            alert('请输入验证码');return;
+        }
+        if(!code){
+            alert('请输入短信验证码');return;
+        }
+        $.ajax({
+            url:"{:U('Home/User/doCodeLogin')}",
+            data:{
+                telephone:telephone,
+                verify_code:verify_code,
+                code:code,
+            },
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status){
+                    window.location.href=data.url;
+                }else{
+                  dialog.showTips(data.info,"warn");return false;                  
+                }
+            }
+        })
+    })
+</script>

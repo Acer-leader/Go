@@ -1,0 +1,213 @@
+<include file="Public:head"/>
+<style>
+    .imgnav {
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .imgwrapper {
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+
+    .imgwrapper img {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+
+    .spanpd10 {
+        margin: 10px;
+    }
+
+    .wxtables.wxtables-sku.newtable {
+        width: 40%;
+        margin: 0;
+    }
+
+    .img-list li {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cst_h3 span {
+        font-weight: normal;
+    }
+
+    #imgdiv img {
+        max-width: 190px;
+        max-height: 190px;
+        display: none;
+        margin: 5px;
+    }
+
+    .btnimage {
+        width: 80px;
+        height: 30px;
+        background: white;
+        border: 1px solid #d9d9d9;
+        cursor: pointer;
+        position: relative;
+        text-align: center;
+        line-height: 31px;
+    }
+
+    .file {
+        position: absolute;
+        top: 0px;
+        left: 0;
+        width: 80px;
+        height: 30px;
+        background: white;
+        border: 1px solid #d9d9d9;
+        cursor: pointer;
+        opacity: 0
+    }
+
+    #imgdiv2 img {
+        max-width: 88px;
+        max-height: 88px;
+        display: none;
+        margin: 5px;
+    }
+
+    #xuanze2 {
+        width: 60px;
+        height: 30px;
+        background: white;
+        border: 1px solid #d9d9d9;
+    }
+
+    #xuanze2:hover {
+        background: #E6E6E6;
+    }
+
+    .huase {
+        display: none;
+        width: 86px;
+        height: 30px;
+        margin: 5px;
+        text-indent: 5px;
+    }
+
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+<script type="text/javascript" src="__JS__/datepicker/WdatePicker.js"></script>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left"/>
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">抢购配置</h1>
+
+            <form aciton="{:U('/Supplier/Index/IndexConfig')}" enctype="multipart/form-data" method="post">
+                <div class="panel-single panel-single-light mgt20">
+                    <h3 class="cst_h3 mgb20">基本信息</h3>
+
+                    <div class="jbox-container" style="height: 263px;">
+                        <div class="formitems">
+                            <label class="fi-name"><span class="colorRed">*</span>抢购标题：</label>
+
+                            <div class="form-controls">
+                                <input type="text" class="input xxlarge title" name="title" value="{$Info.title}" id="addtitle">
+                            </div>
+                        </div>
+
+                        <div class="formitems">
+                            <label class="fi-name"><span class="colorRed">*</span>限时抢购开始时间：</label>
+
+                            <div class="form-controls">
+                                <input type="text" class="input xxlarge" readonly onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+                                       name="starttime" id="addstarttime" value="<if condition='($Info.starttime eq 0) '>0<else/>{$Info.starttime|date='Y-m-d H:i:s',###}</if>">
+                            </div>
+                        </div>
+
+                        <div class="formitems">
+                            <label class="fi-name"><span class="colorRed">*</span>限时抢购截止时间：</label>
+
+                            <div class="form-controls">
+                                <input type="text" class="input xxlarge" readonly onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+                                       name="endtime" id="addendtime" value="<if condition='($Info.endtime eq 0) '>0<else/>{$Info.endtime|date='Y-m-d H:i:s',###}</if>">
+                            </div>
+                        </div>
+
+                        <div class="formitems">
+                            <label class="fi-name"><span class="colorRed">*</span>抢购状态：</label>
+
+                            <div class="form-controls">
+                                <!-- <select class="input xxlarge" name="status" id="addstatus">
+                                    <option value="" <if condition="($Info.status eq 0) ">selected</if>>--请选择--</option>
+                                    <option value="1" <if condition="($Info.status eq 1) ">selected</if>>开启</option>
+                                    <option value="2" <if condition="($Info.status eq 2) ">selected</if>>关闭</option>
+                                </select> -->
+                                <input type="radio" class="addstatus" name="status" value="1" <eq name="Info['status']" value="1">checked</eq>>开启
+                                <input type="radio" class="addstatus" name="status" value="2" <eq name="Info['status']" value="2">checked</eq>>关闭
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="jbox-buttons">
+                        <div class="panel-single panel-single-light mgt20 txtCenter">
+                            <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addlimitbuy">确定</a>
+                            <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- end 基本信息 -->
+    </div>
+</div>
+<include file="Public:foot"/>
+<script type="text/javascript">
+
+    $("#addlimitbuy").click(function(){
+
+        var title = $('#addtitle').val();  //抢购标题
+        var starttime=$('#addstarttime').val();
+        var endtime=$('#addendtime').val();
+        var status=$('.addstatus:checked').val();
+
+        if (title == '') {
+            alert("抢购标题必填！");
+            return false;
+        }
+        if(starttime>endtime)
+        {
+            alert('抢购开始时间要小于抢购结束时间！');
+            return false;
+        }
+
+        if (status == '') {
+            alert("请选择抢购状态！");
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Supplier/Gongygoods/savelimitbuy')}",
+            type: "post",
+            dataType: "json",
+            data: {
+
+                title: title,
+                starttime:       starttime,
+                endtime:       endtime,
+                status: status
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>

@@ -1,0 +1,199 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">充值记录列表</h1>
+
+            <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count}</span> 条充值记录。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <a href="javaScript:;" class="btn btn-success chongzhi">充值</a>
+            <div class="tablesWrap">
+                    <div class="tables-searchbox">
+                        <div class="fl">
+                            <form action="{:U('admin/Fenxiao/chongzhi')}">
+                                <input type="text" class="input" name="title" id="title" value="{$title}" placeholder="姓名/账号">
+                                <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                        class="gicon-search white"></i>查询
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                <!-- end tables-searchbox -->
+                <table class="wxtables" style="text-align:center;">
+                    <colgroup>
+                       <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="15%">
+                        <col width="15%">
+
+                    </colgroup>
+                    <thead>
+                    <tr>
+						<td>ID</td>
+                        <td>姓名</td>
+                        <td>账号</td>
+                        <td>金额</td>
+                        <td>充值时间</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="res" item="vo">
+                    <tr>
+						<td>{$vo.id}</td>
+                       <td>{$vo.personname}</td>
+                       <td>{$vo.telephone}</td>
+                       <td>￥{$vo.money}</td>
+                       <td>{$vo.add_time|date='Y-m-d H:i:s',###}</td>  
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                   
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end container -->
+<script>
+    //是否冻结
+    $(".changeStatus").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('admin/member/changeStatus')}",{id:id},function(data){
+            if(data.status == 1){
+                var p = _this.parent().parent().parent().find(".status p");
+                p.html(data.info);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("解冻")
+                    p.css("color","red")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("冻结")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+    })
+</script>
+
+<include file="Public:foot"/>
+
+
+
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">充值</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>手机号：</label>
+            <div class="form-controls">
+                <input type="text"  class="input telephone" maxlength="11" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/ \D/g,'')" >
+                <span class="fi-help-text"></span> </div>
+        </div>
+		<div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>充值金额：</label>
+            <div class="form-controls">
+                <input type="text"  class="input money" maxlength="10" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/ \D/g,'')" >
+                <span class="fi-help-text"></span> </div>
+        </div>
+        
+    </div>
+    <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(".chongzhi").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+	 $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+</script>
+<script type="text/javascript">
+    $("#addcategory").click(function(){
+        var telephone = $('.telephone').val();
+        var money = $(".money").val();
+        if (!telephone) {
+            alert("请填写充值帐户手机号");
+            return false;
+        }
+		if(!telephone.match(/^1[345789][0-9]{9}$/)){
+			  dialog.showTips("请填写正确的手机号码！","warn");return false;
+		}
+        if (money == '') {
+            alert("请填写充值金额");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Admin/Fenxiao/set')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                telephone: telephone,
+                money:money,
+            }
+        }).done(function (res) {
+            if (res.status == 1) {
+                dialog.showTips(res.info, "warn", function (){
+                    window.location.reload();
+                });
+            } else {
+                dialog.showTips(res.info, "warn");
+            }
+        })
+    })
+</script>
+
+
+
+

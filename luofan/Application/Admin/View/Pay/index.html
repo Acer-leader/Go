@@ -1,0 +1,194 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">会员列表</h1>
+
+
+            <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count}</span> 名会员。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                    <div class="tables-searchbox">
+                        <div class="fl">
+                            <form action="{:U('admin/member/index')}">
+                                <input type="text" class="input" name="title" id="title" value="{$title}" placeholder="用户昵称/手机号">
+                                <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                        class="gicon-search white"></i>查询
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                <!-- end tables-searchbox -->
+                <table class="wxtables" style="text-align:center;">
+                    <colgroup>
+                        <col width="2%">
+                        <col width="5%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="5%">
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="6%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>ID</td>
+                        <td>头像</td>
+                        <td>用户昵称/手机号</td>
+                        <td>性别</td>
+                        <td>注册时间</td>
+                        <td>上次登录时间</td>
+                        <td>状态</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="memberlist" item="vo">
+                    <tr>
+                        <td><input type="checkbox" class="checkbox table-ckbs check" data-id="{$vo.id}" ></td>
+                        <td>{$vo.id}</td>
+                        <td><img src="{$vo.person_img}" alt="" width="50" ></td>
+                        <td><p> {$vo.person_name}<br/>{$vo.telephone}</p></td>
+                        <td><p>
+                            <switch name="vo.sex">
+                                <case value="1">男</case>
+                                <case value="2">女</case>
+                            </switch>
+                        </p></td>
+                        <td>{$vo.add_time}</td>
+                        <td>{$vo.last_login_time}</td>
+                        <td class="status">
+                            <switch name="vo.status">
+                                <case value="0"><p>正常</p></case>
+                                <case value="1"><p style='color:red;'>冻结</p></case>
+                            </switch>
+                        </td>
+                        <td>
+                            <p>
+                                <a href="{:U('/Admin/Member/detail/id')}/{$vo.id}" class="btn btn-success">查看</a>
+                                <switch name="vo.status">
+                                    <case value="0">
+                                        <a href="JavaScript:void(0);" class="btn btn-warning changeStatus" title="冻结" data-id="{$vo.id}">冻结</a>
+                                    </case>
+                                    <case value="1">
+                                        <a href="JavaScript:void(0);" class="btn btn-danger changeStatus" title="解冻" data-id="{$vo.id}">解冻</a>
+                                    </case>
+                                </switch>
+                                <a href="javaScript:;" class="btn btn-danger j-delClass" title="删除" onclick="btn_del({$vo['id']})">删除</a>
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                        <a href="javaScript:;" class="btn btn-danger j-delClass" title="多选删除" onclick="btn_del()">多选删除</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class="jbox-buttons">
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="examine">确定</a>
+      <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<!-- end container -->
+<script>
+    //是否冻结
+    $(".changeStatus").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('admin/member/changeStatus')}",{id:id},function(data){
+            if(data.status == 1){
+                var p = _this.parent().parent().parent().find(".status p");
+                p.html(data.info);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("解冻")
+                    p.css("color","red")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("冻结")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+    })
+</script>
+
+<include file="Public:foot"/>
+
+<!--删除 1-->
+<script>
+    function btn_del(id){
+        if(confirm('确定要删除吗？')){
+            if(!id){
+                var id ='';
+                if($('.check:checked').length ==0){
+                    alert('请选择要删除的数据');return false;
+                }
+                $('.check:checked').each(function(){
+                    id = id + $(this).attr("data-id") + '_';
+                });
+            }
+            $.ajax({
+                url: "{:U('/Admin/Member/delmember')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: id
+                }
+            }).done(function (res) {
+                if (res.status == 1) {
+                    dialog.showTips(res.info,"",res.url);
+                } else {
+                    dialog.showTips(res.info,"warn");
+                }
+            })
+        }
+    }
+</script>
+<!--删除 2-->

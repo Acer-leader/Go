@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<title>unohacha</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/unohacha.css" type="text/css" />
+</head>
+<body>
+<div class="unohacha_logo" >
+<a href="http://www.unohacha.com" target="_blank">
+  <div class="made_wz">
+    <div class="made"> <svg width="51" height="11">
+      <image xlink:href="images/1.svg" src="images/1.png" width="51" height="11" />
+      </svg> </div>
+    <div class="made2" title="UNOHACHA 吾诺瀚卓">
+    
+      <div class="uno">
+        <div class="addcolor_bf" > <svg width="55" height="8" >
+          <image xlink:href="images/3.svg" src="images/3.png" width="55" height="8" />
+          </svg> </div>
+        <div class="addcolor"> <svg width="55" height="8" >
+          <image xlink:href="images/5.svg" src="images/5.png" width="55" height="8" />
+          </svg> </div>
+      </div>
+      
+      <div class="addcolor_botbox"> <svg width="54" height="4" >
+        <image xlink:href="images/4.svg" src="images/4.png" width="54" height="4" />
+        </svg> </div>
+        
+        
+      <div class="box_hidden">
+        <div class="Uno"> <svg width="55" height="13" >
+          <image xlink:href="images/2.svg" src="images/2.png" width="55" height="13" />
+          </svg> </div>
+      </div>
+      
+      
+    </div>
+    <div class="clear"></div>
+  </div>
+  </a>
+</div>
+
+<script>
+	$(document).ready(function(){
+		//$('.box_hidden').css({'width':'100%','height':'30px'});
+		$('.made2').mouseover(function(){
+			
+			$('.addcolor').stop().animate({'opacity':'1'},1000);
+			$('.addcolor_bf').stop().animate({'opacity':'0'},1000);
+			$('.Uno').stop().animate({'top':'0%','opacity':'1'},600);
+		});	
+		$('.made2').mouseout(function(){	
+			
+			$('.addcolor').stop().animate({'opacity':'0'},1000);
+			$('.addcolor_bf').stop().animate({'opacity':'1'},1000);
+			$('.Uno').stop().animate({'top':'100%','opacity':'0'},600);	
+		});
+		$(".unohacha_logo").click(function(){
+			//window.location.href='http://www.unohacha.com';
+		})
+	});
+</script>
+</body>
+</html>

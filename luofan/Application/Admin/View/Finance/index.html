@@ -1,0 +1,256 @@
+<include file="Public:head"/>
+
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<script type="text/javascript">
+
+    J(function(){
+        J('#starttime').calendar({ format:'yyyy-MM-dd 00:00:00' });
+        J('#endtime').calendar({ format:'yyyy-MM-dd 23:59:59' });
+    });
+
+</script>
+
+<div class="container">
+<div class="inner clearfix">
+<div class="content-left fl">
+    <include file="Public:left"/>
+</div>
+<!-- end content-left -->
+
+<div class="content-right fl">
+
+
+<h1 class="content-right-title">财务统计</h1>
+
+
+
+<div class="tablesWrap">
+<form action="" method="GET" name="form1">
+    <div class="tables-searchbox">
+
+        <!--<input type="text" autocomplete="off" name="start_time" id="starttime" value="{$start_time}" placeholder="起始日期" class="input Wdate">-->
+        <!--<span class="mgr5">至</span>-->
+        <!--<input type="text" autocomplete="off" name="end_time" id="endtime" value="{$end_time}" placeholder="结束日期" class="input Wdate">-->
+        <!--<button class="btn btn-primary"><i class="gicon-search white"></i>查询</button>-->
+
+        <input type="hidden" name="action" value="">
+    </div>
+</form>
+<!-- end tables-searchbox -->
+
+<table class="wxtables data mgt15">
+    <colgroup>
+        <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+    </colgroup>
+    <thead>
+    <tr>
+        <td colspan="8" class="left" style="font-size:14px;">日统计
+		<form action="{:U('Admin/Finance/index/type/1')}" method="post">
+			<input type="text" autocomplete="off" name="dayStartTime" id="dayStartTime" value="{$dayStartTime}" placeholder="起始日期2017-03-01" class="input Wdate">
+			<span class="mgr5">至</span>
+			<input type="text" autocomplete="off" name="dayEndTime" id="dayEndTime" value="{$dayEndTime}" placeholder="结束日期2017-03-11" class="input Wdate">
+			<button class="btn btn-primary"><i class="gicon-search white"></i>查询</button> 
+		</form>
+		<a href="{:U('Admin/Finance/orderExport/type/1')}"><button class="btn btn-success" style="float:right;"><i
+                                class="gicon-search white"></i>导出订单
+                        </button></a>	
+		</td>    
+		
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td ><div class="dataItems">充值积分</div><div class="dataItems"> <span class="">{$day['zengsong']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">购物金额</div><div class="dataItems"> <span class="">￥{$day['gouwuxiaofeijine']['integral']|default="0"}</span> </div></td>
+        <td><div class="dataItems">购物积分</div><div class="dataItems"> <span class="">{$day['gouwuxiaofei']['integral']|default="0"}</span> </div></td>
+        <td><div class="dataItems">购物返</div><div class="dataItems"> <span class="">{$day['gouwufan']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">消费返</div><div class="dataItems"> <span class="">{$month['xiaofeifan']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">签到</div><div class="dataItems"> <span class="">{$day['qiandao']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">注册</div><div class="dataItems"> <span class="">{$day['zhuce']['integral']|default="0"}</span> </div></td>
+		
+    </tr>
+	 <tr>
+		<td><div class="dataItems">分享</div><div class="dataItems"> <span class="">{$day['fenxiang']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">推荐</div><div class="dataItems"> <span class="">{$day['tuijian']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">关注</div><div class="dataItems"> <span class="">{$day['guanzhu']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">退金额</div><div class="dataItems"> <span class="">￥{$day['tuikuanjine']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">退购物积分</div><div class="dataItems"> <span class="">{$day['tuikuanzhifu']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">得购返积分</div><div class="dataItems"> <span class="">{$day['tuikuanfan']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">得消返积分</div><div class="dataItems"> <span class="">{$day['guanzhuxiaofei']['integral']|default="0"}</span> </div></td>
+	</tr>
+	 <tr>
+		
+		<td><div class="dataItems">总支出积分</div><div class="dataItems"> <span class="num1">{$day['zongzhichujifen']|default="0"}</span> </div></td>
+		<td><div class="dataItems">总收入积分</div><div class="dataItems"> <span class="num1">{$day['zongshourujifen']|default="0"}</span> </div></td>
+		<td><div class="dataItems">总支出金额</div><div class="dataItems"> ￥<span class="num1">{$day['zongzhichujine']|default="0"}</span> </div></td>
+		<td><div class="dataItems">总收入金额</div><div class="dataItems">￥ <span class="num1">{$day['zongshourujine']|default="0"}</span> </div></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+    <div class="chartWrap mgt15 clearfix">
+
+
+    
+<table class="wxtables data mgt15">
+    <colgroup>
+        <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+    </colgroup>
+    <thead>
+    <tr>
+        <td colspan="8" class="left" style="font-size:14px;">月统计
+		<form action="{:U('Admin/Finance/index/type/2')}" method="post">
+		 <input type="text" autocomplete="off" name="monthStartTime" id="monthStartTime" value="{$monthStartTime}" placeholder="起始日期2017-01" class="input Wdate">
+        <span class="mgr5">至</span>
+        <input type="text" autocomplete="off" name="monthEndTime" id="monthEndTime" value="{$monthEndTime}" placeholder="结束日期2017-03" class="input Wdate">
+        <button class="btn btn-primary"><i class="gicon-search white"></i>查询</button> 
+		</form>
+				<a href="{:U('Admin/Finance/orderExport/type/2')}"><button class="btn btn-success" style="float:right;"><i
+                                class="gicon-search white"></i>导出订单
+                        </button></a>	
+		</td>
+    </tr>
+    </thead>
+    <tbody>
+   <tr>
+        <td ><div class="dataItems">充值积分</div><div class="dataItems"> <span class="">{$month['zengsong']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">购物金额</div><div class="dataItems"> <span class="">￥{$month['gouwuxiaofeijine']['integral']|default="0"}</span> </div></td>
+        <td><div class="dataItems">购物积分</div><div class="dataItems"> <span class="">{$month['gouwuxiaofei']['integral']|default="0"}</span> </div></td>
+        <td><div class="dataItems">购物返</div><div class="dataItems"> <span class="">{$month['gouwufan']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">消费返</div><div class="dataItems"> <span class="">{$month['xiaofeifan']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">签到</div><div class="dataItems"> <span class="">{$month['qiandao']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">注册</div><div class="dataItems"> <span class="">{$month['zhuce']['integral']|default="0"}</span> </div></td>
+		
+    </tr>
+	 <tr>
+		<td><div class="dataItems">分享</div><div class="dataItems"> <span class="">{$month['fenxiang']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">推荐</div><div class="dataItems"> <span class="">{$month['tuijian']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">关注</div><div class="dataItems"> <span class="">￥{$month['guanzhu']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">退金额</div><div class="dataItems"> <span class="">{$month['tuikuanjine']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">退购物积分</div><div class="dataItems"> <span class="">{$month['tuikuanzhifu']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">得购返积分</div><div class="dataItems"> <span class="">{$month['tuikuanfan']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">得消返积分</div><div class="dataItems"> <span class="">{$month['guanzhuxiaofei']['integral']|default="0"}</span> </div></td>
+	</tr>
+	 <tr>
+		
+		<td><div class="dataItems">总支出积分</div><div class="dataItems"> <span class="num1">{$month['zongzhichujifen']|default="0"}</span> </div></td>
+		<td><div class="dataItems">总收入积分</div><div class="dataItems"> <span class="num1">{$month['zongshourujifen']|default="0"}</span> </div></td>
+		<td><div class="dataItems">总支出金额</div><div class="dataItems">￥ <span class="num1">{$month['zongzhichujine']|default="0"}</span> </div></td>
+		<td><div class="dataItems">总收入金额</div><div class="dataItems"> ￥<span class="num1">{$month['zongshourujine']|default="0"}</span> </div></td>
+
+    </tr>
+    </tbody>
+</table>
+</div>
+    <div class="chartWrap mgt15 clearfix">
+
+
+<table class="wxtables data mgt15">
+    <colgroup>
+       <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+    </colgroup>
+    <thead>
+    <tr>
+        <td colspan="8" class="left" style="font-size:14px;">年统计
+		<form action="{:U('Admin/Finance/index/type/3')}" method="post">
+			<input type="text" autocomplete="off" name="yearStartTime" id="yearStartTime" value="{$yearStartTime}" placeholder="起始日期2016" class="input Wdate">
+			<span class="mgr5">至</span>
+			<input type="text" autocomplete="off" name="yearEndTime" id="yearEndTime" value="{$yearEndTime}" placeholder="结束日期2017" class="input Wdate">
+			<button class="btn btn-primary"><i class="gicon-search white"></i>查询</button> 
+		</form>
+				<a href="{:U('Admin/Finance/orderExport/type/3')}"><button class="btn btn-success" style="float:right;"><i
+                                class="gicon-search white"></i>导出订单
+                        </button></a>	
+		</td>
+    </tr>
+    </thead>
+    <tbody>
+   <tr>
+        <td ><div class="dataItems">充值积分</div><div class="dataItems"> <span class="">{$year['zengsong']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">购物金额</div><div class="dataItems"> <span class="">￥{$year['gouwuxiaofeijine']['integral']|default="0"}</span> </div></td>
+        <td><div class="dataItems">购物积分</div><div class="dataItems"> <span class="">{$year['gouwuxiaofei']['integral']|default="0"}</span> </div></td>
+        <td><div class="dataItems">购物返</div><div class="dataItems"> <span class="">{$year['gouwufan']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">消费返</div><div class="dataItems"> <span class="">{$month['xiaofeifan']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">签到</div><div class="dataItems"> <span class="">{$year['qiandao']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">注册</div><div class="dataItems"> <span class="">{$year['zhuce']['integral']|default="0"}</span> </div></td>
+		
+    </tr>
+	 <tr>
+		<td><div class="dataItems">分享</div><div class="dataItems"> <span class="">{$year['fenxiang']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">推荐</div><div class="dataItems"> <span class="">{$year['tuijian']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">关注</div><div class="dataItems"> <span class="">￥{$year['guanzhu']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">退金额</div><div class="dataItems"> <span class="">{$year['tuikuanjine']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">退购物积分</div><div class="dataItems"> <span class="">{$year['tuikuanzhifu']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">得购返积分</div><div class="dataItems"> <span class="">{$year['tuikuanfan']['integral']|default="0"}</span> </div></td>
+		<td><div class="dataItems">得消返积分</div><div class="dataItems"> <span class="">{$year['guanzhuxiaofei']['integral']|default="0"}</span> </div></td>
+	</tr>
+	 <tr>
+		
+		<td><div class="dataItems">总支出积分</div><div class="dataItems"> <span class="num1">{$year['zongzhichujifen']|default="0"}</span> </div></td>
+		<td><div class="dataItems">总收入积分</div><div class="dataItems"> <span class="num1">{$year['zongshourujifen']|default="0"}</span> </div></td>
+		<td><div class="dataItems">总支出金额</div><div class="dataItems"> ￥<span class="num1">{$year['zongzhichujine']|default="0"}</span> </div></td>
+		<td><div class="dataItems">总收入金额</div><div class="dataItems">￥ <span class="num1">{$year['zongshourujine']|default="0"}</span> </div></td>
+
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+<div class="chartWrap mgt15 clearfix">
+
+</div>
+
+<!-- end wxtables -->
+<div class="tables-btmctrl clearfix">
+    <div class="fr">
+        <div class="paginate">
+        </div>
+        <!-- end paginate -->
+    </div>
+</div>        <!-- end tables-btmctrl -->
+</div>
+
+
+
+
+</div>
+<!-- end content-right -->
+</div>
+</div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+<script type="text/javascript">
+    function daochu(id){
+        if(isNaN(id)){
+            id = "";
+        }
+        location.href="{:U('/Admin/Cash/excel')}?start_time="+$('#starttime').val()+"&end_time="+$('#endtime').val()+"&dealerid="+id+"&goodsid="+$('#goodsid').val()+"&storeid="+$('#storeid').val();
+    }
+</script>

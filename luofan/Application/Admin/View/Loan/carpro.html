@@ -1,0 +1,248 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__//lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/>
+  <!-- end content-left -->
+
+  <div class="content-right fl">
+    <h1 class="content-right-title">问答列表</h1>
+    <a href="{:U('/Admin/loan/carSet')}" class="btn btn-success">添加问题</a>
+    <form action="{:U('Admin/loan/carPro')}" method="post">
+      <div class="tables-searchbox newcearchbox">
+        <input type="text" placeholder="问题名称" class="input" name="title" value="{$title}" >
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+      </div>
+      <div class="tabs clearfix mgt10">
+      <a href="{:U('/Admin/loan/carPro')}" class="<eq name="_GET['is_sale']" value="">active</eq> tabs_a fl">全部({$countA})</a>
+      <a href="{:U('/Admin/loan/carPro/is_sale/2')}" class="<eq name="_GET['is_sale']" value="2">active</eq> tabs_a fl">已回答({$countB})</a>
+       <a href="{:U('/Admin/loan/carPro/is_sale/1')}" class="<eq name="_GET['is_sale']" value="1">active</eq> tabs_a fl">未回答({$countC})</a>
+
+      </div>
+    </form>
+    <!-- end tabs -->
+
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+      <col width="2%">
+      <col width="5%">
+      <col width="10%">
+      <col width="10%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+       <!--  <col width="5%">
+        <col width="5%">
+        <col width="5%">
+        <col width="5%">
+        <col width="5%"> -->
+      <col width="20%">
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+          <td><i class="icon_check"></i></td>
+          <td>ID</td>
+          <td>问题名称</td>
+          <td>发布时间</td>
+          <td>是否显示</td>
+          <td>排序</td>
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="problem" item="vo">
+          <eq name="_GET['is_sale']" value="">
+            <tr>
+              <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+              <td>{$vo.id}</td>
+              <td>{$vo.title}</td>
+              <td> {$vo.add_time|date='Y-m-d H:i:s',###} </td>
+              <td class="class_name">
+                <span>
+                  <if condition="$vo['is_show'] eq 0">
+                    否
+                  <else/>
+                    是
+                  </if>
+                </span>
+                <i class="edit-item j-geteditclassName" title="编辑分类" data-id="2151938" data-cid="" style="right:50%;margin-right:-8px;"></i>
+              </td>
+              <td class="class_name">
+                <span>
+                <if condition="$vo['sort'] eq null">
+                  0
+                <else/>
+                  {$vo['sort']}
+                </if>
+                </span>
+              </td>
+              <td>
+                <a href="{:U('/Admin/loan/carSet/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑|详情</a>
+                <!-- <a href="{:U('/Admin/Problem/setSKU/id')}/{$vo.id}" class="btn btn-success j-editClass" title="修改">sku</a> -->
+                <!-- <a href="{:U('/Admin/Problem/commentList/id')}/{$vo.id}" class="btn btn-success j-editClass" title="修改">查看评价</a> -->
+                <a href="{:U('/Admin/loan/carDel/id')}/{$vo.id}" onclick="{if(!confirm('确定删除产品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">删除</a>
+                </td>
+            </tr>
+          </eq>
+          <eq name="_GET['is_sale']" value="1">
+            <if condition="$vo.reply eq 0">
+              <tr>
+                <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+                <td>{$vo.id}</td>
+                <td>{$vo.title}</td>
+                <td> {$vo.add_time|date='Y-m-d H:i:s',###} </td>
+                <td class="class_name">
+                  <span>
+                    <if condition="$vo['is_show'] eq 0">
+                      否
+                    <else/>
+                      是
+                    </if>
+                  </span>
+                  <i class="edit-item j-geteditclassName" title="编辑分类" data-id="2151938" data-cid="" style="right:50%;margin-right:-8px;"></i>
+                </td>
+                <td class="class_name">
+                  <span>
+                    <if condition="$vo['sort'] eq null">
+                      0
+                    <else/>
+                      {$vo['sort']}
+                    </if>
+                  </span>
+                </td>
+                <td>
+                  <a href="{:U('/Admin/loan/carSet/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑|详情</a>
+                  <!-- <a href="{:U('/Admin/Problem/setSKU/id')}/{$vo.id}" class="btn btn-success j-editClass" title="修改">sku</a> -->
+                  <!-- <a href="{:U('/Admin/Problem/commentList/id')}/{$vo.id}" class="btn btn-success j-editClass" title="修改">查看评价</a> -->
+                  <a href="{:U('/Admin/loan/hosueDel/id')}/{$vo.id}" onclick="{if(!confirm('确定删除产品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">删除</a>
+                </td>
+              </tr>
+            </if>
+          </eq>
+          <eq name="_GET['is_sale']" value="2">
+            <if condition="$vo.reply gt 0">
+              <tr>
+                <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+                <td>{$vo.id}</td>
+                <td>{$vo.title}</td>
+                <td> {$vo.add_time|date='Y-m-d H:i:s',###} </td>
+                <td class="class_name">
+                  <span>
+                    <if condition="$vo['is_show'] eq 0">
+                      否
+                    <else/>
+                      是
+                    </if>
+                  </span>
+                  <i class="edit-item j-geteditclassName" title="编辑分类" data-id="2151938" data-cid="" style="right:50%;margin-right:-8px;"></i>
+                </td>
+                <td class="class_name">
+                  <span>
+                   <if condition="$vo['sort'] eq null">
+                    0
+                  <else/>
+                    {$vo['sort']}
+                  </if>
+                  </span>
+                </td>
+                <td>
+                  <a href="{:U('/Admin/loan/carSET/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑|详情</a>
+                  <a href="{:U('/Admin/loan/carDel/id')}/{$vo.id}" onclick="{if(!confirm('确定删除产品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">删除</a>
+                </td>
+              </tr>
+            </if>
+          </eq>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+        <a href="javascript:;" data-item="is_sale" class="btn btn-primary change-all-status">上架反选</a>
+        <!-- <a href="javascript:;" data-item="is_new" class="btn btn-primary change-all-status">新品速递反选</a>
+        <a href="javascript:;" data-item="is_jingxuan" class="btn btn-primary change-all-status">猜你喜欢反选</a>
+        <a href="javascript:;" data-item="is_good" class="btn btn-primary change-all-status">热门兑换反选</a>
+        <a href="javascript:;" data-item="is_cuxiao" class="btn btn-primary change-all-status">热兑商品反选</a>
+        <a href="javascript:;" data-item="is_sku" class="btn btn-primary change-all-status">sku反选</a> -->
+        <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>
+        <div class="fr">
+          <div class="pages"> {$page} </div>
+          <!-- end paginate -->
+        </div>
+      </div>
+      <!-- end tables-btmctrl -->
+
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+<include file="Public:foot"/>
+<script>
+$(".change-status").click(function (){
+  var _this= $(this)
+  var id   = $(this).attr("data-id");
+  var item = $(this).attr("data-item");
+  $.post("{:U('Admin/Problem/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status == 1){
+      _this.css({color:"#0C0"}).html("√");
+    }else if(data.status == 2){
+      _this.css({color:"#c00"}).html("×");
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".change-all-status").click(function (){
+  if(!confirm("确定改变所有选中产品的状态？")){
+    return false;
+  }
+  var ids = "";
+  var item = $(this).attr("data-item");
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Problem/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+    if(data.status){
+      window.location.reload();
+    }else{
+      alert(data.info);
+    }
+  })
+})
+$(".change-is_sale").click(function (){
+  var id   = $(this).attr("data-id");
+  var item = "is_sale";
+  $.post("{:U('Admin/Problem/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status){
+      window.location.reload()
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".btn_table_delAll").click(function(){
+  if(!confirm("确定删除所有选中的产品？")){
+    return false;
+  }
+  var ids = "";
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Problem/del')}" ,{ids:ids}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  })
+})
+</script>

@@ -1,0 +1,104 @@
+<include file="Public:head"/>
+<style>
+.activez a{ color:#fff !important; background:#ff583b}
+</style>
+<body>
+
+
+<!--head -->
+<div class="head_box" style=" background:#ff583b">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">攻略</div>
+<div class="clear"></div>
+</div>
+<!--head --> 
+
+
+
+
+<div class="warpper_box">
+
+
+
+
+<div class="gonglue_fl_box">
+<ul>
+<li><a href="__HOST__/News/gonglue/classid/93">个贷攻略</a></li>
+<li><a href="__HOST__/News/gonglue/classid/91">房贷攻略</a></li>
+<li><a href="__HOST__/News/gonglue/classid/92">车贷攻略</a></li>
+<li class="activez"><a href="__HOST__/News/xykgl/classid/1">信用卡攻略</a></li>
+<div class="clear"></div>
+</ul>
+</div>
+
+
+<div class="gedai_search_box_list">
+
+<ul>
+<li><a href="#"><span><img src="__IMAGES__/bank-18.png" /></span>建设银行</a></li>
+<li><a href="#"><span><img src="__IMAGES__/bank-21.png" /></span>平安银行</a></li>
+<li><a href="#"><span><img src="__IMAGES__/bank-15.png" /></span>中国银行</a></li>
+<li><a href="#"><span><img src="__IMAGES__/bank-03.png" /></span>光大银行</a></li>
+<li><a href="#"><span><img src="__IMAGES__/bank-04.png" /></span>中信银行</a></li>
+<li><a href="#"><span><img src="__IMAGES__/bank-01.png" /></span>招商银行</a></li>
+<li><a href="#"><span><img src="__IMAGES__/bank-05.png" /></span>民生银行</a></li>
+<li><a href="#"><span><img src="__IMAGES__/bank-17.png" /></span>交通银行</a></li>
+<li><a href="#"><span><img src="__IMAGES__/bank-02.png" /></span>浦发银行</a></li>
+<li><a href="#"><span><img src="__IMAGES__/bank-16.png" /></span>广发银行</a></li>
+</ul>
+
+<ul>
+<li><a href="#">美食</a></li>
+<li><a href="#">休闲娱乐</a></li>
+<li><a href="#">航空酒店出行</a></li>
+<li><a href="#">购物</a></li>
+<li><a href="#">旅游</a></li>
+<li><a href="#">汽车</a></li>
+<li><a href="#">时尚丽人</a></li>
+<li><a href="#">生活服务</a></li>
+<li><a href="#">办卡送礼</a></li>
+<li><a href="#">其他</a></li>
+</ul>
+</div>
+</div>
+
+
+
+<div class="gonglue_box">
+  <ul>
+    <foreach name="gl_list" item="vo" key="k">
+      <li>
+        <a href="__HOST__/News/xykgldot/id/{$vo.id}">
+          <span>·</span>
+          <h5>{$vo.news_title}</h5>
+          <div class="clear"></div>
+        </a>
+      </li>
+    </foreach>
+  </ul>
+</div>
+</div>
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+
+<script>
+    
+
+/*$(document).ready(function (){
+        
+$(".gonglue_fl_box ul li").click(function() {
+    $(this).addClass("activez").siblings().removeClass("activez");
+});
+  
+})*/
+
+</script>
+</html>

@@ -1,0 +1,68 @@
+html,body{
+	margin:0px;
+	padding:0px;
+}
+img{ border:none}
+
+.made_wz{
+		position:relative;
+		margin-top:15px;
+	}
+	.clear{
+		clear:both;	
+	}
+	.made{
+		width:53px;
+		float:left;
+	
+		
+	}
+	.made2{
+		float:left;	
+		position: relative;		
+		cursor:pointer;
+		margin-top:-3px
+
+	}
+	.made2 .uno{
+		padding-bottom:1%;
+		position: relative;
+		z-index:1
+	}
+	.addcolor{
+		position:absolute;
+		top:0;
+		left:0;
+		filter:alpha(opacity=0);   
+		  -moz-opacity:0;   
+		  -khtml-opacity: 0;   
+		  opacity: 0; 
+		  z-index:99; 
+	}
+	
+	.addcolor_bf{ position:absolute; height:8px; z-index:10; top:0; left:0;}
+	
+	.addcolor_botbox{  
+		position:absolute;
+		top:6px;
+	}
+	
+	.box_hidden{
+		width:100px;
+		height:15px;
+		position:absolute;
+		top:-10px;
+		overflow:hidden;
+
+		
+		
+	}
+	.Uno{
+		width:100%;
+		position:absolute;
+		top:100%;
+		filter:alpha(opacity=0);   
+		  -moz-opacity:0;   
+		  -khtml-opacity: 0;   
+		  opacity: 0; 
+	}

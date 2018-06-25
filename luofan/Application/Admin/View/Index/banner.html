@@ -1,0 +1,569 @@
+<include file="Public:head"/>
+
+<style>
+.formitems #addimage1 {
+    width: 80px;
+    height: 56px;
+    padding: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.formitems #editimage1 {
+    width: 80px;
+    height: 56px;
+    padding: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    cursor: pointer;
+    opacity: 0;
+}
+</style>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">图片列表</h1>
+
+            <form action="" method="post">
+                <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加广告</a>
+                </div>
+            </form>
+
+            <div class="alert alert-info disable-del">共有 <span style="font-size:16px;">{$count}</span> 张图片。<a href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <div class="tablesWrap">
+                <table class="wxtables">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="5%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="30%">
+                        <col width="20%">
+                        <col width="5%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>ID</td>
+                        <td>图片分类</td>
+                        <td>标题</td>
+                        <td>浏览图片</td>
+                        <td>图片链接</td>
+                        <td>排序</td>
+                        <td align="center">操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="cache" item="vo">
+                        <tr>
+                            <td><input type="checkbox" class="checkbox table-ckbs check"  data-name="" data-id="{$vo.id}"></td>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.classname}</td>
+                            <td>{$vo.title}</td>
+                            <td><img src="{$vo.pic}" width="100px" /></td>
+                            <td>{$vo.url}</td>
+                            <td>{$vo.sort}</td>
+                            <td align="right"><p style=" text-align:center">
+                                <a class="btn btn-primary j-editClass" data-url="{$vo.url}" data-title="{$vo.title}" data-title1="{$vo.title1}" data-id="{$vo.id}" data-type="{$vo.type}" data-sort="{$vo.sort}" data-pic="{$vo.pic}" data-pic1="{$vo.pic1}">编辑</a>
+                                <a href="javaScript:;" class="btn btn-danger j-delClass" title="删除" onclick="btn_del({$vo['id']})">删除</a>
+                            </td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                        <a href="javaScript:;" class="btn btn-danger j-delClass" title="多选删除" onclick="btn_del()">多选删除</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:foot"/>
+
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">添加广告</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>图片分类：</label>
+            <div class="form-controls">
+                <select name='type' style='padding:5px;border: 1px solid #ccc;width:182px' >
+                    <option value="">--请选择--</option>
+                    <foreach name="bannertypelist" item="vo" >
+                        <option value="{$vo.id}">{$vo.classname}</option>
+                    </foreach>
+                </select>
+                <span class="fi-help-text"></span> </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>图片链接：</label>
+            <div class="form-controls">
+                <input type="text"  class="input url" placeholder="填写产品分类ID/URL">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>图片标题：</label>
+            <div class="form-controls">
+                <input type="text"  class="input title">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>图片小标题：</label>
+            <div class="form-controls">
+                <input type="text"  class="input title1">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>排序：</label>
+            <div class="form-controls">
+                <input type="text" class="input sort" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" >
+                <span class="fi-help-text">注：数值越大 越靠前</span> </div>
+        </div>
+
+        <div class="formitems" style=" height:60px;">
+            <label class="fi-name"><span class="colorRed"></span>上传图片：</label>
+            <div class="form-controls images">
+                <div class="showimg"></div>
+                <div class="imagesadd">+</div>
+                <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="addimage" >
+                <div class="progress">
+                    <div class="bar"></div>
+                    <div class="percent"></div>
+                </div>
+                <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小:(1024*780px)</span>
+            </div>
+        </div>
+
+        <div class="formitems" style=" height:60px;">
+            <label class="fi-name"><span class="colorRed"></span>上传移动端图片：</label>
+            <div class="form-controls images">
+                <div class="showimg1"></div>
+                <div class="imagesadd">+</div>
+                <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial1" id="addimage1" >
+                <div class="progress1">
+                    <div class="bar1"></div>
+                    <div class="percent1"></div>
+                </div>
+                <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小:(750*360px)</span>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<div class="jbox editfenlei disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">修改广告</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>图片分类：</label>
+            <div class="form-controls">
+                <select name='type' id="pictype" style='padding:5px;border: 1px solid #ccc;width:182px' id='editfid'>
+                    <option value="">--请选择--</option>
+                    <foreach name="bannertypelist" item="vo" >
+                        <option value="{$vo.id}">{$vo.classname}</option>
+                    </foreach>
+                </select>
+                <span class="fi-help-text"></span> </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>图片链接：</label>
+            <div class="form-controls">
+                <input type="text" class="input url" placeholder="填写产品分类ID/URL">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>图片标题：</label>
+            <div class="form-controls">
+                <input type="text" class="input title">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>图片小标题：</label>
+            <div class="form-controls">
+                <input type="text" class="input title1">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>排序：</label>
+            <div class="form-controls">
+                <input type="text" class="input sort1" value="" >
+                <span class="fi-help-text">注：数值越大 越靠前</span> </div>
+        </div>
+
+
+        <div class="formitems" style=" height:60px;">
+            <input type="hidden" name="id" id="picid">
+            <label class="fi-name"><span class="colorRed"></span>上传图片：</label>
+            <div class="form-controls images">
+                <div class="showimg showimgedit"></div>
+                <div class="imagesadd">+</div>
+                <input type="file"  accept="image/jpg,image/jpeg,image/png,image/svg" class="input sort" name="serial" id="editimage" >
+                <div class="progress">
+                    <div class="bar"></div>
+                    <div class="percent"></div>
+                </div>
+                <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小:(1027*780px)</span>
+            </div>
+        </div>
+
+        <div class="formitems" style=" height:60px;">
+            <input type="hidden" name="id" id="picid">
+            <label class="fi-name"><span class="colorRed"></span>上传移动端图片：</label>
+            <div class="form-controls images">
+                <div class="showimg showimgedit1"></div>
+                <div class="imagesadd1">+</div>
+                <input type="file"  accept="image/jpg,image/jpeg,image/png,image/svg" class="input sort" name="serial1" id="editimage1" >
+                <div class="progress1">
+                    <div class="bar1"></div>
+                    <div class="percent1"></div>
+                </div>
+                <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小:(750*360px)</span>
+            </div>
+        </div>
+    </div>
+    <div class="jbox-buttons">
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editcategory">确定</a>
+        <a href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(function () {
+        var progress = $(".img");
+        var bar = $('.bar') ;
+        var percent = $('.percent');
+        var progress = $('.progress');
+        $("#addimage").wrap("<form id='myupload' action='{:U('Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#addimage").change(function(){ //选择文件
+            $("#myupload").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    bar.width(percentVal); //上传进度条宽度变宽
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="addpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.showimg').html(img);
+                    $("#addimage").val('');
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+    $(function (){
+        //var progress = $(".img");
+        var bar1 = $('.bar1');
+        var percent1 = $('.percent1');
+        var progress1 = $('.progress1');
+        $("#addimage1").wrap("<form id='myupload1' action='{:U('Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#addimage1").change(function(){ //选择文件
+            $("#myupload1").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress1.show(); //显示进度条
+                    var percentVal = '0%';
+                    bar1.width(percentVal);
+                    percent1.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    bar1.width(percentVal); //上传进度条宽度变宽
+                    percent1.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic1" id="addpic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.showimg1').html(img);
+                    $("#addimage1").val('');
+                    progress1.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+
+    $(function () {
+        //var progress = $(".img");
+        var bar = $('.bar') ;
+        var percent = $('.percent');
+        var progress = $('.progress');
+        $("#editimage").wrap("<form id='myupload3' action='{:U('Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#editimage").change(function(){ //选择文件
+            $("#myupload3").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    bar.width(percentVal); //上传进度条宽度变宽
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="editpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.showimgedit').html(img);
+                    $("#editimage").val('');
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+
+    $(function () {
+        //var progress = $(".img");
+        var bar1 = $('.bar1') ;
+        var percent1 = $('.percent1');
+        var progress1 = $('.progress1');
+        $("#editimage1").wrap("<form id='myupload2' action='{:U('Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#editimage1").change(function(){ //选择文件
+            $("#myupload2").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress1.show(); //显示进度条
+                    var percentVal = '0%';
+                    bar1.width(percentVal);
+                    percent1.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    bar1.width(percentVal); //上传进度条宽度变宽
+                    percent1.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic1" id="editpic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.showimgedit1').html(img);
+                    $("#editimage1").val('');
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+</script>
+
+
+<!--添加广告-->
+<script type="text/javascript">
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+</script>
+<script type="text/javascript">
+    $("#addcategory").click(function(){
+        var type = $(".addfenlei select[name=type]").val();
+        var pic = $('#addpic').val();  //父分类id
+        var pic1 = $('#addpic1').val(); 
+        var purl = $(".addfenlei .url").val();
+        var ptitle = $(".addfenlei .title").val();
+        var ptitle1 = $(".addfenlei .title1").val();
+        var sort = $(".addfenlei .sort").val();
+        if (!type) {
+            alert("请选择分类");
+            return false;
+        }
+        if (pic == '') {
+            alert("请添加图片");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Admin/Index/banner_add')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                pic: pic,
+                pic1: pic1,
+                type:type,
+                url:purl,
+                title:ptitle,
+                title1:ptitle1,
+                sort:sort
+
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+        })
+    })
+</script>
+<!--添加广告end-->
+
+<!--修改广告-->
+<script type="text/javascript">
+    var categoryid;
+    $(".j-editClass").click(function(){
+        var type = $(this).attr("data-type");
+        var purl = $(this).attr("data-url");
+        var ptitle = $(this).attr("data-title");
+        var ptitle1 = $(this).attr("data-title1");
+        var sort1 = $(this).attr("data-sort");
+        $("#pictype").val(type);
+
+        $(".editfenlei .url").val(purl);
+
+        $(".editfenlei .title").val(ptitle);
+
+        $(".editfenlei .title1").val(ptitle1);
+
+        $(".editfenlei .sort1").val(sort1);
+
+        $('.editfenlei').show();
+        $('#albums-overlay').show();
+        var pic=$(this).attr('data-pic');
+        var pic1=$(this).attr('data-pic1');
+        var id=$(this).attr('data-id');
+        $("#picid").val(id);
+
+        var img = '<img src="'+pic+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="editpic" value="'+pic+'">';
+        $('.showimgedit').html(img);
+        var img1 = '<img src="'+pic1+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic1" id="editpic1" value="'+pic1+'">';
+        $('.showimgedit1').html(img1);
+    })
+
+    $("#editcategory").click(function(){
+        var pic = $('#editpic').val();
+        var pic1 = $('#editpic1').val();
+        var id = $("#picid").val();
+        var type = $("#pictype").val();
+        var purl = $(".editfenlei .url").val();
+        var ptitle = $(".editfenlei .title").val();
+        var ptitle1 = $(".editfenlei .title1").val();
+        var sort = $(".editfenlei .sort1").val();
+        if (id == '') {
+            alert("图片不存在");
+            return false;
+        }
+        if (pic == '') {
+            alert("请添加图片");
+            return false;
+        }
+        if (!type){
+            alert("请选择正确的分类");
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Admin/Index/banner_edit')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                pic: pic,
+                pic1: pic1,
+                id:id,
+                type:type,
+                url:purl,
+                title:ptitle,
+                title1:ptitle1,
+                sort:sort
+            }
+        }).done(function (res) {
+            if (res.status == 1) {
+                dialog.showTips(res.info, "warn", function (){
+                    window.location.reload();
+                });
+            } else {
+                dialog.showTips(res.info, "warn");
+            }
+
+        })
+    })
+
+</script>
+<!--删除 1-->
+<script>
+    function btn_del(id){
+        if(confirm('确定要删除吗？')){
+            if(!id){
+                var id ='';
+                if($('.check:checked').length ==0){
+                    alert('请选择要删除的数据');return false;
+                }
+                $('.check:checked').each(function(){
+                    id = id + $(this).attr("data-id") + '_';
+                });
+            }
+            $.ajax({
+                url: "{:U('/Admin/Member/banner_del')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: id
+                }
+            }).done(function (res) {
+                if (res.status == 1) {
+                    dialog.showTips(res.info,"",res.url);
+                } else {
+                    dialog.showTips(res.info,"warn");
+                }
+            })
+        }
+    }
+</script>
+<!--删除 2-->

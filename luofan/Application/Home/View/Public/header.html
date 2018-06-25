@@ -1,0 +1,173 @@
+<div class="header">
+    <div class="header_top">
+        <div class="index_container">
+            <div class="header_left">
+                客服电话 <span class="phone_num">{$web_config.servise_phone}</span>
+            </div>
+            <div class="header_right">
+                <ul class="header_top_nav">
+                     <empty name="topInfo">
+						<li class="denglu">
+							<a href="{:U('User/reg')}"><i style="padding-right:5px;"><img src="__IMAGES__/zhuce.png" width="14"/></i>注册</a> | <a href="{:U('User/login')}">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<div class="clear"></div>
+						</li>
+					<else/>
+						<li class="denglu">
+							<a href="{:U('Ucenter/index')}"><i style="padding-right:5px;"><img src="__IMAGES__/zhuce.png" width="14"/></i>{$topInfo.person_name}</a> | <a href="{:U('User/loginOut')}">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<div class="clear"></div>
+						</li>
+                     </empty>| <a href="{:U('Grab/index')}"><i style="padding-right:5px;"></i>小贷公司注册</a> | <a href="{:U('Supplier/User/login')}">小贷公司登录</a>
+                     &nbsp;&nbsp;&nbsp;&nbsp;|  
+            <!--          <if condition="session('fenxiao_id') neq null">
+                     <a href="__HOST__/Distribution/fx_my">
+                     <else/> -->
+                        <!-- </if> -->
+                     <a href="__HOST__/Distribution/fx_commission">
+                  
+                     <i style="padding-right:5px;"></i>代理中心</a>
+                      <if condition="session('fenxiao_id') neq null"> | <a href="__HOST__/Distribution/logout">退出</a></if>
+                    <li class="header_last">
+                        <a href="javascript:void(0);">信贷经理</a>
+                        <div class="manag_box">
+                            <a href="#">贷款机构入驻</a>
+                        </div>
+                    </li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="header_bottom">
+        <div class="index_container">
+            <div class="header_left">
+                <div class="logo"><a href="{:U('Index/index')}"><img src="__IMAGES__/logo.png" /></a></div>
+                <div class="place">
+                    <span><img src="__IMAGES__/dizhi.png" /></span> <a href="javascript:void(0);"  onclick="openPlace();">[ <span><notempty name="city"> {$city}  <else/>全国</notempty></span>  <i class="fa fa-caret-down"></i> ] </a>
+
+                    <div class="place_tk">
+                        <div class="place_cot">
+                            <div class="place_top">
+                                <span>热门城市</span>&nbsp;&nbsp;请正确选择所在城市，贷款商家只受理本地客户贷款
+                                <a href="javascript:void(0);" class="close_place" onclick="closePlace();"><img src="__IMAGES__/close_place.jpg" /></a>
+                            </div>
+
+                           <!--  <div class="place_center">
+                            <volist name="shengcache" id="vo">
+                                <div class="place_list">
+                                    <div class="place_name">{$vo.name}：</div>
+                                    <ul class="place_nav">
+                                    <volist name="vo.city" id="voo">
+                                        <li><a href="?city={$voo.pinyin}">{$voo.name}</a></li>
+                                    </volist>
+                                        <div class="clear"></div>
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                            </volist>
+                            </div> -->
+                            <div class="place_center">
+                            <volist name="diqu" id="vo">
+                                <div class="place_list">
+                                    <div class="place_name">{$vo.name}：</div>
+                                    <ul class="place_nav">
+                                    <volist name="tj" id="v">
+                                        <eq name="v.diqu" value="$vo.id">
+                                        <li><a href="{:U('index/index',array('city'=>$v['pinyin']))}">{$v.name}</a></li>
+                                        </eq>
+                                    </volist>
+                                        <div class="clear"></div>
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                            </volist>
+                                <!-- <div class="place_list place_list1">
+                                    <div class="place_name">西南西北：</div>
+                                    <ul class="place_nav">
+                                        <li><a href="#">成都</a></li>
+                                        <div class="clear"></div>
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div> -->
+                            </div>
+
+                            <div class="place_bottom">
+                                如果您不在以上城市，请点击 " <a href="{:U('index/cityList')}" class="more_city">更多城市</a> " (全国共371个分站)
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="header_right">
+                <div class="menu">
+                    <ul class="header_nav">
+                        <li class=" <eq name="controller_name" value="Index"> on  </eq>"><a href="{:U('Index/index')}">首页</a></li>
+                        <li class="header_nav_zx  <eq name="controller_name" value="PersonLoan"> on  </eq>" ><a href="{:U('PersonLoan/index',array('city'=>$cc))}">个贷</a>
+							<div class="nav_list">
+                                <ul>
+                                    <li><a href="{:U('PersonLoan/index')}">个贷中心</a></li>
+                                    <li><a href="{:U('PersonLoan/answers')}">个贷问答</a></li>
+									<li><a href="{:U('News/personalNews')}">个贷资讯</a></li>
+									<li><a href="{:U('PersonLoan/gonglue')}">个贷攻略</a></li>
+									<li><a href="{:U('Grab/index')}">抢单</a></li>
+                                </ul>
+                            </div>
+						</li>
+                        <li class="header_nav_zx <eq name="controller_name" value="HouseLoan"> on  </eq>"><a href="{:U('HouseLoan/index',array('city'=>$cc))}">房贷</a>
+							<div class="nav_list">
+                                <ul>
+                                    <li><a href="{:U('HouseLoan/index')}">房贷中心</a></li>
+                                    <li><a href="{:U('HouseLoan/answers')}">房贷问答</a></li>
+									<li><a href="{:U('News/houseNews')}">房贷资讯</a></li>
+									<li><a href="{:U('HouseLoan/gonglue')}">房贷攻略</a></li>
+                                </ul>
+                            </div>
+						</li>
+                        <li class="header_nav_zx  <eq name="controller_name" value="CarLoan"> on  </eq>"><a href="{:U('CarLoan/index',array('city'=>$cc))}">车贷</a>
+							<div class="nav_list">
+                                <ul>
+                                    <li><a href="{:U('CarLoan/index')}">车贷中心</a></li>
+                                    <li><a href="{:U('CarLoan/answer')}">车贷问答</a></li>
+									<li><a href="{:U('News/carNews')}">车贷资讯</a></li>
+									<li><a href="{:U('CarLoan/gonglue')}">车贷攻略</a></li>
+                                </ul>
+                            </div>
+						</li>
+                        <li class="header_nav_zx <eq name="controller_name" value="Credit"> on  </eq>"><a href="{:U('Credit/creditList')}">信用卡</a>
+                            <div class="nav_list">
+                                <ul>
+                                    <li><a href="{:U('Credit/creditList')}">选卡中心</a></li>
+                                    <li><a href="{:U('Credit/discount')}">信用卡优惠</a></li>
+                                    <li><a href="{:U('Credit/gonglue')}">信用卡攻略</a></li>
+                                    <li><a href="{:U('Credit/answer')}">信用卡问答</a></li>
+                                    <li class="active"><a href="{:U('Credit/query')}">申请进度查询</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="header_nav_zx <in name="controller_name" value="News"> on  </in>"><a href="{:U('News/index')}">资讯</a>
+                            <div class="nav_list">
+                                <ul>
+                                    <li><a href="{:U('News/personalNews')}">信用贷资讯</a></li>
+                                    <li><a href="{:U('News/houseNews')}">房贷资讯</a></li>
+                                    <li><a href="{:U('News/carNews')}">车贷资讯</a></li>
+                                    <li><a href="{:U('News/creditNews')}">信用卡资讯</a></li>
+
+                                    <li><a href="{:U('News/baikeNews')}">百科资讯</a></li>
+                                    <li><a href="{:U('News/creditedNews')}">信用生活</a></li>
+                                    <!--<li><a href="{:U('News/problemNews')}">问答</a></li>-->
+                                    <li><a href="{:U('News/licaiNews')}">理财资讯</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class=" <eq name="controller_name" value=""> on  </eq>"><a href="##">论坛</a></li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+[ 2017-05-05T17:56:43+08:00 ] 140.205.201.31 /admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001092s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001573s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001658s ]
+NOTIC: [8] Undefined index: admin_id D:\luofan\Application\Common\Controller\CommonController.class.php 第 7 行.
+
+[ 2017-05-05T20:22:08+08:00 ] 140.205.225.188 /admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001229s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001751s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001893s ]
+NOTIC: [8] Undefined index: admin_id D:\luofan\Application\Common\Controller\CommonController.class.php 第 7 行.
+
+[ 2017-05-05T20:22:32+08:00 ] 140.205.225.188 /admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001220s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001321s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001382s ]
+NOTIC: [8] Undefined index: admin_id D:\luofan\Application\Common\Controller\CommonController.class.php 第 7 行.
+

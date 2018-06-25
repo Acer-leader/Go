@@ -1,0 +1,209 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__//lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">申请列表</h1>
+    <form action="" method="get">
+      <div class="tables-searchbox newcearchbox">
+        <input type="text" placeholder="姓名/电话" class="input" name="name" value="{$name}" >
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+      </div>
+    </form>
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="10%">
+      <col width="15%">
+      <col width="5%">
+      <col width="10%">
+
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+          <td>ID</td>
+          <td>姓名</td>
+          <td>电话</td>
+          <td>金额(万)</td>
+          <td>期限(月)</td>
+          <td>房</td>
+          <td>车</td>
+          <td>月薪</td>
+          <td>分销商</td>
+          <td>时间</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="cache" item="vo">
+          <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.truename}</td>
+            <td>{$vo.telephone}</td>
+            <td>{$vo.money}</td>
+            <td>{$vo.qixian}</td>
+            <td>{$vo.orderlon.housename}</td>
+            <td>{$vo.orderlon.carname}</td>
+            <td>{$vo.income}</td>
+            <td>{$vo.fenxiao}</td>
+            <td class="class_name">{$vo.create_at|date="Y-m-d H:i:s",###}</td>
+            <td><a href="{:U('/Admin/Loan/editsingleloanorder/id')}/{$vo.id}/lontype/{$lontype}" class="btn btn-primary j-editClass" title="详情">详情</a>
+           <a href="javascript:void(0);" class="btn btn-primary " onclick="look({$vo.telephone})" title="查看申请状态">查看状态</a>
+           <if condition="$vo['fenxiao'] neq null">
+            <if condition="$vo['status'] eq 2">
+            <a href="javascript:void(0);" class="btn" style="background:green;color:white" title="已通过">已通过</a>
+            </if>
+            <if condition="$vo['status'] eq 3">
+            <a href="javascript:void(0);" class="btn"  style="background:red;color:white" title="不通过">不通过</a>
+            </if>
+            <if condition="$vo['status'] eq 0">
+             <a href="javascript:void(0);" class="btn btn-warning " onclick="shenhe({$vo.id},2)"  title="通过">通过</a>
+            <a href="javascript:void(0);" class="btn btn-warning " onclick="shenhe({$vo.id},3)" title="不通过">不通过</a>
+            </if>
+            </if>
+        
+             
+              </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl"> 
+        <div class="fr">
+          <div class="pages" style="width:auto;"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/> 
+<script>
+
+function look(telephone){
+  var post    =   {};
+    post.telephone  =   telephone;
+     $.ajax({
+            url:'/Admin/Loan/isapply',
+            data:post,
+            type:'post',
+            dataType:'json',
+            success: function(data){
+                var Content =  data['Content'];
+                if(Content){
+                    if(Content['Status']){
+                        alert('审核通过')
+                    }else{
+                        alert('正在审核');
+                    }
+                }else{
+                    alert('正在审核');
+                }
+
+  
+            }
+        })
+}
+
+function shenhe(id,num){
+if(num==2){
+    var str = "确定该订单已经通过审核？";
+}
+if(num==3){
+    var str = "确定该订单不通过审核？";
+}
+ if(confirm(str)){
+      var id    =  id;
+      var num   =  num;
+      $.post("{:U('Admin/Loan/changeStatus')}", {
+        id:id,
+        num:num,
+        item:'status',
+        tab : 'loan_order'
+      }, function(data){
+      console.dir(data);
+        if(data.status == 1){
+            window.location.reload();
+        }
+      }, "json")
+    }
+}
+$(".change-status").click(function (){
+  var _this= $(this)
+  var id   = $(this).attr("data-id");
+  var item = $(this).attr("data-item");
+  $.post("{:U('Admin/Loan/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status == 1){
+      _this.css({color:"#0C0"}).html("√");
+    }else if(data.status == 2){
+      _this.css({color:"#c00"}).html("×");
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".change-all-status").click(function (){
+  if(!confirm("确定改变所有选中产品的状态？")){
+    return false;
+  }
+  var ids = "";
+  var item = $(this).attr("data-item");
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Loan/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+    if(data.status){
+      window.location.reload();
+    }else{
+      alert(data.info);
+    }
+  })
+})
+$(".change-is_sale").click(function (){
+  var id   = $(this).attr("data-id");
+  var item = "is_sale";
+  $.post("{:U('Admin/Loan/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status){
+      window.location.reload()
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".btn_table_delAll").click(function(){
+  if(!confirm("确定删除所有选中的产品？")){
+    return false;
+  }
+  var ids = "";
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Loan/delGoods')}" ,{ids:ids}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  })
+})
+</script>

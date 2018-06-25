@@ -1,0 +1,47 @@
+		<div class="index_container">
+		<!--left-->
+    	<div class="per_left">
+            <if condition="$fenxiao['id'] neq null">
+    		<div class="per_info">
+    			<div class="per_photo">
+    				<!-- <a href="__HOST__/Distribution/fx_my"> -->
+                   <!--  <img src="__IMAGES__/fx_my_avatar.png"> -->
+                    <if condition="$fenxiao['pic'] eq null">
+                    <img src="__IMAGES__/fx_my_avatar.png" id="addpic1" >
+                    <else/>
+                    <img src="__ROOT__{$fenxiao.pic}" id="addpic1">
+                    </if>
+                    <!-- </a> -->
+    			</div>
+    			<div class="per_model">
+    				<h2><span id="xingming">姓名：{$fenxiao.personname}</span></h2>
+    				<h3><span>哄哄号：{$fenxiao.number}</span></h3>
+    			</div>
+    			<div class="clear"></div>
+    		</div>
+            </if>
+    		<div class="per_list">
+    			<h2>快速通道</h2>
+                <if condition="$fenxiao['id'] neq null">
+                <a href="__HOST__/Distribution/fx_my">
+	    			<h3>
+	    				<img src="__IMAGES__/per_1.png">
+	    				<span>个人中心</span>
+	    			</h3>
+    			</a>
+    			<a href="__HOST__/Distribution/">
+	    			<h3>
+	    				<img src="__IMAGES__/per_4.png">
+	    				<span>客户列表</span>
+	    			</h3>
+    			</a>
+                </if>
+    			<a href="__HOST__/Distribution/fx_commission">
+	    			<h3 class="per_bg">
+	    				<img src="__IMAGES__/per_3.png">
+	    				<span>佣金产品</span>
+	    			</h3>
+    			</a>
+    		</div>
+    		</div>
+    	</div>

@@ -1,0 +1,249 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+<style>
+    .imgnav{
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .imgwrapper{
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .imgwrapper img{
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border:0;
+    }
+    .spanpd10{
+        margin:10px;
+    }
+    .wxtables.wxtables-sku.newtable{
+        width: 40%;
+        margin: 0;
+    }
+    .img-list li{
+        width: 60px;
+        height:60px;
+    }
+    .cst_h3 span{font-weight: normal;}
+    #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+    .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+    .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+    #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+    #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+    #xuanze2:hover{ background:#E6E6E6; }
+    .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+    .formitems .fi-name{
+        width:300px !important;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left" />
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">网站SEO配置</h1>
+            <form action="" enctype="multipart/form-data" method="post" id="web_config_form" >
+                <div class="panel-single panel-single-light mgt20">
+                    <h3 class="cst_h3 mgb20">基本信息</h3>
+
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>首页SEO标题</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_title1" >{$cache.seo_title1}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>首页SEO关键字</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_keywords1" >{$cache.seo_keywords1}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>首页SEO描述</label>
+                        <div class="form-controls">
+							<textarea style="height:100px;width:350px;" class="input seo_description" name="seo_description1" >{$cache.seo_description1}</textarea>
+                        </div>
+                    </div>
+					
+					<div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>关于我们SEO标题</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_title2" >{$cache.seo_title2}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>关于我们SEO关键字</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_keywords2" >{$cache.seo_keywords2}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>关于我们SEO描述</label>
+                        <div class="form-controls">
+							<textarea style="height:100px;width:350px;" class="input seo_description" name="seo_description2" >{$cache.seo_description2}</textarea>
+                        </div>
+                    </div>
+					
+					
+					
+					<div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>生活方式测试SEO标题</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_title3" >{$cache.seo_title3}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>生活方式测试SEO关键字</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_keywords3" >{$cache.seo_keywords3}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>生活方式测试SEO描述</label>
+                        <div class="form-controls">
+							<textarea style="height:100px;width:350px;" class="input seo_description" name="seo_description3" >{$cache.seo_description3}</textarea>
+                        </div>
+                    </div>
+					
+					
+					<div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>空间搭配SEO标题</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_title4" >{$cache.seo_title4}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>空间搭配SEO关键字</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_keywords4" >{$cache.seo_keywords4}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>空间搭配SEO描述</label>
+                        <div class="form-controls">
+							<textarea style="height:100px;width:350px;" class="input seo_description" name="seo_description4" >{$cache.seo_description4}</textarea>
+                        </div>
+                    </div>
+					
+					<div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>3D家居提案SEO标题</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_title5" >{$cache.seo_title5}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>3D家居提案SEO关键字</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_keywords5" >{$cache.seo_keywords5}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>3D家居提案SEO描述</label>
+                        <div class="form-controls">
+							<textarea style="height:100px;width:350px;" class="input seo_description" name="seo_description5" >{$cache.seo_description5}</textarea>
+                        </div>
+                    </div>
+					
+					<div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>产品中心SEO标题</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_title6" >{$cache.seo_title6}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>产品中心SEO关键字</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_keywords6" >{$cache.seo_keywords6}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>产品中心SEO描述</label>
+                        <div class="form-controls">
+							<textarea style="height:100px;width:350px;" class="input seo_description" name="seo_description6" >{$cache.seo_description6}</textarea>
+                        </div>
+                    </div>
+					
+					
+					<div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>预约设计SEO标题</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_title7" >{$cache.seo_title7}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>预约设计SEO关键字</label>
+                        <div class="form-controls">
+							<textarea style="height:50px;width:350px;" class="input seo_description" name="seo_keywords7" >{$cache.seo_keywords7}</textarea>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>预约设计SEO描述</label>
+                        <div class="form-controls">
+							<textarea style="height:100px;width:350px;" class="input seo_description" name="seo_description7" >{$cache.seo_description7}</textarea>
+                        </div>
+                    </div>
+                    
+					
+					
+					
+					
+					
+					
+					
+                    <notempty name="cache">
+                        <div class="formitems">
+                            <label class="fi-name"><span class="colorRed">*</span>上次更新时间：</label>
+                            <div class="form-controls">
+                                {$cache.update_time|date="Y-m-d H:i:s",###}
+                            </div>
+                        </div>
+                    </notempty>
+
+
+                    <div class="panel-single panel-single-light mgt20 txtCenter">
+                        <button class="btn btn-primary" id="btn-submit">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+
+
+<!--编辑保存 1-->
+<script>
+    $("#btn-submit").click(function(){
+
+        var data = $("#web_config_form").serialize();
+        $.post("{:U('/Admin/Index/seo_config')}", data, function(res){
+            if(res['status']){
+                dialog.showTips(res.info, "warn", function (){
+                    window.location.reload();
+                });
+            }else{
+                dialog.showTips(data.info, "warn");
+            }
+        })
+        return false;
+
+    })
+
+
+
+</script>
+<!--编辑保存 2-->

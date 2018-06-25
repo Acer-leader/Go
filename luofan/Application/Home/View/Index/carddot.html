@@ -1,0 +1,231 @@
+<include file="Public:header" />
+</head>
+<body>
+
+<include file="Public:head" />
+<!-- ========================================== -->
+
+    
+<!--  / warpper  -->
+<div class="warpper">
+ 
+ 	<div class="newsdot_box">
+    	<div class="index_container">
+        	<div class="newsdot_left">
+            	<div class="newsdot_left_cot">
+            	<div class="newsdot_tit">
+                	<h4>{$card.news_title}</h4>
+                </div>
+                <div class="newsdot_cot">
+                	<div class="newstime">时间：{$card['add_time']|date="Y-m-d H:i:s",###}  来源：{$card.source}  作者：{$card.author} </div>
+                	{$card.content}
+			   </div>
+                <div class="newsdot_sx">
+                <empty name="cardHots['id']">
+                    <h4>上一篇:<span>没有了</span></h4>
+                <else/>
+                    <h4><a href="{:U('index/cardDot','id='.$cardHots['id'])}">上一篇:<span>{$cardHots.news_title}</span></a></h4>
+                </empty>
+                <empty name="cardxHot['id']">
+                    <h4>下一篇:<span>没有了</span></h4>
+                <else/>
+                    <h4><a href="{:U('index/cardDot','id='.$cardHotx['id'])}">下一篇:<span>{$cardHots.news_title}</span></a></h4>
+                </empty>
+                </div>
+                
+                </div>
+                <div class="gonglue1_list gonglue1_list_ts1">
+                   <div class="gonglue_tit gonglue_tit5">
+                       <h4>相关资讯</h4>
+                   	   <a href="{:U('index/newsList')}">更多</a>
+                   </div>
+                   <div class="gonglue1_wz gonglue1_wz1">
+                       <ul>
+					   <foreach name="newslist" item="vo">
+                           <li><a href="{:U('index/newsDot','id='.$vo['id'])}"><i class="fa fa-angle-right"></i> {$vo.title}</a></li>
+						</foreach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        	<div class="newsdot_right">
+            	<div class="newsdot_right_list">
+            		<div class="news1_right2">
+                        <h3>今日头条</h3>
+                        <a href="newslist.html"><div class="news_rm">更多<span><img src="__IMAGES__/news_rm1.png" width="100%"></span></div></a>
+                    </div>
+                    <ul class="news1_right3_list">
+                    	<li>
+                        	<a href="newsdot.html">
+                                <h4>在北京买房，不光学历不顶用，经济学常识也不顶用</h4>
+                                <div class="news1_right3_list_wz">
+                                    <h5>春节刚过，北京学区房的热度再次引起人们的关注...</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                <div class="news1_right3_list_img">
+                                	<img src="__IMAGES__/news1_right3_1.jpg">
+                                </div>
+                                <div class="clear"></div>
+                            </a>
+                        </li>
+                    	<li>
+                        	<a href="newsdot.html">
+                                <h4>楼市调控被挤出的资金 会流向股市吗？</h4>
+                                <div class="news1_right3_list_wz">
+                                    <h5>101岁高龄的美国银行家、慈善家和总统顾问大卫·洛克菲勒逝世的消息...</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                <div class="news1_right3_list_img">
+                                	<img src="__IMAGES__/news1_right3_2.jpg">
+                                </div>
+                                <div class="clear"></div>
+                            </a>
+                        </li>
+                    	<li>
+                        	<a href="newsdot.html">
+                                <h4>青岛限购升级:认房认贷 新购住房两年内禁止交易</h4>
+                                <div class="news1_right3_list_wz">
+                                    <h5>青岛市限购加码，自2017年3月31日起，在青岛市范围内（六区四市）购买的新建...</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                <div class="news1_right3_list_img">
+                                	<img src="__IMAGES__/news1_right3_3.jpg">
+                                </div>
+                                <div class="clear"></div>
+                            </a>
+                        </li>
+                    </ul>
+            </div>
+            	<div class="newsdot_right_list">
+            		<div class="news1_right2">
+                        <h3>热门咨询</h3>
+                        <a href="newslist.html"><div class="news_rm">更多<span><img src="__IMAGES__/news_rm1.png" width="100%"></span></div></a>
+                    </div>
+                    <ul class="news1_right3_list">
+                    	<li>
+                        	<a href="newsdot.html">
+                                <h4>在北京买房，不光学历不顶用，经济学常识也不顶用</h4>
+                                <div class="news1_right3_list_wz">
+                                    <h5>春节刚过，北京学区房的热度再次引起人们的关注...</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                <div class="news1_right3_list_img">
+                                	<img src="__IMAGES__/news1_right3_1.jpg">
+                                </div>
+                                <div class="clear"></div>
+                            </a>
+                        </li>
+                    	<li>
+                        	<a href="newsdot.html">
+                                <h4>楼市调控被挤出的资金 会流向股市吗？</h4>
+                                <div class="news1_right3_list_wz">
+                                    <h5>101岁高龄的美国银行家、慈善家和总统顾问大卫·洛克菲勒逝世的消息...</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                <div class="news1_right3_list_img">
+                                	<img src="__IMAGES__/news1_right3_2.jpg">
+                                </div>
+                                <div class="clear"></div>
+                            </a>
+                        </li>
+                    	<li>
+                        	<a href="newsdot.html">
+                                <h4>青岛限购升级:认房认贷 新购住房两年内禁止交易</h4>
+                                <div class="news1_right3_list_wz">
+                                    <h5>青岛市限购加码，自2017年3月31日起，在青岛市范围内（六区四市）购买的新建...</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                <div class="news1_right3_list_img">
+                                	<img src="__IMAGES__/news1_right3_3.jpg">
+                                </div>
+                                <div class="clear"></div>
+                            </a>
+                        </li>
+                    </ul>
+            </div>
+            </div>
+        	<div class="clear"></div>
+        </div>
+    </div>
+    
+</div>
+<!--  / warpper  -->
+
+<!-- ========================================== -->
+<include file="Public:right" />
+<include file="Public:footer" />
+<!-- ========================================== -->
+
+</body>
+<script>
+
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 4,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.fangdai_lt').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.fangdai_rt').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+</script>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+	$(window).load(function(){
+		$(".swiper1").height($(".swiper1 .ban_box ").height());
+		$('.swiper2').height($('.swiper2 img').height()+60)
+		
+	})
+	$(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+		$('.swiper2').height($('.swiper2 img').height()+60)
+	});
+
+	
+})	
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})	
+</script>
+
+</html>

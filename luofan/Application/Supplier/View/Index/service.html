@@ -1,0 +1,270 @@
+<include file="Public:head"/>
+
+<link rel="stylesheet" href="__CSS__/lists.css">
+<link rel="stylesheet" href="__CSS__/component-min.css">
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left1"/>
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">客服列表</h1>
+    <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加客服</a>
+
+    <form action="" method="post">
+      <div class="tables-searchbox newcearchbox" style="margin-left: 300px;">
+        <input type="text" placeholder="手机号/QQ号" class="input" name="name" value="" >
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+        <!--<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>--> 
+        <!--产品导出</a>--> 
+      </div>
+    </form>
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+      <col width="2%">
+      <col width="5%">
+      <col width="10%">
+      <col width="10%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="13%">
+      <col width="25%">
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+          <td><i class="icon_check"></i></td>
+          <td>ID</td>
+          <td>客服姓名</td>
+          <td>QQ号</td>
+          <td>手机号</td>
+          <td>微信号</td>
+          <td>二维码</td>
+          <td>更新时间</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="service_list" item="vo">
+          <tr>
+            <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+            <td>{$vo.id}</td>
+            <td>{$vo.service_name}</td>
+            <td>{$vo.service_qq}</td>
+            <td>{$vo.service_phone}</td>
+            <td>{$vo.service_wechat}</td>
+            <td><div class="table-item-img"> <img src="{$vo['service_ewm']}" alt=""></div></td>
+            <td class="class_name">{$vo.update_time|date="Y-m-d H:i:s",###}</td>
+            <td>
+              <a class="btn btn-primary editService" href="javascript:;"  data-id="{$vo.id}" data-name="{$vo.service_name}" data-phone="{$vo.service_phone}"
+               data-qq="{$vo.service_qq}" data-wechat="{$vo.service_wechat}" data-ewm="{$vo['service_ewm']}">编辑</a>
+              <a class="btn btn-danger" href="{:U('Supplier/Index/delServices',array('id'=>$vo['id']))}">删除</a>
+            </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl"> <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+        <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>
+        <div class="fr">
+          <div class="pages" style="width:auto;"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+</div>
+</div>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="width:500px;">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">添加客服</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <input type="hidden" name="id" id="id" value="">
+  <div class="jbox-container" style="height: 263px;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>客服姓名：</label>
+      <div class="form-controls">
+        <input type="text" id="service_name" name="service_name" class="input title">
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>手机号：</label>
+      <div class="form-controls">
+        <input type="text" id="service_phone" name="service_phone"  onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/ \D/g,'')" maxlength='11' class="input title">
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>QQ号：</label>
+      <div class="form-controls">
+        <input type="text" id="service_qq" name="service_qq"  onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/ \D/g,'')" maxlength='15' class="input title">
+        <span class="fi-help-text"></span> </div>
+    </div><div class="formitems">
+    <label class="fi-name"><span class="colorRed"></span>微信号：</label>
+    <div class="form-controls">
+      <input type="text" id="service_wechat" name="service_wechat"  class="input title">
+      <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems" style=" height:60px;">
+      <label class="fi-name"><span class="colorRed"></span>二维码：</label>
+      <div class="form-controls images">
+        <div class="showimg" style="margin-left:50px;"></div>
+        <div class="imagesadd" style="margin-left:50px;">+</div>
+        <input style="margin-left:50px;" type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="addimage" >
+        <div class="progress">
+          <div class="bar"></div>
+          <div class="percent"></div>
+        </div>
+        <span class="fi-help-text" style="left:85px; position:absolute; top:15px; width:150px; height:20px;margin-left:50px;">建议大小:(1024*780px)</span>
+      </div>
+    </div>
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+          href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script>
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+    $(function () {
+        var progress = $(".img");
+        var bar = $('.bar') ;
+        var percent = $('.percent');
+        var progress = $('.progress');
+        $("#addimage").wrap("<form id='myupload' action='{:U('Supplier/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#addimage").change(function(){ //选择文件
+            $("#myupload").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    bar.width(percentVal); //上传进度条宽度变宽
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="service_ewm" id="service_ewm" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.showimg').html(img);
+                    $("#addimage").val('');
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                    //alert();
+                }
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+        $('#service_name').val("");
+        $('#service_qq').val("");
+        $('#service_phone').val("");
+        $('#service_wechat').val("");
+    })
+  $(".editService").on("click",function(){
+        var id = $(this).attr("data-id");
+        var service_name = $(this).attr("data-name");
+        var service_qq = $(this).attr('data-qq');
+        var service_phone = $(this).attr('data-phone');
+        var service_wechat = $(this).attr('data-wechat');
+        var service_ewm = $(this).attr('data-ewm');
+      var img = '<img src="'+service_ewm+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="service_ewm" id="service_ewm" value="'+service_ewm+'">';
+      $('.showimg').html(img);
+      $("#id").val(id);
+      $('#service_name').val(service_name);
+      $('#service_qq').val(service_qq);
+      $('#service_phone').val(service_phone);
+      $('#service_wechat').val(service_wechat);
+      $('#service_ewm').html("<img src='"+service_ewm+"'/>");
+      $('.addfenlei').show();
+      $('#albums-overlay').show();
+  });
+</script>
+<script>
+    $(".btn_table_delAll").click(function(){
+        if(!confirm("确定删除所有选中的客服？")){
+            return false;
+        }
+        var ids = "";
+        $(".table-ckbs:checked").each(function(i){
+            ids += $(this).attr("data-id")+"-"
+        })
+        if(!ids){
+            alert("请选择要删除的客服！");return false;
+        }
+        $.post("{:U('Supplier/Index/delServices')}" ,{ids:ids}, function (data){
+            alert(data.info);
+            if(data.status){
+                window.location.reload();
+            }
+        })
+    })
+
+</script>
+<script type="text/javascript">
+    $("#addcategory").click(function() {
+        var post = {};
+        post.service_name = $("#service_name").val();
+        post.service_qq = $("#service_qq").val();
+        post.service_phone = $("#service_phone").val();
+        post.service_wechat = $("#service_wechat").val();
+        post.service_ewm = $('#service_ewm').val();
+        post.id = $('#id').val();
+
+        if (!post.service_name) {
+            alert("请填写客服姓名");
+            $("#service_name").focus();
+            return false;
+        }
+        if (!post.service_phone) {
+            alert("请填写客服手机号");
+            $("#service_phone").focus();
+            return false;
+        }
+        if (!post.service_qq) {
+            alert("请填写客服QQ");
+            $("#service_qq").focus();
+            return false;
+        }
+
+        if (!post.service_wechat) {
+            alert("请填写客服微信号");
+            $("#service_wechat").focus();
+            return false;
+        }
+        if (!post.service_ewm) {
+            alert("请上传二维码");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Supplier/Index/small_config')}",
+            type: "post",
+            dataType: "json",
+            data: post,
+            success: function (data) {
+                dialog.showTips(data.info, "firm", function () {
+                    window.location.reload();
+                });
+            }
+        })
+    })
+</script>

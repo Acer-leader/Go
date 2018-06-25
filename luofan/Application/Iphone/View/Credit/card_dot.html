@@ -1,0 +1,103 @@
+<include file="Public:head"/>
+
+<style>
+.active a {
+	border-bottom: 3px #338bff solid;
+	color: #338bff !important;
+	display: block;
+}
+</style>
+
+<body>
+
+<!--head --> 
+<div class="head_box" style=" background:#4988db">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">办卡详情</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+<div class="warpper_box">
+  <div class="card_xq">
+  <img src="__ROOT__{$cc_res.logo_img}" />
+  <h2>{$cc_res.creditname}</h2>
+  <h3>{$cc_res.annual_fee}</h3>
+  <ul class="gedai2_top_list">
+          <li><span>{$cc_res.currency}</span></li>
+          <li><span>{$cc_res.series}</span></li>
+          <li style=" margin-bottom:0px;"><span>{$cc_res.intro}</span></li>
+          <div class="clear"></div>
+        </ul>
+  </div>
+  
+  
+  
+  <div class="gedai_xq_one">
+    <ul class="gedai_xq_one_title">
+      <li class="active"><a href="javascript:void(0)">基本信息</a></li>
+      <li><a href="javascript:void(0)">专项特权</a></li>
+      <li><a href="javascript:void(0)">相关费用</a></li>
+      <div class="clear"></div>
+    </ul>
+    
+    <div class="gedai_xq_one_title_boxs" style="display:block">
+    {$cc_res.informations|htmlspecialchars_decode|stripslashes}
+    </div>
+    
+    <div class="gedai_xq_one_title_boxs" >
+    {$cc_res.specials|htmlspecialchars_decode|stripslashes}
+    </div>
+    
+    <div class="gedai_xq_one_title_boxs" >
+    {$cc_res.correlatives|htmlspecialchars_decode|stripslashes}
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+<div style=" width:100%; height:55px; background:#fff;"></div>
+
+<div class="gedai_shenqing">
+<a href="#">立即申请</a>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+</body>
+<script>
+		
+$(document).ready(function (){
+
+$(".gedai_xq_one_title li").click(function(){
+		var index = $(this).index();
+		$(".gedai_xq_one_title_boxs").hide();
+		$(".gedai_xq_one_title_boxs").eq(index).show();
+		})
+
+
+ $(".gedai_xq_one_title li").click(function() {
+    $(this).addClass("active").siblings().removeClass("active");
+   })
+})
+
+</script>
+</html>

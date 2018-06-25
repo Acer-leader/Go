@@ -1,0 +1,434 @@
+<include file="Public:head"/>
+
+</head>
+
+<body>
+<include file="Public:header"/>
+<!--header-->
+
+<!--  / warpper  -->
+<!--  / warpper  -->
+<div class="warpper">
+    <div class="index_container">
+        <div class="detail_card">
+            <!--sec1-->
+            <div class="carddot1">
+                <div class="carddot1_l">
+                    <div class="carddot1_l_l">
+                        <img src="{$cc_res.logo_img}" width="100%" alt=""/>
+                        <h3>{$cc_res.creditname}</h3>
+                        <h4>{$cc_res.favorable1}</h4>
+                        <h4>{$cc_res.favorable2}</h4>
+                        <h4>{$cc_res.favorable3}</h4>
+                        <a href="#"><img src="__IMAGES__/dc_fx.png" alt=""/>分享</a>
+                    </div>
+                    <div class="carddot1_l_r">
+                        <h3>{$cc_res.creditname}</h3>
+                        <div class="card_qy">小编点评：<span>积分可兑3000多种礼品 还可兑航空里程</span></div>
+                        <div class="card_xzkl">选择卡类：
+                            <foreach name="uni1" item="vo" key="k">
+                                <span <eq name="k" value="0">class="kalei_active"</eq>  ><img src="{$vo.logo_pic}"/>银联金卡</span>
+                            </foreach>
+                            <!--<span class="kalei_active"><img src="__IMAGES__/dc1.png"/>银联金卡</span>
+                            <span><img src="__IMAGES__/dc1.png"/>权益自由选择</span>
+                            <span><img src="__IMAGES__/dc1.png"/>终身免年费</span>-->
+                            <div class="clear"></div>
+                        </div>
+                        <div class="card_kzz">
+                            <span>卡组织：</span>
+                            <foreach name="uni2" item="vo" >
+                                <img src="{$vo.logo_pic}" alt=""/>
+                            </foreach>
+
+                        </div>
+                        <div class="card_ljsq">
+                            <!--<h5>已选择“银联金卡”</h5>-->
+                            <a href="javascript:;" id="apply_add" data-id="{$cc_res.id}" data-card="{$back.id}"><img src="__IMAGES__/dc_card.png" />立即申请</a>已有{$cc_res.apply}人申请
+                            <h6><span>等级：</span>{$cc_res.series}</h6>
+                            <h6><span>币种：</span>{$cc_res.currency}</h6>
+                            <h6><span>年费：</span>{$cc_res.fee}</h6>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="carddot1_r">
+                    <div class="carddot1_r_top">
+                        <img src="{$back.logo_img}" width="10%" alt=""/>
+                        <h2>信用卡客服： <span> {$back.service}</span></h2>
+                        <div class="dc_lvdu">
+                            <span>批卡率</span>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                        </div>
+                        <div class="dc_lvdu">
+                            <span>优惠力度</span>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                        </div>
+                        <div class="dc_lvdu">
+                            <span>发卡速度</span>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                            <img src="__IMAGES__/dc_star2.png" alt=""/>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li class="cdot1"><a href="http://{$back.schedule}">办卡进度查询</a></li>
+                        <li class="cdot2"><a href="http://{$back.activate}">激活方式查询</a></li>
+                        <li class="cdot3"><a href="http://{$back.branch}">银行网点查询</a></li>
+                        <li class="cdot4"><a href="http://{$back.repayment}">还款方式查询</a></li>
+                        <li class="cdot5"><a href="http://{$back.stages}">分期付款计算器</a></li>
+                        <li class="cdot6" style="border: none"><a href="{:U('PersonLoan/index')}">银行贷款查询</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!--sec1-->
+
+
+            <!--sec2-->
+            <div class="carddot2">
+                <div class="carddot2_l">
+                    <ul class="carddot2_l_list">
+                        <li class="active" ><a href="javascript:void(0);" class="tiaojian">基本信息</a></li>
+                        <li><a href="javascript:void(0);" class="cailiao">专项特权</a></li>
+                        <li><a href="javascript:void(0);" class="wenti1">相关费用</a></li>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="carddot2_l_cot">
+                        <div class="carddot2_l_cot1" id="tiaojian">
+                            <div class="carddot2_l_tit">
+                                <h4>基本信息</h4>
+                            </div>
+                            <div class="carddot2_l_tj">
+                                  {$cc_res.information|htmlspecialchars_decode|stripslashes}
+                            </div>
+                        </div>
+                        <div class="carddot2_l_cot1" id="cailiao">
+                            <div class="carddot2_l_tit">
+                                <h4>专享特权</h4>
+                            </div>
+                            <div class="carddot2_l_tj tq_carddot2_l_tj">
+                                {$cc_res.special|htmlspecialchars_decode|stripslashes}
+                            </div>
+                        </div>
+                        <div class="carddot2_l_cot1" id="wenti1">
+                            <div class="carddot2_l_tit">
+                                <h4>相关费用</h4>
+                            </div>
+                            <div class="carddot2_l_tj">
+                                {$cc_res.correlative|htmlspecialchars_decode|stripslashes}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carddot2_r">
+                    <div class="carddot2_r_top">
+                        <div class="carddot2_r_tit">你可能喜欢</div>
+                        <ul>
+                            <foreach name="you_res" item="vol" >
+                                <a href="{:U('Credit/card_dot',array('id'=>$vol['id']))}"><li>
+                                <img src="{$vol.logo_img}" alt=""/>
+                                <div class="carddot2_r_info">
+                                <h3>{$vol.creditname}</h3>
+                                <h4>{$vol.favorable1}</h4>
+                                <h5>共申请</h5>
+                                <h6>{$vol.apply}张</h6>
+                                </div>
+                                <div class="clear"></div>
+                                </li></a>
+                            </foreach>
+                            <!--<a href="javascript:void(0);"><li>-->
+                                <!--<img src="__IMAGES__/dc3.jpg" alt=""/>-->
+                                <!--<div class="carddot2_r_info">-->
+                                    <!--<h3>上海银行标准卡</h3>-->
+                                    <!--<h4>刷卡消费可永久享受红利积分</h4>-->
+                                    <!--<h5>共申请</h5>-->
+                                    <!--<h6>600430张</h6>-->
+                                <!--</div>-->
+                                <!--<div class="clear"></div>-->
+                            <!--</li></a>-->
+                            <!--<a href="javascript:void(0);"><li>-->
+                                <!--<img src="__IMAGES__/dc4.jpg" alt=""/>-->
+                                <!--<div class="carddot2_r_info">-->
+                                    <!--<h3>光大“福”IC信用卡</h3>-->
+                                    <!--<h4>赠送100万元人民币出行意外...</h4>-->
+                                    <!--<h5>共申请</h5>-->
+                                    <!--<h6>600430张</h6>-->
+                                <!--</div>-->
+                                <!--<div class="clear"></div>-->
+                            <!--</li></a>-->
+                            <!--<a href="javascript:void(0);"><li>-->
+                                <!--<img src="__IMAGES__/dc5.jpg" alt=""/>-->
+                                <!--<div class="carddot2_r_info">-->
+                                    <!--<h3>交通银行标准信用卡金卡</h3>-->
+                                    <!--<h4>境内外消费后均可人民币还款</h4>-->
+                                    <!--<h5>共申请</h5>-->
+                                    <!--<h6>600430张</h6>-->
+                                <!--</div>-->
+                                <!--<div class="clear"></div>-->
+                            <!--</li></a>-->
+                            <!--<a href="javascript:void(0);"><li style="border: none">-->
+                                <!--<img src="__IMAGES__/dc6.jpg" alt=""/>-->
+                                <!--<div class="carddot2_r_info">-->
+                                    <!--<h3>招商标准金卡</h3>-->
+                                    <!--<h4>积分永久有效</h4>-->
+                                    <!--<h5>共申请</h5>-->
+                                    <!--<h6>600430张</h6>-->
+                                <!--</div>-->
+                                <!--<div class="clear"></div>-->
+                            <!--</li></a>-->
+                        </ul>
+                    </div>
+                    <div class="dc2img_box">
+                        <div class="dc2img_box_tit">最新资讯</div>
+                        <ul>
+                            <foreach name="new_list.data" item="v" key="k">
+                                <a href="{:U('Credit/newsDetail',array('id'=>$v['id'],'types'=>'4','type'=>'1'))}"><li>
+                                    <span>• </span>{$v.news_title}</li>
+                                </a>
+                            </foreach>
+                            <!--<a href="newsdot.html"><li><span>• </span>光大银行信用卡问答</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>光大银行信用卡资讯</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>光大最值得办的信用卡，看你有哪张？</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>光大银行有ETC信用卡吗</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>京东光大小白卡额度有多高？怎么提升额度？</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>2017光大银行屈臣氏满120立减50</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>2017光大银行信用卡味千拉面满88立减35</li></a>-->
+                        </ul>
+                    </div>
+                    <div class="dc2img_box">
+                        <div class="dc2img_box_tit">常见问题</div>
+                        <ul>
+                            <foreach name="hot" item="v">
+
+                                    <a href="{:U('Credit/answer',array('id'=>$v['id']))}"><li>
+                                        <span>• </span>
+                                        {$v.title}</li>
+                                    </a>
+
+                            </foreach>
+                            <!--<a href="newsdot.html"><li><span>• </span>光大银行信用卡问答</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>光大银行信用卡资讯</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>光大最值得办的信用卡，看你有哪张？</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>光大银行有ETC信用卡吗</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>京东光大小白卡额度有多高？怎么提升额度？</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>2017光大银行屈臣氏满120立减50</li></a>-->
+                            <!--<a href="newsdot.html"><li><span>• </span>2017光大银行信用卡味千拉面满88立减35</li></a>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <!--sec2-->
+
+
+            <!--sec3-->
+            <div class="yh3_box">
+                <div class="yh3_box_tit">银行信用卡中心</div>
+                <div class="swiper-container swiper1" >
+                    <div class="swiper-wrapper">
+                        <foreach name="c_t_res" item="vo" key="k" >
+
+                            <if condition="$k%2 eq 0"><div class="swiper-slide"><else /></if>
+                                <div class="thcard_img">
+                                    <a href="{:U('Credit/creditList',array('id'=>$vo['id']))}"><img src="{$vo.logo_pic}" width="100%" alt=""/>{$vo.classname}信用卡中心</a>
+                                </div>
+                            <if condition="$k%2 eq 1"></div><else /></if>
+
+                        </foreach>
+
+                        <!--<div class="swiper-slide">
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank1.png" width="100%" alt=""/>中信银行信用卡中心
+                            </div>
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank2.png" width="100%" alt=""/>交通银行信用卡中心
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank3.png" width="100%" alt=""/>兴业银行信用卡中心
+                            </div>
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank4.png" width="100%" alt=""/>光大银行信用卡中心
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank5.png" width="100%" alt=""/>招商银行信用卡中心
+                            </div>
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank6.png" width="100%" alt=""/>平安银行信用卡中心
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank7.png" width="100%" alt=""/>浦发银行信用卡中心
+                            </div>
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank8.png" width="100%" alt=""/>民生银行信用卡中心
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank9.png" width="100%" alt=""/>广发银行信用卡中心
+                            </div>
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank10.png" width="100%" alt=""/>花旗银行信用卡中心
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank11.png" width="100%" alt=""/>华夏银行信用卡中心
+                            </div>
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank12.png" width="100%" alt=""/>农业银行信用卡中心
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank13.png" width="100%" alt=""/>中国银行信用卡中心
+                            </div>
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank14.png" width="100%" alt=""/>工商银行信用卡中心
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thcard_img">
+                                <img src="__IMAGES__/yhbank15.png" width="100%" alt=""/>建设银行信用卡中心
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="swiper-pagination pagination1"></div>
+                </div>
+            </div>
+            <!--sec3-->
+
+        </div>
+    </div>
+</div>
+<!--  / warpper  -->
+<!--  / warpper  -->
+
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<script>
+    var mySwiper1 = new Swiper('.swiper1',{
+        loop:true,
+        grabCursor: true,
+        autoplay:5000,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 6,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    })
+</script>
+<script>
+    $(document).ready(function(){
+        $(window).load(function(){
+            $(".carddot1_l_l").height($(".carddot1_l_r").height()+2);
+            $(".swiper1").height($(".thcard_img").height()*2+5);
+            $(".swiper1 .swiper-wrapper").height($(".thcard_img").height()*2+5);
+            $(".swiper1 .swiper-slide").height($(".thcard_img").height()*2+5);
+        });
+        $(window).resize(function(){
+            $(".carddot1_l_l").height($(".carddot1_l_r").height()+2);
+            $(".swiper1").height($(".thcard_img").height()*2+5);
+            $(".swiper1 .swiper-wrapper").height($(".thcard_img").height()*2+5);
+            $(".swiper1 .swiper-slide").height($(".thcard_img").height()*2+5);
+        });
+    })
+
+    $(window).scroll(function(){
+        var scrollT=$(window).scrollTop();
+        if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+            $('.right_nav').css('display','block');
+        }else{
+            $('.right_nav').css('display','none');
+        }
+        if(scrollT>$('.carddot2').offset().top){
+            $('.carddot2_l_list').addClass('fixed');
+        }else{
+            $('.carddot2_l_list').removeClass('fixed');
+        }
+
+    })
+    var class_name;
+    $('.carddot2_l_list li').click(function(){
+        $(this).parent().addClass('fixed');
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
+        class_name=$(this).find("a").attr("class");
+        $('body,html').animate({'scrollTop':$('#'+class_name).offset().top-20})
+    })
+    $(".creditlist_more a").click(function(e){
+        var ticon = $(this).find("i");
+        tspan = $(this).find("span");
+        if($(this).hasClass("zk")){
+            $(this).parent().siblings("dd").css("height","30");
+            ticon.removeClass("fa-angle-up");
+            ticon.addClass("fa-angle-down");
+            tspan.html("更多");
+            $(this).removeClass("zk")
+        }else{
+            $(this).parent().siblings("dd").css("height","auto");
+            ticon.removeClass("fa-angle-down");
+            ticon.addClass("fa-angle-up");
+            tspan.html("收起");
+            $(this).addClass("zk")
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $(".card_xzkl span").click(function () {
+            $(".card_xzkl span").removeClass("kalei_active");
+            $(this).addClass("kalei_active");
+        })
+    })
+
+</script>
+<script>
+    $('#apply_add').click(function(){
+        var id = $(this).attr('data-id');
+        var card = $(this).attr('data-card');
+        $.ajax({
+            url:"{:U('Credit/apply_add')}",
+            data:
+                {
+                id:id,
+                card:card
+                },
+            dataType:'json',
+            type:'post',
+            success:function(g){
+               window.location.href='http://'+g.url;
+            }
+        });
+    })
+
+</script>
+
+</html>

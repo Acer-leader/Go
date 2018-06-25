@@ -1,0 +1,108 @@
+
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+        <div class="content-right fl">
+            <table class="wxtables table-order mgt20">
+                <colgroup>
+                    <col width="3%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="20%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <td colspan="8" class="ftnormal" style="background-color:#F2F8FC;">
+                        <span><b>操作记录</b></span>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td class="ftnormal">
+                        <span><b>序号</b></span>
+                    </td>
+                    <td class="ftnormal">
+                        <span><b>时间</b></span>
+                    </td>
+                    <td class="ftnormal">
+                        <span><b>审核人</b></span>
+                    </td>
+                    <td class="ftnormal">
+                        <span><b>审核状态</b></span>
+                    </td>
+                    <td class="ftnormal">
+                        <span><b>审核意见</b></span>
+                    </td>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="cache" id="vo" key="k">
+                    <tr>
+                        <td align="center"><span>{$k}</span></td>
+
+                        <td align="center" ><span><b></b>{$vo.add_time|date='Y-m-d H:i:s',###}</span></td>
+                        <td align="center" >
+                            <span ><switch name="vo.type">
+                             <case value="1">
+                             采购审核
+                             </case>
+                             <case value="2">
+                             财务审核
+                             </case>
+                            </switch>--{$vo.admin_name}</span>
+                        </td>
+                        
+                        <td align="center">
+                            <switch name="vo.status">
+                             <case value="1">
+                           <p style="color: blue ">  通过</p>
+                             </case>
+                             <case value="2">
+                            <p style="color: red"> 驳回</p>
+                             </case>
+                            </switch>
+                            </span>
+                        </td>
+                        <td valign="top" >
+                          {$vo.msg}
+                        </td>
+                        
+                    </tr>
+                    </volist>
+                    <td colspan="5" align="center">
+                        <a href="javascript:history.back(-1);" class="btn btn-success" title="返回" >返回</a>
+                    </td>
+                    </tbody>
+                    </table>
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+
+<!-- end container -->

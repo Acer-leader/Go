@@ -1,0 +1,105 @@
+<include file="Public:head"/>
+<body>
+<div class="warpper_box">
+  <div class="city_select_box">
+         
+                <div class="select_t">
+                  <ul>
+                    <li class="cs cur" onmouseover="chose_type(this, 'cs1')" name="select_abc">按首字母选择</li>
+                    <li class="cs" onmouseover="chose_type(this, 'cs2')" name="select_abc_c">按省份选择</li>
+                    <div class="clear"></div>
+                  </ul>
+                </div>
+                <!--按首字母选择 开始-->
+                <div class="css" id="cs1">
+                    <div class="select_abc"> 
+                       <foreach name="p" item="vo" key="k">
+                       <a href="#{$vo}" class='bt <eq name="k" value="0">cur</eq>'>{$vo}</a>
+                       </foreach>
+                      
+                     
+                    </div>
+                  
+                    
+                    <div class="select_abc_c">
+                        <ul>
+                            <volist name="p" id="v">
+                            <li >
+                                <div class="teshu" id="{$v}"><a class="abcd" name="{$v}">{$v}</a></div>
+           
+                                <volist name="citys" id='vo'>
+                                <eq name="vo.leveltype" value="2">
+                                    <eq name="vo.zimu" value="$v">     
+                                        <a href="{:U('/Iphone/Index/index',array('city'=>$vo['pinyin']))}">{$vo.name}</a>
+                                    </eq>
+                                </eq>
+                                </volist>
+                            </li>
+                           </volist>
+                         
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="clear"></div>
+                </div>
+                <!--按首字母选择 结束--> 
+                
+                <!--按城市选择 开始--> 
+                <div class="css" id="cs2" style="display:none;">
+                    <div class="select_abc">
+                          
+                     </div>
+                     <div class="select_abc_c">
+                        <ul>
+                             <li id="A">
+                                    <span class="sheng">直辖市</span>
+                                    <volist name="zcity" id="vv" offset="0" length='4'>                     
+                                         <a href="{:U('Iphone/Index/index',array('city'=>$vv['pinyin']))}">{$vv.name}</a>
+                                    </volist>
+                             </li>
+                              <volist name="province" id="v">
+                                <eq name="v.leveltype" value="1">
+                                    <li>
+                                        <span class="sheng">{$v.name}</span>
+                                        <volist name="citys" id="vv">
+                                            <eq name="vv.leveltype" value="2">
+                                                <eq name="vv.dj" value="$v.dj">
+                                                    <a href="{:U('/Iphone/Index/index',array('city'=>$vv['pinyin']))}">{$vv.name}</a>
+                                                </eq>
+                                            </eq>
+                                        </volist>
+                                    </li>
+                                </eq>
+                            </volist>
+                                          
+                        </ul>
+                     </div>
+                 </div>
+                <!--按城市选择 结束--> 
+  
+        </div>
+
+</div>
+
+
+</body>
+<script>
+function chose_type(obj, id){
+	$('.cs').attr('class', 'cs');
+	$(obj).attr('class', 'cs cur');
+	$('.css').hide();
+	$('#'+id).show();
+}
+
+$(document).ready(function(e) {
+    
+	$('.bt').click(function(){
+		$('.bt').attr('class', 'bt');
+		$(this).attr('class', 'bt cur');
+	});
+
+
+});
+</script>
+</html>

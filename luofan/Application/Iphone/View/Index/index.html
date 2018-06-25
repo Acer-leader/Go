@@ -1,0 +1,312 @@
+<include file="Public:head"/>
+
+<body>
+
+<div class="head_box" style=" background:#f06969">
+
+<include file="Public:header"/>
+</div>
+
+
+
+<!--banner-->
+<div class="banner_box">
+  <div class="swiper-container swiper1">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="__IMAGES__/banner2.jpg"  width="100%"/></div>
+        <div class="swiper-slide"><img src="__IMAGES__/banner.jpg"  width="100%"/></div>
+    </div>
+    <div class="swiper-pagination pagination1"></div>
+  </div>
+</div>
+<!--banner--> 
+
+<!--warpper-->
+<div class="warpper_box">
+  <div class="warpper_box_two">
+    <ul>
+      <foreach name="banner" item="vo" key="k">
+          <if condition="$k eq 1">
+            <li class="lld_box"> <img src="{$vo.pic1}" /> {$vo.title} </li>
+          </if>
+          <if condition="$k eq 0">
+            <li class="fdk_box"> <img src="{$vo.pic1}" /> {$vo.title} </li>
+          </if>
+          <if condition="$k eq 2">
+            <li class="ged_box"> <img src="{$vo.pic1}" /> {$vo.title} </li>
+          </if>
+          <if condition="$k eq 3">
+            <li class="mkd_box"> <img src="{$vo.pic1}" /> {$vo.title} </li>
+          </if>
+      </foreach>
+      <div class="clear"></div>
+    </ul>
+  </div>
+  <div class="warpper_box_one">
+    <div class="account_summary_announcement"> <span><img src="__IMAGES__/jrtt.svg" width="100%"></span>
+      <ul>
+      <foreach name="list1" item="vo" key="k">
+        <li><a href="__HOST__/News/newsdot/id/{$vo.id}">{$vo.news_title}</a></li>
+      </foreach>
+      </ul>
+    </div>
+  </div>
+  
+<div class="ind_box1">
+  	<ul>
+    	<li>
+        	<a href="__HOST__/CarLoan/">
+            	<img src="__IMAGES__/ind1_1.jpg" width="100%" />
+            </a>
+        </li>
+    	<li class="ind1_li2">
+        	<a href="__HOST__/PersonLoan/">
+            	<img src="__IMAGES__/ind1_2.jpg" width="100%" />
+            </a>
+        </li>
+    	<li>
+        	<a href="__HOST__/HouseLoan/">
+            	<img src="__IMAGES__/ind1_3.jpg" width="100%" />
+            </a>
+        </li>
+    	<li>
+        	<a href="__HOST__/Credit/">
+            	<img src="__IMAGES__/ind1_4.jpg" width="100%" />
+            </a>
+        </li>
+    	<li>
+        	<div class="ind1_li">
+        	<a href="__HOST__/News/gonglue/classid/93">
+            	<img src="__IMAGES__/ind1_5.jpg" width="100%" />
+            </a>
+            </div>
+        	<div class="ind1_li">
+        	<a href="__HOST__/News/">
+            	<img src="__IMAGES__/ind1_6.jpg" width="100%" />
+            </a>
+            </div>
+        </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+  
+  <div class="warpper_box_four">
+    <div class="warpper_box_four_title">热门个贷</div>
+    <div class="swiper-container swiper2" style=" width:170%;">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" >
+          <div class="fangdai_box">
+            <div class="fangdai_box_txt">
+              <h2>房产抵押贷款</h2>
+              <h4>最高可达评估<span>8成</span></h4>
+            </div>
+            <a href="__HOST__/PersonLoan/"><img src="__IMAGES__/ind2_1.jpg" width="100%"/></a></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="fangdai_box">
+            <div class="fangdai_box_txt">
+              <h2>经营贷款</h2>
+              <h4>有营业执照即可<span>申请</span></h4>
+            </div>
+             <a href="__HOST__/PersonLoan/"><img src="__IMAGES__/ind2_4.jpg" width="100%"/></a></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="fangdai_box">
+            <div class="fangdai_box_txt">
+              <h2>信用贷款</h2>
+              <h4>无抵押，<span>无担保</span></h4>
+            </div>
+             <a href="__HOST__/Credit/"><img src="__IMAGES__/ind2_2.jpg" width="100%"/></a></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="fangdai_box">
+            <div class="fangdai_box_txt">
+              <h2>保障贷款</h2>
+              <h4>全程代办，<span>安全担保</span></h4>
+            </div>
+             <a href="__HOST__/PersonLoan/"><img src="__IMAGES__/ind2_3.jpg" width="100%"/></a></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="fangdai_box">
+            <div class="fangdai_box_txt">
+              <h2>应急贷款</h2>
+              <h4>最快<span>当天</span>放款</h4>
+            </div>
+             <a href="__HOST__/PersonLoan/"><img src="__IMAGES__/ind2_5.jpg" width="100%"/></a></div>
+        </div>
+      </div>
+      <div class="swiper-pagination pagination1"></div>
+    </div>
+  </div>
+  <div class="warpper_box_five">
+    <ul>
+      <li>
+        <a href="__HOST__/PersonLoan/">
+        <div class="warpper_box_five_l gedai_bg"> 
+        <img src="__IMAGES__/five_pic.png" />
+          <h4>热门个贷</h4>
+          <h5>精选放贷祝您早安家</h5>
+        </div>
+        </a>
+        <div class="warpper_box_five_r">
+          <ul>
+            <li class="sange_box"><a href="__HOST__/News/gonglue/classid/93"> <img src="__IMAGES__/five_gdgl.png" /> <span>攻略</span> </a></li>
+            <li><a href="__HOST__/News/wenda/classid/1"> <img src="__IMAGES__/five_gdwd.png" /> 问答</a></li>
+            <li><a href="__HOST__/News/index/classid/90"> <img src="__IMAGES__/five_gdzx.png" /> 资讯</a> </li>
+            <div class="clear"></div>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </li>
+      <li>
+        <a href="__HOST__/HouseLoan/">
+        <div class="warpper_box_five_l"> 
+        <img src="__IMAGES__/five_pic.png" />
+          <h4>热门房贷</h4>
+          <h5>精选放贷祝您早安家</h5>
+        </div>
+        </a>
+        <div class="warpper_box_five_r">
+          <ul>
+            <li><a href="__HOST__/News/gonglue/classid/91"> <img src="__IMAGES__/five_fdal.png" /> 攻略 </a></li>
+            <li><a href="__HOST__/Calculation/index"> <img src="__IMAGES__/five_fdjs.png" /> 工具</a> </li>
+            <li><a href="__HOST__/News/wenda/classid/2"> <img src="__IMAGES__/five_fdwd.png" /> 问答</a></li>
+            <li><a href="__HOST__/News/index/classid/29"> <img src="__IMAGES__/five_fdzx.png" /> 资讯</a> </li>
+            <div class="clear"></div>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </li>
+      <li>
+        <a href="__HOST__/CarLoan/">
+        <div class="warpper_box_five_l car_bg"> <img src="__IMAGES__/five_pic.png" />
+          <h4>热门车贷</h4>
+          <h5>精选放贷祝您早安家</h5>
+        </div>
+        </a>
+        <div class="warpper_box_five_r">
+          <ul>
+            <li class="sange_box"><a href="__HOST__/News/gonglue/classid/92">  <img src="__IMAGES__/five_cdgl.png" /> <span>攻略</span> </a></li>
+            <li> <a href="__HOST__/News/index/classid/63"> <img src="__IMAGES__/five_cdzx.png" /> 资讯 </a></li>
+            <li><a href="__HOST__/News/wenda/classid/3">  <img src="__IMAGES__/five_cdwd.png" /> 问答 </a></li>
+            <div class="clear"></div>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </li>
+      <li style=" margin-bottom:0px;">
+        <a href="__HOST__/Credit/">
+        <div class="warpper_box_five_l card_bg"> <img src="__IMAGES__/five_pic1.png" />
+          <h4>信用卡申请</h4>
+          <h5>足不出户快捷办卡</h5>
+        </div>
+        </a>
+        <div class="warpper_box_five_r">
+          <ul>
+            <li><a href="__HOST__/News/index/classid/60"> <img src="__IMAGES__/five_xykcx.png" /> 达人</a></li>
+            <li><a href="__HOST__/News/wenda/classid/4"> <img src="__IMAGES__/five_xykwd.png" /> 问答</a></li>
+            <li><a href="__HOST__/Credit/discount"> <img src="__IMAGES__/five_xykyh.png" /> 优惠</a></li>
+            <li><a href="__HOST__/News/xykgl/classid/1"> <img src="__IMAGES__/five_xykgl.png" /> 攻略</a></li>
+            <div class="clear"></div>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </li>
+    </ul>
+  </div>
+  <div class="warpper_box_six">
+    <div class="warpper_box_six_title">贷款资讯</div>
+    <ul>
+      <foreach name="list2" item="vo" key="k">
+        <li><a href="__HOST__/News/newsdot/id/{$vo.id}"><span>• </span>{$vo.news_title}</a></li>
+      </foreach>
+    </ul>
+    <div class="warpper_box_six_r"><img src="__IMAGES__/dkzx_pic.jpg"></div>
+    <div class="clear"></div>
+  </div>
+  <div class="warpper_box_seven">
+    <div class="warpper_box_seven_title">公司介绍</div>
+    <div class="warpper_box_seven_l"> 牛哄哄( www.niu19.com )，宁波市洛凡实业有限公司，成立于2015年10月，是中国领先的移动金融智选平台。 </div>
+    <div class="warpper_box_seven_r"><img src="__IMAGES__/gsjs_pic.jpg"></div>
+    <div class="clear"></div>
+  </div>
+  <include file="Public:footer1"/>
+</div>
+<!--warpper--> 
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+<script>
+    var mySwiper = new Swiper('.swiper1',{
+        pagination: '.pagination1',
+        paginationClickable: true,
+        spaceBetween: 30,
+		autoplay:3000,
+		 loop:true,
+		grabCursor: true,
+		autoplayDisableOnInteraction : false,
+    });
+
+  
+    var mySwiper2 = new Swiper('.swiper2', {
+				loop: true,
+				autoplay: 3000,
+				spaceBetween: 0,
+				slidesPerView : 2,
+				paginationClickable: true,
+				autoplayDisableOnInteraction: false,
+			})
+
+$(document).ready(function (){
+
+  $(window).load(function (){
+	  
+	  $('.ind_box1 li').height($('.ind_box1 li').eq(0).find('img').height())
+	  $('.ind1_li').height(($('.ind_box1 li').eq(0).find('img').height()-8)/2)
+	   $('.ind_box1 ul').height($('.ind_box1 li').eq(0).find('img').height()*2+8)
+	  
+   $(".banner_box").height($(".swiper1 img").height())	
+   
+   $(".warpper_box_five_r ul li").height($(".warpper_box_five_l").height()/2+1)	
+    
+   $(".warpper_box_three li").height(parseInt($(".red_box").height())+10)
+})
+  
+	
+
+	
+	
+	/*公告轮播*/
+	function carousel(){
+		var time=0;
+		if($('.account_summary_announcement ul li').length<=1){
+			clearInterval(timeData);	
+		}else{
+			var timeData=setInterval(function(){
+				if(!$(this).siblings('.list').find('ul').is(':animated')){
+					var objli = $('.account_summary_announcement ul').find('li:first');
+					objli.clone().appendTo($('.account_summary_announcement ul'));
+					$('.account_summary_announcement ul').animate({marginTop:(-40)+'px'},500,function(){
+						$('.account_summary_announcement ul').css({marginTop:'0px'});
+						objli.remove();//删除克隆过的第一张图片
+					});
+				}
+			},4000);
+		}	
+	}
+	carousel();
+
+
+
+$(window).load(function (){
+	 $(".swiper2").height($(".fangdai_box").height()+15)	
+})
+
+})  		
+
+
+</script>
+</html>

@@ -1,0 +1,994 @@
+<include file="Public:head"/>
+</head>
+<body>
+<include file="Public:header"/> 
+<!--header--> 
+<!--  / warpper  -->
+<div class="warpper">
+  <div class="gedaidot">
+    <div class="index_container">
+      <div class="gedaidot_left">
+        <div class="gedaidot_left1" style="border-bottom:0;">
+          <div class="gedaidot_tit">
+            <notempty name="small.id">
+                <a href="{:U('CarLoan/companyinfo',array('id'=>$small['id']))}">
+            <else/>
+                <a href="javascript:;">
+            </notempty>
+            
+            <div class="gedaidot_tit_img"><img src="{$infoloan.logo_pic|default='__IMAGES__/gedaidot1.png'}" /></div></a>
+            <div class="gedaidot_tit_cot">
+              <h4>{$infoloan.title}</h4>
+              <h5>信用贷款 <span class="star"></span></h5>
+            </div>
+            <div class="gedaidot_tit_right">
+              <eq name="infoloan.is_rate" value="1"><div class="gedaidot_tit_list"><span></span>利率低 </div></eq>
+              <eq name="infoloan.is_quik" value="1"><div class="gedaidot_tit_list gedaidot_tit_list2"> <span></span>放款快 </div></eq>
+              <eq name="infoloan.is_sxjb" value="1"><div class="gedaidot_tit_list gedaidot_tit_list3"> <span></span>手续简便 </div></eq>
+              <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div class="gedaidot_bottom">
+            <div class="gedaidot_bottom_list">
+              <div class="gedaidot_bottom_left"> <span>贷款金额：</span>
+                <div class="gedaidot_bottom_input">
+                 <input data-event="input:limit" class="moneyedit" data-format="float" maxlength="4" data-min="{$infoloan.money}" data-max="{$infoloan.money1}" data-text="金额" data-tail="万" type="text" name="loan_limit" value="{$infoloan.money}" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" >
+                  <span>万元</span> </div>
+              </div>
+
+              <div class="gedaidot_bottom_left"> <span>贷款期限：</span>
+                <div class="gedaidot_bottom_input">
+                  <input data-event="input:term" class="qixianedit" data-format="number" maxlength="3" data-min="{$infoloan.dkqx}" data-max="{$infoloan.dkqx1}"  data-text="期限" data-tail="月" type="text" name="loan_term" value="{$infoloan.dkqx}" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" >
+                  <span>月</span> </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+            <ul class="gedaidot_bottom_bottom">
+              <li>
+                <h4>总  利  息 : </h4>
+                <div class="gedaidot_bottom_cot"> <span id="zlx" data-name="total_expense">{$infoloan.zlx}</span>万 </div>
+              </li>
+              <li>
+                <h4>还款方式 : </h4>
+                <div class="gedaidot_bottom_cot" >{$infoloan.hkfs}</div>
+              </li>
+              <li>
+                <h4>月   供 : </h4>
+                <div class="gedaidot_bottom_cot"> <span id="yg" data-name="month_expense">{$infoloan.yg} </span>万 </div>
+              </li>
+              <li>
+                <h4>放款时间 : </h4>
+                <div class="gedaidot_bottom_cot" id='fksj'> {$infoloan.fksj}个工作日 </div>
+              </li>
+              <div class="clear"></div>
+            </ul>
+            <h3> 利率说明：月管理费{$infoloan.lnsm}% <span>提前还款说明</span>
+              <div class="gedaidot_tk">可提前还款，违约金为贷款剩余本金的{$infoloan.hksm}%</div>
+            </h3>
+            
+            
+            
+            <!--客服-->
+            
+            
+         <!--                <div class="geidaidot_kf">
+                            <ul>
+                                    <li style="font-size:14px;color:#999;margin-right:8px;position:relative;top:-1px"> 
+                                        客服：
+                                    </li>
+                                <li>
+                                    <a href=tencent://message/?uin=1191196620&Site=im.qq.com&Menu=yes><i class="fa fa-qq"></i></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <i class="fa fa-weixin"></i>
+                                        
+                                        <div class="hover_ewm">
+                                            <img src="__IMAGES__//ewm.jpg" />
+                                        </div>
+                                    </a>
+                                </li>
+                                <div class="clear"></div>
+                            </ul>
+                            
+                        </div> -->
+                        
+                        
+                 <!--客服-->  
+            
+            <div class="gedaidot_sq"> 
+
+            <notempty name="infoloan['is_apply']">
+                <a href="{$infoloan.is_apply}" id="btnapply" target='_blank'>我想申请</a>
+            <else/>
+                <a href="javascript:void(0);" id="btnapply">我想申请</a>
+            </notempty>
+            <if condition="$fenxiao_id neq null">
+            <a href="javascript:void(0);" id="share">分享</a>
+            </if>
+              <h5><span>{$infoloan.sqrs|default=0}人</span>成功申请</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="gedaidot_left2">
+          <div class="gedaidot_tit">
+            <h4>申请流程 
+              <ul class="ask_for" style="background-image:url(__IMAGES__/lc_bg.jpg)">
+                <li class="title">申请流程</li>
+                <li class="first">1.网上申请</li>
+                <li>2.电话联系</li>
+                <li>3.提交材料</li>
+              </ul>
+            </h4>
+          </div>
+          <div class="gedaidot_bottom_w">
+          <volist name="sq" id="v">
+            <div class="pd_xdy_w clearfix" hover-class="hover-item">
+              <a href="javascript:void(0);" data-id="{$v.guwen_id}" data-url="{$infoloan.is_apply}">
+                <div class="fl pd_xdy_icon">
+                    <img src="{$v.logo_pic1}" width="52">	
+                </div>
+                <div class="fl pd_xdy_intro">
+                  <div class="pd_xdy_name">
+                    <div style="float:left;margin-right:40px;">
+                      {$v.name}<span class="certified">&nbsp;</span>  
+                    </div>
+                    <ul class="pd_xdy_jy clearfix" style="float:left;font-weight:normal;font-size:12px;">
+                      <li style="margin-top: -1px !important;color:#222;">
+                        <span class="gray-font">评价:</span>
+                        <span class="score">
+                          <b></b>
+                          <b></b>
+                          <b></b>
+                          <em></em>
+                          <i></i>
+                        </span>  87条
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="pd_xdy_title">
+                    <span><notempty name="small.personname">{$small.personname}<else/>宁波市洛凡实业有限公司</notempty></span>
+                    <span class="ads-alert">广告</span>
+                  </div>
+                </div>
+                <div class="fr pd_xdy_act">
+                  <div class="tel-btn new-reg-btn">
+                      <img src="__IMAGES__/wxsq.jpg" width="165">
+                  </div>
+                </div>
+              </a>
+              
+               <!--客服-->
+                            
+                            <div class="geidaidot_kf geidaidot_kf1">
+                                <ul>
+                                    <!--  <li style="font-size:14px;color:#999;margin-right:8px;position:relative;top:-1px">
+                                            客服：
+                                        </li> -->
+                                        <li style="font-size:14px;color:#999;margin-right:8px;position:relative;top:-1px">
+                                            热线：{$v.telphone}
+                                        </li>
+                                    <li>
+                                        <notempty name="v.qq_num">
+                                            <a href="tencent://message/?uin={$v.qq_num}&amp;Site=im.qq.com&amp;Menu=yes"><i class="fa fa-qq"></i></a>
+                                        </notempty>
+
+                                    </li>
+                                    <li>
+                                        <notempty name="v.wx_img">
+                                            <a href="javascript:void(0);">
+                                                <i class="fa fa-weixin"></i>
+
+                                                <div class="hover_ewm">
+                                                    <img src="{$v.wx_img}">
+                                                </div>
+
+                                            </a>
+                                        </notempty>
+                                    </li>
+                                    <div class="clear"></div>
+                                </ul>
+                                
+                            </div>
+                        
+              <!--客服-->
+            </div>
+          </volist>
+          </div>
+        </div>
+
+
+
+        <div class="gedaidot_left3">
+          <ul class="gedaidot_left3_list">
+            <li class="active" ><a href="javascript:void(0);" class="tiaojian">申请条件</a></li>
+            <li><a href="javascript:void(0);" class="cailiao">所需材料</a></li>
+            <li><a href="javascript:void(0);" class="wenti1">答疑解惑</a></li>
+            <div class="clear"></div>
+          </ul>
+          <div class="gedaidot_left3_cot">
+            <div class="gedaidot_left3_cot1" id="tiaojian">
+              <div class="gedaidot_left3_tit">
+                <h4>申请条件</h4>
+              </div>
+              <div class="gedaidot_left3_tj">
+                {$infoloan.sqtj|htmlspecialchars_decode|stripslashes}
+                <!--ul>
+                  <li><span>•</span>24-59周岁</li>
+                  <li><span>•</span>在现单位工作满6个月以上</li>
+                  <li><span>•</span>税后月打卡工资10000元以上，需提供近6个月银行流水</li>
+                  <li><span>•</span>暂不接受信用记录空白以及近12个月逾期超过90天人士申请</li>
+                  <li><span>•</span>申请人至少有一张额度7万以上，开卡使用满6个月以上</li>
+                </ul-->
+              </div>
+            </div>
+            <div class="gedaidot_left3_cot1" id="cailiao">
+              <div class="gedaidot_left3_tit">
+                <h4>所需材料</h4>
+              </div>
+              <div class="gedaidot_left3_tj">
+                {$infoloan.sxcl|htmlspecialchars_decode|stripslashes}
+                <!--ul>
+                  <li><span>•</span>本人二代身份证</li>
+                  <li><span>•</span>近半年银行流水（需有“工资”字样显示）</li>
+                  <li><span>•</span>信用报告</li>
+                </ul-->
+              </div>
+            </div>
+            <div class="gedaidot_left3_cot1" id="wenti1">
+              <div class="gedaidot_left3_tit">
+                <h4>答疑解惑</h4>
+              </div>
+              <div class="gedaidot_left3_tj">
+                <ul>
+                <foreach name="problem" item="v">
+                  <li><a href="{:U('CarLoan/answer',array('id'=>$v['id']))}"><span>•</span>{$v.title}</a></li>
+                </foreach>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gedaidot_left4">
+          <div class="gedaidot_left4_list">
+            <div class="gedaidot_left4_tit">
+              <h4>热门头条</h4>
+            </div>
+            <ul>
+              <foreach name="artlist" item="vo">
+                <li><a href="{:U('News/newsDot1','id='.$vo['id'])}"><span>• </span>{$vo.news_title}</a></li>
+              </foreach>
+            </ul>
+          </div>
+          <div class="gedaidot_left4_list">
+            <div class="gedaidot_left4_tit">
+              <h4>贷款攻略</h4>
+            </div>
+            <ul>
+              <foreach name="artlist2" item="vo">
+                <li><a href="{:U('News/newsDot1','id='.$vo['id'])}"><span>• </span>{$vo.news_title}</a></li>
+              </foreach>
+            </ul>
+          </div>
+          <div class="gedaidot_left4_list" style="border-right:0;">
+            <div class="gedaidot_left4_tit">
+              <h4>车款问答</h4>
+            </div>
+            <ul>
+            <foreach name="problem" item="v">
+              <li><a href="{:U('CarLoan/answer',array('id'=>$v['id']))}"><span>•</span>{$v.title}</a></li>
+            </foreach>
+             
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="gedaidot_right">
+        <div class="gedaidot_right1"> <img src="__IMAGES__/gedaidot1.jpg" width="100%" /> </div>
+        <div class="gedaidot_right2">
+          <ul>
+            <li><span>•</span>5万信用贷</li>
+            <li><span>•</span>50万抵押贷</li>
+            <li><span>•</span>5万消费贷</li>
+            <li><span>•</span>20万经营贷</li>
+            <li><span>•</span>15万购车贷</li>
+            <li><span>•</span>10万装修贷</li>
+            <div class="clear"></div>
+          </ul>
+          <div class="gedaidot_right2_bt"> <a href="{:U('/CarLoan/Index')}">查看全部贷款</a> </div>
+        </div>
+        <div class="gedai2_right2">
+          <div class="gedai2_tit">
+            <h4>最新申请</h4>
+          </div>
+          <div class="gedai2_right2_cot">
+            <foreach name="l_o_r" item="vo" >
+              <div class="gedai2_right2_list" align="center">
+                <h4  align="center">
+                  <a href="{:U('Grab/index')}">
+                    <sapn style="color: #357ce2;">【<switch name="vo['cate_id']"><case value="1">个贷</case><case value="2">房贷</case><default />车贷</switch>】</sapn>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;{$vo.truename|mb_substr=###,0,1,'utf-8'}** &nbsp;&nbsp;&nbsp;&nbsp;<img src="__IMAGES__/gedai2_succ.png"> <span>申请</span>&nbsp;&nbsp;&nbsp;&nbsp;城市&nbsp;&nbsp;&nbsp;&nbsp;{$vo.city}</span></a>
+                </h4>
+              </div>
+            </foreach>
+
+            <!--<div class="gedai2_right2_list">-->
+              <!--<h4><a href="javascript:void(0);">外企上班族2小时成功批款22万 <img src="__IMAGES__/gedai2_succ.png"> <span>成功</span></a></h4>-->
+              <!--<span>月利率：0.78-1.89%    贷款金额：15万元</span> </div>-->
+            <!--<div class="gedai2_right2_list">-->
+              <!--<h4><a href="javascript:void(0);">外企上班族2小时成功批款22万 <img src="__IMAGES__/gedai2_succ.png"> <span>成功</span></a></h4>-->
+              <!--<span>月利率：0.78-1.89%    贷款金额：15万元</span> </div>-->
+          </div>
+        </div>
+        <div class="gedaidot_right3">
+          <div class="gedai2_tit">
+            <h4>热门产品</h4>
+          </div>
+          <ul>
+          <volist name="hot" id="vo">
+            <li> <a href="{:U('/CarLoan/freeApply',array('id'=>$vo['id']))}">
+              <div class="gedaidot_right3_img"><img src="{$vo.logo_pic1|default='__IMAGES__/gedai2_list1.jpg'}" /></div>
+              <div class="gedaidot_right3_wz">
+                <h4>{$vo.title}</h4>
+                <h5>速度快 额度高</h5>
+                <span>查看详情</span> </div>
+              <div class="clear"></div>
+              </a> </li>
+            </volist>
+            <!--li> <a href="gedaidot.html">
+              <div class="gedaidot_right3_img"><img src="__IMAGES__/gedai2_list1.jpg" /></div>
+              <div class="gedaidot_right3_wz">
+                <h4>华夏银行-易达金</h4>
+                <h5>速度快 额度高</h5>
+                <span>查看详情</span> </div>
+              <div class="clear"></div>
+              </a> </li>
+            <li> <a href="gedaidot.html">
+              <div class="gedaidot_right3_img"><img src="__IMAGES__/gedai2_list2.jpg" /></div>
+              <div class="gedaidot_right3_wz">
+                <h4>宜信-宜人贷金</h4>
+                <h5>速度快 额度高</h5>
+                <span>查看详情</span> </div>
+              <div class="clear"></div>
+              </a> </li>
+            <li> <a href="gedaidot.html">
+              <div class="gedaidot_right3_img"><img src="__IMAGES__/gedai2_list3.jpg" /></div>
+              <div class="gedaidot_right3_wz">
+                <h4>夸客金融-精英贷</h4>
+                <h5>速度快 额度高</h5>
+                <span>查看详情</span> </div>
+              <div class="clear"></div>
+              </a> </li>
+            <li> <a href="gedaidot.html">
+              <div class="gedaidot_right3_img"><img src="__IMAGES__/gedai2_list3.jpg" /></div>
+              <div class="gedaidot_right3_wz">
+                <h4>夸客金融-嗨客贷达金</h4>
+                <h5>速度快 额度高</h5>
+                <span>查看详情</span> </div>
+              <div class="clear"></div>
+              </a> </li-->
+          </ul>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<!--  / warpper  --> 
+
+<!-- right_nav --> 
+<include file="Public:right_nav"/> 
+<!-- right_nav --> 
+
+
+<div class="gedai_tk">
+  <div class="gedai_table">
+      <div class="gedai_cell">
+          <div class="gedai_bg">
+              <div class="gedai_close">
+                    <a href="javascript:void(0);">
+                        <img src="__IMAGES__/gedai_close.png" />
+                    </a>
+                </div>
+                <div class="gedai_lc" style="background-image:url(__IMAGES__/geidaidot3.png) ;background-position: 61px 40px;background-repeat:no-repeat;">
+                  <div class="gedaidot_list gedaidot_list1 active" style="width:180px;">
+                      <h4>留下联系方式</h4>
+                        <div class="gedai_yuan"></div>
+                    </div>
+                  <div class="gedaidot_list gedaidot_list2"  style="width:300px;text-align:center;">
+                      <h4>快速判断贷款资质</h4>
+                        <div class="gedai_yuan"></div>
+                        <div class="gedai_line"></div>
+                    </div>
+                  <div class="gedaidot_list gedaidot_list3"  style="width:180px;text-align:right;">
+                      <h4>申请完毕</h4>
+                        <div class="gedai_yuan"></div>
+                        <div class="gedai_line"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="gedaidot_cot">
+                    <div class="gedai_cot gedai_cot1">
+                        <div class="gedai_li">
+                            <label><span>您的称呼</span><input type="text" name="username"/></label>
+                        </div>
+                        <div class="gedai_li">
+                            <label><span>手机号码</span><input type="text" name="telephone"/></label>
+                        </div>
+                        <div class="gedai_li gedai_yz">
+                            <label><span>手机验证码</span><input type="text" / name="code"><a href="#" id="getCode">获取验证码</a></label>
+                        </div>
+                        <div class="gedai_btn gedai_btn1" data-id=''>
+                            <a href="javascruot:void(0);">下一步</a>
+                        </div>
+                    </div>
+                    <div class="gedai_cot gedai_cot2" style="display:none;">
+                        <div class="gedai_li">
+                            <label><span>是否有房</span>
+                              <select id="fangzi">
+                                  <option selected>请选择</option>
+                                  <option>有房</option>
+                                  <option>无房</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="gedai_li">
+                            <label><span>是否有车</span>
+                              <select id="chezi">
+                                  <option selected>请选择</option>
+                                  <option>有车</option>
+                                  <option>无车</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="gedai_li gedai_yz">
+                            <label><span>月收入</span>
+                              <select id="shouru">
+                                  <option selected>请选择</option>
+                                  <option>3500元以下</option>
+                                  <option>3500-5000元</option>
+                                  <option>5000-8000元</option>
+                                  <option>8000-12000元</option>
+                                  <option>12000元以上</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="gedai_btn gedai_btn2">
+                            <a href="javascruot:void(0);" data-name='' data-tel='' data-id='' id="idsdssd">下一步</a>
+                        </div>
+                    </div>
+                    <div class="gedai_cot gedai_cot3" style="display:none;">
+                      <div class="gedai_img">
+                          <img src="__IMAGES__/gedai_gou.png"  width="100%"/>
+                        </div>
+                        <div class="gedai_btn gedai_btn3">
+                            <a href="javascruot:void(0);">完成</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--  / footer  --> 
+<include file="Public:footer"/> 
+<!--  / footer  -->
+
+</body>
+<script>
+$(document).ready(function(){
+    //jisuan();
+    $('.moneyedit').blur(function(){
+        jisuan();
+    });
+    
+    $('.qixianedit').blur(function(){
+        jisuan();
+    });
+}); 
+
+function jisuan(){
+    var money = parseInt($('.moneyedit').val()); 
+    var moneymin = parseInt("{$infoloan.money}");
+    var moneymax = parseInt("{$infoloan.money1}");
+    if(!money){
+        alert('金额必须填写');
+        $('.moneyedit').val(moneymin);
+        return false;
+    }
+
+    if((money < moneymin) || (money > moneymax)){
+        alert("金额必须在"+moneymin+"~"+moneymax+"之间,请重填");
+        $('.moneyedit').val(moneymin);
+        return false;
+    }
+    var qixian = parseInt($('.qixianedit').val()); 
+    var qixianmin = parseInt("{$infoloan.dkqx}");
+    var qixianmax = parseInt("{$infoloan.dkqx1}");
+    
+    if(!qixian){
+        alert('期限必须填写');
+        $('.qixianedit').val(qixianmin);
+        return false;
+    }
+
+    if((qixian < qixianmin) || (qixian > qixianmax)){
+        alert("期限必须在"+qixianmin+"~"+qixianmax+"之间,请重填");
+        $('.qixianedit').val(qixianmin);
+        return false;
+    }
+
+    var ylx = "{$infoloan.ylx}";
+    var yg =(money+money*parseFloat("{$infoloan.lnsm}")/100)/qixian;
+    var zlx=money*parseFloat("{$infoloan.lnsm}")/100;
+
+    $('#zlx').html(zlx.toFixed(2));
+    $('#yg').html(yg.toFixed(2));
+}
+
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+        loop:true,
+        autoplay:5000,
+        spaceBetween: 0,
+        slidesPerView : 8,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.arrow-left2').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipePrev()
+    })
+
+    $('.arrow-right2').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipeNext()
+    })
+
+
+
+    var mySwiper3 = new Swiper('.swiper3',{
+        pagination: '.pagination3',
+        loop:true,
+        autoplay:5000,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.arrow-left3').on('click', function(e){
+        e.preventDefault()
+        mySwiper3.swipePrev()
+    })
+
+    $('.arrow-right3').on('click', function(e){
+        e.preventDefault()
+        mySwiper3.swipeNext()
+    })
+</script>
+<script>
+
+
+
+$(document).ready(function(){
+    $(window).load(function(){
+        $('.gedaidot_bottom h3 span').hover(function(){
+            $('.gedaidot_tk').stop().animate({'opacity':'1'},500);
+        },function(){
+            $('.gedaidot_tk').stop().animate({'opacity':'0'},500);
+        })
+    })
+    $(window).resize(function(){
+    });
+
+    var class_name;
+    $('.gedaidot_left3_list li').click(function(){
+        $(this).parent().addClass('fixed');
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
+        class_name=$(this).find("a").attr("class");
+        $('body,html').animate({'scrollTop':$('#'+class_name).offset().top-20})
+    })
+
+})
+
+
+$(window).scroll(function(){
+    var scrollT=$(window).scrollTop();
+    if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+        $('.right_nav').css('display','block');
+    }else{
+        $('.right_nav').css('display','none');
+    }
+    if(scrollT>$('.gedaidot_left3').offset().top){
+        $('.gedaidot_left3_list').addClass('fixed');
+    }else{
+        $('.gedaidot_left3_list').removeClass('fixed');
+    }
+
+})
+</script>
+<script>
+    $("#btnapply").click(function(){
+        $.post("{:U('Loan/checkLogin')}",{},function(data){
+            if(data.status == 0){
+                alert('请先登录!');
+                window.location.href="{:U('/User/login')}";
+            }else if(data.status == 2){
+                alert(data.info);return false;
+            }else{
+                applyOrder();
+            }
+        },'json');
+    })
+
+
+    var isRun=true;
+//$("#btnapply").click(function(){
+    function applyOrder () {
+    //防止重复点击
+    if(!isRun){
+        return false;
+    }else{
+        isRun=false;
+    }
+
+
+    var money = parseInt($('.moneyedit').val()); 
+    var moneymin = parseInt("{$infoloan.money}");
+    var moneymax = parseInt("{$infoloan.money1}");
+    if(!money){
+        alert('金额必须填写');
+        $('.moneyedit').val(moneymin);
+        return false;
+    }
+
+    if((money < moneymin) || (money > moneymax)){
+        alert("金额必须在"+moneymin+"~"+moneymax+"之间,请重填");
+        $('.moneyedit').val(moneymin);
+        return false;
+    }		
+    var qixian = parseInt($('.qixianedit').val()); 
+    var qixianmin = parseInt("{$infoloan.dkqx}");
+    var qixianmax = parseInt("{$infoloan.dkqx1}");
+    
+    if(!qixian){
+        alert('期限必须填写');
+        $('.qixianedit').val(qixianmin);
+        return false;
+    }
+
+    if((qixian < qixianmin) || (qixian > qixianmax)){
+        alert("期限必须在"+qixianmin+"~"+qixianmax+"之间,请重填");
+        $('.qixianedit').val(qixianmin);
+        return false;
+    }
+    var ylx = "{$infoloan.ylx}";
+    var yg =(money+money*parseFloat("{$infoloan.lnsm}")/100)/qixian;
+    var zlx=money*parseFloat("{$infoloan.lnsm}")/100;
+    var card_id =   "{$infoloan.id}";
+    
+    var data={id:"{$infoloan.id}",money:money,qixian:qixian,ylx:ylx,yg:yg.toFixed(2),zlx:zlx,card_id:card_id};
+    console.log(data);
+    $.ajax({
+        url:"{:U('Loan/Order')}",
+        data: data,
+        dataType:'json',
+        type:'post',
+        success:function(g){
+            //console.log(g);  
+            if(g.status == 1){
+                alert('请先登录!');
+                window.location.href="{:U('/User/login')}";
+            }else{
+                alert(g.info);
+            }
+        },
+        error: function(){
+            alert('网络繁忙,请稍后重试');
+        }
+    });		
+};
+
+
+    $('.pd_xdy_w>a').on('click',function(){
+        var guwen = $(".pd_xdy_w>a").attr('data-id');
+        var url = $(".pd_xdy_w>a").attr('data-url');
+    if(url){
+        window.open(url); 
+    }else{
+        $.ajax({
+            url:"{:U('PersonLoan/ajaxauth')}",
+            success:function(data){
+
+                if(data.status){
+                     fangzi = data.info.houseid;
+                     chezi  = data.info.carid;
+                     shouru = data.info.month_money;
+                     telephone = data.info.telephone;
+                     username = data.info.realname;
+                    if(data.info.houseid && data.info.carid && data.info.month_money){
+                        tijiao(telephone,shouru,chezi,fangzi,username,guwen);
+                    }else{
+                        onepage(username,telephone,guwen);
+                    }
+                }else{
+                    $('.gedai_btn1').attr('data-id',guwen);
+                    $('.gedai_tk').fadeIn();return;
+                }
+            }
+        })
+    }
+})
+function tijiao(tel,shouru,chezi,fangzi,username,guwen){
+
+    var money = parseInt($('.moneyedit').val());
+    var moneymin = parseInt("{$infoloan.money}");
+    var moneymax = parseInt("{$infoloan.money1}");
+    if(!money){
+        alert('金额必须填写');
+        $('.moneyedit').val(moneymin);
+        return false;
+    }
+
+    if((money < moneymin) || (money > moneymax)){
+        alert("金额必须在"+moneymin+"~"+moneymax+"之间,请重填");
+        $('.moneyedit').val(moneymin);
+        return false;
+    }
+    var qixian = parseInt($('.qixianedit').val());
+    var qixianmin = parseInt("{$infoloan.dkqx}");
+    var qixianmax = parseInt("{$infoloan.dkqx1}");
+
+    if(!qixian){
+        alert('期限必须填写');
+        $('.qixianedit').val(qixianmin);
+        return false;
+    }
+
+    if((qixian < qixianmin) || (qixian > qixianmax)){
+        alert("期限必须在"+qixianmin+"~"+qixianmax+"之间,请重填");
+        $('.qixianedit').val(qixianmin);
+        return false;
+    }
+    var ylx = "{$infoloan.ylx}";
+    var yg =parseFloat($("#yg").html());
+    var zlx=parseFloat($("#zlx").html());
+    var pro_id = "{:$_GET['id']}";
+
+    $.ajax({
+    url:"{:U('CarLoan/ajaxsq')}",
+    data:{
+      tel:tel,
+      shouru:shouru,
+      chezi:chezi,
+      fangzi:fangzi,
+      name:username,
+      cate_id:3,
+      guwen:guwen,
+        money:money,
+        qixian:qixian,
+        ylx:ylx,
+        yg:yg,
+        zlx:zlx,
+        pro_id:pro_id
+    },
+    dataType:'json',
+    type:'post',
+    success:function(data){
+      if(!data.status){
+        alert(data.info);return false;
+      }else{
+        $('.gedai_tk').fadeIn();
+        $('.gedai_cot1').hide();
+        $('.gedai_cot2').hide();
+        $('.gedai_cot3').fadeIn()
+        $('.gedaidot_list2').addClass('active');
+        $('.gedaidot_list3').addClass('active');
+      }
+    }
+  })
+}
+$('.gedai_btn1').click(function(){
+  var username = $('.gedai_li input[name="username"]').val();
+  var telephone = $('.gedai_li input[name="telephone"]').val();
+  var code = $('.gedai_li input[name="code"]').val();
+  var guwen = $(this).attr('data-id');
+  if(!username){
+    alert('请填写姓名');return;
+  }
+  if(!telephone){
+    alert('请填写手机号码');return;
+  }
+  if(!telephone.match(/^1[35789][0-9]{9}$/)){
+      alert('电话格式错误');return false;
+  }
+  if(!code){
+    alert('请填写手机验证码');return;
+  }
+  var tiao = 0;
+  $.ajax({
+    url:'{:U("CarLoan/ajax_dx")}',
+    data:{code:code,telephone:telephone},
+    dataType:'json',
+    type:'post',
+    success:function(data){
+      if(!data.status){
+        alert(data.info);
+      }else{
+        $('#idsdssd').attr('data-name',username);
+        $('#idsdssd').attr('data-tel',telephone);
+        $('#idsdssd').attr('data-id',guwen);
+        $('.gedai_cot1').hide();
+        $('.gedai_cot2').fadeIn()
+        $('.gedaidot_list2').addClass('active');
+      }
+    }
+  })
+})
+
+$('.gedai_btn2').click(function(){
+  // var total = $('input[name="loan_limit"]').val();
+  // var term = $('input[name="loan_term"]').val();
+  // var zlx=$('#zlx').html();
+  // var yg=('#yg').html();
+  // var fksj = $('#fksj').html();
+  var shouru = $('#shouru option:selected').html();
+  var chezi = $('#chezi option:selected').html();
+  var fangzi = $('#fangzi option:selected').html();
+  var username = $(this).find('a').attr('data-name');
+  var tel = $(this).find('a').attr('data-tel');
+  var guwen = $('.gedai_btn1').attr('data-id');
+
+    var money = parseInt($('.moneyedit').val());
+    var moneymin = parseInt("{$infoloan.money}");
+    var moneymax = parseInt("{$infoloan.money1}");
+    if(!money){
+        alert('金额必须填写');
+        $('.moneyedit').val(moneymin);
+        return false;
+    }
+
+    if((money < moneymin) || (money > moneymax)){
+        alert("金额必须在"+moneymin+"~"+moneymax+"之间,请重填");
+        $('.moneyedit').val(moneymin);
+        return false;
+    }
+    var qixian = parseInt($('.qixianedit').val());
+    var qixianmin = parseInt("{$infoloan.dkqx}");
+    var qixianmax = parseInt("{$infoloan.dkqx1}");
+
+    if(!qixian){
+        alert('期限必须填写');
+        $('.qixianedit').val(qixianmin);
+        return false;
+    }
+
+    if((qixian < qixianmin) || (qixian > qixianmax)){
+        alert("期限必须在"+qixianmin+"~"+qixianmax+"之间,请重填");
+        $('.qixianedit').val(qixianmin);
+        return false;
+    }
+    var ylx = "{$infoloan.ylx}";
+    var yg =parseFloat($("#yg").html());
+    var zlx=parseFloat($("#zlx").html());
+    var pro_id = "{:$_GET['id']}";
+  if(chezi == '请选择'){
+    alert('请选择!');return;
+  }
+  if(fangzi == '请选择'){
+    alert('请选择!');return;
+  }
+  if(shouru == '请选择'){
+    alert('请选择!');return;
+  }
+  $.ajax({
+    url:"{:U('CarLoan/ajaxsq')}",
+    data:{
+      tel:tel,
+      shouru:shouru,
+      chezi:chezi,
+      fangzi:fangzi,
+      name:username,
+      cate_id:3,
+      guwen:guwen,
+        pro_id:pro_id,
+        money:money,
+        qixian:qixian,
+        ylx:ylx,
+        yg:yg,
+        zlx:zlx
+      // total:total,//贷款总金额
+      // term:term,//期限
+      // zlx:zlx,//总利息
+      // yg:yg,//
+      // fksj:fksj,//放款时间
+    },
+    dataType:'json',
+    type:'post',
+    success:function(data){
+      alert(1);
+      if(!data.status){
+        alert(data.info);
+        window.location.reload();
+        return false;
+      }else{
+          $('.gedai_cot2').hide();
+          $('.gedai_cot3').fadeIn()
+          $('.gedaidot_list3').addClass('active');
+      }
+    }
+  })
+
+})
+$('.gedai_close a,.gedai_btn3').click(function(){
+  $('.gedai_tk').fadeOut();
+  $('.gedai_cot1').css('display','block').siblings().css('display','none');
+  $('.gedaidot_list3').removeClass('active');
+  $('.gedaidot_list2').removeClass('active');
+})
+
+</script>
+<script type="text/javascript">
+    var wait = 60;
+  $("#getCode").click(function (){
+    var _this = $(this)
+    if (_this.attr("disabled")) {
+        return false;
+    }
+    var telephone = $('.gedai_li input[name="telephone"]').val();
+    if(!telephone){
+      dialog.showTips("请填写手机号！","warn");return false;
+    }else if(!telephone.match(/^1[35789][0-9]{9}$/)){
+      dialog.showTips("手机号码格式错误！","warn");return false;
+
+    }
+    $.post("{:U('User/getMessage')}", {'telephone':telephone,'code_type':15}, function (data){
+      if(data.status==1){
+        dialog.showTips("验证码发送成功，请注意查收！","warn");
+        // 计时
+        time(_this);
+      }else{
+        dialog.showTips(data.info,"warn");return false;
+      }
+    },"json")
+  })
+</script>
+<script>
+  var wait = 60;
+  function time(o) {
+    //localStorage.aux_reTime=wait;
+    if (wait == 0) {
+      o.removeAttr("disabled");
+      o.val("重新获取");
+      wait = 60;
+    } else {
+      o.attr("disabled", true);
+      o.val("重新发送(" + wait + ")");
+      wait--;
+      setTimeout(function () {
+          time(o)
+      }, 1000);
+    }
+  }
+</script>
+</html>

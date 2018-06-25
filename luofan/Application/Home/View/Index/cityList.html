@@ -1,0 +1,283 @@
+<include file="Public:head"/>
+
+</head>
+
+<body>
+<include file="Public:header"/>
+<!--header-->
+
+    
+<!--  / warpper  -->
+<div class="warpper">
+ 
+ 	<div class="city">
+    
+    	<div class="ct_hot_box">
+            <div class="container">
+                <span class="c_l">猜你可能在杭州，点击进入<a href="#">杭州站</a></span>
+                <span class="c_r">
+                    热门城市: &nbsp;&nbsp;<a href="#"><strong>北京</strong></a>
+                   <!--  <a href="#"><strong>深圳</strong></a>
+                    <a href="#"><strong>成都</strong></a>
+                    <a href="#"><strong>武汉</strong></a>
+                    <a href="#"><strong>南京</strong></a>
+                    <a href="#"><strong>上海</strong></a>
+                    <a href="#"><strong>重庆</strong></a>
+                    <a href="#"><strong>杭州</strong></a>
+                    <a href="#"><strong>广州</strong></a>
+                    <a href="#"><strong>西安</strong></a>
+                    <a href="#"><strong>郑州</strong></a>
+                    <a href="#"><strong>天津</strong></a> -->
+                </span> 
+                <div class="clear"></div>
+            </div>
+        </div>
+        
+        <div class="city_select_box">
+            <div class="container">
+                <div class="select_t">
+                  <ul>
+                    <li class="cs cur" onmouseover="chose_type(this, 'cs1')" name="select_abc">按首字母选择</li>
+                    <li class="cs" onmouseover="chose_type(this, 'cs2')" name="select_abc_c">按省份选择</li>
+                  </ul>
+                </div>
+                <!--按首字母选择 开始-->
+                <div class="css" id="cs1">
+                    <div class="select_abc"> 
+                      <a href="#A" class="bt cur">A</a>
+                      <a href="#B" class="bt">B</a>
+                      <a href="#C" class="bt">C</a>
+                      <a href="#D" class="bt">D</a>
+                      <a href="#E" class="bt">E</a>
+                      <a href="#F" class="bt">F</a>
+                      <a href="#G" class="bt">G</a>
+                      <a href="#H" class="bt">H</a>
+                      <a href="#J" class="bt">J</a> 
+                      <a href="#K" class="bt">K</a> 
+                      <a href="#L" class="bt">L</a> 
+                      <a href="#M" class="bt">M</a> 
+                      <a href="#N" class="bt">N</a> 
+                      <a href="#P" class="bt">P</a> 
+                      <a href="#Q" class="bt">Q</a> 
+                      <a href="#R" class="bt">R</a> 
+                      <a href="#S" class="bt">S</a> 
+                      <a href="#T" class="bt">T</a> 
+                      <a href="#W" class="bt">W</a> 
+                      <a href="#X" class="bt">X</a> 
+                      <a href="#Y" class="bt">Y</a> 
+                      <a href="#Z" class="bt">Z</a> 
+                    </div>
+                  
+                    
+                    <div class="select_abc_c">
+                        <ul>
+                            <volist name="p" id="v">
+                            <li id="{$v}">
+                                <a class="abcd" name="{$v}">{$v}</a>
+                                <volist name="citys" id='vo'>
+                                <eq name="vo.leveltype" value="2">
+                                    <eq name="vo.zimu" value="$v">     
+                                        <a href="{:U('Index/index',array('city'=>$vo['pinyin']))}">{$vo.name}</a>
+                                    </eq>
+                                </eq>
+                                </volist>
+                            </li>
+                           </volist>
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="clear"></div>
+                </div>
+                <!--按首字母选择 结束--> 
+                
+                <!--按城市选择 开始--> 
+                <div class="css" id="cs2" style="display:none;">
+                    <div class="select_abc">
+                          
+                     </div>
+                     <div class="select_abc_c">
+                        <ul>
+                            <volist name="citys" id="v">
+                                <eq name="v.leveltype" value="1">
+                                    <li>
+                                        <span class="sheng">{$v.name}</span>
+                                        <volist name="citys" id="vv">
+                                            <eq name="vv.leveltype" value="2">
+                                                <eq name="vv.dj" value="$v.dj">
+                                                    <a href="{:U('Index/index',array('city'=>$vv['pinyin']))}">{$vv.name}</a>
+                                                </eq>
+                                            </eq>
+                                        </volist>
+                                    </li>
+                                </eq>
+                            </volist>
+                        </ul>
+                     </div>
+                 </div>
+                <!--按城市选择 结束--> 
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+</div>
+<!--  / warpper  -->
+
+
+
+
+
+
+
+<style>
+.ct_hot_box{width: 100%; line-height: 36px; padding: 8px 0; overflow: hidden; background: #f5f5f5; color: #666;}
+.ct_hot_box .c_l{margin-right: 25px; font-size: 14px;}
+.ct_hot_box .c_l a{color: #ff0000; font-size: 14px;}
+.ct_hot_box .c_r{font-size: 14px; font-weight: bold;}
+.ct_hot_box .c_r a{margin-right: 20px; color: #06C; font-size: 14px;}
+.city_select_box{margin: 20px auto 80px;}
+.select_t{border-bottom: solid 1px #ddd;}
+.select_t ul:after{content:""; display:table; clear:both;}
+.select_t ul li{width: 120px; float: left; line-height: 30px; cursor: pointer; font-size: 14px; text-align: center; color: #666;}
+.select_t ul li.cur{background: #357ce2; color: #fff;}
+.select_abc_c{margin-top: 10px;}
+.select_abc_c ul li{border-bottom: dashed 1px #ddd; overflow: hidden;}
+.select_abc_c ul li a{margin-right: 15px; color: #06c; display: block; white-space: nowrap; float: left; line-height: 33px;}
+.select_abc_c ul li .abcd{font-size: 14px; float: left; width: 30px; line-height: 30px; height: 35px; color: #000000; text-decoration: none;}
+.select_abc{margin-top: 15px;}
+.select_abc a{margin-right: 12px; width: 20px; height: 20px; line-height: 20px; display: inline-block; text-align: center; color: #06c; font-size: 14px;}
+.select_abc a.cur{background: #357ce2; color: #fff;}
+.select_abc_c ul li .oncity{color: #f60;}
+.select_abc_c ul li .sheng{font-size: 14px; float: left; width: 70px; line-height: 32px; height: 37px;}
+</style>
+
+<div class="right_nav">
+    <ul>
+        <li>
+            <a href="javascript:void(0);" class="telep">
+            	<img src="__IMAGES__/telep.png" width="100%"/>
+                <span class="telep_num">{$web_config.servise_phone}</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);"  class="kefu">
+            	<img src="__IMAGES__/kefu.png"  width="100%"/>
+                <span>在线客服</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);"  class="return">
+            	<img src="__IMAGES__/return.png"  width="100%"/>
+                <span>返回顶部</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<script>
+function chose_type(obj, id){
+	$('.cs').attr('class', 'cs');
+	$(obj).attr('class', 'cs cur');
+	$('.css').hide();
+	$('#'+id).show();
+}
+
+$(document).ready(function(e) {
+    
+	$('.bt').click(function(){
+		$('.bt').attr('class', 'bt');
+		$(this).attr('class', 'bt cur');
+	});
+
+
+});
+
+
+
+
+
+
+
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 4,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.fangdai_lt').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.fangdai_rt').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+</script>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+	$(window).load(function(){
+		$(".swiper1").height($(".swiper1 .ban_box ").height());
+		$('.swiper2').height($('.swiper2 img').height()+60)
+		
+	})
+	$(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+		$('.swiper2').height($('.swiper2 img').height()+60)
+	});
+
+	
+})	
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})	
+</script>
+
+</html>

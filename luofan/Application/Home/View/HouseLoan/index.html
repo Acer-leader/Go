@@ -1,0 +1,774 @@
+<include file="Public:head"/>
+<!-- <style>
+.active{background: #666;padding: 0px 0.5rem;border-radius: 8px;}
+</style> -->
+<style>
+.zanwu_box{
+    height: 100%;
+}
+.ind_table{
+    display:table;
+    width:100%;
+    height:100%;
+}
+.ind_cell{
+    display:table-cell;
+    vertical-align:middle;
+}
+.zanwu{
+    width:200px;
+    margin:0 auto;
+}
+.zanwu img{
+    width:100%;
+}
+.zanwu h4 {
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<include file="Public:header"/> 
+<!--header--> 
+<!--  / warpper  -->
+<div class="warpper">
+<!--gedai_box1-->
+<div class="gedai_box gedai_box1" style="display:none;">
+  <div class="index_container">
+    <div class="gedai1_box">
+      <div class="gedai1_list"> <a href="#">
+        <div class="gedai1_img gedai1_img1"><img src="__IMAGES__/gedai1.png" /></div>
+        <div class="gedai1_wz">
+          <h4>上班族专区</h4>
+          <span>消费类信用贷款</span> </div>
+        <div class="clear"></div>
+        </a> </div>
+      <div class="gedai1_list"> <a href="#">
+        <div class="gedai1_img gedai1_img2"><img src="__IMAGES__/gedai2.png" /></div>
+        <div class="gedai1_wz">
+          <h4>个体户专区</h4>
+          <span>小额经营类贷款</span> </div>
+        <div class="clear"></div>
+        </a> </div>
+      <div class="gedai1_list"> <a href="#">
+        <div class="gedai1_img gedai1_img3"><img src="__IMAGES__/gedai3.png" /></div>
+        <div class="gedai1_wz">
+          <h4>车贷专区</h4>
+          <span>低价购车，车贷办理</span> </div>
+        <div class="clear"></div>
+        </a> </div>
+      <div class="gedai1_list gedai1_list_last"> <a href="#">
+        <div class="gedai1_img gedai1_img4"><img src="__IMAGES__/gedai4.png" /></div>
+        <div class="gedai1_wz">
+          <h4>房贷专区</h4>
+          <span>房贷利率，房贷计算</span> </div>
+        <div class="clear"></div>
+        </a> </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<!--gedai_box1--> 
+<!--gedai_box5-->
+<div class="gedai_box gedai_box5">
+  <div class="index_container">
+  	<!--当前位置-->
+  	<div class="infonav_top">
+        <div class="infonav_top_con">
+        	当前位置：
+        <a href="index.html">房贷</a> &gt;
+          <a href="javascript:void(0)"><eq name="_GET['is_organ']" value="1">民间借贷<else/>房贷中心</eq></a>
+        </div>
+    </div>
+    
+    <div class="geidai5_cot">
+      <div class="geidai5_top">
+         <form action="{:U('HouseLoan/index')}" method='get'>
+                <div class="gedai5_top_cot">
+                    <div class="gedai5_top_list ">
+                        <label>贷款金额</label>
+                        <div class="xinyong_dk ui-select">
+                                    <input type="hidden" name='money' id="money">
+                                    <div class="input_leixing select-value"><span class='yongtu'>请选择查询区间</span><div class="banlist_btn"><img src="__IMAGES__/ban_btn1.png" width="100%" alt=""/></div></div>
+                                    <div class="dklx_list select-list">
+                                        <ul>
+                                          <volist name="money" id="vo">
+                                            <li  class="money_lq" data-val='{$vo.id}'>{$vo.start}~{$vo.end}</li>
+                                          </volist>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                    </div>
+                    <div class="gedai5_top_list gedai5_top_list1">
+                        <label>贷款期限</label>
+                        <div class="xinyong_dk ui-select">
+                                    <input type="hidden" name='date' id="date">
+                                    <div class="input_leixing select-value"><span id='qixian'>请选择查询区间</span><div class="banlist_btn"><img src="__IMAGES__/ban_btn1.png" width="100%" alt=""/></div></div>
+                                    <div class="dklx_list select-list">
+                                        <ul>
+                                          <volist name="date" id="vo">
+                                            <li class="date_lq" data-val="{$vo.id}">{$vo.start}~{$vo.end}</li>
+                                          </volist>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                    </div>
+                    <input type="submit" class="gedai5_research" value="重新搜索">
+                    <div class="clear"></div>
+                </div>
+                </form>
+      </div>
+      <div class="geidai5_bottom">
+        <div class="gaedai5_list"> <span>职业身份：</span>
+          <ul>
+            <volist name="identitys" id="vo">
+              <li><a href="javascript:void(0)" data-identitys="{$vo.id}">{$vo.classname}</a></li>
+            </volist>
+            <div class="clear"></div>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="gaedai5_list"> <span>名下房产类型：</span>
+          <ul>
+            <volist name="houses" id="vo">
+              <li><a href="javascript:void(0)" data-houses="{$vo.id}">{$vo.classname}</a></li>
+            </volist>
+            <div class="clear"></div>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="gaedai5_list"> <span>名下是否有车：</span>
+          <ul>
+            <volist name="cars" id="vo">
+              <li><a href="javascript:void(0)" data-cars="{$vo.id}">{$vo.classname}</a></li>
+            </volist>
+            <div class="clear"></div>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="gaedai5_list"> <span>您的信用情况：</span>
+          <ul>
+            <volist name="honours" id="vo">
+              <li><a href="javascript:void(0)" data-honours="{$vo.id}">{$vo.classname}</a></li>
+            </volist>
+            <div class="clear"></div>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="gaedai5_list"> <span>是否有寿险：</span>
+          <ul>
+            <volist name="shouxian" id="vo">
+              <li><a href="javascript:void(0)" data-honours="{$vo.id}">{$vo.classname}</a></li>
+            </volist>
+            <div class="clear"></div>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="gaedai5_list"> <span>贷款利率：</span>
+          <ul>
+            <volist name="lilv" id="vo">
+              <li><a href="javascript:void(0)" data-honours="{$vo.id}">{$vo.classname}</a></li>
+            </volist>
+            <div class="clear"></div>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="gaedai5_list"> <span>机构类型：</span>
+          <ul>
+            <volist name="organ" id="vo">
+              <neq name="vo.classname" value="民间借贷">
+                <li><a href="javascript:void(0)" data-organ="{$vo.id}">{$vo.classname}</a></li>
+              </neq>
+            </volist>
+            <!--li><a href="javascript:void(0)">1年内逾期超过3次或者超过90天</a></li>
+            <li><a href="javascript:void(0)">1年内逾期少于3次或者少于90天</a></li>
+            <li><a href="javascript:void(0)">无信用卡或贷款</a></li>
+            <li><a href="javascript:void(0)">信用良好，无逾期</a></li-->
+            <div class="clear"></div>
+          </ul>
+          <div class="clear"></div>
+        </div>
+
+        <div class="gaedai5_list"> <span>抵押类型：</span>
+          <ul>
+            <volist name="pledge" id="vo">
+              <li><a href="javascript:void(0)" data-pledge="{$vo.id}">{$vo.classname}</a></li>
+            </volist>
+            <!--li><a href="javascript:void(0)">1年内逾期超过3次或者超过90天</a></li>
+            <li><a href="javascript:void(0)">1年内逾期少于3次或者少于90天</a></li>
+            <li><a href="javascript:void(0)">无信用卡或贷款</a></li>
+            <li><a href="javascript:void(0)">信用良好，无逾期</a></li-->
+            <div class="clear"></div>
+          </ul>
+          <div class="clear"></div>
+        </div>
+
+        <div class="gaedai5_list gaedai5_list1"> <span>还款方式：</span>
+          <ul>
+            <volist name="repay" id="vo">
+              <li><a href="javascript:void(0)" data-repay="{$vo.id}">{$vo.classname}</a></li>
+            </volist>
+            <!--li><a href="javascript:void(0)">1年内逾期超过3次或者超过90天</a></li>
+            <li><a href="javascript:void(0)">1年内逾期少于3次或者少于90天</a></li>
+            <li><a href="javascript:void(0)">无信用卡或贷款</a></li>
+            <li><a href="javascript:void(0)">信用良好，无逾期</a></li-->
+            <div class="clear"></div>
+          </ul>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--gedai_box5--> 
+<!--gedai_box2-->
+<div class="gedai_box gedai_box2">
+  <div class="index_container">
+    <div class="common_tit"> <neq name="_GET['is_organ']" value="1"><span>{$city}热门房贷</span> </neq> <eq name="_GET['is_organ']" value="1"><span>民间借贷</span><else/><span style="border-left:none;color:#000;"><a href="{:U('Home/HouseLoan/index',array('is_organ'=>1))}">民间借贷</a></span> </eq></div>
+    <div class="gedai2_box">
+      <div class="gedai2_left">
+        <volist name="listsloanArr" id="vo" key="k" mod="6">
+        <if condition="$k gt 1"><div class="gedai2_list"><else/><div class="gedai2_list gedai2_list_first"></if>
+            <div class="gedai2_wz">
+              <div class="gedai2_list_left">
+                <eq name="vo.is_renqi" value="1">
+                  <div class="gedai2_list_type"> <span>人气</span>
+                    <div class="gedai2_type_bg"></div>
+                  </div>
+                </eq>
+                <div class="gedai2_list_img"> <a href="{:U('/HouseLoan/houseDetail',array('id'=>$vo['id']))}"> <img src="{$vo.logo_pic1|default='__IMAGES__/gedai2_list1.jpg'}" /> </a> </div>
+              </div>
+              <div class="gedai2_list_right">
+                <div class="gedai2_list_top"> <a href="{:U('/HouseLoan/houseDetail',array('id'=>$vo['id']))}">{$vo.title}</a>
+                  <ul class="gedai2_top_list">
+                    <gt name="vo.is_diya" value="0">
+                      <li><span>无需抵押</span></li>
+                    </gt>
+                    <gt name="vo.is_sbzksq" value="0">
+                      <li><span>上班族 可申请</span></li>
+                    </gt>
+                    <gt name="vo.fksj" value="0">
+                      <li><span>{$vo.fksj}天放款</span></li>
+                    </gt>
+                    <div class="clear"></div>
+                  </ul>
+                  <div class="clear"></div>
+                </div>
+                 <!--客服-->
+                            
+                         <div class="geidaidot_kf">
+                                <ul>
+                                    <li style="font-size:14px;color:#999;margin-right:8px;position:relative;top:-1px"> 
+                                        客服：
+                                    </li>
+                                    <li>
+                                        <a href="tencent://message/?uin={$web_config['servise_qq']}&amp;Site=im.qq.com&amp;Menu=yes"><i class="fa fa-qq"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="fa fa-weixin"></i>
+                                            
+                                            <div class="hover_ewm">
+                                                <img src="{$web_config.servise_ewm}">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <div class="clear"></div>
+                                </ul>
+                            </div> 
+              <!--客服-->
+                <div class="gedai2_list_bottom">
+                  <div class="gedai2_bottom_left">
+                    <h4>速度快 额度高</h4>
+                    <ul>
+                      <gt name="vo.is_sbzksq" value="0">
+                        <li><span class="person"></span> 上班族可申请</li>
+                      </gt>
+                      <gt name="vo.fksj" value="0">
+                        <li><span class="time"></span> {$vo.fksj}天放款</li>
+                      </gt>
+                    </ul>
+                  </div>
+                  <div class="gedai2_bottom_center">
+                    <dl>
+                      <dt>贷款金额： </dt>
+                      <dd><span class="num_red">{$vo.money}~{$vo.money1}</span> 万</dd>
+                    </dl>
+                    <dl>
+                      <dt>月管理费： </dt>
+                      <dd><span class="num_red">{$vo.lnsm}</span> %</dd>
+                    </dl>
+                  </div>
+                  <div class="gedai2_bottom_right">
+                    <div class="gedai2_bottom_table">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td>{$vo.yaoqiu}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="gedai2_more"> <a href="{:U('/HouseLoan/houseDetail',array('id'=>$vo['id']))}">查看详情</a> </div>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          </volist>
+            <empty name="listsloanArr">
+            <div class="zanwu_box">
+                <div class="ind_table">
+                    <div class="ind_cell">
+                        <div class="zanwu">
+                            <img src="__IMAGES__/zanwu.png" />
+                            <h4>暂无内容</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </empty>
+        </div>
+        <div class="gedai2_right">
+          <div class="gedai2_right1">
+            <div class="gedai2_tit">
+              <h4>常用工具</h4>
+            </div>
+            <div class="gedai2_right_cot">
+              <ul>
+                <li> <a href="javasvript:void(0);">
+                  <div class="gedai2_right_img"> <img src="__IMAGES__/gedai2_right1_0.png" />
+                    <div class="gedai2_zz"> <img src="__IMAGES__/gedai2_zzk.png"/>
+                      <div class="gedai2_right_more"></div>
+                    </div>
+                    <span>贷款工具</span> </div>
+                  </a> </li>
+                <li> <a href="javasvript:void(0);">
+                  <div class="gedai2_right_img"> <img src="__IMAGES__/gedai2_right1_3.png" />
+                    <div class="gedai2_zz"> <img src="__IMAGES__/gedai2_zzk.png"/>
+                      <div class="gedai2_right_more"></div>
+                    </div>
+                    <span>存款工具</span> </div>
+                  </a> </li>
+                <li> <a href="javasvript:void(0);">
+                  <div class="gedai2_right_img"> <img src="__IMAGES__/gedai2_right1_2.png" />
+                    <div class="gedai2_zz"> <img src="__IMAGES__/gedai2_zzk.png"/>
+                      <div class="gedai2_right_more"></div>
+                    </div>
+                    <span>买车工具</span> </div>
+                  </a> </li>
+                <li> <a href="javasvript:void(0);">
+                  <div class="gedai2_right_img"> <img src="__IMAGES__/gedai2_right1_1.png" />
+                    <div class="gedai2_zz"> <img src="__IMAGES__/gedai2_zzk.png"/>
+                      <div class="gedai2_right_more"></div>
+                    </div>
+                    <span>买房工具</span> </div>
+                  </a> </li>
+                <li> <a href="javasvript:void(0);">
+                  <div class="gedai2_right_img"> <img src="__IMAGES__/gedai2_right1_4.png" />
+                    <div class="gedai2_zz"> <img src="__IMAGES__/gedai2_zzk.png"/>
+                      <div class="gedai2_right_more"></div>
+                    </div>
+                    <span>利率查询</span> </div>
+                  </a> </li>
+                <li> <a href="javasvript:void(0);">
+                  <div class="gedai2_right_img"> <img src="__IMAGES__/gedai2_right1_5.png" />
+                    <div class="gedai2_zz"> <img src="__IMAGES__/gedai2_zzk.png"/>
+                      <div class="gedai2_right_more"></div>
+                    </div>
+                    <span>工资工具</span> </div>
+                  </a> </li>
+                <div class="clear"></div>
+              </ul>
+            </div>
+          </div>
+          <div class="gedai2_right2">
+            <div class="gedai2_tit">
+              <h4>最新申请</h4>
+            </div>
+            <div class="gedai2_right2_cot">
+              <foreach name="l_o_r" item="vo" >
+                <div class="gedai2_right2_list" align="center">
+                  <h4  align="center">
+                    <a href="{:U('Grab/index')}">
+                      <sapn style="color: #357ce2;">【<switch name="vo['cate_id']"><case value="1">个贷</case><case value="2">房贷</case><default />车贷</switch>】</sapn>
+                      <span>&nbsp;&nbsp;{$vo.truename|mb_substr=###,0,1,'utf-8'}** &nbsp;&nbsp;&nbsp;<img src="__IMAGES__/gedai2_succ.png"> <span>申请</span>&nbsp;&nbsp;&nbsp;城市&nbsp;&nbsp;&nbsp;{$vo.city}</span></a>
+                  </h4>
+                </div>
+              </foreach>
+            </div>
+          </div>
+        <div class="gedai2_right3"><volist name="a_b_zy" id="vo"><a href="{$vo.url|default='javascript:void(0);'}"> <img src="{$vo.pic|default='__IMAGES__/gedai2_right3.jpg'}" width="100%"/> </a></volist></div>
+        
+        </div>
+        <div class=""><div class="wenda3_page">{$page}</div></div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  <!--gedai_box2--> 
+  
+  <!--fangdai_box5-->
+  <div class="fangdai_box fangdai_box5">
+    <div class="index_container">
+      <div class="common_tit"> <span>热评户型</span> </div>
+      <div class="fangdai5_box"> <a href="javascript:void(0);" class="arrow-left fangdai_lt"><img src="__IMAGES__/fangdai_lt.png" width="100%"/></a> <a href="javascript:void(0);" class="arrow-right fangdai_rt"><img src="__IMAGES__/fangdai_rt.png"  width="100%"/></a>
+        <div class="swiper-container swiper4">
+          <div class="swiper-wrapper">
+            <foreach name="houser" item="vo" key="k" >
+              <div class="swiper-slide">
+                <div class="fangdai5_list"> <img src="{$vo.logo_pic}" width="100%"/> </div>
+              </div>
+            </foreach>
+            <!--<div class="swiper-slide">-->
+              <!--<div class="fangdai5_list"> <img src="__IMAGES__/fangdai5_1.jpg" width="100%"/> </div>-->
+            <!--</div>-->
+            <!--<div class="swiper-slide">-->
+              <!--<div class="fangdai5_list"> <img src="__IMAGES__/fangdai5_2.jpg" width="100%"/> </div>-->
+            <!--</div>-->
+            <!--<div class="swiper-slide">-->
+              <!--<div class="fangdai5_list"> <img src="__IMAGES__/fangdai5_3.jpg" width="100%"/> </div>-->
+            <!--</div>-->
+            <!--<div class="swiper-slide">-->
+              <!--<div class="fangdai5_list"> <img src="__IMAGES__/fangdai5_4.jpg" width="100%"/> </div>-->
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--fangdai_box5--> 
+  
+  <!--fangdai_box6-->
+  <div class="fangdai_box fangdai_box6">
+    <div class="index_container">
+      <div class="fangdai6_left">
+        <div class="fangdai6_img"> <a href="javascript:void(0);"><img src="__IMAGES__/fangdai6_1.jpg" width="100%"/></a>
+          <h4>房贷报告</h4>
+        </div>
+        <div class="fangdai6_cot">
+          <ul>
+            <li class="fangdai6_first">
+
+              <h4><a href="{:U('News/newsDot1','id='.$artlist1['0']['id'])}">{$artlist1['0']['news_title']}</a></h4>
+              <div class="clear"></div>
+            </li>
+            <foreach name="artlist" item="vo">
+              <li><a href="{:U('News/newsDot1','id='.$vo['id'])}"><span>• </span>{$vo.news_title}</a></li>
+            </foreach>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="fangdai6_left">
+        <div class="fangdai6_img"> <a href="javascript:void(0);"><img src="__IMAGES__/fangdai6_2.jpg" width="100%"/></a>
+          <h4>房贷问答</h4>
+        </div>
+        <div class="fangdai6_cot fangdai6_cot1">
+          <ul>
+            <li class="fangdai6_first fangdai6_first1">
+              <input type="text" class="smwenti" placeholder="请输入您的问题" onBlur="this.placeholder='请输入您的问题'" onFocus="this.placeholder=''"/>
+              <a href="javascript:void(0);" class="fangdai6_tw tiwen1">我要搜索</a>
+              <div class="clear"></div>
+            </li>
+            <foreach name="hot" item="v">
+              <li><a href="{:U('HouseLoan/answers',array('id'=>$v['id']))}"><span>• </span>{$v.title}</a></li>
+            </foreach>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <!--fangdai_box6--> 
+  
+</div>
+<!--  / warpper  --> 
+
+<!-- right_nav --> 
+<include file="Public:right_nav"/> 
+<!-- right_nav --> 
+
+<!--  / footer  --> 
+<include file="Public:footer"/> 
+<!--  / footer  -->
+<input type="hidden" class="saixuan" data-identitys="" data-houses="" data-cars="" data-honours="">
+</body>
+<script>
+    $('.tiwen1').click(function(){
+        var smwenti = $('.smwenti').val();
+        window.location.href="{:U('PersonLoan/answers')}"+"?smwenti="+smwenti;
+    });
+</script>
+<script>
+  $(".money_lq").click(function(){
+      var money_id = $(this).attr("data-val");
+      var money = $(this).html();
+      $("#money").val(money_id);
+      $(".yongtu").html(money);
+  })
+  $(".date_lq").click(function(){
+      var date_id = $(this).attr("data-val");
+      var date = $(this).html();
+      $("#date").val(date_id);
+      $(".qixian").html(date);
+  })
+
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+        loop:true,
+        autoplay:5000,
+        spaceBetween: 0,
+        slidesPerView : 8,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.arrow-left2').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipePrev()
+    })
+
+    $('.arrow-right2').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipeNext()
+    })
+
+
+
+    var mySwiper3 = new Swiper('.swiper3',{
+        pagination: '.pagination3',
+        loop:true,
+        autoplay:5000,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.arrow-left3').on('click', function(e){
+        e.preventDefault()
+        mySwiper3.swipePrev()
+    })
+
+    $('.arrow-right3').on('click', function(e){
+        e.preventDefault()
+        mySwiper3.swipeNext()
+    })
+    var mySwiper4 = new Swiper('.swiper4',{
+        loop:true,
+        autoplay:5000,
+        spaceBetween: 0,
+        slidesPerView : 4,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.fangdai_lt').on('click', function(e){
+        e.preventDefault()
+        mySwiper4.swipePrev()
+    })
+
+    $('.fangdai_rt').on('click', function(e){
+        e.preventDefault()
+        mySwiper4.swipeNext()
+    })
+</script>
+<script>
+
+
+
+$(document).ready(function(){
+    $(window).load(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+        $(".swiper3").height($(".swiper3 img ").height());
+        $('.gedai4_right').height($('.gedai4_left').height()+42)
+        $('.swiper4').height($('.swiper4 img').height()+60)
+
+    })
+    $(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+        $(".swiper3").height($(".swiper3 img ").height());
+        $('.gedai4_right').height($('.gedai4_left').height()+42)
+        $('.swiper4').height($('.swiper4 img').height()+60)
+    });
+
+
+})
+
+
+$(window).scroll(function(){
+    var scrollT=$(window).scrollTop();
+    if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+        $('.right_nav').css('display','block');
+    }else{
+        $('.right_nav').css('display','none');
+    }
+
+})
+
+
+//筛选 start
+$(".gaedai5_list ul li a").click(function(e){
+        if($(this).parent().hasClass("active")){
+            $(this).parent().removeClass("active");
+            var identitys =  $(this).attr('data-identitys'); 
+            var houses    =  $(this).attr('data-houses');  
+            var cars      =  $(this).attr('data-cars'); 
+            var honours   =  $(this).attr('data-honours');
+            var organ     =  $(this).attr('data-organ');
+            var pledge    =  $(this).attr('data-pledge');
+            var repay     =  $(this).attr('data-repay');
+            remove(identitys);remove(houses);remove(cars);remove(honours);remove(organ);remove(pledge);remove(repay);
+        }else{
+            $(this).parent().addClass("active");
+            $(this).parent().siblings().removeClass("active")
+            
+            var identitys =  $(this).attr('data-identitys'); // alert(identitys);
+            var houses    =  $(this).attr('data-houses');  //alert(houses);
+            var cars      =  $(this).attr('data-cars');  //alert(cars);
+            var honours   =  $(this).attr('data-honours'); // alert(honours);
+            var organ     =  $(this).attr('data-organ');
+            var pledge    =  $(this).attr('data-pledge');
+            var repay      = $(this).attr('data-repay');
+            if(identitys != ''){
+                $(".saixuan").attr('data-identitys',identitys);
+            }
+            if(houses != ''){
+                $(".saixuan").attr('data-houses',houses);
+            }
+            if(cars != ''){
+                $(".saixuan").attr('data-cars',cars);
+            }
+            if(honours != ''){
+                $(".saixuan").attr('data-honours',honours);
+            }
+            if(organ != ''){
+                $('.saixuan').attr('data-organ',organ);
+            }
+            if(pledge != ''){
+                $('.saixuan').attr('data-pledge',pledge);
+            }
+            if(repay != ''){
+                $('.saixuan').attr('data-repay',repay);
+            }
+        }
+        //获取民间借贷值
+        var is_organ = "{:$_GET['is_organ']}";
+        var identityid  = $('.saixuan').attr("data-identitys");
+        var houseid     = $('.saixuan').attr("data-houses");
+        var carid       = $('.saixuan').attr("data-cars");
+        var honourid    = $('.saixuan').attr("data-honours");
+        var organ       = $('.saixuan').attr("data-organ");
+        var pledge      = $('.saixuan').attr("data-pledge");
+        var repay       = $('.saixuan').attr("data-repay");
+        var data = {identityid:identityid,houseid:houseid,carid:carid,honourid:honourid,organ:organ,pledge:pledge,repay:repay,is_organ:is_organ};
+        //console.log(data);
+        //return false;
+        $.ajax({
+            url:"{:U('/HouseLoan/serch')}",
+            dataType:'json',
+            type:'post',
+            data:data,
+            success:function(g){
+                //console.log(g);
+                $('.gedai2_left').html(g.info);
+            
+            },
+            error:function(){
+                alert('查询失败');
+            }
+        });
+        
+    return false;
+    //alert($(this).text());
+    /*
+    if($(this).text()=="不限"){
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active')
+    }else{
+    var zhiclass;
+        THIP = $(this).parents("dl");
+        if($(this).hasClass("active")){
+
+        }else{
+                $(this).addClass("active");
+                $(this).siblings().removeClass("active")
+                    zhiclass = $(this).parent("dd").siblings("dt").text();
+                    zhicon = $(this).text();
+                    tianjaneir="<div class='credit_item' data-filter='all'><a href='javascript:void(0);'><b>"+zhiclass+"</b><span>"+zhicon+"</span><i class='fa fa-times'></i></a></div>";
+                $(".creditlist1_top").append(tianjaneir);
+                itemC();
+        }
+        THIP.css("display","none");
+    }*/
+});
+</script>
+<script>
+function remove(paramnum){
+    var identityid  = $('.saixuan').attr("data-identitys");
+    var houseid     = $('.saixuan').attr("data-houses");
+    var carid       = $('.saixuan').attr("data-cars");
+    var honourid    = $('.saixuan').attr("data-honours");
+    var organ       = $('.saixuan').attr("data-organ");
+    var pledge      = $('.saixuan').attr("data-pledge");
+    var repay       = $('.saixuan').attr("data-repay");
+    if(identityid == paramnum){
+        $('.saixuan').attr("data-identitys",'');
+    }
+    if(houseid == paramnum){
+        $('.saixuan').attr("data-houses",'');
+    }
+    if(carid == paramnum){
+        $('.saixuan').attr("data-cars",'');
+    }
+    if(honourid == paramnum){
+        $('.saixuan').attr("data-honours",'');
+    }
+    if(organ == paramnum){
+        $('.saixuan').attr("data-organ",'0');
+    }
+    if(pledge == paramnum){
+        $('.saixuan').attr("data-pledge",'0');
+    }
+    if(repay == paramnum){
+        $('.saixuan').attr("data-repay",'0');
+    }
+}
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

@@ -1,0 +1,153 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__//lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">产品列表</h1>
+    <a href="{:U('/Admin/Loan/addLoan',array('lontype'=>$lontype))}" class="btn btn-success">发布产品</a><eq name="lontype" value="single">&nbsp;&nbsp;<a href="{:U('/Admin/Loan/Guwenlistsloan',array('lontype'=>$lontype))}" class="btn btn-success">顾问</a>&nbsp;&nbsp;<a href="{:U('/Admin/Loan/Articleloan',array('lontype'=>$lontype))}" class="btn btn-success">案例/攻略</a></eq>
+    <form action="" method="get">
+      <div class="tables-searchbox newcearchbox">
+        <input type="text" placeholder="产品名称" class="input" name="name" value="{$name}" >
+        <eq name="_GET['supplier_id']" value="1">
+            <input type="text" placeholder="小贷公司名称" class="input" name="supplier_name" value="{$supplier_name}">
+        </eq>
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+      </div>
+    </form>
+    <!-- end tabs -->
+    <div class="tabs clearfix mgt10" style="margin-bottom:10px;">
+      <a class="tabs_a fl <eq name="_GET['supplier_id']" value='0'>active</eq><eq name="_GET['supplier_id']" value=''>active</eq>" href="{:U('Admin/Loan/listsloan',array('supplier_id'=>0))}">平台</a>
+      <a class="tabs_a fl <eq name="_GET['supplier_id']" value='1'>active</eq>" href="{:U('Admin/Loan/listsloan',array('supplier_id'=>1))}">小贷</a>
+
+    </div>
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+      <col width="5%">
+      <col width="16%">
+      <col width="10%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="18%">
+      <col width="10%">
+      <col width="20%">
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+          <td>ID</td>
+          <td>产品</td>
+          <td>LOGO</td>
+          <td>金额(万)</td>
+          <td>期限(月)</td>
+          <td>利率</td>
+          <td>时间</td>
+          <td>小贷公司</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="cache" item="vo">
+          <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.title}</td>
+            <td><div class="table-item-img"> <img src="{$vo['logo_pic']}" alt=""> </div></td>
+            <td>{$vo.money}~{$vo.money1}</td>
+            <td>{$vo.dkqx}~{$vo.dkqx1}</td>
+            <td>{$vo.ylx}</td>
+            <td class="class_name">{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+            <td>{$vo.supplier_name}</td>
+            <td><a href="{:U('/Admin/Loan/editLoan/id')}/{$vo.id}/lontype/{$lontype}/supplier_id/{:$_GET['supplier_id']}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+              <a href="{:U('/Admin/Loan/delLoan/id')}/{$vo.id}/lontype/{$lontype}" onclick="{if(!confirm('确定删除产品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">删除</a>
+              <a href="{:U('/Admin/Loan/Guwenlistsloans',array('loan_id'=>$vo['id']))}" class="btn btn-success">顾问</a>
+
+              
+            </td>
+
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <div class="fr">
+          <div class="pages" style="width:auto;"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/> 
+<script>
+$(".change-status").click(function (){
+  var _this= $(this)
+  var id   = $(this).attr("data-id");
+  var item = $(this).attr("data-item");
+  $.post("{:U('Admin/Loan/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status == 1){
+      _this.css({color:"#0C0"}).html("√");
+    }else if(data.status == 2){
+      _this.css({color:"#c00"}).html("×");
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".change-all-status").click(function (){
+  if(!confirm("确定改变所有选中产品的状态？")){
+    return false;
+  }
+  var ids = "";
+  var item = $(this).attr("data-item");
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Loan/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+    if(data.status){
+      window.location.reload();
+    }else{
+      alert(data.info);
+    }
+  })
+})
+$(".change-is_sale").click(function (){
+  var id   = $(this).attr("data-id");
+  var item = "is_sale";
+  $.post("{:U('Admin/Loan/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status){
+      window.location.reload()
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".btn_table_delAll").click(function(){
+  if(!confirm("确定删除所有选中的产品？")){
+    return false;
+  }
+  var ids = "";
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Loan/delGoods')}" ,{ids:ids}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  })
+})
+</script>

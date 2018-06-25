@@ -1,0 +1,63 @@
+<include file="Public:head"/>
+
+
+<body>
+
+<!--head --> 
+<div class="head_box" style=" background:#4988db">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">问答详情</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+<div class="warpper_box">
+  
+  
+  
+ <div class="wenda_xq_ask">
+ <div class="wenda_xq_ask_l"><img src="__IMAGES__/wenhao.png" /></div>
+ <div class="wenda_xq_ask_r">
+ <h3>{$dot.title}</h3>
+ <div class="time">{$add_time}</div>
+ <div class="liulan">浏览：{$dot.browse}</div>
+ <div class="clear"></div>
+ </div>
+ <div class="clear"></div>
+ </div>
+
+
+ <div class="wenda_xq_answer">
+
+<foreach name="reply" item="vo" key="k">
+	<div class="wenda_xq_answer_list">
+		<div class="wenda_xq_answer_list_l"><img src="__IMAGES__/huida.png" /></div>
+			<div class="wenda_xq_answer_list_r">
+			 	<h3>{$vo.name}</h3>
+			 	<h4>
+					{$vo.content}
+				</h4>
+				<div class="time">{$reply.add_time}</div>
+			 	<div class="clear"></div>
+			</div>
+		<div class="clear"></div>
+	</div>
+</foreach>
+</div>
+
+
+
+</div>
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+
+</body>
+
+</html>

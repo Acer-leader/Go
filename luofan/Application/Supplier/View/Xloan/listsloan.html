@@ -1,0 +1,222 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__/lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left1"/>
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">产品列表</h1>
+    <a href="{:U('/Supplier/Xloan/addLoan',array('lontype'=>$lontype))}" class="btn btn-success">发布产品</a>
+
+    <form action="" method="post">
+      <div class="tables-searchbox newcearchbox">
+        <select name="cate_id" class="select small newselect">
+          <option value="" selected="">所有分类</option>
+          <foreach name="categorylist" item="vo">
+            <option value="{$vo.id}">{$vo.classname}</option>
+            <foreach name="vo.cate" item="vo1">
+              <option value="{$vo1.id}">&nbsp;&nbsp;&nbsp;|-{$vo1.classname}</option>
+            </foreach>
+          </foreach>
+        </select>
+        <input type="text" placeholder="产品名称" class="input" name="name" value="" >
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+        <!--<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>--> 
+        <!--产品导出</a>--> 
+      </div>
+      <div class="tabs clearfix mgt10"> <a href="{:U('/Supplier/Xloan/listsloan')}" class="<eq name="_GET['is_sale']" value="">active
+        </eq>
+        tabs_a fl">全部({$count | default="0"})</a> <a href="{:U('/Supplier/Xloan/listsloan/is_sale/2')}" class="<eq name="_GET['is_sale']" value="2">active
+        </eq>
+        tabs_a fl">已上架({$count1 | default="0"})</a> <a href="{:U('/Supplier/Xloan/listsloan/is_sale/1')}" class="<eq name="_GET['is_sale']" value="1">active
+        </eq>
+        tabs_a fl">已下架({$count2 | default="0"})</a> </div>
+    </form>
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+      <col width="2%">
+      <col width="5%">
+      <col width="10%">
+      <col width="10%">
+      <col width="5%">
+      <col width="5%">
+      <col width="5%">
+      <col width="13%">
+      <col width="25%">
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+          <td><i class="icon_check"></i></td>
+          <td>ID</td>
+          <td>产品</td>
+          <td>LOGO</td>
+          <td>金额(万)</td>
+          <td>期限(月)</td>
+          <td>利率</td>
+          <td>时间</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="cache" item="vo">
+          <tr>
+            <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+            <td>{$vo.id}</td>
+            <td>{$vo.title}</td>
+            <td><div class="table-item-img"> <img src="{$vo['logo_pic']}" alt=""> </div></td>
+            <td>{$vo.money}~{$vo.money1}</td>
+            <td>{$vo.dkqx}~{$vo.dkqx1}</td>
+            <td>{$vo.ylx}</td>
+            <td class="class_name">{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+            <td><a href="{:U('/Supplier/Xloan/editLoan/id')}/{$vo.id}/lontype/{$lontype}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+              <!-- <a href="{:U('/Supplier/Goods/setSKU/id')}/{$vo.id}" class="btn btn-success j-editClass" title="修改">sku</a> --> 
+              <!-- <a href="{:U('/Supplier/Goods/commentList/id')}/{$vo.id}" class="btn btn-success j-editClass" title="修改">查看评价</a> --> 
+              <a href="{:U('/Supplier/Xloan/delLoan/id')}/{$vo.id}/lontype/{$lontype}" onclick="{if(!confirm('确定删除产品吗?'))return false;} " class="btn j-delClass btn-danger" title="删除" data-id="2151938">删除</a>
+              <a href="javascript:;" onclick="{if(!confirm('刷新产品收取一定费用，确定刷新产品吗?'))return false;} " class="btn j-delClass btn-warning shuaxin" title="刷新" data-id="{$vo.id}">刷新</a>
+              <a href="javascript:;" onclick="{if(!confirm('置顶产品收取一定费用，确定刷新产品吗?'))return false;} " class="btn j-delClass btn-warning zhiding" title="置顶" data-id="{$vo.id}">置顶</a>
+              <a href="{:U('/Supplier/xloan/Guwenlistsloan',array('gid'=>$vo['id']))}" class="btn btn-success">顾问</a>
+            </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl"> <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a> <a href="javascript:;" data-item="is_sale" class="btn btn-primary change-all-status">上架反选</a> 
+        <!-- <a href="javascript:;" data-item="is_new" class="btn btn-primary change-all-status">新品速递反选</a>
+        <a href="javascript:;" data-item="is_jingxuan" class="btn btn-primary change-all-status">猜你喜欢反选</a>
+        <a href="javascript:;" data-item="is_good" class="btn btn-primary change-all-status">热门兑换反选</a>
+        <a href="javascript:;" data-item="is_cuxiao" class="btn btn-primary change-all-status">热兑商品反选</a>
+        <a href="javascript:;" data-item="is_sku" class="btn btn-primary change-all-status">sku反选</a> --> 
+        <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>
+        <a href="javascript:;" class="btn btn-warning btn_shuaxinAll">刷新</a>
+        <div class="fr">
+          <div class="pages" style="width:auto;"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/> 
+<script>
+$(".change-status").click(function (){
+  var _this= $(this)
+  var id   = $(this).attr("data-id");
+  var item = $(this).attr("data-item");
+  $.post("{:U('Admin/Xloan/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status == 1){
+      _this.css({color:"#0C0"}).html("√");
+    }else if(data.status == 2){
+      _this.css({color:"#c00"}).html("×");
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".change-all-status").click(function (){
+  if(!confirm("确定改变所有选中产品的状态？")){
+    return false;
+  }
+  var ids = "";
+  var item = $(this).attr("data-item");
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Xloan/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+    if(data.status){
+      window.location.reload();
+    }else{
+      alert(data.info);
+    }
+  })
+})
+$(".change-is_sale").click(function (){
+  var id   = $(this).attr("data-id");
+  var item = "is_sale";
+  $.post("{:U('Admin/Xloan/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status){
+      window.location.reload()
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".btn_table_delAll").click(function(){
+  if(!confirm("确定删除所有选中的产品？")){
+    return false;
+  }
+  var ids = "";
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Xloan/delGoods')}" ,{ids:ids}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  })
+})
+
+$(".shuaxin").click(function(){
+  var id=$(this).attr('data-id');
+  if(!id){
+    alert('未选择商品');return false;
+  }
+  $.post("{:U('Supplier/Xloan/shuaxin')}" ,{id:id}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  })
+})
+
+$(".zhiding").click(function(){
+  var id=$(this).attr('data-id');
+  if(!id){
+    alert('未选择商品');return false;
+  }
+  $.post("{:U('Supplier/Xloan/zhiding')}" ,{id:id}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  })
+})
+
+
+$(".btn_shuaxinAll").click(function(){
+  var ids = "";
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert('未选择商品');return false;
+  }
+  if(!confirm("确定刷新所有选中的产品？")){
+    return false;
+  }
+  $.post("{:U('Supplier/Xloan/shuaxin')}" ,{ids:ids}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  },'json')
+})
+
+
+
+</script>

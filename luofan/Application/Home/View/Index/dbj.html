@@ -1,0 +1,343 @@
+<include file="Public:head" />
+<link rel="stylesheet" href="__CSS__/dengben.css">
+</head>
+<body>
+
+<include file="Public:header" />
+<!-- ========================================== -->
+ 
+<!--  / warpper  -->
+<div class="warpper">
+
+	<div class="calculator">
+    	<div class="index_container">
+        	<div class="calc_left">
+            	<div class="calc_left_cot">
+            	<div class="calc_left_tit">
+                	<h3>贷款计算器</h3>
+                </div>
+                <ul>
+                	<li class="active"><a href="{:U('Home/Index/dbj')}"><span>• </span>等额本金还款计算器</a></li>
+                	<li><a href="{:U('Home/Index/dbx')}"><span>• </span>等额本息还款计算器</a></li>
+                	<li><a href="{:U('Home/Index/gjj')}"><span>• </span>公积金贷款计算器</a></li>
+                </ul>
+                </div>
+                
+            </div>
+            <div class="calc_right">
+            	<div class="common_tit">
+                    <span>等额本金还款计算器</span>
+                </div>
+                <div class="calc_cot">
+                	<div class="calc_top">
+                    	<div class="calc_tit">
+                        	 <h4><i class="fa fa-angle-double-right"></i>输入数据</h4>
+                        </div>
+                        <div class="calc_li">
+                        	<h5>计算方式</h5>
+                            <div class="calc_right_r">
+                            	<label><input type="radio" name="edu" checked="checked" class="calc_edu" value="1"/><span>按贷款额度算</span></label>
+                            	<label><input type="radio" name="edu"  class="calc_edu1" value="2"/><span>按贷款额度算</span></label>
+                            </div>
+                        </div>
+                        <div class="calc_radio calc_radio1">
+                            <div class="calc_li">
+                                <h5>贷款金额</h5>
+                                <div class="calc_right_r">
+                                    <div class="calc_right_input">
+                                        <input type="text" class="calc_input" id="daikuanjine" /><h5>万元</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc_radio calc_radio2">
+                        	<div class="calc_li">
+                                <h5>平米单价</h5>
+                                <div class="calc_right_r">
+                                    <div class="calc_right_input">
+                                        <input type="text" class="calc_input danjia" style="padding-right:58px"/><h5>元/平米</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        	<div class="calc_li">
+                                <h5>面积</h5>
+                                <div class="calc_right_r">
+                                    <div class="calc_right_input">
+                                        <input type="text" class="calc_input mianji" /><h5>平米</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calc_li">
+                                <h5>购房性质</h5>
+                                <div class="calc_right_r">
+                                    <label><input type="radio" name="house" checked="checked" class="calc_house" value="1"/><span>一套房</span></label>
+                                    <label><input type="radio" name="house" class="calc_house1" value="2"/><span>二套房</span>
+                                    <div class="calc_bottom_zs">
+                                        <a href="javascript:void(0);" class="calc_bottom_btn"><img src="__IMAGES__/calc_wh.png" /></a>
+                                        <div class="calc_js">
+                                            <h5>逐月递减还款即等额本金还款法，指本金保持相同，利息逐月递减，月还款数递减；由于每月的还款本金额固定，而利息越来越少，贷款人起初还款压力较大，但是随时间的推移每月还款数也越来越少。</h5>
+                                            <div class="calc_close">
+                                                <a href="javascript:void(0);"><img src="__IMAGES__/calc_close.png"  /></a>
+                                            </div>
+                                            <div class="calc_arrow">
+                                                <img src="__IMAGES__/calc_arrow.png"  />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="calc_li">
+                                <h5>首付</h5>
+                                <div class="calc_right_r">
+                                    <div class="calc_right_input">
+                                        <div class="calc_sele"><input type="text" class="calc_input shoufu " /><h5>%</h5><i class="fa fa-sort-down"></i></div>
+                                        <div class="calc_ul">
+                                            <ul>
+                                                <li>20</li>
+                                                <li>30</li>
+                                                <li>40</li>
+                                                <li>50</li>
+                                                <li>60</li>
+                                                <li>70</li>
+                                                <li>80</li>
+                                                <li>90</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc_li">
+                        	<h5>贷款期限</h5>
+                            <div class="calc_right_r">
+                            	<div class="calc_right_input">
+                                    <div class="calc_sele"><input type="text" class="calc_input"   id="qixian"/><i class="fa fa-sort-down"></i><h5>年</h5></div>
+                                    <div class="calc_ul">
+                                        <ul>
+                                            <li>5</li>
+                                            <li>10</li>
+                                            <li>15</li>
+                                            <li>20</li>
+                                            <li>25</li>
+                                            <li>30</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc_li">
+                        	<h5>年利率</h5>
+                            <div class="calc_right_r">
+                            	<div class="calc_right_input">
+                                        <input type="text" class="calc_input" id="ylilv" /><h5>%</h5>
+                                    </div>
+                            </div>
+                               
+                        </div>
+                        <div class="calc_btn">
+                        	<div class="calc_calc">
+                            	<a href="javascript:;" >计算</a>
+                            </div>
+                        	<div class="calc_cz">
+                            	<a href="#">重置</a>
+                            </div>
+                        </div>
+                        <div class="calc_ewm">
+                        	<img src="__IMAGES__/ewm.jpg" width="120" />
+                            <h5>扫一扫  关注我们</h5>
+                        </div>
+                    </div>
+                    
+                    <div class="calc_bottom">
+                    	<div class="calc_tit">
+                        	 <h4><i class="fa fa-angle-double-right"></i>输出数据</h4>
+                        </div>
+                        <div class="calc_bottom_zs">
+                        	<h5>逐月递减还款</h5>
+                            <a href="javascript:void(0);" class="calc_bottom_btn"><img src="__IMAGES__/calc_wh.png" /></a>
+                            <div class="calc_js">
+                            	<h5>逐月递减还款即等额本金还款法，指本金保持相同，利息逐月递减，月还款数递减；由于每月的还款本金额固定，而利息越来越少，贷款人起初还款压力较大，但是随时间的推移每月还款数也越来越少。</h5>
+                                <div class="calc_close">
+                                	<a href="javascript:void(0);"><img src="__IMAGES__/calc_close.png"  /></a>
+                                </div>
+                                <div class="calc_arrow">
+                                	<img src="__IMAGES__/calc_arrow.png"  />
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="calc_table">
+                        	<table>
+                            	<tr>
+                                	<td class="calc_td1">贷款总金额</td>
+                                    <td class="calc_td2"><span style="color:#666" id="zongjine">0</span>元</td>
+                                </tr>
+                            	<tr>
+                                	<td class="calc_td1">还贷月数</td>
+                                    <td class="calc_td2"><span style="color:#666" id="month">0</span>月</td>
+                                </tr>
+                            	<tr>
+                                	<td class="calc_td1">每月还款</td>
+                                    <td class="calc_td2"><span style="color:#EE6868" id="yuehuan"></span><!-- 元<br />每月递减：<span>0</span>元 --></td>
+                                </tr>
+                            	<tr>
+                                	<td class="calc_td1">总支付利息</td>
+                                    <td class="calc_td2"><span style="color:#EE6868" id="zonglixi">0</span>元</td>
+                                </tr>
+                            	<tr>
+                                	<td class="calc_td1">本息合计</td>
+                                    <td class="calc_td2"><span style="color:#EE6868" id="benxiheji">0</span>元</td>
+                                </tr>
+                            </table>
+                            <div class="calc_zy">
+                            	<h6>注：此结果仅供参考，实际应缴费以当地为准</h6>
+                            </div>
+                        </div>
+                        
+                    </div>
+                        <div class="calc_intro">
+                        	<div class="calc_tit">
+                                 <h4><i class="fa fa-angle-double-right"></i>工具简介</h4>
+                            </div>
+                            <div class="calc_wz">
+                            	<h5>等额本金还款计算器（每月偿还本金相同，月还款总额逐月递减），将帮助用户计算在不同的借款期限、不同的贷款利息下，采用等额本息还款方式时，需要支付的月供、利息总额和还款总额。</h5>
+                            </div>
+                        </div>
+                </div>
+                
+               </div>
+            <div class="clear"></div>
+        </div>
+    </div>    
+    
+</div>
+<!--  / warpper  -->
+
+
+<!-- ========================================== -->
+<include file="Public:right" />
+<include file="Public:footer" />
+<!-- ========================================== -->
+
+
+</body>
+
+<script>
+	function stopPropagation(e) {
+		if (e.stopPropagation) 
+		e.stopPropagation();
+		else 
+		e.cancelBubble = true;
+	}
+	
+	$(document).bind('click',function(){
+		$('.calc_ul').slideUp()
+		$('.calc_js').fadeOut(300)
+	});
+	
+	$(".calc_sele i,.calc_bottom_btn,div.calc_input").bind('click',function(e){
+		stopPropagation(e);
+	});
+	
+	$('div.calc_input').click(function(){
+		$(this).parent().siblings('.calc_ul').slideToggle()
+	})
+	
+	$('.calc_ul li').click(function(){
+		$(this).parent().parent().siblings('.calc_sele').find('.calc_input').html($(this).html())
+		$(this).parent().parent().siblings('.calc_sele').find('.calc_input').val($(this).html())
+	})
+	
+	$('.calc_sele i').click(function(){
+		$(this).parent().siblings('.calc_ul').slideToggle()
+	})
+	$('.calc_bottom_btn').click(function(){
+		$(this).siblings('.calc_js').fadeIn(300)
+	})
+	
+	$('.calc_close a').click(function(){
+		$('.calc_js').fadeOut(300)
+	})
+	
+	$('input[name=edu]').click(function(){
+		$('.calc_radio').hide(0)
+		$('.calc_radio'+$(this).val()).fadeIn(100)
+	})
+	
+	
+</script>
+</html>
+
+
+<script>
+	$(".calc_calc").click(function(){
+		var post ={};
+		post.type   = $('input[name="edu"]:checked').val();	//类型
+		post.money  = $("#daikuanjine").val();				//贷款金额
+		post.qixian = $("#qixian").val();					//贷款期限
+		post.ylilv  = $("#ylilv").val();					//年利率
+	
+		
+		post.danjia = $(".danjia").val();					//平米单价
+		post.mianji = $(".mianji").val();					//面积
+		post.shoufu = $(".shoufu").val();					//首付
+		
+		console.log(post);
+		if(post.type==1 && post.money==''){
+			alert("请填写贷款金额！");return false;
+		}
+		if(post.type==2){
+			if(post.danjia==''){
+				alert("请填写平米单价！");return false;
+			}
+			if(post.mianji==''){
+				alert("请填写面积！");return false;
+			}
+			if(post.shoufu==''){
+				alert("请填写首付百分百！");return false;
+			}
+		}
+		if(post.qixian==''){
+			alert("请选择贷款期限！");return false;
+		}
+		if(post.ylilv==''){
+			alert("请填写年利率！");return false;
+		}
+		if(post.type==1){
+			var bj   = $("#daikuanjine").val();
+			var bj   = bj*10000;
+			benjin(bj);
+			return false;
+		}else if(post.type==2){
+			var bj   = post.danjia*post.mianji*(100-post.shoufu)/100;;
+			benjin(bj);
+			return false;
+		}
+		
+	})
+</script>
+<script>
+	function benjin(bj){
+		var year = $("#qixian").val();
+		var yue  = year*12;
+		var lilv = $("#ylilv").val();
+		var lilv = lilv/100/12;
+		var i    = 1+lilv;
+		var i1   = Math.pow(i,yue);
+		var yueh = (bj*lilv*i1)/(i1-1);
+		var zhk  = 0;
+		
+		for(var a=0;a<yue;a++){
+			var c=bj/(year*12)+(bj-bj/(year*12)*a)*lilv;
+			var b=a+1;
+			zhk=zhk+c;
+			$("#yuehuan").append(c.toFixed(2)+" 第"+b+"期</br>");
+		}
+		$("#zongjine").html(bj);
+		$("#month").html(yue);
+		$("#zonglixi").html((zhk.toFixed(2)-bj).toFixed(2));
+		$("#benxiheji").html(zhk.toFixed(2));
+	}
+</script>
+

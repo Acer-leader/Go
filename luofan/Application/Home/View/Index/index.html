@@ -1,0 +1,1037 @@
+<include file="Public:head"/>
+</head>
+<body>
+<!--header-->
+<include file="Public:header"/>
+<!--header-->
+<!--banner-->
+<div class="banner_box">
+    <div class="swiper-container swiper1">
+        <div class="swiper-wrapper">
+            <volist name="lunbo" id="val">
+                <div class="swiper-slide">
+                    <a href="{$val.url}">
+                        <div class="ban_box" data-url="{$val.url}" class="asdfas" style="background:url({$val.pic}) no-repeat center center;height:400px;background-size:cover;"></div>
+                    </a>
+                </div>
+            </volist>
+        </div>
+    </div>
+<!--    <div class="ban_info_box">
+        <div class="index_container">
+            <div class="ban_dk_box">
+                <div class="ban_dk_r">
+                    <div class="form_tab sqing_dk_form">
+                        <form action="#">
+                            <div class="sq_item" style="margin-top: 30px;">
+                            <div class="item">
+                                <div class="xinyong_dk ui-select">
+                                    <input type="hidden" value="2" id="input_leixing">
+                                    <div class="input_leixing select-value"><span>个贷</span>
+                                    <div class="banlist_btn">
+                                        <img src="__IMAGES__/ban_btn1.png" width="100%" alt=""/>
+                                        </div>
+                                    </div>
+                                    <div class="dklx_list select-list">
+                                        <ul class="type">
+                                            <li data-val="1">个贷</li>
+                                            <li data-val="2">房贷</li>
+                                            <li data-val="3">车贷</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            </div>
+                            <div class="sq_item">
+                                <input type="text" class="sqing_input surname" placeholder="您的姓氏" onBlur="this.placeholder='您的姓氏'" onFocus="this.placeholder=''"/>
+                                <span class="col_ff">
+                                    <input type="radio" name="xingbie" checked="checked" value="1"/>先生&nbsp;
+                                    <input type="radio" name="xingbie" value="2"/>女士
+                                </span>
+                            </div>
+                            <div class="sq_item">
+                                <input type="text" class="sqing_input telephone" placeholder="联系手机" onFocus="this.placeholder=''" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/> <span class="col_ff"></span>
+                            </div>
+                            <div class="sq_item">
+                                <input type="text" class="sqing_yzm verify_code" placeholder="图形验证码" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onFocus="this.placeholder=''"/>
+                                <img src="__CONTROLLER__/createCode"  onclick=this.src="__CONTROLLER__/createCode/"+Math.random() style="width:30%" >
+                            </div>
+                            <div class="sq_item">
+                                <input type="text" class="sqing_yzm code" placeholder="验证码" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onFocus="this.placeholder=''"/>
+                                <!--<button class="get_yzm" id="getCode3">获取验证码</button>-->
+                        <!--    <a class="get_yzm" id="getCode3" style="display: inline-block;line-height: 34px;text-align: center;margin-left: 0px;">获取验证码</a>
+                            </div>
+                            <input  value="免费贷款" class="sqing_sub" id="freeApply"/>
+                            <div class="clear"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="ban_dk_l">
+                    <div class="wysq_dk wysq_dk1  wid50" style="margin-bottom: 6px">
+                        <i class="icon icon-loan"></i> 搜索贷款
+                    </div>
+                    <div class="wysq_dk wysq_dk2">
+                        <i class="icon icon-p2p"></i> 申请贷款
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    -->
+    <div class="ban_info_box">
+        <div class="index_container">
+                <div class="apply_main">
+                    <div class="apply_con">
+                        <h2>申请贷款</h2>
+                        <div class="item">
+                                <div class="dk_info"><img src="__IMAGES__/index_per1.png"></div>
+                                <div class="xinyong_dk xinyong_dka ui-select">
+                                    <input type="hidden" value="2" id="input_leixing">
+                                    <div class="input_leixing  shenqing_leixing select-value">
+                                        <span>个贷</span>
+                                        <div class="banlist_btn">
+                                            <img src="__IMAGES__/ban_btn1.png" width="100%" alt=""/>
+                                        </div>
+                                    </div>
+                                    <div class="dklx_list dklx_lista select-list ">
+                                        <ul>
+                                            <li data-val="1">个贷</li>
+                                            <li data-val="2">房贷</li>
+                                            <li data-val="3">车贷</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                        <div class="index_apycon">
+                            <span><img src="__IMAGES__/index_per2.png"></span>
+                            <input type="text" class="name" placeholder="姓名"/>
+                        </div>
+                        <div class="index_apycon">
+                            <span><img src="__IMAGES__/index_per3.png"></span>
+                            <input type="text" class="telephone" placeholder="请输入手机号码"/>
+                        </div>
+                        <div class="index_apycon1">
+                            <div class="index_apylt">
+                                <span><img src="__IMAGES__/index_per4.png"></span>
+                                <input type="text" class="verify_code" placeholder="图像验证码" />
+                            </div>
+                            <div class="index_apylr">
+                                <img src="__CONTROLLER__/createCode" onclick=this.src="__CONTROLLER__/createCode/"+Math.random() class="yzm_img1" alt=""/>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                         <div class="index_apycon1">
+                            <div class="index_apylt">
+                                <span><img src="__IMAGES__/index_per5.png"></span>
+                                <input type="text" class="code" placeholder="手机验证码" />
+                            </div>
+                            <div class="index_apylr">
+                                <button id="getCode3">获取验证码</button>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="index_apycon3">
+                            <input type="checkbox" checked="checked" />我已阅读《<a href="javascript:void(0)">牛哄哄服务协议</a>》
+                        </div>
+                        
+                        <div class="index_apycon4">
+                            <button id="freeApply">免费贷款</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+       <!-- <a href="#" class="ban_btn one_btn btn_ts">1</a>
+        <a href="#" class="ban_btn two_btn">2</a>-->
+    </div>
+       <div class="ban_info_pagination">
+            <a href="#" class="ban_btn btn_ts">1</a>
+            <a href="#" class="ban_btn">2</a>
+            <a href="#" class="ban_btn">3</a>
+            <a href="#" class="ban_btn">4</a>
+        </div>
+    <style>
+    a.ban_btn {
+        width: 26px;
+        height: 26px;
+        font-size: 14px;
+        margin: 0 3px;
+        color: #666;
+        line-height: 26px;
+        text-align: center;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+        display: inline-block;
+        left: 50%;
+        bottom: 25px;
+        background: #fff;
+    }
+    .ban_info_pagination {
+        text-align: center;
+    }
+    a.ban_btn.btn_ts {
+        background: #56626e;
+        color: #fff;
+    }
+    </style>
+    </div>
+<!-- </div> -->
+<!--banner-->
+<script type="text/javascript">
+    $("#freeApply").click(function(){
+        var post={};
+        post.type         = $('.shenqing_leixing').find('span').html();
+        post.name      = $('.name').val();
+        post.telephone    = $('.telephone').val();
+        post.verify_code  = $('.verify_code').val();
+        post.code         = $('.code').val();
+        if(!post.type){
+          dialog.showTips("请选择申请类型！","warn");return false;
+        }
+        if(!post.name){
+          dialog.showTips("请填写您的姓名！","warn");return false;
+        }
+        if(!post.telephone){
+          dialog.showTips("请填写手机号！","warn");return false;
+        }else if(!post.telephone.match(/^1[345789][0-9]{9}$/)){
+          dialog.showTips("手机号码格式错误！","warn");return false;
+        }
+        if(!post.verify_code){
+          dialog.showTips("请填写验证码！","warn");return false;
+        }
+        if(!post.code){
+          dialog.showTips("请填写短信验证码！","warn");return false;
+        }
+        var _this = $(this)
+        if (_this.attr("disabled")) {
+            return false;
+        }else{
+            _this.attr("disabled", true);
+        }
+        // console.log(post);
+        $.post("{:U('Index/freeApply')}",post, function (data){
+            _this.removeAttr("disabled");
+            console.log(data);
+            if(data['type']){
+                 $(".tankuang").fadeIn(500);
+                 $("#xiaodai_id").val(data['x_id']);return false; 
+            }
+            dialog.showTips(data.info,"warn");return false;       
+        },"json")
+    })
+</script>
+<!--  获取手机短信验证码 1 -->
+<script type="text/javascript">
+    var wait = 60;
+  $("#getCode3").click(function (){
+    var _this = $(this)
+    if (_this.attr("disabled")) {
+        return false;
+    }
+    var telephone   = $(".telephone").val();
+    var verify_code = $(".verify_code").val();
+    if(!telephone){
+      dialog.showTips("请填写手机号！","warn");return false;
+    }else if(!telephone.match(/^1[35789][0-9]{9}$/)){
+      dialog.showTips("手机号码格式错误！","warn");return false;
+    }
+    if(!verify_code){
+      dialog.showTips("请填写验证码！","warn");return false;
+    }
+    $.post("{:U('Index/getMessage')}", {'telephone':telephone,'verify_code':verify_code,'code_type':4}, function (data){
+        console.log(data);
+      if(data.status==1){
+        dialog.showTips("验证码发送成功，请注意查收！","warn");
+        // 计时
+        time(_this);
+      }else{
+        dialog.showTips(data.info,"warn");return false;
+      }
+    },"json")
+  })
+  function time(o) {
+    //localStorage.aux_reTime=wait;
+    if (wait == 0) {
+      o.removeAttr("disabled");
+      o.html("重新获取");
+      wait = 60;
+    } else {
+      o.attr("disabled", true);
+      o.html("重新发送(" + wait + ")");
+      wait--;
+      setTimeout(function () {
+          time(o)
+      }, 1000);
+    }
+  }
+</script>
+<!--  / warpper  -->
+<div class="warpper">
+        <!--  / index_sec1  -->
+        <div class="index_sec1">
+            <div class="index_container">
+                <div class="four_advan_box">
+                    <div class="index_row">
+                        <volist name="foupic" id="v1">
+                        <div class="index1_list">
+                            <img src="{$v1.pic}" width="100%"/>
+                            <div class="index1_wz index1_wz1">
+                                <h3>{$v1.title}</h3>
+                                <h4>{$v1.title1}</h4>
+                            </div>
+                        </div>
+                        </volist>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  / index_sec1  -->
+    <!--  / index_sec2  -->
+    <div class="index_sec index_sec2" id="daikuan1">
+    <div class="index_container">
+        <div class="index2_left">
+            <volist name="pics" id="v2" key="k" offset="0" length='2'>
+            <div class="index2_top index2_top1">
+                <img src="{$v2.pic}" />
+                <div class="index2_top_wz">
+                    <h2>{$v2.title}</h2>
+                    <h4>
+                        最高可达评估<span>8成</span>
+                    </h4>
+                </div>
+                <div class="ind2_bg"></div>
+                <a href="{$v2.url}" class="ind2_more"><span>查看详细</span></a>
+            </div>
+            </volist>
+        </div>
+        <!--<div class="index2_center">
+            <div class="index2_top">
+                <img src="{$bigpic.pic}" />
+                <div class="index2_top_wz  index2_top_wz_ts">
+                    <h2>{$bigpic.title}</h2>
+                    <h4>
+                        无抵押，<span>无担保</span>
+                    </h4>
+                </div>
+                <div class="ind2_bg"></div>
+                <a href="{$bigpic.url}" class="ind2_more"><span>查看详细</span></a>
+          </div>
+        </div>-->
+        <div class="index2_center">
+            <div class="index2_top">
+                <img src="{$bigpic.pic}" />
+                <div class="index2_top_wz  index2_top_wz_ts">
+                   <!-- <h2>{$bigpic.title}</h2>-->
+                    <h4>
+                      <!--  无抵押，<span>无担保</span>-->
+                    </h4>
+                </div>
+                <div class="ind2_bg"></div>
+                <a href="{$bigpic.url}" class="ind2_more"><span>查看详细</span></a>
+          </div>
+        </div>
+        <div class="index2_left">
+            <volist name="pics" id="v3" key="k" offset="2" length='2'>
+            <div class="index2_top index2_top1">
+                <img src="{$v3.pic}" />
+                <div class="index2_top_wz">
+                    <h2>{$v3.title}</h2>
+                    <h4>
+                        全程代办，<span>安全担保</span>
+                    </h4>
+                </div>
+                <div class="ind2_bg"></div>
+                <a href="{$v3.url}" class="ind2_more"><span>查看详细</span></a>
+            </div>
+                </volist>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--  / index_sec2  -->
+         <!--  / index_sec3  -->
+        <div class="index_sec index_sec3" id="fangd1">
+            <div class="index_container">
+                <div class="sec3_tit">
+                    <span>房贷</span>
+                </div>
+                <div class="sec3_l_img">
+                <a href="{:U('HouseLoan/index',array('city'=>$cc))}">
+                    <img src="__IMAGES__/sec3_l_img.png" width="100%" alt=""/>
+                    </a>
+                </div>
+                <div class="sec3_l">
+                    <div class="see3_l_t">
+                        <div class="s3_l_tit">房贷信息  <div class="jiantou"><img src="__IMAGES__/jt1.png" width="100%" alt=""/></div></div>
+                        <div class="see3_l_t_info">
+                            <div class="s3_l_info_l ts_lv">
+                                <ul>
+                                <foreach name="houseNews_A" item="v">
+                                    <li><a href="{:U('News/newsDot1',array('id'=>$v['id']))}"><div class="infon_l"><span>• </span>{$v.news_title}</div><div class="new_date">{$v.add_time|date='Y-m-d',###}</div></a></li>
+                                </foreach>   
+                                </ul>
+                            </div>
+                            <div class="s3_l_info_r ts_lv">
+                                <ul>
+                                <foreach name="houseNews_B" item="v">
+                                    <li><a href="{:U('News/newsDot1',array('id'=>$v['id']))}"><div class="infon_l"><span>• </span>{$v.news_title}</div><div class="new_date">{$v.add_time|date='Y-m-d',###}</div></a></li>
+                                </foreach>   
+                                </ul>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="sec3_l_b">
+                        <div class="s3_l_tit">买房工具 <div class="jiantou"><img src="__IMAGES__/jt1.png" width="100%" alt=""></div></div>
+                        <div class="sqw_info_box">
+                            <div class="see3_l_b_box">
+                                <div class="see3_l_b_info">
+                                        <div class="sqw_box">
+                                    <a href="{:U('Home/Index/dbj')}">
+                                            <div class="sqw_box_l">算</div>
+                                            <div class="sqw_box_r">
+                                                <h3>等额本金还款计算器</h3>
+                                                <h4>最新利率，精确计算</h4>
+                                            </div>
+                                    </a>
+                                        </div>
+                                        <div class="sqw_box">
+                                    <a href="{:U('Home/Index/dbx')}">
+                                            <div class="sqw_box_l">器</div>
+                                            <div class="sqw_box_r">
+                                                <h3>等额本息还款计算器</h3>
+                                                <h4>最新利率，精确计算</h4>
+                                            </div>
+                                    </a>
+                                        </div>
+                                        <div class="sqw_box">
+                                    <a href="{:U('Home/Index/gjj')}">
+                                            <div class="sqw_box_l">屋</div>
+                                            <div class="sqw_box_r">
+                                                <h3>公积金贷款计算器</h3>
+                                                <h4>最新利率，精确计算</h4>
+                                            </div>
+                                    </a>
+                                        </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sec3_r">
+                    <div class="s3_l_tit ts_s3_l_tit">热门房贷银行 <div class="jiantou"><img src="__IMAGES__/jt1.png" width="100%" alt=""/></div></div>
+                    <div class="sec3_r_info ts_lv">
+                    <div class="sec3_r_cot" style="overflow:hidden;">
+                    <div id="demo_1" style="overflow-y:auto;height: 260px;width: 110%;">
+                        <div id="marqueeee" height="auto">
+                            <ul id="demo3">
+                            <foreach name="houseBank" item="v">
+                                <li><a href="javascript:void(0);"><span><img src="{$v.logo_pic}" />{$v.classname}</span><h3>{$v.discount}</h3><h4>{$v.interest}</h4><div class="clear"></div></a></li>
+                            </foreach>  
+                            </ul>
+                            <ul id="demo4"></ul>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <!--  / index_sec3  -->
+    <!--  / index_sec4  -->
+    <div class="index_sec index_sec4" id="xinyk1">
+        <div class="index_container">
+        <!-- <a href="{:U('Credit/creditList')}"> -->
+            <div class="sec4_tit">
+                <span>信用卡</span>
+            </div>
+            <div class="sec3_l_img">
+            <a href="{:U('Credit/creditList')}">
+                <img src="__IMAGES__/sec3_l_img2.png" width="100%" alt=""/>
+                </a>
+            </div>
+            <!-- </a> -->
+            <div class="sec3_l">
+                <div class="see4_l_t">
+                    <div class="s3_l_tit">热门信用卡<div class="jiantou"><img src="__IMAGES__/jt2.png" width="100%" alt=""/></div></div>
+                    <div class="see3_l_t_info ts_sec4_l_t_info">
+                        <div class="s3_l_info_l ts_cheng">
+                            <ul>
+                            <foreach name="cardHot" item="v">
+                                <li><a href="{:U('Credit/newsDetail',array('id'=>$v['id'],'types'=>'4','type'=>'1'))}"><div class="infon_l"><span>• </span>{$v.news_title}</div><div class="new_date">{$v.add_time|date='Y-m-d',###}</div></a></li>
+                            </foreach>
+                            </ul>
+                        </div>
+                        <div class="s3_l_info_r">
+                            <div class="sec4_cen_three">
+                                <div class="three_cn">
+                                    <img src="__IMAGES__/zhengquan.jpg" />
+                                    <h3>实名认证</h3>
+                                </div>
+                                <div class="three_cn">
+                                    <img src="__IMAGES__/chengnuo.jpg" />
+                                    <h3>不收费承诺</h3>
+                                </div>
+                                <div class="three_cn">
+                                    <img src="__IMAGES__/miansui.jpg" />
+                                    <h3>免费服务</h3>
+                                </div>
+                            </div>
+                            <div class="sec4_rig_two">
+                                <div class="chezhu_zxdk">
+                                    <h3>农行金穗QQ联名</h3>
+                                    <img src="__IMAGES__/card6.jpg" />
+                                </div>
+                                <div class="pingan_ynk">
+                                    <h3>花旗礼享卡</h3>
+                                     <img src="__IMAGES__/card.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sec4_r">
+                <div class="sec4_r_main">
+                    <div class="s3_l_tit ts_s3_l_tit ts_s3_l_tit_xy">热门发卡银行<div class="jiantou"><img src="__IMAGES__/jt2.png" width="100%" alt=""/></div></div>
+                    <div class="sec3_r_info ts_sec3_r_info ts_cheng">
+                    <div class="sec3_r_cot" style="overflow:hidden;">
+                    <div id="demo" style="overflow-y:auto;height: 100px;width: 110%;">
+                        <div id="marqueeee" height="auto">
+                            <ul id="demo1">
+                                <foreach name="cardBank" item="v">
+                                    <li><span><img src="{$v.logo_pic}" /> {$v.classname}</span><h3>{$v.discount}</h3><h4>{$v.interest}</h4><div class="clear"></div></li>
+                                </foreach>
+                            </ul>
+                            <ul id="demo2"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="sec4_r_b_info">
+                    <div class="s3_l_tit ts_s3_l_tit ts_s3_l_tit_xy">热点<div class="jiantou"><img src="__IMAGES__/jt2.png" width="100%" alt=""/></div></div>
+                    <div class="ts_pad1">
+                        <ul>
+                        <foreach name="hotSpot" item="v">
+                            <li><a href="{:U('News/newsDot1',array('id'=>$v['id']))}"><span>• </span>{$v.news_title}</a></li>
+                        </foreach>  
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!--  / index_sec4  -->
+    <div class="guangg">
+        <div class="index_container">
+        <div class="swiper-container swiper3">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+            <a href="gedai.html"><img src="__IMAGES__/guangg.jpg" /></a>
+            </div>
+            <div class="swiper-slide">
+            <a href="gedai.html"><img src="__IMAGES__/guangg1.jpg" /></a>
+            </div>
+        </div>
+        <div class="swiper-pagination pagination3">
+        </div>
+        </div>
+    </div>
+    </div>
+    <!--sec5-->
+    <div class="index_sec index_sec5" id="gonglue1">
+        <div class="index_container">
+            <div class="sec5_l">
+                <div class="sec5_tit"><img src="__IMAGES__/btitle.png" width="240" alt=""/></div>
+                <div class="sec5_l_b">
+                    <div class="sec5_l_b_l" style="border-right:1px solid #ddd;">
+                        <ul>
+                        <volist name="dkgllists" id="vo" offset="0" length="6">
+                            <li><a href="{:U('News/newsDot1','id='.$vo['id'])}"><span>• </span>{$vo.news_title}</a></li>
+                        </volist>
+                        </ul>
+                    </div>
+                    <div class="sec5_l_b_l">
+                        <ul>
+                        <volist name="dkgllists" id="vo" offset="6" length="11">
+                            <li><a href="{:U('News/newsDot1','id='.$vo['id'])}"><span>• </span>{$vo.news_title}</a></li>
+                        </volist>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="sec3_r ts_sec5_r sec3_r_wd" style="float: right">
+                <div class="s3_l_tit ts_s3_l_tit  ts_s3_l_tit_wd" >问答<div class="jiantou"><img src="__IMAGES__/jt3.png" width="100%" alt=""/></div></div>
+                <div class="wenda">
+                    <input type="text" class="wenda_txt" placeholder="请输入您的问题" onBlur="this.placeholder='请输入您的问题'" onFocus="this.placeholder=''"/>
+                    <input type="submit" class="wenda_btn" />
+                    <div class="clear"></div>
+                </div>
+                <div class="sec3_r_info sec5_wenda">
+                    <ul>
+                    <foreach name="prolist" item="vo">
+                        <li><a href="{:U('Index/answer',array('id'=>$vo['id']))}"><img src="__IMAGES__/question.jpg" alt=""/>{$vo.title}</a></li>
+                    </foreach> 
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!--sec5-->
+    <!--  / index_sec6  -->
+    <div class="index_sec index_sec6">
+        <div class="index_container">
+            <div class="index6_box">
+                <div class="index6_list index6_list1">
+                    <div class="index6_top">
+                        <h4>关于洛凡</h4>
+                        <div class="index6_img1">
+                            <a href="gedai.html">
+                            <img src="{$luo.pic}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="index6_bottom">
+                        <h4><a href="#">{$luo['desc']|htmlspecialchars_decode|stripslashes}</a></h4>
+                    </div>
+                </div>
+                <div class="index6_list index6_list2">
+                    <a href="{:U('News/index')}" >
+                    <div class="index6_top">
+                        <h4>贷款资讯</h4>
+                        <h5>及时更新信息，掌握最新资讯<br />专业让贷款更简单</h5>
+                        <div class="index6_img">
+                            <a href="news.html">
+                            <img src="__IMAGES__/ind6_2.jpg" />
+                            </a>
+                        </div>
+                        <a href="{:U('News/index')}" class="index6_more index6_more1">查看更多 ></a>
+                    </div>
+                    </a>
+                    <div class="index6_bottom">
+                        <ul>
+                        <foreach name="artlist" item="vo">
+                        
+                            <li><a href="{:U('News/newsDot1','id='.$vo['id'])}"><span>• </span>{$vo.news_title}</a></li>
+                            
+                        </foreach>
+                        </ul>
+                    </div>
+                </div>
+                <div class="index6_list index6_list2">
+                <a href="{:U('Index/proList')}" >
+                    <div class="index6_top">
+                        <h4>常见问题</h4>
+                        <h5>看完这些获贷成功宝典，助你轻松申贷<br />想不成功都难，现在就开始吧</h5>
+                        <div class="index6_img">
+                            <a href="credit">
+                            <img src="__IMAGES__/ind6_3.jpg" />
+                            </a>
+                        </div>
+                        <a href="{:U('Index/proList')}" class="index6_more index6_more1">查看更多 ></a>
+                    </div>
+                    </a>
+                    <div class="index6_bottom">
+                        <ul>
+                        <foreach name="compro" item="vo">
+                            <!--li><a href="{:U('Index/answer','id='.$vo['id'])}"><span>• </span>{$vo.title}</a></li-->
+                            <li><a href="{:U('News/newsDot1','id='.$vo['id'])}"><span>• </span>{$vo.news_title}</a></li>
+                        </foreach>
+                        </ul>
+                    </div>
+                </div>
+                <div class="index6_list index6_list2">
+                <a href="{:U('News/index')}">
+                    <div class="index6_top">
+                        <h4>新手必读</h4>
+                        <h5>贷款前遇到问题时，别捉急<br />答案统统在这里</h5>
+                        <div class="index6_img">
+                            <a href="#">
+                            <img src="__IMAGES__/ind6_4.jpg" />
+                            </a>
+                        </div>
+                        <a href="{:U('News/index')}" class="index6_more index6_more1">查看更多 ></a>
+                    </div>
+                    </a>
+                    <div class="index6_bottom">
+                        <ul>
+                        <foreach name="new_read" item="vo">
+                            <li><a href="{:U('News/newsDot1','id='.$vo['id'])}"><span>• </span>{$vo.news_title}</a></li>
+                        </foreach>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <!--  / index_sec6  -->
+    <!--  / index_sec7  -->
+    <div class="index_sec index_sec7">
+        <div class="index_container">
+            <div class="index7_box">
+                <div class="index7_top">
+                    <h4>合作机构</h4>
+                    <div class="swiper2_jt">
+                        <a href="javascript:void(0);" class="arrow-left arrow-left2"><img src="__IMAGES__/ind7_left1.png"></a>
+                        <a href="javascript:void(0);" class="arrow-right arrow-right2"><img src="__IMAGES__/ind7_right1.png"></a>
+                    </div>
+                </div>
+                <div class="index7_bottom">
+                    <div class="swiper-container swiper2">
+                        <div class="swiper-wrapper">
+                            <for start="1" end="$count" name="i">
+                            <div class="swiper-slide">
+                                <volist name="cooperate" id="vv" key="kkk1" offset='($i*2 - 2)' length='2'>
+                                    <div class="bank_list">
+                                        <img src="{$vv.pic}"/>
+                                    </div>
+                                </volist>
+                            </div>
+                            </for>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  / index_sec7  -->
+</div>
+<!--  / warpper  -->
+<div class="left_nav">
+    <ul>
+        <li id="daikuan">
+            <a href="javascript:void(0);"  class="nav_list1">
+                <i class="daik"></i>
+                贷款
+            </a>
+        </li>
+        <li id="fangd">
+            <a href="javascript:void(0);" class="nav_list2">
+                <i class="baox"></i>
+                房贷
+            </a>
+        </li>
+        <li id="xinyk">
+            <a href="javascript:void(0);" class="nav_list3">
+                <i class="xinyom"></i>
+                信用卡
+            </a>
+        </li>
+        <li id="gonglue">
+            <a href="javascript:void(0);" class="nav_list4">
+                <i class="lica"></i>
+                攻略
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+</body>
+<div class="tankuang">
+    <div class="distable">
+        <div class="distabcell">
+            <div class="tankuag_box">
+                <div class="close_tan"><img src="__IMAGES__/btn__close.png" width="100%" alt=""/></div>
+                <div class="tan_box">
+                        <form action="#">
+                            <div class="item">
+                                <div class="dk_info">房产类型</div>
+                                <div class="xinyong_dk ui-select">
+                                    <input type="hidden" value="2">
+                                    <div class="input_leixing select-value fang"><span>无产房</span><div class="banlist_btn"><img src="__IMAGES__/ban_btn1.png" width="100%" alt=""/></div></div>
+                                    <div class="dklx_list select-list">
+                                        <ul>
+                                            <volist name="fang" id="vo" key="k">
+                                                <li data-val="{$k}">{$vo.classname}</li>
+                                            </volist>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="item">
+                                <div class="dk_info">是否有车</div>
+                                <div class="xinyong_dk ui-select">
+                                    <input type="hidden" value="0" >
+                                    <div class="input_leixing select-value che"><span>有车</span><div class="banlist_btn"><img src="__IMAGES__/ban_btn1.png" width="100%" alt=""/></div></div>
+                                    <div class="dklx_list select-list">
+                                        <ul>
+                                            <volist name="che" id="vo" key="k">
+                                                <li data-val="{$k}">{$vo.classname}</li>
+                                            </volist>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="item">
+                                <div class="dk_info">月收入</div>
+                                <div class="sq_item ui-select">
+                                   <input type="text" class="sqing_input month_money" value="">
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <input type="hidden" id="xiaodai_id" value="">
+                            <input type="text" class="ui_btn" id="btn-tankuang" value="确定" style="margin-right: 0"/>
+                            <div class="clear"></div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="__JS__/index.js"></script>
+<script src="__JS__/swiper.min.js"></script>
+<script type="text/javascript">
+    $("#btn-tankuang").click(function(){
+        var post={};
+        post.id   = $("#xiaodai_id").val();
+        post.fang = $(".fang").find('span').html();
+        post.che  = $(".che").find('span').html();
+        console.log(post);
+        alert(post.fang);return false;
+        //$(".tankuang").fadeOut(500);
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        //$(".tankuang").fadeIn(500);
+        $(".sqing_sub").click(function () {
+            //$(".tankuang").fadeIn(500);
+        })
+        $(".close_tan").click(function () {
+            $(".tankuang").fadeOut(500);
+        })
+    })
+</script>
+<script>
+//搜索
+function getmoney(){
+    var money = $('.yongtu').html();
+    $('#money').val(money);
+    var date = $('#qixian').html();
+    $('#date').val(date);
+    var type = $('.type').html();
+    $('#type').val(type);
+}
+window.onload=function(){$(window).scrollTop(0);}
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+/*    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });*/
+    $("a.ban_btn").click(function(e) {
+        var ind=$(this).index();
+        mySwiper1.swipeTo(ind, 300, false);
+    });
+window.onload=function(){$(window).scrollTop(0);}
+    $(document).ready(function(){
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+        loop:true,
+        autoplay:5000,
+        spaceBetween: 0,
+        slidesPerView : 8,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.arrow-left2').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipePrev()
+    })
+    $('.arrow-right2').on('click', function(e){
+        e.preventDefault()
+        mySwiper2.swipeNext()
+    })
+    var mySwiper3 = new Swiper('.swiper3',{
+        pagination: '.pagination3',
+        loop:true,
+        autoplay:5000,
+        paginationClickable: true,
+        autopalyDisableOnInteraction:false,
+    })
+    $('.arrow-left3').on('click', function(e){
+        e.preventDefault()
+        mySwiper3.swipePrev()
+    })
+    $('.arrow-right3').on('click', function(e){
+        e.preventDefault()
+        mySwiper3.swipeNext()
+    })
+    $(window).load(function(){
+    $(".swiper1").height($(".swiper1 .ban_box ").height());
+        $('.swiper2,.swiper2 .swiper-slide').height(($('.bank_list').height()+10)*2);
+        $('.swiper3').height($('.swiper3 img').height());
+        $(".index6_list2").height($(".index6_list1").height());
+    })
+    $(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+        $('.swiper2,.swiper2 .swiper-slide').height(($('.bank_list').height()+10)*2);
+        $('.swiper3').height($('.swiper3 img').height());
+        $(".index6_list2").height($(".index6_list1").height());
+    });
+})
+</script>
+<script>
+/*$('.btn_bg').click(function(){
+    $('.background').addClass('remove');
+    $('html').css('overflow','auto');
+    setTimeout(function(){
+        $('.background').css('display','none')
+    },500)
+})*/
+//问答
+$('.wenda_btn').on('click',function(){
+    var title = $('.wenda_txt').val();
+    if(!title){
+        alert('请输入您的问题!');  return false;
+    }
+    if((title.length < 6) || (title.length > 50)){
+        alert('请简短的描述您的问题!');  return false;
+    }
+    $.ajax({
+        url:"{:U('Credit/addProblem')}",
+        data:{title:title},
+        type:'post',
+        dataType:'json',
+        success:function(data){
+            if(data.status){
+                alert(data.info);
+            }else{
+                alert(data.info);
+            }
+        }
+    })
+})
+$(window).scroll(function(){
+    var scrollT=$(window).scrollTop();
+    if(scrollT>$('.index_sec3').offset().top-$(window).height()){
+        $('.left_nav').stop().animate({'opacity':'1','z-index':'1'},400)
+        $('.nav_list1').parent().addClass('active');
+    }else{
+        $('.left_nav').stop().animate({'opacity':'0','z-index':'-1'},400)
+    }
+    if(scrollT>$('.index_sec2').offset().top-$(window).height()*0.4){
+        $('.nav_list1').parent().addClass('active');
+        $('.nav_list1').parent().siblings().removeClass('active');
+    }
+    if(scrollT>$('.index_sec3').offset().top-$(window).height()*0.4){
+        $('.nav_list2').parent().addClass('active');
+        $('.nav_list2').parent().siblings().removeClass('active');
+    }
+    if(scrollT>$('.index_sec4').offset().top-$(window).height()*0.4){
+        $('.nav_list3').parent().addClass('active');
+        $('.nav_list3').parent().siblings().removeClass('active');
+    }
+    if(scrollT>$('.index_sec5').offset().top-$(window).height()*0.7){
+        $('.nav_list4').parent().addClass('active');
+        $('.nav_list4').parent().siblings().removeClass('active');
+    }
+    if(scrollT>$('.index_sec7').offset().top-$(window).height()){
+        $('.left_nav').stop().animate({'opacity':'0','z-index':'-1'},400)
+    }
+    if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+        $('.right_nav').css('display','block');
+    }else{
+        $('.right_nav').css('display','none');
+    }
+})
+var name_id;
+    $('.left_nav li').click(function(){
+        name_id=$(this).attr('id');
+        $("html, body").stop().animate({ scrollTop: $('#'+name_id+'1').offset().top -300}, 1000,function(){
+            $('.left_nav li#name_id').addClass('active');
+            $('.left_nav li#name_id').siblings().removeClass('active');
+        });
+    })
+var speed=50;
+   var tmp;
+   var demo2=document.getElementById('demo2');
+   var demo1=document.getElementById('demo1');
+   var demo=document.getElementById('demo');
+   demo2.innerHTML=demo1.innerHTML;
+   function Marquee(){
+   if(demo2.offsetTop-demo.scrollTop<=0)
+   demo.scrollTop-=demo1.offsetHeight
+   else{
+    tmp= demo.scrollTop;
+   demo.scrollTop++;
+    if (demo.scrollTop == tmp){
+        demo.scrollTop = 0;
+    }
+   }
+   }
+   var MyMar=setInterval(Marquee,speed)
+   demo.onmouseover=function() {clearInterval(MyMar)}
+   demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
+var speed=50;
+   var demo4=document.getElementById('demo4');
+   var demo3=document.getElementById('demo3');
+   var demo_1=document.getElementById('demo_1');
+   demo4.innerHTML=demo3.innerHTML;
+   function Marquee1(){
+   if(demo4.offsetTop-demo_1.scrollTop<=0)
+   demo_1.scrollTop-=demo3.offsetHeight
+   else{
+    var tmp1=demo_1.scrollTop;
+   demo_1.scrollTop++;
+    if (demo_1.scrollTop == tmp1){
+        demo_1.scrollTop = -5;
+    }
+   }
+   }
+   var MyMar1=setInterval(Marquee1,speed);
+   demo_1.onmouseover=function() {clearInterval(MyMar1)}
+   demo_1.onmouseout=function() {MyMar1=setInterval(Marquee1,speed)}
+function fnTabBoxFade(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("focus");
+    $(Focus).addClass("focus");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).fadeIn("fast");
+};
+</script>
+</html>

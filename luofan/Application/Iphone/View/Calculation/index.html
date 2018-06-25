@@ -1,0 +1,264 @@
+  <include file="Public:head"/>
+
+<body>
+
+
+
+<div class="head_box" style=" background:#47cfac">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">计算工具</div>
+<div class="clear"></div>
+</div>
+
+
+
+<div class="warpper_box">
+
+<div class="jisuan_title">
+<ul>
+<li><a href="__HOST__/Calculation/index" class="active">等额本金</a></li>
+<li><a href="__HOST__/Calculation/jisuan1">等额本息</a></li>
+<li style=" border:none"><a href="__HOST__/Calculation/jisuan2">公积金</a></li>
+<div class="clear"></div>
+</ul>
+</div>
+<form id="myForm" action="" method="post">
+<div class="jisuan_box">
+<div class="calc_li">
+                        	<h5>计算方式</h5>
+                            <div class="calc_right_r">
+                            	<label><input type="radio" name="edu" checked="checked" class="calc_edu" value="1"><span>按贷款额度算</span></label>
+                            	<label><input type="radio" name="edu" class="calc_edu1" value="2"><span>按面积算</span></label>
+                            </div>
+                        </div>
+<div class="calc_radio calc_radio1">
+                            <div class="calc_li">
+                                <h5>贷款金额</h5>
+                                <div class="calc_right_r">
+                                    <div class="calc_right_input">
+                                        <input type="text" class="calc_input"  onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9]+/,'');}).call(this)"  name="dkTotal" id="dkTotal"><h5>万元</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<div class="calc_radio calc_radio2">
+                        	<div class="calc_li">
+                                <h5>平米单价</h5>
+                                <div class="calc_right_r">
+                                    <div class="calc_right_input">
+                                        <input type="text" class="calc_input danjia" name="prize" style="width:79%; " ><h5>元/平米</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        	<div class="calc_li">
+                                <h5>面积</h5>
+                                <div class="calc_right_r">
+                                    <div class="calc_right_input">
+                                        <input type="text" class="calc_input mianji" name="square"><h5>平米</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calc_li">
+                                <h5>购房性质</h5>
+                                <div class="calc_right_r">
+                                    <label><input type="radio" name="house" checked="checked" class="calc_house" value="1"><span>一套房</span></label>
+                                    <label><input type="radio" name="house" class="calc_house1" value="2"><span>二套房</span>
+                                    <div class="calc_bottom_zs">
+                                        <a href="javascript:void(0);" class="calc_bottom_btn"><img src="__IMAGES__/calc_wh.png"></a>
+                                        <div class="calc_js">
+                                            <h5>逐月递减还款即等额本金还款法，指本金保持相同，利息逐月递减，月还款数递减；由于每月的还款本金额固定，而利息越来越少，贷款人起初还款压力较大，但是随时间的推移每月还款数也越来越少。</h5>
+                                            <div class="calc_close">
+                                                <a href="javascript:void(0);"><img src="__IMAGES__/calc_close.png"></a>
+                                            </div>
+                                            <div class="calc_arrow">
+                                                <img src="__IMAGES__/calc_arrow.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="calc_li">
+                                <h5>首付</h5>
+                                <div class="calc_right_r">
+                                    <div class="calc_right_input">
+                                        <div class="calc_sele"><input type="text" name="downpay" class="calc_input "  onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9]+/,'');}).call(this)"  style="width:80%; "><h5>%</h5><i class="fa fa-sort-down"></i></div>
+                                        <div class="calc_ul" style="">
+                                            <ul>
+                                                <li>20</li>
+                                                <li>30</li>
+                                                <li>40</li>
+                                                <li>50</li>
+                                                <li>60</li>
+                                                <li>70</li>
+                                                <li>80</li>
+                                                <li>90</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<div class="calc_li">
+                        	<h5>贷款期限</h5>
+                            <div class="calc_right_r">
+                            	<div class="calc_right_input">
+                            
+                                
+                                    <div class="calc_sele"><input type="text" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9]+/,'');}).call(this)" onblur="this.v();" name="dkm" id="dkm" class="calc_input"  style="width:80%; "><i class="fa fa-sort-down"></i><h5 >年</h5></div>
+                                    <div class="calc_ul" >
+                                        <ul>
+                                            <li>5</li>
+                                            <li>10</li>
+                                            <li>15</li>
+                                            <li>20</li>
+                                            <li>25</li>
+                                            <li>30</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<div class="calc_li">
+                        	<h5>年利率</h5>
+                            <div class="calc_right_r">
+                            	<div class="calc_right_input">
+                                        <input type="text" class="calc_input"  name="dknl"  onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9]+/,'');}).call(this)" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '4.75';}"  value="4.75"     id="ylilv"><h5>%</h5>
+                                    </div>
+                            </div>
+                               
+                        </div>
+<div class="calc_btn">
+                        	<div class="calc_calc">
+                            	<a href="javascript:void(0);" onclick="jisuan()">计算</a>
+                            </div>
+                        	<div class="calc_cz">
+                            	<a href="javascript:void(0);" onclick="formReset()">重置</a>
+                            </div>
+                        </div>                       
+</div>
+</form>
+</div>
+
+
+
+
+<include file="Public:footer1"/>
+
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+
+<script>
+function formReset()  
+{  
+document.getElementById("myForm").reset()  
+}  
+
+function jisuan(){
+    $myForm =   document.getElementById("myForm");
+    $myForm.action  =   "__HOST__/Calculation/jisuandot";
+    var edu =   $("input[type='radio']:checked").val();
+    if(edu==1){
+        var dkTotal =   $('#dkTotal');
+        if(dkTotal.val()==''){
+            dkTotal.focus();
+            alert('请填写贷款金额');
+            return false;
+        }
+    }else{
+        var prize   =    $("input[name='prize']");
+        if(prize.val()==''){
+            prize.focus();
+            alert('请填写平米单价');
+            return false;
+        }
+        var square   =    $("input[name='square']");
+        if(square.val()==''){
+            square.focus();
+            alert('请填写面积');
+            return false;
+        }
+        var square   =    $("input[name='square']");
+        if(square.val()==''){
+            square.focus();
+            alert('请填写面积');
+            return false;
+        }
+        var downpay   =    $("input[name='downpay']");
+        if(downpay.val()==''){
+            downpay.focus();
+            alert('请填写首付');
+            return false;
+        }
+    }
+    var dkm =   $('#dkm');
+    if(dkm.val()==''){
+        dkm.focus();
+        alert('请填写贷款期限');
+        return false;
+    }
+    $myForm.submit();
+   
+}
+
+
+$(document).ready(function (){
+
+      
+	function stopPropagation(e) {
+		if (e.stopPropagation) 
+		e.stopPropagation();
+		else 
+		e.cancelBubble = true;
+	}
+	
+	$(document).bind('click',function(){
+		$('.calc_ul').slideUp()
+		$('.calc_js').fadeOut(300)
+	});
+	
+	$(".calc_sele i,.calc_bottom_btn,div.calc_input").bind('click',function(e){
+		stopPropagation(e);
+	});
+	
+	$('div.calc_input').click(function(){
+		$(this).parent().siblings('.calc_ul').slideToggle()
+	})
+	
+	$('.calc_ul li').click(function(){
+		$(this).parent().parent().siblings('.calc_sele').find('.calc_input').html($(this).html())
+		$(this).parent().parent().siblings('.calc_sele').find('.calc_input').val($(this).html())
+	})
+	
+	$('.calc_sele i').click(function(){
+		$(this).parent().siblings('.calc_ul').slideToggle()
+	})
+	$('.calc_bottom_btn').click(function(){
+		$(this).siblings('.calc_js').fadeIn(300)
+	})
+	
+	$('.calc_close a').click(function(){
+		$('.calc_js').fadeOut(300)
+	})
+	
+	$('input[name=edu]').click(function(){
+		$('.calc_radio').hide(0)
+		$('.calc_radio'+$(this).val()).fadeIn(100)
+	})
+	
+	
+
+
+ 
+})
+
+</script>
+</html>

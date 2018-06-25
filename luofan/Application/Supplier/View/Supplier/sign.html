@@ -1,0 +1,138 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:memberleft" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">签到日志列表</h1>
+
+             <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count}</span> 个签到记录。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <div class="tablesWrap">
+                    <div class="tables-searchbox">
+                        <div>
+                        
+                            <input type="text" class="input" name="title" id="title" value="" placeholder="真实姓名">
+
+                            <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                    class="gicon-search white"></i>查询
+                            </button>
+
+                        </div>
+
+
+                    </div>
+  
+                <!-- end tables-searchbox -->
+                <table class="wxtables">
+                    <colgroup>
+                        <col width="1%">
+                        <col width="10%">
+                        <col width="6%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                       
+                        <td>真实姓名/手机</td>
+                        <td>会员等级</td>
+                        <td>签到时间</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="signlist" item="vo">
+                    <tr>
+                        <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>
+                    
+                        <td><p> {$vo.realname}<br/>{$vo.telephone}</p></td>
+                        <td><p>{$vo.vip}</p></td>
+                      
+                              
+                                  
+                        <td>{$vo.addtime}</td>
+                      
+                        <td>
+                            <p>
+                               <a href="{:U('/Admin/Member/delsign/cid')}/{$vo.id}" class="btn btn-warning j-delClass" title="删除" onclick="return confirm('确定要删除吗？')" data-id="{$vo.id}">删除</a> 
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                        <!--<a href="javascript:;" class="btn btn-warning j-setUsersLevel">设置等级</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setAgent">设置分销商</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setGroup" data-type="0">设置分组</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setSuperior">设置上级</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setPwd">设置密码</a>-->
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<!-- end container -->
+<script>
+$(function(){
+    
+    $("#search_m").click(function(){
+        var title=$('#title').val();
+        if(title != ''){
+            location.href="{:U('/Admin/Member/sign')}/title/"+title;
+        }else{
+            location.href="{:U('/Admin/Member/sign')}";
+        }
+       
+
+    })
+
+})
+
+</script>
+
+<include file="Public:foot"/>

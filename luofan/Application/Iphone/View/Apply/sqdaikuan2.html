@@ -1,0 +1,139 @@
+<include file="Public:head"/>
+
+
+<body>
+
+<!--head --> 
+<div class="head_box" style=" background:#4a89db">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">填写个人信息</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+
+
+
+<div class="warpper_box">
+
+<div class="shoujihao">
+<div class="shoujihao_l">职业身份</div>
+<div class="shoujihao_r">
+<select name="zhiye" id="zhiye"class="sq_xuanze">
+<option>请选择</option>
+<option>上班族</option>
+<option>个体户</option>
+<option>无固定职业</option>
+<option>企业主</option>
+<option>学生</option>
+</select>
+</div>
+<div class="clear"></div>
+</div>
+<div class="shoujihao">
+<div class="shoujihao_l">是否有房</div>
+<div class="shoujihao_r">
+<select name="is_house" id="is_house"  class="sq_xuanze">
+<option>请选择</option>
+<option>有房</option>
+<option>无房</option>
+</select>
+</div>
+<div class="clear"></div>
+</div>
+<div class="shoujihao">
+<div class="shoujihao_l">是否有车</div>
+<div class="shoujihao_r">
+<select name="is_car" id="is_car" class="sq_xuanze">
+<option>请选择</option>
+<option>有车</option>
+<option>无车</option>
+</select>
+</div>
+<div class="clear"></div>
+</div>
+<div class="shoujihao">
+<div class="shoujihao_l">月收入</div>
+<div class="shoujihao_r">
+<select name="wage" id="wage" class="sq_xuanze">
+<option>请选择</option>
+<option>3500元以下</option>
+<option>3500-5000元</option>
+<option>5000-8000元</option>
+<option>8000-12000元</option>
+<option>12000以上</option>
+</select>
+</div>
+<div class="clear"></div>
+</div>
+<div class="shoujihao_btn">
+<a href="javascript:void(0);" id="step">下一步</a>
+</div>
+</div>
+
+
+
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+<div class="loading"></div>
+<div class="sccg sccg01">
+    <div style="margin-top:15px;"><i class="fa fa-spinner fa-pulse fa-2x" style=" color:#fff"></i></div>
+    <p style="color:#fff;font-family:微软雅黑">等待中...</p>
+</div>
+</body>
+<script>
+		
+
+$(document).ready(function (){
+    $("#step").click(function(){
+        var post =  {};
+        post.zhiye      =   $('#zhiye').val();
+        post.is_house   =   $('#is_house').val();
+        post.is_car     =   $('#is_car').val();
+        post.wage       =   $('#wage').val();
+        if(post.zhiye=="请选择"){
+            alert('请选择职业身份');
+            return false;
+        }
+        if(post.is_house=="请选择"){
+            alert('请选择是否有房');
+            return false;
+        }
+        if(post.is_car=="请选择"){
+            alert('请选择否有车');
+            return false;
+        }
+        if(post.wage=="请选择"){
+            alert('请选择月收入');
+            return false;
+        }
+        $.ajax({
+            url:"__HOST__/Apply/daikuando2",
+            data:post,
+            beforeSend:function(){
+                  $('.loading').show();
+                  $('.sccg01').stop().fadeIn(10);
+            },
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                $('.loading').hide();
+                $('.sccg01').stop().fadeOut();
+                if(data.status==1){
+                   dialog.showTips("申请成功","",'__HOST__/Apply/sqdaikuan3')
+                }else{
+                  dialog.showTips(data.info,"warn");return false;                  
+                }
+            }
+        })
+    })
+})
+
+</script>
+</html>

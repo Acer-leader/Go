@@ -1,0 +1,156 @@
+<include file="Public:head"/>
+<link href="__CSS__/fx.css" type="text/css"  rel="stylesheet" />
+
+<style>
+body,html{
+    width: 100%;
+    height: 100%;
+}
+.register_left{
+    width: 65%;
+    float: left;
+    display: inline-block;
+}
+.register_left input{
+    border-right:0px;
+    border-radius:5px 0px 0px 5px;
+}
+.register_right{
+    width: 35%;
+    float: right;
+}
+.register_right input{
+    color:#C1C2C0;
+    border-radius:0px 5px 5px 0;
+}
+input {
+    font-family: "Microsoft YaHei", 微软雅黑, STHeiti;
+}
+</style>
+
+<body style="background:url(__IMAGES__/rigister_bg.jpg) no-repeat center center; background-size:cover;">
+
+	<div class="register">
+    	<h2>代理商注册</h2>
+        
+        <div class="register_input">
+        	<input onfocus="this.placeholder = '';" onblur="this.placeholder = '姓名';" placeholder="姓名" type="text" class="person_name register_name"> 
+        </div>
+        <div class="register_input">
+        	<input onfocus="this.placeholder = '';" onblur="this.placeholder = '手机号';" placeholder="手机号" maxlength="11" type="text" class="telephone register_phone" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+        </div>
+        <div class="register_input">
+            <div class="register_left">
+        	   <input onfocus="this.placeholder = '';" onblur="this.placeholder = '验证码';" placeholder="验证码" type="text" class="code register_num" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+            </div>
+            <div class="register_right">
+               <!--<a href="javascript:void(0);" class="register_input_btn">获取验证码</a>-->
+               <input type="text" class="btn register_dx_tj" id="getCodes" value="获取验证码" readonly />
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="register_input">
+        	<input onfocus="this.placeholder = '';" onblur="this.placeholder = '密码 6至20位字母、数字组合';" placeholder="密码 6至20位字母、数字组合" type="password" class="password register_password">
+        </div>
+        <div class="register_input">
+        	<input onfocus="this.placeholder = '';" onblur="this.placeholder = '确认密码 6至20位字母、数字组合';" placeholder="确认密码 6至20位字母、数字组合" type="password" class="repassword register_password">
+        </div>
+        
+        <div class="register_input register_input_btn">
+        	<a href="javascript:void(0);"><input type="button" value="确认注册" class="btn register_ce" id="regs"/></a>
+            
+            <h6>已有账号？ <a href="__HOST__/Login">立即登录</a></h6>
+        </div>
+        
+        
+        
+    </div>
+
+</body>
+<include file="Public:RegLoginCom"/>
+<script>		
+$(document).ready(function (){
+ 
+})
+</script>
+<script type="text/javascript">
+    var wait = 60;
+  $("#getCodes").click(function (){
+    var _this = $(this)
+    if (_this.attr("disabled")) {
+        return false;
+    }
+    var telephone = $(".telephone").val();
+    if(!telephone){
+      dialog.showTips("请填写手机号！","warn");return false;
+    }else if(!telephone.match(/^1[35789][0-9]{9}$/)){
+      dialog.showTips("手机号码格式错误！","warn");return false;
+
+    }
+    $.post("__HOST__/Login/getMessage", {'telephone':telephone,'code_type':5}, function (data){
+      if(data.status==1){
+        dialog.showTips("验证码发送成功，请注意查收！","warn");
+        // 计时
+        time(_this);
+      }else{
+        dialog.showTips(data.info,"warn");return false;
+      }
+    },"json")
+  })
+  
+  
+   $('#regs').click(function(){
+        var post={};
+        post.person_name = $('.person_name').val();
+        post.telephone   = $('.telephone').val();
+        post.code        = $('.code').val();
+        post.password    = $('.password').val();
+        post.repassword  = $('.repassword').val();
+        post.url         = "{$url}";
+        //post.is_agree    =  $('input:checkbox[name=agree]:checked').val();      
+        if(!post.person_name){
+            alert('请输入您的姓名！');return false;
+        }
+        if(!post.telephone){
+            alert('请输入您的手机号！');return false;
+        }
+        if(!post.telephone.match(/^1[35789][0-9]{9}$/)){
+            alert('手机号码格式错误!');return false;
+        }
+        if(!post.code){
+             alert('请输入手机验证码！');return false;
+        }
+        if(!post.password){
+            alert('请输入密码！');return false;
+        }
+        if(!post.password.match(/^[a-zA-Z0-9]{6,10}$/)){
+            alert('密码格式错误！');return false;
+        }
+        if(!post.repassword){
+            alert('请输入确认密码！');return false;
+        }
+        if(!post.repassword.match(/^[a-zA-Z0-9]{6,10}$/)){
+            alert('确认密码格式错误！');return false;
+        }
+        if(post.password !== post.repassword ){
+             alert('两次密码不一致！');return false;
+        }
+        $.ajax({
+            url:"__HOST__/Login/doReg",
+            data:post,
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status){
+                    dialog.showTips(data.info,"","__HOST__/Distribution/");
+                    //window.location.href="{:U('Iphone/Login/index')}";
+                }else{
+                    dialog.showTips(data.info,"warn");return false;
+                }
+            }
+        })
+
+
+    })
+</script>
+</html>

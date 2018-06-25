@@ -1,0 +1,167 @@
+<include file="Public:head"/>
+<link href="__CSS__/fx.css" type="text/css"  rel="stylesheet" />
+
+<body>
+
+
+<!--head -->
+
+
+<div class="head_box houtai">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" style=" line-height:30px;color:#357ce2" ></i></a>
+<a href="__HOST__/Index/" class="shouye" style=" line-height:24px; color:#357ce2" >首页</a>
+<div class="clear"></div>
+</div>
+
+
+<div class="head_box_right">
+<a class="grzx" href="__HOST__/Distribution/fx_my"><img src="__IMAGES__/grzx.png"></a>
+</div>
+
+<div class="head_box_center" style=" color:#555; line-height:35px;">代理中心</div>
+<div class="clear"></div>
+
+</div>
+<!--head --> 
+
+
+<div class="tab_houtai">
+<ul>
+<li >
+<a href="__HOST__/Distribution/">
+<img src="__IMAGES__/houtai_yj.svg" />
+<h4 style=" color:#000">佣金产品</h4>
+</a>
+</li>
+<li >
+<a href="__HOST__/Distribution/houtai1">
+<img src="__IMAGES__/houtai_kh.svg" />
+<h4>客户列表</h4>
+</a>
+</li>
+<li >
+<a href="__HOST__/Distribution/houtai">
+<img src="__IMAGES__/houtai_ws.svg" />
+<h4>常见问题</h4>
+</a>
+</li>
+<li style="border-bottom:2px #ff8806 solid">
+<a href="__HOST__/Distribution/houtai2">
+<img src="__IMAGES__/houtai_wd.svg"/>
+<h4 style="color:#ff8806">查网贷</h4>
+</a>
+</li>
+<div class="clear"></div>
+</ul>
+</div>
+
+
+
+<div class="warpper_box">
+
+    
+    <div class="houtai_custom">
+        <div class="houtai_custom_tab">
+        	<ul>
+                <foreach name="cate" item="vo" key="k">
+                <li onclick="fnTabBoxFade(this,5,{$k+1});"<if condition="$type eq $k">class="active"<elseif condition="($k eq 0)and($type eq null)"/>class="active"</if>style="width:33%;">
+                	<a href="javascript:void(0);">{$vo.classname}</a>
+                </li>
+                </foreach>
+            	<!-- <li onclick="fnTabBoxFade(this,5,1);" class="active" style="width:33%;">
+                	<a href="javascript:void(0);">贷款种类</a>
+                </li>
+                <li onclick="fnTabBoxFade(this,5,2);" style="width:33%;">
+                	<a href="javascript:void(0);">最高额度</a>
+                </li>
+                <li onclick="fnTabBoxFade(this,5,3);" style="width:33%;">
+                	<a href="javascript:void(0);">是否上征信</a>
+                </li> -->
+                
+            </ul>
+        </div>
+        
+        <div class="houtai_custom_main">
+            <foreach name="cate" item="v" key="k">
+             <div id="TabShow{$k+1}" class="TabHide5 "<if condition="$type neq $k">style="display:none"</if>>
+
+                <div class="houtai_custom_table">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     <foreach name="v.cate" item="v1">
+                        <tr>
+                        <foreach name="v1" item="v2">
+                        <th scope="col" style="border:0;"><a href="__HOST__/Distribution/houtai2/cate_id{$k+1}/{$v2.id}" style="color: #333;font-weight: normal;">{$v2.classname}</a></th>
+                        </foreach>
+             <!--            <th scope="col" style="border:0;">保单贷</th>
+                        <th scope="col" style="border:0;">按借房贷</th>
+                        <th scope="col" style="border:0;">分期贷</th>
+                        <th scope="col" style="border:0;">大额贷</th> -->
+                      </tr>
+                    </foreach>
+                    </table>
+                </div>
+            </div>    
+            </foreach>
+
+        </div>
+        
+        
+    </div>
+    
+    
+</div>
+
+<div class="xindai">
+    <foreach name="res" item="vo">
+    <div class="yangshi" >
+    <img src="__ROOT__{$vo.pic}">
+    <h2>{$vo.title}</h2>
+    <h3>最高额度：{$vo.maxmoney}W</h3>
+    <h3>放款人数：{$vo.number}</h3>
+    </div>
+    </foreach>
+
+</div>
+
+<div class="page" >{$page}</div>
+
+
+
+<!--foot-->
+<include file="public:footer"/>
+<!--foot-->
+
+</body>
+
+<script>	
+function fnTabBoxShow(Focus,Hide,Show){
+	$(Focus).siblings().removeClass("active");
+	$(Focus).addClass("active");
+	$(".TabHide"+Hide).hide();
+	$("#TabShow"+Show).show();
+};
+
+function fnTabBoxSlide(Focus,Hide,Show){
+	$(Focus).siblings().removeClass("active");
+	$(Focus).addClass("active");
+	$(".TabHide"+Hide).hide();
+	$("#TabShow"+Show).slideDown("fast");
+};
+
+function fnTabBoxFade(Focus,Hide,Show){
+	$(Focus).siblings().removeClass("active");
+	$(Focus).addClass("active");
+	$(".TabHide"+Hide).hide();
+	$("#TabShow"+Show).fadeIn("fast");
+};
+
+
+	
+$(document).ready(function (){
+
+})
+</script>
+
+</html>
+

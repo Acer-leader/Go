@@ -1,0 +1,237 @@
+<include file="Public:head"/>
+<style>
+	.imgnav{
+		max-height: 30px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.imgwrapper{
+		display: block;
+		width: 78px;
+		height: 78px;
+		overflow: hidden;
+	}
+	.imgwrapper img{
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border:0;
+	}
+	.spanpd10{
+		margin:10px;
+	}
+	.wxtables.wxtables-sku.newtable{
+		width: 40%;
+		margin: 0;
+	}
+	.img-list li{
+		width: 60px;
+		height:60px;
+	}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+	</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+<script type="text/javascript" src="__JS__/datepicker/WdatePicker.js"></script>
+<div class="container">
+  <div class="inner clearfix"> <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">编辑问答</h1>
+      <form aciton="{:U('/Admin/loan/menSet')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">
+      <input type="hidden" name="id" value="{$cache['id']}">
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">基本信息</h3>
+
+          <div class="formitems">
+            <label class="fi-name">问答标题：</label>
+            <div class="form-controls">
+              <span class="fi-help-text">{$res.title}</span> </div>
+          </div>
+           <div class="formitems">
+            <label class="fi-name">发布者：</label>
+            <div class="form-controls">
+              <span class="fi-help-text">{$res.person_name}</span> </div>
+          </div>
+           <div class="formitems">
+            <label class="fi-name">发布时间：</label>
+            <div class="form-controls">
+              <span class="fi-help-text">{$res.add_time|date='Y-m-d H:i:s',###}</span> </div>
+          </div>
+           <div class="formitems">
+            <label class="fi-name">浏览量：</label>
+            <span class="fi-help-text">{$res.browse}</span> </div>
+            <div class="form-controls">
+          </div>
+           <div class="formitems">
+            <label class="fi-name">回答量：</label>
+            <div class="form-controls">
+              <span class="fi-help-text">{$res.reply}</span> </div>
+          </div>
+            <if condition="$answer eq null">
+              <div class="formitems">
+                <label class="fi-name">答：</label>
+                <div class="form-controls">
+                  <span class="fi-help-text">暂无回答！</span>
+                </div>
+              </div>
+            <else/>
+              <foreach name="answer" item="v">
+                  <div class="formitems">
+                    <label class="fi-name">答：</label>
+                    <div class="form-controls">
+                      <span class="fi-help-text">{$v.content}</span>
+                    </div>
+                  </div>
+              </foreach>
+            </if>
+           <div class="formitems">
+            <label class="fi-name">是否显示：</label>
+            <div class="form-controls">
+          </div>
+              <input type="radio" class="input xxlarge" name="is_show" value="1" <eq name="res['is_show']" value="1"> checked </eq> >是
+              <input type="radio" class="input xxlarge" name="is_show" value="2" <eq name="res['is_show']" value="2"> checked </eq> >否
+              <span class="fi-help-text"></span> </div>
+          </div>
+        <input type="hidden" name="id" value="{$res['id']}">
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>排序：</label>
+            <div class="form-controls">
+              <input type="text" class="input mini" name="sort" value="{$res['sort']}">
+              <span class="fi-help-text">注：数字越大越靠前</span>
+            </div>
+          </div>
+           </div>
+        </div>
+       <!--  <div class="panel-single panel-single-light mgt20 j-showinhyd" style="display: block;">
+          <h3 class="cst_h3 mgb20">产品参数</h3>
+          <div class="formitems">
+            <label class="fi-name">商品参数：</label>
+            <div class="form-controls">
+              <script id="menSetor2" name="param" type="text/plain" style="width:200px;height:500px;">
+                {$cache['param']|htmlspecialchars_decode|stripslashes}
+              </script>
+            </div>
+          </div>
+        </div> -->
+        <!-- end 详情及其它 -->
+        <div class="panel-single panel-single-light mgt20 txtCenter">
+          <a href="{:U('Admin/loan/menPro')}" class="btn">取消</a>
+          <input type="submit" class="btn btn-primary" value="保存">
+        </div>
+      </form>
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+
+
+
+
+
+
+
+<!--选择分类-->
+<script type="text/javascript">
+
+		var dealer_id = $('#dealers_id').val();
+		getstore(dealer_id);
+		$('#dealers_id').change(function(){
+			dealer_id = $(this).val();
+			getstore(dealer_id);
+		});
+
+
+
+	UE.getmenSetor('menSetor',{
+		toolbars: [
+
+      ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'menSettable', 'menSettd']
+
+		],
+
+		autoHeightEnabled: false,
+		autoFloatEnabled: true,
+		elementPathEnabled:false,
+		enableContextMenu:false,
+		wordCount:false,
+
+	});
+
+        $("#j-select_series_id").click(function(){
+            $('.select-series').show();
+            $('#albums-overlay1').show();
+        })
+        $(".cancle").click(function(){
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay1').hide();
+        })
+
+        $("#select_series").click(function(){
+            var seriesid=$("#select_series_id  option:selected").val();
+            var seriesname=$("#select_series_id option:selected" ).text();
+            $('#series_id').val(seriesid);
+            $('#series_name').val(seriesname);
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay1').hide();
+        })
+
+
+
+
+		UE.getmenSetor('menSetor2',{
+    toolbars: [
+
+      ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'menSettable', 'menSettd']
+
+    ],
+
+    autoHeightEnabled: false,
+    autoFloatEnabled: true,
+    elementPathEnabled:false,
+    enableContextMenu:false,
+    wordCount:false,
+
+  });
+</script>
+<!--选择分类-end->-->
+
+<!---->
+<script>
+	
+</script>
+<!--提交表单前验证end
+
+<!--上传图片-->
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+
+ 
+function add_re(r){
+	$('#restriction'+r).show();
+	}
+function del_re(r){
+	$('#restriction'+r).hide();
+	}
+</script>
+<!--上传图片-end->
+
+

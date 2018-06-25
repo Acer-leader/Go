@@ -1,0 +1,321 @@
+
+<include file="Public:head"/>
+</head>
+<body>
+<include file="Public:header"/>  
+<!--  / warpper  -->
+<div class="warpper">
+
+	<div class="comintr">
+    	<div class="index_container">
+        	<div class="cominfo_left">
+            	<div class="cominfo_top">
+                    <div class="cominfo_left_left">
+                        <img src="{$small.logo}" width="100%" />
+                    </div>
+                    <div class="cominfo_left_right">
+                        <h5>公司名称：<span>{$small['personname']}</span></h5>
+                        <h5>联系人：<span>{$small.lianxi}</span></h5>
+                        <h5>联系方式：<span>{$small['telephone']}</span></h5>
+                        <h5>主营业务：<span>{$small.yewu}</span></h5>
+                        <h5>公司简介：<span>{$small.jianjie}</span></h5>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="cominfo_bottom">
+                	<div class="common_tit">
+                        <span>贷款产品</span>
+                    </div>
+                    <div class="cominfo_cot">
+
+                    <volist name="loan" id="v" key="k">
+                        <eq name="k" value="1">
+                        	<div class="gedai2_list gedai2_list_first">
+                            	<div class="gedai2_wz">
+                                	<div class="gedai2_list_left">
+                                        <div class="gedai2_list_img">
+                                        	<a href="">
+                                        	<img src="{$v.logo_pic1}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gedai2_list_right">
+                                    	<div class="gedai2_list_top">
+                                        	<a href="">{$v.title}</a>
+                                            <ul class="gedai2_top_list">
+                                                <notempty name="v.diya">
+                                            	   <li><span>无需抵押</span></li>
+                                                </notempty>
+                                                <notempty name="v.is_sbzksq">
+                                            	   <li><span>上班族 可申请</span></li>
+                                                </notempty>
+                                            	<li><span>{$v.fksj}天放款</span></li>
+                                                <div class="clear"></div>
+                                            </ul>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="gedai2_list_bottom">
+                                        	<div class="gedai2_bottom_left">
+                                            	<h4>速度快 额度高</h4>
+                                                <ul>
+                                                <notempty name="v.is_sbzksq">
+                                                	<li><span class="person"></span> 上班族可申请</li>
+                                                </notempty>
+                                                	<li><span class="time"></span> {$v.fksj}天放款</li>
+                                                </ul>
+                                            </div>
+                                        	<div class="gedai2_bottom_center">
+                                            	<dl>
+                                                	<dt>贷款金额： </dt>
+                                                    <dd><span class="num_red">{$v.money} 万</dd>
+                                                </dl>
+                                                <dl>
+                                                	<dt>月管理费： </dt>
+                                                    <dd><span class="num_red">{$v.lnsm} %</dd>
+                                                </dl>
+                                            </div>
+                                        	<div class="gedai2_bottom_right">
+                                            	<div class="gedai2_bottom_table">
+                                            	<table>
+                                                	<tbody>
+                                                    	<tr>
+                                                        	<td>
+                                                                {$v.yaoqiu}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                </div>
+                                                <div class="gedai2_more">
+                                                	<a href="{:U('CarLoan/freeApply',array('id'=>$v['id']))}">查看详情</a>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        <else/>
+                        	<div class="gedai2_list">
+                                <div class="gedai2_wz">
+                                    <div class="gedai2_list_left">
+                                        <div class="gedai2_list_img">
+                                            <a href="gedaidot.html">
+                                            <img src="{$v.logo_pic1}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gedai2_list_right">
+                                        <div class="gedai2_list_top">
+                                            <a href="gedaidot.html">{$v.title}</a>
+                                            <ul class="gedai2_top_list">
+                                                <notempty name="v.diya">
+                                                   <li><span>无需抵押</span></li>
+                                                </notempty>
+                                                <notempty name="v.is_sbzksq">
+                                                   <li><span>上班族 可申请</span></li>
+                                                </notempty>
+                                                <li><span>{$v.fksj}天放款</span></li>
+                                                <div class="clear"></div>
+                                            </ul>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="gedai2_list_bottom">
+                                            <div class="gedai2_bottom_left">
+                                                <h4>速度快 额度高</h4>
+                                                <ul>
+                                                <notempty name="v.is_sbzksq">
+                                                    <li><span class="person"></span> 上班族可申请</li>
+                                                </notempty>
+                                                    <li><span class="time"></span> {$v.fksj}天放款</li>
+                                                </ul>
+                                            </div>
+                                            <div class="gedai2_bottom_center">
+                                                <dl>
+                                                    <dt>贷款金额： </dt>
+                                                    <dd><span class="num_red">{$v.money} 万</dd>
+                                                </dl>
+                                                <dl>
+                                                    <dt>月管理费： </dt>
+                                                    <dd><span class="num_red">{$v.lnsm} %</dd>
+                                                </dl>
+                                            </div>
+                                            <div class="gedai2_bottom_right">
+                                                <div class="gedai2_bottom_table">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                {$v.yaoqiu}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                </div>
+                                                <div class="gedai2_more">
+                                                    <a href="{:U('CarLoan/freeApply',array('id'=>$v['id']))}">查看详情</a>
+                                                </div>
+                                            </div>
+											
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </eq>
+                    </volist>
+                    </div>
+                {$page}
+                </div>
+            </div>
+            <div class="cominfor_right">
+            	<div class="common_tit">
+                    <span>新闻资讯</span>
+                </div>
+            	<ul class="news1_right_list">
+
+                    <volist name="news" id="v">
+                    	<li class="news1_right_list_first">
+                        	<a href="{:U('News/newsDot1',array('id'=>$v['id']))}">
+                            	<h4>{$v.news_title}</h4>
+                                <h5 class="detail"> 
+                                    {$v.detail|htmlspecialchars_decode|stripslashes|strip_tags|mb_substr=###,0,100,'utf-8'}
+                                </h5>
+                                <span>查看详情</span>
+                            </a>
+                        </li>
+                    </volist>
+<script>
+$(function(){
+    var p  = $(".detail").find('p').eq(1);
+    console.log(p);
+    $(".detail").find('p').eq(1).each(function(){
+
+        var h5 = $(this).html();
+        h5 = h5.substring(0,4);
+        $(this).html(h5);
+        //console.log()
+    })
+})
+
+</script>
+
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    
+</div>
+<!--  / warpper  -->
+
+<style>
+.comintr {
+    padding: 40px 0;
+}
+.cominfo_left {
+    width: 870px;
+    float: left;
+}
+.cominfor_right {
+    width: 300px;
+    float: right;
+}
+.cominfo_top {
+    padding: 20px;
+    border: solid 1px #ddd;
+}
+.cominfo_left_left {
+    width: 26%;
+    float: left;
+    padding: 0px 50px 0px 30px;
+}
+.cominfo_left_right {
+    float: right;
+    width: 74%;
+    padding: 20px 0;
+}
+.cominfo_left_right h5 {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0;
+}
+.cominfo_left_right h5 span {
+    font-size: 13px;
+}
+.gedai2_list_right {
+    float: right;
+    width: 750px;
+}
+.gedai2_bottom_center {
+    width: 220px;
+}
+.gedai2_bottom_left {
+    width: 215px;
+}
+.cominfo_bottom{
+	margin-top:40px;
+}
+.cominfo_cot{
+	border:solid 1px #ddd;
+}
+.common_tit span {
+    border-left: 4px #357CE2 solid;
+}
+.cominfor_right .common_tit {
+    border-bottom: solid 2px #357CE2;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+}
+</style>
+
+
+<div class="right_nav">
+    <ul>
+        <li>
+            <a href="javascript:void(0);" class="telep">
+            	<img src="__IMAGES__/telep.png" width="100%"/>
+                <span class="telep_num">400-066-7774</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);"  class="kefu">
+            	<img src="__IMAGES__/kefu.png"  width="100%"/>
+                <span>在线客服</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);"  class="return">
+            	<img src="__IMAGES__/return.png"  width="100%"/>
+                <span>返回顶部</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<!--  / footer  -->
+<include file="Public:footer"/> 
+<!--  / footer  -->
+
+</body>
+
+
+    <script src="__JS__/index.js"></script>
+	<script src="__JS__/swiper.min.js"></script>
+
+
+<script>
+
+function fnTabBoxFade(Focus,Hide,Show){
+	$(Focus).siblings().removeClass("focus");
+	$(Focus).addClass("focus");
+	$(".TabHide"+Hide).hide();
+	$("#TabShow"+Show).fadeIn("fast");
+};
+</script>
+
+</html>

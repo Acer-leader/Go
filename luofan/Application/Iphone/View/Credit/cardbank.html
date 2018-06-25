@@ -1,0 +1,83 @@
+<include file="Public:head"/>
+
+<body>
+
+
+<!--head -->
+<div class="head_box" style=" background:#6eaedb">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">{$brank}</div>
+<div class="clear"></div>
+</div>
+<!--head --> 
+
+
+
+
+<div class="warpper_box">
+
+
+
+
+
+
+<div class="ny_card_box_three">
+<ul>
+<foreach name="new" item="vo">
+<li>
+<div class="ny_card_box_three_list_l">
+<img src="__ROOT__{$vo.logo_img}" />
+</div>
+<div class="ny_card_box_three_list_r">
+<h5>{$vo.creditname}</h5>
+<h4>{$vo.favorable2}</h4>
+
+<div class="ny_card_box_three_list_r_bot">
+<span>{$vo.apply}人申请</span>
+<a href="__HOST__/Credit/card_dot/id/{$vo.id}">免费申请</a>
+<div class="clear"></div>
+</div>
+</div>
+<div class="clear"></div>
+</li>
+</foreach>
+
+<div class="clear"></div>
+</ul>
+<a href="__HOST__/Credit/creditlist" class="card_anniu">进入选卡中心</a>
+</div>
+
+
+
+</div>
+
+
+
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+
+<script>
+		
+$(document).ready(function (){
+$(window).load(function (){	
+$(".swiper1").height($(".ka_right img").height()+10)
+})
+			var mySwiper = new Swiper('.swiper1', {
+				loop: true,
+				autoplay: 5000,
+				spaceBetween: 0,
+				slidesPerView : 2,
+				paginationClickable: true,
+				autoplayDisableOnInteraction: false,
+			})
+})
+</script>
+</html>

@@ -1,0 +1,185 @@
+<include file="Public:head"/>
+</head>
+
+<body>
+
+
+<!--header-->
+<include file="Public:header"/>
+<!--header-->
+
+
+
+<!--  / warpper  -->
+<div class="warpper">
+	<!--gedai_box1-->
+	<div class="box_main">
+        <include file="Public:left"/>
+    	
+    	<!--right-->
+    	<div class="per_right">
+    		<div class="per_tip">代理详细信息</div>
+    		<div class="fx1">
+            <if condition="$share['logo_pic'] neq null">
+            <img src="__ROOT__{$share.logo_pic}">
+            <else/>
+            <img src="__IMAGES__/touxiang1.jpg">
+            </if>
+            </div>
+            <div  class="fx2"><h3>姓&nbsp;&nbsp;&nbsp;名：<input type="text" value="{$share.personname}" readonly></h3><h3>手机号：<input type="text" value="{$share.telephone}" readonly></h3></div><div class="clear"></div>
+        </div>
+    	<div class="per_right">
+    		<div class="per_tip">代理链接</div>
+    		<div class="fx3"><h3>代理链接</h3></div>
+            <div  class="fx4"><h3 id="link">{$share.url}</h3><h4 onclick="jsCopy(this)">复制</h4></div>
+        </div>
+        <div class="per_right">
+    		<div class="per_tip">代理二维码</div>
+    		<div class="fx5"><img src="__ROOT__{$share.pic}"></div>
+        </div>
+        
+        
+        
+    	<div class="clear"></div>
+	</div>
+	
+
+</div>
+</div>
+<!--  / warpper  -->
+
+
+
+
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+<input id="tocopy" value=""/>
+</body>
+<script data-cfhash='f9e31' type="text/javascript">  
+    function jsCopy(obj){  
+        var value   =   $("#link").html();
+        $('#tocopy').val(value);
+        var e  =   document.getElementById("tocopy");
+
+        e.select(); //选择对象  
+        document.execCommand("Copy"); 
+        $(obj).html('已复制');
+    }  
+                
+</script>
+<script>
+
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 8,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+	var mySwiper3 = new Swiper('.swiper3',{
+		pagination: '.pagination3',
+		loop:true,
+		autoplay:5000, 
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipePrev()
+	})
+	  
+	$('.arrow-right3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipeNext()
+	})
+	var mySwiper4 = new Swiper('.swiper4',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 4,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.fangdai_lt').on('click', function(e){
+		e.preventDefault()
+		mySwiper4.swipePrev()
+	})
+	  
+	$('.fangdai_rt').on('click', function(e){
+		e.preventDefault()
+		mySwiper4.swipeNext()
+	})
+</script>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+	$(window).load(function(){
+		$(".swiper1").height($(".swiper1 .ban_box ").height());
+		$(".swiper3").height($(".swiper3 img ").height());
+		$('.gedai4_right').height($('.gedai4_left').height()+42)
+		$('.swiper4').height($('.swiper4 img').height()+60)
+		
+	})
+	$(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+		$(".swiper3").height($(".swiper3 img ").height());
+		$('.gedai4_right').height($('.gedai4_left').height()+42)
+		$('.swiper4').height($('.swiper4 img').height()+60)
+	});
+
+	
+})	
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})	
+</script>
+
+</html>

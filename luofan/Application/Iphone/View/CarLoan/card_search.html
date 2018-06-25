@@ -1,0 +1,161 @@
+<include file='Public:head'/>
+<body>
+
+
+
+<!--head --> 
+<div class="head_box" <switch name="cateid">
+<case value="1">style=" background:#4988db"</case>
+<case value="2"> style=" background:#ff8aa3"</case>
+<case value="3">style=" background:#fe9a3a"</case>
+</switch>>
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/index" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">
+<switch name="cateid">
+<case value="1">个贷</case>
+<case value="2">房贷</case>
+<case value="3">车贷</case>
+</switch>
+
+</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+
+
+<div class="warpper_box">
+
+<div class="gedai_search_box">
+
+<ul class="gedai_search_box_title">
+<foreach name="res" item="vo" key="k">
+<li <eq name="k" value="1">style=" width:44%"</eq>><a href="#" >{$vo.classname}<img src="__IMAGES__/blue_sj.png" /></a></li>
+</foreach>
+
+<div class="clear"></div>
+</ul>
+
+<div class="gedai_search_box_list">
+<foreach name="res" item="vo" key="k">
+<ul>
+<foreach name="vo.cate" item="vo1" key="k1">
+<a style="    font-size: 13px;color: #666;"
+<switch name="k" >
+<case value="0">
+ href="__HOST__/CarLoan/card_search/identityid/{$vo1.id}" 
+</case>
+<case value="1">
+ href="__HOST__/CarLoan/card_search/houseid/{$vo1.id}"
+</case>
+<case value="2">
+ href="__HOST__/CarLoan/card_search/honourid/{$vo1.id}"
+</case>
+</switch>><li>
+{$vo1.classname}</li></a>
+</foreach>
+</ul>
+</foreach>
+
+
+
+</div>
+
+<div class="black_bg"></div>
+</div>
+
+
+<div class="ny_gedai_box" >
+<ul>
+
+<foreach name="carloan" item="vo">
+<li>
+<a href="__HOST__/CarLoan/car_dot/id/{$vo.id}">
+<div class="ny_gedai_box_list_l">
+<div class="ny_gedai_box_list_l_type">
+<span>人气</span>
+<div class="ny_gedai_box_list_l_type_bg"></div>
+</div>
+<img src="__ROOT__{$vo.logo_pic1}" />
+</div>
+<div class="ny_gedai_box_list_r">
+<div class="ny_gedai_box_list_r_top">
+{$vo.title}
+</div>
+<div class="ny_gedai_box_list_r_bottom">
+<div class="ny_gedai_box_list_r_bottom_list">
+<dl>
+<dt>贷款金额： </dt>
+<dd><span class="num_red">{$vo.money|number_format=###,1,'.',''}~{$vo.money1|number_format=###,1,'.',''}</span> 万</dd>
+</dl>
+<dl>
+<dt>月管理费： </dt>
+<dd><span class="num_red">{$vo.lnsm}</span> %</dd>
+</dl>
+</div>
+<div class="ny_gedai_box_list_r_bottom_btn">查看详情</div>
+</div>
+</div>
+<div class="clear"></div>
+</a>
+</li>
+</foreach>
+
+</ul>
+</div>
+
+</div>
+
+
+
+
+  <include file="Public:footer1"/>
+
+
+<!--foot-->
+  <include file="Public:footer"/>
+<!--foot-->
+
+
+</body>
+
+<script>        
+$(document).ready(function (){
+
+
+      var show = false;
+      var index ;
+      $(".gedai_search_box_title li").click(function(){
+        index = $(this).index();
+            if($(".gedai_search_box_list ul").eq(index).css('display')=="none"){
+                $(".gedai_search_box_list ul").eq(index).show().siblings().hide();
+                $(".black_bg").show()
+                $('html,body').css('overflow-y','hidden');
+            }else{
+                $(".gedai_search_box_list ul").eq(index).hide()
+                $(".black_bg").hide()
+                $('html,body').css('overflow-y','scroll');
+                }
+})
+        
+            $(".gedai_search_box_list ul li").click(function(){
+              $(".gedai_search_box_list ul").hide();
+            $(".black_bg").hide()
+             })
+
+    $(".black_bg").click(function(){
+        $(".gedai_search_box_list ul").hide();
+            $(".black_bg").hide();
+        })
+
+
+    
+})
+
+
+</script>
+</html>

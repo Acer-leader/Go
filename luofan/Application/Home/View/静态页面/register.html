@@ -1,0 +1,104 @@
+<include file="Public:header" />
+</head>
+<body>
+
+<include file="Public:top" />
+<!-- ========================================== -->
+   
+<!--  / warpper  -->
+<div class="warpper">
+
+<div class="register_box">
+	<div class="index_container">
+    	<div class="register_cot">
+        <div class="register_cot_left"><img src="__IMAGES__/bg_login.png" /></div>
+        	<form>
+            	<div class="register_top">
+                	<div class="register_desc">注册</div>
+                    <div class="register_more"> 已有帐号？ <a href="login.html">登录</a></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="register_bottom">
+                	<div class="register_list">
+                    	<input class="register_name" type="text" placeholder="请输入您的称呼" onblur="this.placeholder='请输入您的称呼'" onfocus="this.placeholder=''"/>
+                    </div>
+                    <div class="register_list">
+                    	<div class="register_radio">
+                        	<label><div class="radio"><span class="checked"><input checked="checked" class="Gender" name="Gender" type="radio" value="1"></span></div>先生</label>
+                            <label><div class="radio"><span><input class="Gender" name="Gender" type="radio" value="2"></span></div>女士</label>
+                        </div>
+                    </div>
+                    <div class="register_list register_list1">
+                    	<input class="register_phone" type="text" placeholder="请输入您的手机号" onblur="this.placeholder='请输入您的手机号'" onfocus="this.placeholder=''"/>
+                    </div>
+                    <div class="register_list register_list1">
+                    	<div class="register_left">
+                    		<input class="register_num" type="text" placeholder="输入验证码" onblur="this.placeholder='输入验证码'" onfocus="this.placeholder=''"/>
+                        </div>
+                    	<div class="register_right">
+                        	<a href="javascript:void(0);">
+                            	<img src="__IMAGES__/register_yzm.jpg" /><div class="register_sx"><img src="__IMAGES__/register_sx.png" width="20"/></div>
+                            </a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="register_list register_list1">
+                    	<div class="register_left">
+                    		<input class="register_dx" type="text" placeholder="输入验证码" onblur="this.placeholder='输入验证码'" onfocus="this.placeholder=''"/>
+                        </div>
+                    	<div class="register_right">
+                        	<input type="submit" class="register_dx_tj" value="获取"/>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="register_list  register_list1">
+                    	<input class="register_password" type="text" placeholder="6至20个字符，字母和数字组合方式" onblur="this.placeholder='6至20个字符，字母和数字组合方式'" onfocus="this.placeholder=''"/>
+                    </div>
+                    <div class="register_list  register_list1 register_list_ts">
+                    	<div class="checkbox_box">
+                    	<input class="checkbox" type="checkbox" /><a href="javascript:void(0);">同意洛凡金融服务协议</a>
+                        </div>
+                    </div>
+                    <div class="register_list">
+                        <input type="submit" class="register_ce" value="提交注册"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
+<!--  / warpper  -->
+
+<!-- ========================================== -->
+<include file="Public:right" />
+<include file="Public:footer" />
+<!-- ========================================== -->
+
+</body>
+<script>
+
+$(document).ready(function(){
+	$('.register_radio label').click(function(){
+		if($(this).find('span').hasClass('checked')){
+		}else{
+			$(this).find('span').addClass('checked');
+			$(this).siblings('label').find('span').removeClass('checked');
+		}
+	})
+})	
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})	
+</script>
+
+</html>

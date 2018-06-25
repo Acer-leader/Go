@@ -1,0 +1,258 @@
+<include file="Public:head"/>
+<style>
+.active a {
+    background: #6eaedb; 
+	display:block;
+    color:#fff !important;	
+	border: 1px #6eaedb solid;
+}
+.gedai_search_box_list {
+    padding-top: 87px;
+}
+.small_gengduo{
+    margin-top:-87px;
+    padding-top: 115px;
+}
+</style>
+<body>
+
+
+<!--head -->
+<div class="head_box" style=" background:#6eaedb">
+<include file="Public:header1"/>
+</div>
+<!--head --> 
+
+
+
+
+<div class="warpper_box">
+
+<div class="gedai_search_box">
+
+<ul class="gedai_search_box_title">
+<foreach name="type3" item="vo" key="k">
+    <li <if condition="$k neq 2">style=" width:26%"<else/>style=" width:24%"</if>>
+        <a href="javsscript:void(0)">
+            <if condition="$k neq 2">所有</if>{$vo.classname}<img src="__IMAGES__/orange_sj.png" />
+        </a>
+    </li>
+</foreach>
+  <li style=" width:22%"><a href="#">更多<img src="__IMAGES__/orange_sj.png" /></a></li>
+<div class="clear"></div>
+</ul>
+
+<div class="gedai_search_box_list">
+<foreach name="type3" item="vo">
+<ul>
+<foreach name="vo.cate" item="vo1">
+<a href="__HOST__/Credit/creditlist/card_type_{$vo.id}/{$vo1.id}" style="    font-size: 13px;color: #666;">
+    <li><span><if condition="$vo1.logo_pic neq null"><img src="__ROOT__{$vo1.logo_pic}" /></if></span>{$vo1.classname}</li>
+</a>
+</foreach>
+</ul>
+</foreach>
+
+
+
+
+<ul class="small_gengduo">
+<foreach name="type5" item="vo">
+<li>
+<div class="small_biaoti">{$vo.classname}</div>
+<div class="small_gengduo_list">
+<foreach name="vo.cate" item="vo1">
+<div class="small_gengduo_list_xk" data-id="{$vo1.id}" data-pid="{$vo.id}"><a href="javascript:void(0);" >{$vo1.classname}</a></div>
+</foreach>
+<div class="clear"></div>
+</div>
+</li>
+</foreach>
+
+<div  style=" height:100px;"></div>
+
+
+
+
+<div class="xkzx_btns">
+<a href="javascript:void(0);" class="release_btns">重置</a>
+<a href="javascript:void(0);" class="submit_btns">完成</a>
+</div>
+</ul>
+<script>
+$('.release_btns').click(function(){
+
+    $('.small_gengduo_list_xk').removeClass('active');
+})
+
+$('.submit_btns').click(function(){
+    var id  = '';
+    var pid =   '';
+  
+    $('.small_gengduo_list_xk').each(function(){
+    
+        if($(this).hasClass('active')){
+            id      =   id  + $(this).attr('data-id')+ '-';
+           // pid     =   pid + $(this).attr('data-pid')+'-';
+
+        }
+      
+    });
+    if(id==''){
+        alert('请选择至少一项！');
+        return false;
+    }
+    var post    =   {};
+    post.id     =   id;
+    //post.pid    =   pid;
+        
+        $.ajax({
+            url:'__HOST__/Credit/getsearch',
+            data:post,
+            type:'post',
+            dataType:'json',
+            success: function(data){
+                if(data.status==1){
+                    $('.ny_gedai_box').html(data.info);
+                    $('.gedai_search_box_title li').click();
+                    $('html,body').css('overflow-y','scroll');
+                    
+                    //console.dir(data.info);
+                    //window.location.href="Weixin/Credit/search";
+                }else{
+                    alert(data.info);
+                }
+            }
+        });
+    
+  
+  
+})
+
+
+
+</script>
+
+
+
+</div>
+
+
+
+<div class="black_bg"></div>
+</div>
+
+
+<div class="ny_gedai_box" >
+<ul>
+<foreach name="res" item="vo">
+<li>
+<a href="__HOST__/Credit/card_dot/id/{$vo.id}">
+<div class="ny_gedai_box_list_l">
+<div class="ny_gedai_box_list_l_type">
+<span>人气</span>
+<div class="ny_gedai_box_list_l_type_bg"></div>
+</div>
+<img src="__ROOT__{$vo.logo_pic}" />
+</div>
+<div class="ny_gedai_box_list_r">
+<div class="ny_gedai_box_list_r_top">
+{$vo.creditname}
+</div>
+<div class="ny_gedai_box_list_r_bottom">
+<div class="ny_gedai_box_list_r_bottom_list">
+<dl>
+<dt>申请数量： </dt>
+<dd><span class="num_red">{$vo.apply}</span>人申请</dd>
+</dl>
+<dl>
+<dt>年费介绍： </dt>
+<dd><span class="num_red">{$vo.annual_fee}</span> </dd>
+</dl>
+</div>
+<div class="ny_gedai_box_list_r_bottom_btn">查看详情</div>
+</div>
+</div>
+<div class="clear"></div>
+</a>
+</li>
+</foreach>
+
+</ul>
+<div class="page" style="padding-bottom:20px;">{$page}</div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+</body>
+
+<script>		
+$(document).ready(function (){
+   var show = false;
+	  var index ;
+	 $(".gedai_search_box_title li").click(function(){
+	  	index = $(this).index();
+			 if($(".gedai_search_box_list ul").eq(index).css('display')=="none"){
+				 
+				 $(".gedai_search_box_list ul").eq(index).show().siblings().hide();
+				 
+				 $(".black_bg , .gedai_search_box_list").show()
+				 $('html,body').css('overflow-y','hidden');
+			 }else{
+				 $(".gedai_search_box_list ul").eq(index).hide()
+				 $(".black_bg , .gedai_search_box_list").hide()
+				 $('html,body').css('overflow-y','scroll');
+				}
+				
+				
+				
+$(".small_gengduo_list_xk").click(function() {
+    $(this).addClass("active").siblings().removeClass("active");
+});
+	
+				
+})
+		
+             $(".gedai_search_box_list ul li").click(function(){
+             // $(".gedai_search_box_list ul").hide();
+	         // $(".black_bg , .gedai_search_box_list").hide()
+			  
+})
+
+ $(".black_bg").click(function(){
+		   $(".gedai_search_box_list ul").hide();
+		    $(".black_bg , .gedai_search_box_list").hide();
+		 })
+
+ 
+
+$(window).scroll(function(){
+
+	if($(window).scrollTop()>0){
+		$(".gedai_search_box_title").addClass("dingwei");
+		$(".gedai_search_box_list").addClass("pad");
+	}else{
+		$(".gedai_search_box_title").removeClass("dingwei");
+		$(".gedai_search_box_list").removeClass("pad");
+	}
+})
+
+/*$('.gedai_search_box_title li').eq(3).click(function(){
+	$('html,body').css('overflow-y','hidden');
+})*/
+$('.small_gengduo li').click(function(){
+	 $(".gedai_search_box_list ul").show();
+})	 
+})
+</script>
+</html>

@@ -1,0 +1,190 @@
+<include file="Public:head"/>
+
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<script type="text/javascript">
+
+    J(function(){
+        J('#dayStartTime').calendar({ format:'yyyy-MM-dd 00:00:00' });
+        J('#dayEndTime').calendar({ format:'yyyy-MM-dd 23:59:59' });
+        J('#monthStartTime').calendar({ format:'yyyy-MM-dd 00:00:00' });
+        J('#monthEndTime').calendar({ format:'yyyy-MM-dd 23:59:59' });
+        J('#yearStartTime').calendar({ format:'yyyy-MM-dd 00:00:00' });
+        J('#yearEndTime').calendar({ format:'yyyy-MM-dd 23:59:59' });
+    });
+
+</script>
+
+<div class="container">
+<div class="inner clearfix">
+<div class="content-left fl">
+    <include file="Public:left"/>
+</div>
+<!-- end content-left -->
+
+<div class="content-right fl">
+
+
+<h1 class="content-right-title">财务统计</h1>
+
+
+
+<div class="tablesWrap">
+<form action="" method="GET" name="form1">
+    <div class="tables-searchbox">
+
+        <!--<input type="text" autocomplete="off" name="start_time" id="starttime" value="{$start_time}" placeholder="起始日期" class="input Wdate">-->
+        <!--<span class="mgr5">至</span>-->
+        <!--<input type="text" autocomplete="off" name="end_time" id="endtime" value="{$end_time}" placeholder="结束日期" class="input Wdate">-->
+        <!--<button class="btn btn-primary"><i class="gicon-search white"></i>查询</button>-->
+
+        <input type="hidden" name="action" value="">
+    </div>
+</form>
+<!-- end tables-searchbox -->
+
+<table class="wxtables data mgt15">
+    <colgroup>
+        <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+    </colgroup>
+    <thead>
+    <tr>
+        <td colspan="8" class="left" style="font-size:14px;">日统计
+		<form action="{:U('Supplier/Gyfinance/statistics/type/1')}" method="post">
+			<input type="text" autocomplete="off" name="dayStartTime" id="dayStartTime" value="{$dayStartTime}" placeholder="起始日期2017-04-01" class="input Wdate">
+			<span class="mgr5">至</span>
+			<input type="text" autocomplete="off" name="dayEndTime" id="dayEndTime" value="{$dayEndTime}" placeholder="结束日期2017-04-30" class="input Wdate">
+			<button class="btn btn-primary"><i class="gicon-search white"></i>查询</button>
+		</form>
+		</td>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <!-- <td><div class="dataItems">总接收订单</div><div class="dataItems"><span class="num1">{$day['all']|default="0"}</span> </div></td> -->
+        <td><div class="dataItems">授理订单</div><div class="dataItems"><span class="num1">{$day['accept']|default="0"}</span> </div></td>
+        <td><div class="dataItems">订单金额</div><div class="dataItems">￥<span class="num1">{$day['order_price']|default="0"}</span> </div></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+    <div class="chartWrap mgt15 clearfix">
+
+
+
+<table class="wxtables data mgt15">
+    <colgroup>
+        <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+    </colgroup>
+    <thead>
+    <tr>
+        <td colspan="8" class="left" style="font-size:14px;">月统计
+		<form action="{:U('Supplier/Gyfinance/statistics/type/2')}" method="post">
+		 <input type="text" autocomplete="off" name="monthStartTime" id="monthStartTime" value="{$monthStartTime}" placeholder="起始日期2017-01" class="input Wdate">
+        <span class="mgr5">至</span>
+        <input type="text" autocomplete="off" name="monthEndTime" id="monthEndTime" value="{$monthEndTime}" placeholder="结束日期2017-04" class="input Wdate">
+        <button class="btn btn-primary"><i class="gicon-search white"></i>查询</button>
+		</form>
+
+		</td>
+    </tr>
+    </thead>
+    <tbody>
+   <tr>
+       <!-- <td><div class="dataItems">总接收订单</div><div class="dataItems"><span class="num1">{$month['all']|default="0"}</span> </div></td> -->
+       <td><div class="dataItems">授理订单</div><div class="dataItems"><span class="num1">{$month['accept']|default="0"}</span> </div></td>
+       <td><div class="dataItems">订单金额</div><div class="dataItems">￥<span class="num1">{$month['order_price']|default="0"}</span> </div></td>
+    </tr>
+
+    </tbody>
+</table>
+</div>
+    <div class="chartWrap mgt15 clearfix">
+
+
+<table class="wxtables data mgt15">
+    <colgroup>
+       <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+		<col width="13%">
+        <col width="13%">
+        <col width="13%">
+    </colgroup>
+    <thead>
+    <tr>
+        <td colspan="8" class="left" style="font-size:14px;">总统计
+		<form action="{:U('Supplier/Gyfinance/statistics/type/3')}" method="post">
+			<input type="text" autocomplete="off" name="yearStartTime" id="yearStartTime" value="{$yearStartTime}" placeholder="起始日期2016" class="input Wdate">
+			<span class="mgr5">至</span>
+			<input type="text" autocomplete="off" name="yearEndTime" id="yearEndTime" value="{$yearEndTime}" placeholder="结束日期2017" class="input Wdate">
+			<button class="btn btn-primary"><i class="gicon-search white"></i>查询</button>
+		</form>
+
+		</td>
+    </tr>
+    </thead>
+    <tbody>
+   <tr>
+       <!-- <td><div class="dataItems">总接收订单</div><div class="dataItems"><span class="num1">{$year['all']|default="0"}</span> </div></td> -->
+       <td><div class="dataItems">授理订单</div><div class="dataItems"><span class="num1">{$year['accept']|default="0"}</span> </div></td>
+       <td><div class="dataItems">订单金额</div><div class="dataItems">￥<span class="num1">{$year['order_price']|default="0"}</span> </div></td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+<div class="chartWrap mgt15 clearfix">
+
+</div>
+
+<!-- end wxtables -->
+<div class="tables-btmctrl clearfix">
+    <div class="fr">
+        <div class="paginate">
+        </div>
+        <!-- end paginate -->
+    </div>
+</div>        <!-- end tables-btmctrl -->
+</div>
+
+
+
+
+</div>
+<!-- end content-right -->
+</div>
+</div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+<script type="text/javascript">
+    function daochu(id){
+        if(isNaN(id)){
+            id = "";
+        }
+        location.href="{:U('/Admin/Cash/excel')}?start_time="+$('#starttime').val()+"&end_time="+$('#endtime').val()+"&dealerid="+id+"&goodsid="+$('#goodsid').val()+"&storeid="+$('#storeid').val();
+    }
+</script>

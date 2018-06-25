@@ -1,0 +1,183 @@
+<include file="Public:header" />
+</head>
+<body>
+
+<include file="Public:head" />
+<!-- ========================================== -->
+
+    
+<!--  / warpper  -->
+<div class="warpper">
+ 
+ 	<div class="newsdot_box">
+    	<div class="index_container">
+        	<div class="newsdot_left">
+            	<div class="newsdot_left_cot">
+            	<div class="newsdot_tit">
+                	<h4>{$news.news_title}</h4>
+                </div>
+                <div class="newsdot_cot">
+                	<div class="newstime">时间：{$news.add_time|date="Y-m-d H:i:s",###}  来源：{$news.source}  作者：{$news.author} </div>
+                	{$news.detail|htmlspecialchars_decode|stripslashes}
+			   </div>
+                <div class="newsdot_sx">
+                	<h4><a href="{:U('index/newsDot','id='.$newss['id'])}">上一篇:<span>{$newss.news_title}</span></a></h4>
+                	<h4><a href="{:U('index/newsDot','id='.$newsx['id'])}">下一篇:<span>{$newsx.news_title}</span></a></h4>
+                </div>
+                
+                </div>
+                <div class="gonglue1_list gonglue1_list_ts1">
+                   <div class="gonglue_tit gonglue_tit5">
+                       <h4>相关资讯</h4>
+                   	   <a href="{:U('index/newsList')}">更多</a>
+                   </div>
+                   <div class="gonglue1_wz gonglue1_wz1">
+                       <ul>
+					   <foreach name="newslist" item="vo">
+                           <li><a href="{:U('index/newsDot','id='.$vo['id'])}"><i class="fa fa-angle-right"></i> {$vo.title}</a></li>
+						</foreach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+			
+			
+			
+        	<div class="newsdot_right">
+            	<div class="newsdot_right_list">
+            		<div class="news1_right2">
+                        <h3>今日头条</h3>
+                        <a href="{:U('index/newsList',array('cate_name'=>'今日头条'))}"><div class="news_rm">更多<span><img src="__IMAGES__/news_rm1.png" width="100%"></span></div></a>
+                    </div>
+                    <ul class="news1_right3_list">
+					<foreach name="today" item="vo">
+                    	<li>
+						
+                        	<a href="{:U('index/newsDot1','id='.$vo['id'])}">
+                                <h4>{$vo.news_title}</h4>
+                                <div class="news1_right3_list_wz">
+                                    <h5>{$vo['thumb_detail']|htmlspecialchars_decode|stripslashes}</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                <div class="news1_right3_list_img">
+                                	<img src="{$vo.logo_pic}"  width="100%">
+                                </div>
+                                <div class="clear"></div>
+                            </a>
+						
+                        </li>
+						</foreach>
+                    </ul>
+            </div>
+            	<div class="newsdot_right_list">
+            		<div class="news1_right2">
+                        <h3>热门咨询</h3>
+                        <a href="{:U('index/newsList',array('is_hot'=>1))}"><div class="news_rm">更多<span><img src="__IMAGES__/news_rm1.png" width="100%"></span></div></a>
+                    </div>
+                    <ul class="news1_right3_list">
+					<foreach name="hot" item="vo">
+                    	<li>
+                        	<a href="{:U('index/newsDot1','id='.$vo['id'])}">
+                                <h4>{$vo.news_title}</h4>
+                                <div class="news1_right3_list_wz">
+                                    <h5>{$vo['thumb_detail']|htmlspecialchars_decode|stripslashes}</h5>
+                                    <span>查看详情</span>
+                                </div>
+                                <div class="news1_right3_list_img">
+                                	<img src="__IMAGES__/news1_right3_1.jpg" width="100%">
+                                </div>
+                                <div class="clear"></div>
+                            </a>
+                        </li>
+					</foreach>
+                    </ul>
+            </div>
+            </div>
+			
+			
+			
+        	<div class="clear"></div>
+        </div>
+    </div>
+    
+</div>
+<!--  / warpper  -->
+
+<!-- ========================================== -->
+<include file="Public:right" />
+<include file="Public:footer" />
+<!-- ========================================== -->
+
+</body>
+<script>
+
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 4,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.fangdai_lt').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.fangdai_rt').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+</script>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+	$(window).load(function(){
+		$(".swiper1").height($(".swiper1 .ban_box ").height());
+		$('.swiper2').height($('.swiper2 img').height()+60)
+		
+	})
+	$(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+		$('.swiper2').height($('.swiper2 img').height()+60)
+	});
+
+	
+})	
+
+
+$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})	
+</script>
+
+</html>

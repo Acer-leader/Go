@@ -1,0 +1,49 @@
+<include file="Public:head"/>
+
+
+<body>
+
+<!--head --> 
+<div class="head_box" <switch name="res.cate_pid">
+<case value="1">style=" background:#4988db"</case>
+<case value="2"> style=" background:#ff8aa3"</case>
+<case value="3">style=" background:#fe9a3a"</case>
+</switch>>
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">
+<switch name="res.cate_pid">
+<case value="93">个贷</case>
+<case value="91">房贷</case>
+<case value="92">车贷</case>
+</switch>攻略详情</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+<div class="warpper_box">
+ <div class="newsdot_box">
+ <div class="newsdot_box_title">{$res.news_title}</div>
+ <div class="newsdot_box_time">
+ <div class="newsdot_box_time_l">编辑：{$res.author}  来源：{$res.source}</div>
+ <div class="newsdot_box_time_r">{$res.add_time|date="Y-m-d H:i",###}</div>
+ <div class="clear"></div>
+ </div>
+ <div class="newsdot_box_body">
+{$res.detail|htmlspecialchars_decode|stripslashes}
+ </div>
+ </div>
+</div>
+
+<!--foot-->
+<include file="Public:footer"/>
+
+<!--foot-->
+
+
+</body>
+
+</html>

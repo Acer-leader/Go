@@ -1,0 +1,211 @@
+<include file="Public:head"/>
+</head>
+
+<body>
+
+
+<!--header-->
+<include file="Public:header"/>
+<!--header-->
+
+<!--  / warpper  -->
+<div class="warpper">
+	<!--gedai_box1-->
+	<div class="box_main">
+		<div class="index_container">
+        <div class="big_a">
+		<!--left-->
+    	<div class="left_imp"><img src="__IMAGES__/left_imp.jpg"><div class="left_imp_a"><input type="checkbox" name="agree" checked="checked" ><h3>我已同意并阅读<span>《牛哄哄购买协议》</span></h3></div><div class="clear"></div></div>
+    	
+    	<!--right-->
+    	 <div class="right_text">
+             <div class="right_text_a">
+                 <div>
+                     <h2>牛哄哄二级代理商</h2>
+                     <h3>该资格仅在牛哄哄有效</h3>
+                     <h4>￥<span>200</span>.00</h4><div class="clear">
+                 </div>
+             </div>
+         <div>
+          <img src="__IMAGES__/ewm.png" width="14%"/>
+         <!-- <label><input type="radio" checked="checked" name="zf"><img src="__IMAGES__/zfb.png"></label><label><input type="radio" name="zf"><img src="__IMAGES__/wxzf.png"></label> -->
+         </div>
+         <div class="right_text_b"><input type="button" value="立即支付" id="zhifu"></div>
+         <div class="clear"></div>
+         </div>
+         </div>       
+    	<div class="clear"></div>
+	</div>
+</div>	
+
+</div>
+<div class="right_nav" style="bottom: 330px;">
+    <ul>
+	<!-- 	<li>
+            <a href="http://luofan.unohacha.com/Index/dbj.html" class="telep">
+                <img src="__IMAGES__/gedai2_right1_0.png" width="100%"/>
+                
+            </a>
+        </li> -->
+        <li>
+            <a href="javascript:void(0);" class="telep">
+                <img src="__IMAGES__/telep.png" width="100%"/>
+                <span class="telep_num">{$web_config.servise_phone}</span>
+            </a>
+        </li>
+        <li>
+		<a href="tencent://Message/?Uin={$web_config['servise_qq']}&websiteName=qzone.qq.com&Menu=yes"  class="kefu">
+                <img src="__IMAGES__/kefu.png"  width="100%"/>
+                <span>在线客服</span>
+            </a>
+        </li>
+ <!--        <li>
+            <a href="javascript:void(0);"  class="return">
+                <img src="__IMAGES__/return.png"  width="100%"/>
+                <span>返回顶部</span>
+            </a>
+        </li> -->
+    </ul>
+</div>
+</div>
+<!--  / warpper  -->
+
+
+
+
+
+
+
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<script>
+$('#zhifu').click(function(){
+    var is_agree    =  $('input:checkbox[name=agree]:checked').val();   
+    if(!is_agree){
+        alert('请同意牛哄哄购买协议');return false;
+    }
+     
+    $.post("__HOST__/Login/ewmdo/",{}, function (data){
+        if(data.status==1){
+            // alert(data.info)
+            dialog.showTips(data.info, "", '__HOST__/Distribution/');
+        }else{
+            alert(data.info);
+        }
+       
+    })
+})
+
+var mySwiper1 = new Swiper('.swiper1',{
+        grabCursor: true,
+        spaceBetween: 0,
+        slidesPerGroup : 1,//设置几个一切换
+        slidesPerView : 1,//一行几个
+        paginationClickable: true,
+        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+    $('.one_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipePrev();
+    });
+    $('.two_btn').on('click', function(e){
+        e.preventDefault();
+        mySwiper1.swipeNext();
+    });
+
+
+var mySwiper2 = new Swiper('.swiper2',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 8,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+	var mySwiper3 = new Swiper('.swiper3',{
+		pagination: '.pagination3',
+		loop:true,
+		autoplay:5000, 
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipePrev()
+	})
+	  
+	$('.arrow-right3').on('click', function(e){
+		e.preventDefault()
+		mySwiper3.swipeNext()
+	})
+	var mySwiper4 = new Swiper('.swiper4',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerView : 4,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.fangdai_lt').on('click', function(e){
+		e.preventDefault()
+		mySwiper4.swipePrev()
+	})
+	  
+	$('.fangdai_rt').on('click', function(e){
+		e.preventDefault()
+		mySwiper4.swipeNext()
+	})
+</script>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+	$(window).load(function(){
+		$(".swiper1").height($(".swiper1 .ban_box ").height());
+		$(".swiper3").height($(".swiper3 img ").height());
+		$('.gedai4_right').height($('.gedai4_left').height()+42)
+		$('.swiper4').height($('.swiper4 img').height()+60)
+		
+	})
+	$(window).resize(function(){
+        $(".swiper1").height($(".swiper1 .ban_box ").height());
+		$(".swiper3").height($(".swiper3 img ").height());
+		$('.gedai4_right').height($('.gedai4_left').height()+42)
+		$('.swiper4').height($('.swiper4 img').height()+60)
+	});
+$('.right_nav').css('display','block');
+	
+})	
+
+
+/*$(window).scroll(function(){
+	var scrollT=$(window).scrollTop();
+	if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+		$('.right_nav').css('display','block');
+	}else{
+		$('.right_nav').css('display','none');
+	}
+
+})*/	
+</script>
+
+</html>

@@ -1,0 +1,168 @@
+<include file="Public:head"/>
+<link href="__CSS__/fx.css" type="text/css"  rel="stylesheet" />
+
+
+</head>
+<style>
+ .loading {
+    position: fixed;
+    width: 100%;
+    background: rgba(255,255,255,0);
+    z-index: 999999999;
+    text-align: center;
+    margin: auto;
+    height: 100%;
+    display: none;
+    top: 0;
+    left:0
+}
+
+.sccg{
+    width:120px;
+    height:80px;
+    background:rgba(0,0,0,0.8);
+    position:fixed;
+    z-index:100;
+    top:50%;
+    left:50%;
+    text-align:center;
+    margin-top:-40px;
+    margin-left:-60px;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    -o-border-radius:10px;
+    display:none;
+    }
+.fx_fs img {
+    max-width: 46%;
+    margin-left: 27%;
+    height: auto;
+}
+.fx_fs h5 {
+    margin: 0;
+    margin-bottom: 16px;
+    color: #05B1FC;
+    text-align: center;
+    font-size: 16px;
+}
+
+.fx_btn{margin: 30px 0 10px 0;text-align: center;}
+
+.fx_btn h5 {
+    margin: 0;
+    margin-bottom: 16px;
+    color: #05B1FC;
+    text-align: center;
+    font-size: 16px;
+    width:100px;
+}
+.fx_lx{text-align: center;}
+.fx_foot{margin-top: 30px;margin-bottom: 30px;}
+.fx_foot a{
+    border: none;
+    width: 80%;
+    margin: 0 auto;
+    line-height: 40px;
+    height: 40px;
+    padding: 0px 5px;
+    outline: none;
+    color: #fff;
+    background: #6cbaff;
+    font-size: 16px;
+    border-radius: 6px;
+    display: block;
+    text-align: center;
+}
+</style>
+<body>
+<!--head -->
+
+
+<div class="head_box houtai">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" style=" line-height:30px;color:#357ce2" ></i></a>
+<a href="__HOST__/Index/" class="shouye" style=" line-height:24px; color:#357ce2" >首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_right">
+<a class="grzx" href="__HOST__/Distribution/fx_my"><img src="__IMAGES__/grzx.png"></a>
+</div>
+<div class="head_box_center" style=" color:#555; line-height:35px;">代理中心</div>
+<div class="clear"></div>
+
+</div>
+<!--head --> 
+
+<div class="fx_buy">
+
+    <div class="fx_li">
+        <div class="fx_left">
+            <img src="__IMAGES__/fx_buy.jpg" />
+        </div>
+        <div class="fx_right">
+            <h3>牛哄哄二级代理商</h3>
+            <h4>该资格仅在牛哄哄有效</h4>
+            <h5>￥<span>200</span>.00</h5>
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+    <div class="fx_fs">
+        <h5>扫描下面二维码完成支付</h5>
+        <img src="__IMAGES__/ewm.png"/>
+        <!--<label>
+            <input type="radio" value="fx_zfb" name="fx_zffs" checked="checked"/>
+            <span>
+                <img src="__IMAGES__/zfb.png" />
+            </span>
+        </label>
+        <label>
+            <input type="radio" value="fx_zfb" name="fx_zffs"/>
+            <span>
+                <img src="__IMAGES__/wxzf.png" />
+            </span>
+        </label>
+        <div class="clear"></div>-->
+    </div>
+    <div class="fx_btn">
+        <h5>联系客服</h5>
+        <div class="fx_lx" style="text-align: center;">
+            <a href="400-066-7774"><span><i><img src="__IMAGES__/contact2.png" style="width: 5%;"/></i><b style="position: relative;bottom: 4px;left: 5px;font-size: 16px;color:#000;">400-066-7774</b></span></a>
+        </div>
+    </div>
+    <div class="fx_foot">
+         <a href="javascript:void(0)" id="zhifu">已完成支付</a>
+        <!--<a href="__HOST__/Distribution/">已完成支付</a>-->
+    </div>
+    <!--<div class="fx_btn">
+        <label>
+            <input type="radio"/>
+            <h5>我已同意并阅读<a href="#">《牛哄哄购买协议》</a></h5>
+        </label>
+        <a href="javascript:void(0)" id="zhifu">立即支付</a>
+    </div>-->
+</div>
+<div class="sccg sccg01">
+        <div style="margin-top:15px;"><i class="fa fa-spinner fa-pulse fa-2x" style=" color:#fff"></i></div>
+        <p style="color:#fff;font-family:微软雅黑">提交中...</p>
+</div>
+<!--foot-->
+<include file="public:footer"/>
+<!--foot-->
+
+</body>
+<script>
+$('#zhifu').click(function(){
+    $.post("__HOST__/Login/ewmdo/",{}, function (data){
+        if(data.status==1){
+            // alert(data.info)
+            dialog.showTips(data.info, "", '/Iphone/Distribution/');
+        }else{
+            alert(data.info);
+        }
+       
+    })
+})
+</script>
+</html>

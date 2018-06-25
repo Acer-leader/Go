@@ -1,0 +1,162 @@
+<include file="Public:head"/>
+<style>
+	.imgnav{
+		max-height: 30px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.imgwrapper{
+		display: block;
+		width: 78px;
+		height: 78px;
+		overflow: hidden;
+	}
+	.imgwrapper img{
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border:0;
+	}
+	.spanpd10{
+		margin:10px;
+	}
+	.wxtables.wxtables-sku.newtable{
+		width: 40%;
+		margin: 0;
+	}
+	.img-list li{
+		width: 60px;
+		height:60px;
+	}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+	</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+<div class="container">
+  <div class="inner clearfix"> <include file="Public:left"/> 
+    <!-- end content-left -->
+    
+    <div class="content-right fl">
+        <div class="panel-single panel-single-light mgt20 j-showinhyd" style="display: block;">
+          <h3 class="cst_h3 mgb20">{$goods_name} sku设置</h3>
+          
+          <div class="formitems">
+            <div class="form-controls">
+              <input class="btn btn-primary sku-btn" type="button" value="选择sku属性">
+              <input class="btn btn-success sku-make" type="button" value="生成sku">
+              <input class="btn btn-success sku-save" type="button" value="保存sku">
+              <input type="hidden" value="0" name='nums' id='nums' />
+            </div>
+            <div class='add_div'>
+            已选择的sku：<div class="sku-list"></div>
+            </div>
+            <div>
+              <table class="wxtables mgt10 sku-table" style="text-align: center;">
+                {$table}
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="panel-single panel-single-light mgt20 txtCenter"> <a href="##" onclick="window.history.back()" class="btn">返回</a>
+        </div>
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+
+<include file="Public:foot"/>
+<div id="albums-overlay" style="display: none;"></div>
+<!-- sku -->
+<div class="jbox fenlei sku_box disshow" >
+  <div class="jbox-title">
+    <div class="jbox-title-txt">请选择sku属性</div>
+    <a href="javascript:void(0);" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 75px;">
+    <div class="sku-items-list formitems">
+        <foreach name="skuCache" item="v">
+          <a class="btn btn-primary sku-item" style="margin:3px;" data-id="{$v['id']}">{$v['classname']}</a>
+        </foreach>
+    </div>
+  </div>
+  <div class="jbox-buttons"> <a href="javascript:void(0);" class="jbox-buttons-ok btn cancle btn-primary">确定</a> <!-- <a href="javascript:void(0);" class="jbox-buttons-ok btn cancle">取消</a> --> </div>
+</div>
+<!-- sku -->
+<!--选择分类--> 
+<script>
+  $(".cancle").click(function(){
+      $(this).parent().parent('.jbox').hide();
+      $('#albums-overlay').hide();
+  })
+  var sku = {$sku};
+  var select_sku = [];
+  $(".sku-btn").click(function (){
+    $(".sku_box").show();
+    $("#albums-overlay").show();
+  })
+  $(".sku-item").click(function (){
+    var id = $(this).attr("data-id");
+    if($(this).hasClass("sku-selected")){
+      $(this).removeClass("sku-selected");
+      $(this).appendTo($(".sku-items-list"))
+      select_sku = array_del(select_sku,id);
+      return false;
+    }
+    $(this).addClass("sku-selected");
+    $(".sku-list").append($(this));
+    select_sku.push(id);
+  })
+  $(".sku-make").click(function (){
+    if(select_sku.length==0){
+      alert("请先选择sku！");return false;
+    }
+    $.post("{:U('Supplier/Gongygoods/makeSkuTable')}", {ids:select_sku}, function (data){
+      $(".sku-table").html(data);
+    })
+  })
+  $(".sku-save").click(function (){
+    var data = {};
+    data['goods_id'] = "{$id}";
+    $(".sku-table tr:gt(0)").each(function(i){
+      var tmp = {};
+      var ids = "-";
+      $(this).find(".sku-attr-data").each(function (i){
+        ids+=$(this).attr("data-id")+"-";
+      })
+      var store  = $(this).find("input[name=store]").val();
+      var oprice = $(this).find("input[name=oprice]").val();
+      var price  = $(this).find("input[name=price]").val();
+      if(ids && store && oprice && price){
+        tmp['ids']    = ids;
+        tmp['store']  = $(this).find("input[name=store]").val();
+        tmp['oprice'] = $(this).find("input[name=oprice]").val();
+        tmp['price']  = $(this).find("input[name=price]").val();
+        data[i] = tmp;
+      }
+    })
+    $.post("{:U('Supplier/Gongygoods/addGoodsSkuAttr')}", data, function (res){
+      if(res.status == 1){
+        window.location.reload();
+      }
+    }, "json")
+  })
+
+  function array_del(arr, id){
+    var new_arr = [];
+    var len = arr.length;
+    for(var i=0;i<len;i++){
+      if(arr[i]==id)continue;
+      new_arr.push(arr[i]);
+    }
+    return new_arr;
+  }
+</script>

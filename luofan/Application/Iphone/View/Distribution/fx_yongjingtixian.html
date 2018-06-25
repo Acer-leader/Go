@@ -1,0 +1,147 @@
+<include file="Public:head"/>
+<link href="__CSS__/fx.css" type="text/css"  rel="stylesheet" />
+
+<body>
+
+
+
+
+
+<!--head -->
+
+
+<div class="head_box houtai">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" style=" line-height:30px;color:#357ce2"></i></a>
+<a href="__HOST__/Index/" class="shouye" style=" line-height:24px; color:#357ce2">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_right">
+<a class="grzx" href="__HOST__/Distribution/fx_my"><img src="__IMAGES__/grzx.png"></a>
+</div>
+<div class="head_box_center" style=" color:#555; line-height:35px;">佣金提现</div>
+<div class="clear"></div>
+
+</div>
+<!--head --> 
+
+<div class="yj">
+<div class="yj_top">
+ <h2>{$fenxiao.wallet}</h2>
+ <h3>账户余额（元）</h3>
+ </div>
+  
+  
+  
+  <div class="fenxiao_my_bottomA">
+        <div class="fenxiao_my_num_one_A">
+            <if condition="$tixian['card_num'] neq null">
+            <a href="javascript:void(0);"style="display:block;"><span style="width:100%;text-align:right">**** **** **** {$tixian.card_num|msubstr=-4,4,'utf-8',false}</span></a>
+            <else/>
+            <a href="__HOST__/Distribution/fx_bdyhk" style="display:block;"><span>添加银行卡</span><i class="spanab" style=" border:0; top:15px; right: 10px;"><img src="__IMAGES__/jia.png"></i></a>
+
+            </if>
+        </div>
+        <div class="fenxiao_my_num_one_A">
+            <span>提现金额</span><input class="tx" id="money"  value="" onfocus="this.placeholder = '';" onblur="this.placeholder = '全部提现';" placeholder="全部提现" type="text">
+        </div> 
+        
+    <div class="fenxiao_my_num_one_A">
+      
+
+            <span> <img style="cursor:pointer;" title="看不清楚?点击换一张吧!" src="__HOST__/Distribution/yzm" onclick="this.src=this.src+'?i='+Math.random()" /></span><input class="tx" name="yzm" id="yzm" onfocus="this.placeholder = '';" onblur="this.placeholder = '请输入验证码';" placeholder="请输入验证码" type="text" style="float:right;">
+<div class="clear"></div>
+        </div> 
+        
+    
+    <div class="beij">
+    <h2>【温馨提示】</h2>
+    <h3>1.我要提现功能不再以微信红包形式发放，提现需要绑定银行卡，再点击“申请提现”，即可提现至银行卡。<span>（单笔限额5000元）</span></h3>
+    <h3>2.代理佣金提现之后，到账情况会在“查看提现状态”中显示，同时请注意查看您的银行卡账户。</h3>
+    <h3><span>3.绑定的银行卡请务必正确填写。否则将导致提现失败。</span></h3>
+    
+    
+    
+    </div>
+    
+    	
+   </div>   
+  <div class="fenxiao_button " style="text-align:center">
+        	<a href="#" style="margin:0"><input type="button" id="tixian" value="申请提现"></a>
+            <a href="__HOST__/Distribution/fx_zhangdan"><h2>查看交易记录</h2></a>
+        </div>    
+</div>
+
+<!--foot-->
+<div class="foot_box">
+<include file="Public:footer"/>
+</div>
+<div class="loading"></div>
+<div class="sccg sccg01">
+	<div style="margin-top:15px;"><i class="fa fa-spinner fa-pulse fa-2x" style=" color:#fff"></i></div>
+	<p style="color:#fff;font-family:微软雅黑">短信发送中...</p>
+</div>
+<!--foot-->
+<script>
+    $('#tixian').click(function(){
+    
+          var post  =   {};
+          post.yzm   =   $('#yzm').val();
+          post.money =   $('#money').val();
+          post.card_num =   "{$tixian.card_num}";
+          if(!post.card_num){
+            alert('请先绑定银行卡！');
+          }
+          if(post.money==""||post.money=="{$fenxiao.money}"){
+            post.money  =   "{$fenxiao.money}";
+            dialog.showTips("您确定要全部提现吗？","firm",function(){
+                ajaxfunction(post);
+            })
+            return false;
+          }else{
+            ajaxfunction(post); 
+          }
+         
+         
+    });
+    function ajaxfunction(post){
+          
+          $.ajax({
+            url:"__HOST__/Distribution/tixiando",
+            data:post,
+            dataType:'json',
+            type:'post',
+            beforeSend:function(){
+                  $('.loading').show();
+                  $('.sccg01').stop().fadeIn(10);
+                },
+            success:function(data){
+                $('.loading').hide();
+                $('.sccg01').stop().fadeOut();
+                if(data.status){
+                   dialog.showTips('提现成功',"","__HOST__/Distribution/fx_my");
+                    //window.location.href="{:U('Iphone/Login/index')}";
+                }else{
+                    dialog.showTips(data.info,"warn");return false;
+                }
+            }
+        })
+    }
+</script>
+
+<script>
+$(document).ready(function(){
+	$('.fx_dk').height($(window).height())
+})
+</script>
+
+
+</body>
+
+<script>
+$(document).ready(function(){
+	$('.fx_dk').height($(window).height())
+})
+</script>
+
+</html>

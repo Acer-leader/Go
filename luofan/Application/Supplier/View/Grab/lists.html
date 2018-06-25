@@ -1,0 +1,199 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__//lists.css">
+<style>
+  .file {
+    width:50px;
+    height:30px;
+    line-height: 30px;
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 0px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+  }
+  .file input {
+    position: absolute;
+    width:74px;
+    height:30px;
+    line-height: 30px;
+   /* font-size: 100px;*/
+    right: 0;
+    top: 0;
+    opacity: 0;
+  }
+</style>
+<div class="container">
+  <div class="inner clearfix"> <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">申请列表</h1>
+        <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count1}</span> 申请。<a
+                href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+      <form action="" method="post">
+        <div class="tables-searchbox newcearchbox">
+          <input type="text" placeholder="抢单类型" class="input" name="name" value="" />
+          <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+		  <button class="btn btn-success chongzhi" style="line-height:26px;float:right"> 充值 </button>
+        </div>
+        <div class="tabs clearfix mgt10">
+          <a href="{:U('/Supplier/Grab/lists')}" class="<eq name="_GET['islooked']" value="">active</eq> tabs_a fl">可抢({$count1 | default="0"})</a>
+          <a href="{:U('/Supplier/Grab/lists/islooked/1')}" class="<eq name="_GET['islooked']" value="1">active</eq> tabs_a fl">已抢({$count | default="0"})</a>
+          <a href="{:U('/Supplier/Grab/lists/islooked/3')}" class="<eq name="_GET['islooked']" value="3">active</eq> tabs_a fl">小贷公司({$count4 | default="0"})</a>
+        </div>
+      </form>
+      <!-- end tabs -->
+
+      <table class="wxtables mgt10" style="text-align:center;">
+        <colgroup>
+          <col width="5%">
+          <col width="10%">
+          <col width="15%">
+          <col width="15%">
+          <col width="10%">
+          <col width="20%">
+          <col width="25%">
+        </colgroup>
+        <thead>
+        <tr class="po_list">
+          <td>ID</td>
+          <td>归属地</td>
+          <td>抢单类型</td>
+          <td>姓名</td>
+          <td>手机号</td>
+          <td>房/车</td>
+          <td>操作<span></span></td>
+        </tr>
+        </thead>
+        <tbody>
+        <foreach name="res" item="vo">
+          <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.city}</td>
+            <td class="class_name">
+              <span><switch name="vo.cate_id">
+                  <case value="1">个贷</case>
+                  <case value="2">车贷</case>
+                  <case value="3">房贷</case>
+              </switch></span>
+            </td>
+            <td class="is_change">
+              <if condition="$_GET['islooked'] eq 1">{$vo.truename}<elseif condition="$vo.islooked eq 1"/>{$vo.truename}<else/>{$vo.truename|mb_substr=0,1,'utf-8'}**</if>
+            </td>
+            <td class="is_change">
+              <if condition="$_GET['islooked'] eq 1">{$vo.telephone}<elseif condition="$vo.islooked eq 1"/>{$vo.telephone}<else/>{$vo.telephone|mb_substr=0,3}****{$vo.telephone|mb_substr=7,11}</if>
+            </td>
+            <td>
+              {$vo.housename}/{$vo.carname}
+            </td>
+            <td><if condition="$_GET['islooked'] eq 1">
+              <a href="{:U('/Supplier/Grab/destail/id')}/{$vo.id}/islooked/1" class="btn btn-primary j-editClass" title="修改">查看详情</a>
+              <elseif condition="$vo.islooked eq 1"/>
+              <a href="{:U('/Supplier/Grab/destail/id')}/{$vo.id}/islooked/1" class="btn btn-primary j-editClass" title="修改">查看详情</a>
+                <else/>
+              <a href="{:U('/Supplier/Grab/destail/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">查看详情</a></if>
+              <if condition="$_GET['islooked'] neq 1"><a href="javascript:;" onclick="{if(!confirm('确定要接单吗?'))return false;} " class="btn j-delClass btn-warning qiangdan" title="接单" data-id="{$vo.id}">接单</a></if>
+              <eq name="vo.is_buy_out" value="1"><a href="javascript:void(0);" class="btn btn-danger buy_out" title="买断" data-id="{$vo.id}" >买断</a></eq>
+            </td>
+          </tr>
+        </foreach>
+        </tbody>
+      </table>
+      <!-- end wxtables -->
+      <div class="tables-btmctrl clearfix">
+        <div class="fl">
+         <!-- <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+          <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+          <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>-->
+          <div class="fr">
+            <div class="pages"> {$page} </div>
+            <!-- end paginate -->
+          </div>
+        </div>
+        <!-- end tables-btmctrl -->
+
+      </div>
+      <!-- end content-right -->
+    </div>
+  </div>
+  <!-- end container -->
+  <include file="Public:foot"/>
+  <div class="jbox addfenlei disshow" style="height:224px;">
+    <div class="jbox-title">
+      <div class="jbox-title-txt">上传文件</div>
+      <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <form action="{:U('Supplier/Gongygoods/gygoods_import')}" enctype="multipart/form-data" method="post">
+      <div class="jbox-container" style="height:100px;">
+
+        <div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>上传csv文件：</label>
+          <div class="form-controls">
+            <input type="file" class="input classname" name="file">
+            <span class="fi-help-text"></span> </div>
+        </div>
+
+      </div>
+      <div class="jbox-buttons"><button type="submit" class="jbox-buttons-ok btn btn-primary" id="addfile">确定</button><a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </form>
+  </div>
+<script>
+$(".chongzhi").click(function(){
+	windows.location.href="http://luofan.unohacha.com/Supplier/pays/index";
+
+})
+
+
+</script>
+
+
+  <script>
+    $(".qiangdan").click(function(){
+      var id=$(this).attr('data-id');
+      if(!id){
+        alert('未选择申请');return false;
+      }
+      $.post("{:U('/Supplier/Grab/agreedan')}" ,{id:id}, function (data){
+        alert(data.info);
+        if(data.status==1){
+          window.location.reload();
+        }
+      })
+    })
+
+    $(".BtnAddClass").click(function(){
+      $('.addfenlei').show();
+    })
+
+    $(".cancle").click(function(){
+      $('.addfenlei').hide();
+      $(this).parent().parent('.jbox').hide();
+    })
+
+
+  </script>
+  <script>
+    $(".buy_out").on('click',function(){
+        var order_id = $(this).attr('data-id');
+        if(order_id == "" || order_id == null){
+            alert("请选择买断的订单");return false;
+        }
+        $.ajax({
+            url:"{:U('Supplier/Grab/buy_out')}",
+            type:'post',
+            dataType:'json',
+            data:{order_id:order_id},
+            success:function(data){
+                dialog.showTips(data.info, "warn",function(){
+                    if(data.status == 1){
+                        window.location.reload();
+                    }
+                });
+            }
+        })
+    });
+  </script>

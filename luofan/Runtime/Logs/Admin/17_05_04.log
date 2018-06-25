@@ -1,0 +1,81 @@
+[ 2017-05-04T10:46:47+08:00 ] 117.32.155.36 http://120.55.68.38:80/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000401s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000589s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000667s ]
+NOTIC: [8] Undefined index: admin_id D:\luofan\Application\Common\Controller\CommonController.class.php 第 7 行.
+
+[ 2017-05-04T10:46:47+08:00 ] 117.32.155.36 http://120.55.68.38:80/admin/phpmyadmin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000383s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000498s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000556s ]
+ERR: 无法加载控制器:Phpmyadmin
+
+[ 2017-05-04T10:46:47+08:00 ] 117.32.155.36 http://120.55.68.38:80/admin/phpMyAdmin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001113s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001366s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001458s ]
+ERR: 无法加载控制器:PhpMyAdmin
+
+[ 2017-05-04T10:46:47+08:00 ] 117.32.155.36 http://120.55.68.38:80/admin/sysadmin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001195s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001540s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001614s ]
+ERR: 无法加载控制器:Sysadmin
+
+[ 2017-05-04T10:46:47+08:00 ] 117.32.155.36 http://120.55.68.38:80/admin/sqladmin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000427s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000435s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000493s ]
+ERR: 无法加载控制器:Sqladmin
+
+[ 2017-05-04T10:46:48+08:00 ] 117.32.155.36 http://120.55.68.38:80/admin/db/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000432s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000451s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000508s ]
+ERR: 无法加载控制器:Db
+
+[ 2017-05-04T10:46:48+08:00 ] 117.32.155.36 http://120.55.68.38:80/admin/web/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000378s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000477s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000538s ]
+ERR: 无法加载控制器:Web
+
+[ 2017-05-04T10:46:48+08:00 ] 117.32.155.36 http://120.55.68.38:80/admin/pMA/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000382s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000501s ]
+ERR: 无法加载控制器:PMA
+
+[ 2017-05-04T19:58:18+08:00 ] 140.205.201.34 /admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001577s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002334s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002450s ]
+NOTIC: [8] Undefined index: admin_id D:\luofan\Application\Common\Controller\CommonController.class.php 第 7 行.
+

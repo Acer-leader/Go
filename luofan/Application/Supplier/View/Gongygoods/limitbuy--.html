@@ -1,0 +1,355 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="__JS__/datepicker/WdatePicker.js"></script>
+<style>
+.btn-success {
+	margin-top: 12px;
+}
+    .WdateDiv{
+        z-index:1000;
+    }
+</style>
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">抢购列表</h1>
+    <div class="alert alert-info disable-del">
+      <h4>提示</h4>
+      删除抢购会删除抢购下面所有的产品 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div>
+      <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加抢购</a></div>
+    <table class="wxtables mgt15">
+      <colgroup>
+      <col width="2%">
+      <col width="4%">
+      <col width="17%">
+      <col width="17%">
+      <col width="17%">
+      <col width="9%">
+      <col width="17%">
+      <col width="15%">
+      </colgroup>
+      <thead>
+        <tr>
+          <td><i class="icon_check"></i></td>
+            <td>ID</td>
+          <td>抢购标题</td>
+          <td>限时抢购开始时间</td>
+          <td>限时抢购结束时间</td>
+          <td >是否开启</td>
+          <td >创建时间</td>
+          <td class="center">操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="config" item="vo" >
+          <tr>
+            <td class="center"><input type="checkbox" class="checkbox table-ckbs check" data-id="9788" value="{$vo.id}"></td>
+              <td>{$vo.id}</td>
+              <td>{$vo.title}</td>
+              <td>{$vo.starttime|date="Y-m-d H:i:s",###}</td>
+              <td>{$vo.endtime|date="Y-m-d H:i:s",###}</td>
+              <td>
+                  <a style='color:#<if condition="($vo.status eq 0) ">0C0<else />c00</if>;font-size:20px;text-align:center;cursor:pointer;' class="change-status" data-item="status" data-id="{$vo.id}">
+                  <if condition="($vo.status eq 0) ">√<else />×</if></td>
+            <td>{$vo.creattime|date="Y-m-d H:i:s",###}</td>
+            <td class="center"><a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}" data-starttime="{$vo.starttime}" data-endtime="{$vo.endtime}"  data-title="{$vo.title}" data-status="{$vo.status}">编辑</a> <a href="{:U('/Supplier/Gongygoods/dellimitbuy/id')}/{$vo.id}" class="btn btn-warning j-delClass" title="删除" onclick="return confirm('确定要删除吗？')" data-id="{$vo.id}">删除</a></td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+          <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+          <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+          <a href="javascript:;"  style="background-color:#f0ad4e;border-color:#eea236;"  class="btn btn-primary del">删除</a>
+        <div class="fr">
+          <div class="pages">{$page}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:foot"/>
+
+
+    <div id="albums-overlay" class="disshow"></div>
+    <div class="jbox addfenlei disshow" style="z-index:999">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">添加抢购</div>
+            <a href="javascript:;" class="jbox-close cancle"></a>
+        </div>
+        <div class="jbox-container" style="height: 263px;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>抢购标题：</label>
+                <div class="form-controls">
+                    <input type="text" class="input title" name="title">
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>限时抢购开始时间：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="starttime" id="addstarttime" value="">
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>限时抢购截止时间：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="endtime" id="addendtime" value="">
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>抢购状态：</label>
+                <div class="form-controls">
+                    <select class="input" name="status" id="addstatus" >
+                        <option value="" >--请选择--</option>
+                        <option value="0" >开启</option>
+                        <option value="1" >关闭</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons">
+            <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addlimitbuy">确定</a>
+            <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a>
+        </div>
+    </div>
+
+
+    <div class="jbox editfenlei disshow" style="z-index:999">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">修改抢购</div>
+            <a href="javascript:;" class="jbox-close cancle"></a>
+        </div>
+        <div class="jbox-container" style="height: 263px;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>抢购标题：</label>
+                <div class="form-controls">
+                    <input type="hidden" id="limitbuyid" value="">
+                    <input type="text" class="input title" name="title" id="edittitle">
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>限时抢购开始时间：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="starttime" value="" id="editstarttime">
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>限时抢购截止时间：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="endtime" value="" id="editendtime">
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>抢购状态：</label>
+                <div class="form-controls">
+                    <select class="input" name="status" id="editstatus" >
+                        <option value="" >--请选择--</option>
+                        <option value="0" >开启</option>
+                        <option value="1" >关闭</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons">
+            <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editlimitbuy">确定</a>
+            <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a>
+        </div>
+    </div>
+
+
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+</script> 
+
+
+<!--添加抢购-->
+<script type="text/javascript">
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+</script>
+
+<script type="text/javascript">
+    $("#addlimitbuy").click(function(){
+        var title = $('.title').val();  //抢购标题
+        var starttime=$('#addstarttime').val();
+        var endtime=$('#addendtime').val();
+        var status=$('#addstatus').val();
+
+        if (title == '') {
+            alert("抢购标题必填！");
+            return false;
+        }
+        if (starttime == '') {
+            alert("抢购开始时间必填！");
+            return false;
+        }
+        if (endtime == '') {
+            alert("抢购结束时间必填！");
+            return false;
+        }
+        if(starttime>endtime)
+        {
+            alert('抢购开始时间要小于抢购结束时间！');
+            return false;
+        }
+
+        if (status == '') {
+            alert("请选择抢购状态！");
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Supplier/Gongygoods/addlimitbuy')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                title: title,
+                starttime:       starttime,
+                endtime:       endtime,
+                status: status
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script> 
+<!--添加抢购end--> 
+
+<!--修改抢购--> 
+<script type="text/javascript">
+    var seriesgoryid;
+    $(".j-editClass").click(function(){
+        $('.editfenlei').show();
+        $('#albums-overlay').show();
+        var id=$(this).attr('data-id');
+        var title=$(this).attr('data-title');
+        var starttime=$(this).attr('data-starttime');
+	    var endtime=$(this).attr('data-endtime');
+		var status=$(this).attr('data-status');
+
+        $('#edittitle').val(title);
+		$('#editstarttime').val(starttime);
+        $('#editendtime').val(endtime);
+        $('#editstatus').val(status);
+        $('#limitbuyid').val(id);
+    })
+
+    $("#editlimitbuy").click(function(){
+        var id=$('#limitbuyid').val();
+        var title = $('#edittitle').val();  //抢购标题
+        var starttime=$('#editstarttime').val();
+        var endtime=$('#editendtime').val();
+        var status=$('#editstatus').val();
+
+
+        if (title == '') {
+            alert("抢购标题必填！");
+            return false;
+        }
+        if (starttime == '') {
+            alert("抢购开始时间必填！");
+            return false;
+        }
+        if (endtime == '') {
+            alert("抢购结束时间必填！");
+            return false;
+        }
+        if(starttime>endtime)
+        {
+            alert('抢购开始时间要小于抢购结束时间！');
+            return false;
+        }
+
+        if (status == '') {
+            alert("请选择抢购状态！");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Supplier/Gongygoods/editlimitbuy')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id:id,
+                title: title,
+                starttime:       starttime,
+                endtime:       endtime,
+                status: status
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+
+
+    /*单击修改状态*/
+    $(".change-status").click(function (){
+        var _this= $(this)
+        var id   = $(this).attr("data-id");
+        var item = $(this).attr("data-item");
+        $.post("{:U('Supplier/Gongygoods/change')}", {id:id,item:item}, function(data){
+            if(data.status == 0){
+                _this.css({color:"#0C0"}).html("√");
+            }else if(data.status == 1){
+                _this.css({color:"#c00"}).html("×");
+            }else{
+                alert(data.info);
+            }
+        }, "json")
+    })
+
+
+
+    $('.del').click(function(){
+        var ID ='';
+        if($('.check:checked').length ==0){
+            alert('请选择要删除的数据');return false;
+        }
+        if(confirm('确定删除吗！')){
+            $('.check:checked').each(function(){
+                ID = ID + $(this).val() + '_';
+            });
+
+
+            $.post("{:U('Supplier/Gongygoods/delalllimitbuy')}",{'id':ID},function(data){
+                if(data.status==1){
+                    alert(data.info);
+                    location.reload();
+                }
+            },'json');
+        }
+    })
+
+
+
+</script>
+<!--修改抢购end-->

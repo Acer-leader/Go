@@ -1,0 +1,115 @@
+
+<style type="text/css">
+  *{margin: 0;padding: 0}
+  body{font-size: 12px;font-family: "宋体","微软雅黑";}
+  ul,li{list-style: none;}
+  a:link,a:visited{text-decoration: none;}
+  .list{width: 90%;border-bottom:solid 1px #ccc;margin:20px auto 20px auto;}
+  .list ul li{background-color:#E5E5E5;; border:solid 1px #ccc; border-bottom:0;}
+  .list ul li a{padding-left: 10px;color: #0b99d8;; font-size:12px; display: block; font-weight:bold; height:36px;line-height: 36px;position: relative;
+  }
+ /* .list ul li .inactive{ background:url(__IMAGES__/off.png) no-repeat 784px center;}
+  .list ul li .inactives{background:url(__IMAGES__/on.png) no-repeat 784px center;}*/
+  .list ul li ul{display: none;}
+  .list ul li ul li { border-left:0; border-right:0; background-color:#fff; border-color:#0b99d8;}
+  .list ul li ul li ul{display: none;}
+  .list ul li ul li a{ padding-left:20px;}
+  .list ul li ul li ul li { background-color:#d6e6f1; border-color:#6196bb;}
+  .list dd{ padding: 10px;float: left;}
+</style>
+
+<div id="albums-overlay" class="disshow" style="height:100%"></div>
+<div class="jbox addfenle disshow" style="hieght:100%;width:80%;position:absolute;left: 10%;">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">选择地址</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height:100%; width:100%;">
+    <input type="hidden" name="id">
+
+    <div class="formitems">
+      <div class="inner clearfix">
+
+        <!--end content-left-->
+        <!--<form aciton="{:U('Supplier/Grabconfig/index')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">-->
+        <div class="content-right fl">
+          <div class="chartBox mgt30">
+            <div class="cb-title">地区选择</div>
+
+            <div class="list">
+              <ul class="yiji" id="province">
+                <foreach name="provinceList" item="v" key="k">
+                  <li class="waic">
+                    <a href="#" class="inactive" data-p-id="{$k}">
+                      <input value="{$v.card}" type="checkbox" class="checkbox" <if condition="in_array($v['card'],$dizhi['pro'])">checked</if> />{$v.name}
+                    </a>
+                    <ul style="display: none;background-color: #fff;" >
+                      <li class="citylist">
+                        <volist name="v.city" id="vv" key="kk">
+                          <dd><input type="checkbox" name="city[]" data-name="{$vv.name}" class="city" value="{$vv.card}" <if condition="in_array($vv['card'],$dizhi['city'])">checked</if> />{$vv.name}</dd>
+                        </volist>
+                      </li>
+                      <div style="clear:both;"></div>
+                    </ul>
+
+                  </li>
+                </foreach>
+              </ul>
+            </div>
+
+            <div class="panel-single panel-single-light mgt20 txtCenter">
+              <input type="hidden" name="id" value="{$types.id}">
+              <a href="javascript:;" class="btn">取消</a>
+              <input type="submit" class="btn btn-primary" id="sure_check" value="保存">
+            </div>
+
+          </div>
+          <!-- end content-right -->
+        </div>
+        <!--</form>-->
+      </div>
+    </div>
+  </div>
+  <!--<div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="examine">确定</a><a-->
+          <!--href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>-->
+</div>
+
+
+
+  <!-- end container -->
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('.inactive').click(function(){
+        if($(this).siblings('ul').css('display')=='none'){
+          $(this).parent('li').siblings('li').removeClass('inactives');
+          $(this).addClass('inactives');
+          $(this).siblings('ul').slideDown(100).children('li');
+          if($(this).parents('li').siblings('li').children('ul').css('display')=='block'){
+            $(this).parents('li').siblings('li').children('ul').parent('li').children('a').removeClass('inactives');
+            $(this).parents('li').siblings('li').children('ul').slideUp(100);
+
+          }
+        }else{
+
+          $(this).removeClass('inactives');
+          $(this).siblings('ul').slideUp(100);
+
+        }
+      })
+    });
+  </script>
+  <script>
+    $("#sure_check").on("click",function(){
+        //获取被选中的城市
+        var city = "";
+        $(".city:checked").each(function(){
+            city += $(this).attr("data-name")+",";
+        })
+        $("#cityid").val(city);
+        $(".addfenle").hide();
+        $("#albums-overlay").hide();
+    });
+    $(".jbox-close").on("click",function(){
+        $(".addfenle").hide();
+        $("#albums-overlay").hide();
+    });
+  </script>

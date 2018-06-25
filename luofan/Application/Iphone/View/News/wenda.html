@@ -1,0 +1,114 @@
+<include file="Public:head"/>
+<style>
+.activez a{
+	background:#4988db;
+	color:#fff !important;
+	}
+.active a{
+	border-bottom: 3px #4988db solid;
+	color:#4988db !important;
+	display: block;
+}
+
+</style>
+
+<body>
+
+<!--head --> 
+<div class="head_box" style=" background:#4988db">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="__HOST__/Index/" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_center">问答百科</div>
+<div class="clear"></div>
+</div>
+<!--head -->
+
+<div class="warpper_box">
+
+<div class="wenda_fl_box">
+<ul>
+<li class="<if condition='$classid eq 1'>activez</if>"><a href="__HOST__/News/wenda/classid/1">个贷问答</a></li>
+<li class="<if condition='$classid eq 2'>activez</if>"><a href="__HOST__/News/wenda/classid/2">房贷问答</a></li>
+<li class="<if condition='$classid eq 3'>activez</if>"><a href="__HOST__/News/wenda/classid/3">车贷问答</a></li>
+<li class="<if condition='$classid eq 4'>activez</if>"><a href="__HOST__/News/wenda/classid/4">信用卡问答</a></li>
+<div class="clear"></div>
+</ul>
+</div>
+  <div class="gedai_xq_one">
+    <ul class="gedai_xq_one_title">
+      <li class="active" style=" width:50%"><a href="javascript:void(0)">热门问题</a></li>
+      <li style=" width:50%"><a href="javascript:void(0)">最新问题</a></li>
+      <div class="clear"></div>
+    </ul>
+    
+    <div class="gedai_xq_one_title_boxs" style="display:block">
+        <foreach name="wd_list" item="vo" key="k">
+            <div class="wenda_list">
+                <a href="{:U('Iphone/News/wendadot/classid/'.$classid.'/id/'.$vo['id'])}">
+                    <h4>{$vo.title}</h4>
+                    <h5><span>{$vo.reply}</span>个回答</h5>
+                </a>
+            </div>
+        </foreach>
+    </div>
+    
+    <div class="gedai_xq_one_title_boxs" >
+        <foreach name="wd_list1" item="vo" key="k">
+            <div class="wenda_list">
+                <a href="{:U('Iphone/News/wendadot/classid/'.$classid.'/id/'.$vo['id'])}">
+                    <h4>{$vo.title}</h4>
+                    <h5><span>{$vo.reply}</span>个回答</h5>
+                </a>
+            </div>
+        </foreach>
+    </div>
+    
+    
+    <a href="{:U('Iphone/News/tiwen/classid/'.$classid)}" class="question-btn">
+        <img src="__IMAGES__/tiwen.svg" alt="">
+        <span>提问</span>
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+<!--foot-->
+<include file="Public:footer"/>
+<!--foot-->
+
+
+
+</body>
+<script>
+		
+$(document).ready(function (){
+
+$(".gedai_xq_one_title li").click(function(){
+		var index = $(this).index();
+		$(".gedai_xq_one_title_boxs").hide();
+		$(".gedai_xq_one_title_boxs").eq(index).show();
+		})
+
+
+ $(".gedai_xq_one_title li").click(function() {
+    $(this).addClass("active").siblings().removeClass("active");
+   })
+ $(".wenda_fl_box ul li").click(function() {
+    $(this).addClass("activez").siblings().removeClass("activez");
+   })
+})
+
+</script>
+</html>

@@ -1,0 +1,426 @@
+<include file="Public:head"/>
+
+</head>
+
+<body>
+<include file="Public:header"/>
+
+<!--header-->
+
+
+<!--  / warpper  -->
+<div class="warpper">
+    <!--chedai_box1-->
+    <div class="wenda_box">
+        <div class="index_container">
+            <div class="creditlist1_top">
+                <div class="creditlist1_top_cot">
+                当前位置：
+                <a href="index.html">洛凡</a> &gt;
+                <a href="javascript:void(0)">信用卡问答</a>
+                </div>
+            </div>
+            <!--sec1-->
+            <div class="wenda1_box">
+                <input type="text" class="wd1_input" placeholder="请输入你要搜索的关键字" onblur="this.placeholder='请输入你要搜索的关键字'" onfocus="this.placeholder=''"/>
+                <input type="button" class="wd1_sousuo" value="搜索答案"/>
+                <input type="button" class="wd1_tiwen" value="我要提问"/>
+                <div class="wd1_num_info">
+                    <h3><span>{$answer}</span>个问题被回答</h3>
+                    <h3><span>{$help}</span>人得到帮助</h3>
+                </div>
+                <div class="wd1_remen_wd">
+                    热搜：<a href="#">中信银行</a><a href="#">招商银行</a><a href="#">交通银行</a><a href="#">分期</a><a href="#">申卡额度</a><a href="#">申请资质</a><a href="#">安全用卡</a><a href="#">提额</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!--sec1-->
+            <!--提问-->
+            <script>
+                $('.wd1_sousuo').click(function(){
+                    var contentt = $('.wd1_input').val();
+                    if(!content){
+                        alert('请输入搜索内容！');return false;
+                    }
+                })
+                $('.wd1_tiwen').click(function(){
+                    var title = $('.wd1_input').val();
+                    if(!title){
+                        alert('请输入提问内容！');return false;
+                    }
+                    $.ajax({
+                        url:"{:U('Credit/addProblem')}",
+                        data:{title:title},
+                        dataType:'json',
+                        type:'post',
+                        success:function(data){
+                            if(data.status){
+                                alert(data.info);
+                                window.location.href = "{:U('Credit/answer')}";
+                            }else{
+                                alert(data.info);
+                            }
+                        }
+                    })
+                })
+            </script>
+
+            <!--sec2-->
+            <div class="wenda2_box">
+                <!--sec2_left-->
+                <empty name="res['id']">
+                    <div class="wenda2_left">
+                        <ul id="content_problem">
+                            <foreach name="problem" item="val" key="num">
+                            <if condition="$num lt 6">
+                                <li>
+                                    <img src="__IMAGES__/touxiang1.jpg" class="wd2_tx" alt=""/>
+                                    <div class="wd2_info">
+                                    	<a href="{:U('Credit/answer',array('id'=>$val['id']))}">
+                                        <h3>{$val.title}</h3>
+                                        </a>
+                                        <div class="wd2_numinfo">
+                                            <span>{$val.username}<img src="__IMAGES__/dengji_v.png" class="dengji_v" alt=""><div class="ts_dengjinum">0</div></span><span>{$val.add_time}</span><span>小米动态</span><span>-来自PC</span><span>-置顶</span>
+                                        </div>
+                                    </div>
+                                    <div class="wd2_l_dianzan">
+                                        <i class="fa fa-eye yh_dz"></i><span>{$val.browse}</span>
+                                        <i class="fa fa-comments yh_ck "></i><span>{$val.reply}</span>
+                                    </div>
+                                    <div class="clear"></div>
+                                </li>
+                            </if>
+                            </foreach>
+                        </ul>
+                    </div>
+                <else/>
+                    <div class="wenda2dot_left">
+                        <div class="wddot_problem">
+                            <img src="__IMAGES__/wenhao.png" class="wenhao" alt=""/>
+                            <span class="wenti">{$res['title']}</span>
+                        </div>
+                        <div class="hdren ts_hdren">
+                            <span class="huida_ren">{$res['username']}</span>
+                            <span>{$res.add_time|date='Y-m-d',###}</span>
+                            <span>浏览：{$res.browse}</span>
+                            <div class="fenxiang">
+                                <span class="fenxiang1"></span>
+                                <span class="fenxiang2"></span>
+                                <span class="fenxiang3"></span>
+                                <span class="fenxiang4"></span>
+                                <span class="fenxiang5"></span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <empty name="answerContent">
+                        <div class="huida_box">
+                        <h5>暂无回答,帮他一下吧！</h5>
+                        </div>
+                    <else/>
+                        <foreach name="answerContent" item="v">
+                            <div class="huida_box">
+                                <img src="__IMAGES__/huida.png" class="huida" alt=""/>
+                                <div class="huida_main">
+                                    <h3>{$v['content']}</h3>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="hdren">
+                                    <span class="huida_ren">热心网友</span>
+                                    <span>{$v['add_time']}</span>
+                                </div>
+                            </div>
+                        </foreach>
+                    </empty>
+                </div>
+                <div class="tw_hd">
+                    <textarea class="myhuida" placeholder="我来帮助他" onblur="this.placeholder='我来帮助他'" onfocus="this.placeholder=''"></textarea>
+                    <input type="button" class="mytijiao" value="提交"/>
+                    <a href="#" class="myttiwen">我要提问</a>
+                </div>
+                <script>
+                    $('.myttiwen').click(function(){
+                        var title = $('.myhuida').val();
+                        if(!title){
+                            alert('请输入提问内容！');return false;
+                        }
+                        $.ajax({
+                            url:"{:U('Credit/addProblem')}",
+                            data:{title:title},
+                            dataType:'json',
+                            type:'post',
+                            success:function(data){
+                                if(data.status){
+                                    alert(data.info);
+                                    window.location.href = "{:U('Credit/answer')}";
+                                }else{
+                                    alert(data.info);
+                                }
+                            }
+                        })
+                    })
+                    $('.mytijiao').click(function(){
+                        var content = $('.myhuida').val();
+                        if(!content){
+                            alert('您还没输入解答内容！');
+                        }
+                        var pid = "{$res['id']}";
+                        $.ajax({
+                            url:"{:U('Credit/addAnswer')}",
+                            data:{
+                                id:pid,
+                                content:content,
+                            },
+                            dataType:'json',
+                            type:'post',
+                            success:function(data){
+                                if(data.status){
+                                    window.location.href = "{:U('Credit/answer',array('id'=>$res['id']))}";
+                                }else{
+                                    alert(data.info);
+                                }
+                            }
+                        })
+                    })
+                </script>       
+                </empty>
+                <!--sec2_left-->
+
+                <!--sec2_right-->
+                <div class="wenda2_right">
+                    <div class="wd2_right_bom">
+                        <div class="wd2_right_tit">推荐阅读</div>
+                        <div class="wd2_r_imgbox">
+                            <div class="row">
+                                <div class="wd2_r_img">
+                                    <img src="__IMAGES__/wd2_r1.jpg" width="100%" alt=""/>
+                                    <h3>煤球攻 -- 学习煤球新姿势…</h3>
+                                </div>
+                                <div class="wd2_r_img">
+                                    <img src="__IMAGES__/wd2_r2.jpg" width="100%" alt=""/>
+                                    <h3>魅族社区手机客户端意见反馈征集…</h3>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                        </div>
+                        <div class="wd2_r_list">
+                            <ul>
+                                <li><a href="newsdot.html">【交行】白金卡刷6笔 首年免年费</a></li>
+                                <li><a href="newsdot.html">【农业】乐游天下——留学生活“惠”计划，农行银联卡献“四重礼”</a></li>
+                                <li><a href="newsdot.html">【包商】包商银行 精英计划</a></li>
+                                <li><a href="newsdot.html">【交行】白金卡刷6笔 首年免年费</a></li>
+                                <li><a href="newsdot.html">【农业】乐游天下——留学生活“惠”计划，农行银联卡献“四重礼”</a></li>
+                                <li><a href="newsdot.html">【农业】乐游天下——留学生活“惠”计划，农行银联卡献“四重礼”</a></li>
+                                <li><a href="newsdot.html">【农业】乐游天下——留学生活“惠”计划，农行银联卡献“四重礼”</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--sec2_right-->
+                <div class="clear"></div>
+            </div>
+            <!--sec2-->
+
+
+            <!--sec3-->
+            <div class="wenda3_box">
+                <div class="wd3_left">
+                    <div class="wd3_tab_btnbox">
+                        <ul>
+                            <li class="active wenda3_first" onclick="fnTabBoxFade(this,3,1)"><a href="javascript:void(0);">全部问题</a></li>
+                            <li onclick="fnTabBoxFade(this,3,2)"><a href="javascript:void(0);">待解决</a></li>
+                            <li onclick="fnTabBoxFade(this,3,3)"><a href="javascript:void(0);">已解决</a></li>
+                        </ul>
+                    </div>
+                    <div class="wenda3_bottom">
+                    	<div class="wenda3_bottom1">
+                            <div class="wenda3_cot TabHide3" id="TabShow1">
+                                <ul>
+                                    <foreach name="problem" item="val">
+                                    <li><a href="{:U('Credit/answer',array('id'=>$val['id']))}"><i class="fa fa-angle-right"></i>{$val.title}</a><div class="gonglue3_r">{$val.reply}回答  <span>{$val.stamptime|date='Y-m-d',###}</span></div><div class="clear"></div></li>
+                                   </foreach>
+                                </ul>
+                            </div>
+                            <div class="wenda3_cot TabHide3" id="TabShow2" style="display:none;">
+                                <ul>
+                                    <foreach name="problem" item="val">
+                                        <empty name="val['reply']" value="">
+                                        <li><a href="{:U('Credit/answer',array('id'=>$val['id']))}"><i class="fa fa-angle-right"></i> {$val.title}</a><div class="gonglue3_r">{$val.reply}回答  <span>{$val.stamptime|date="Y-m-d",###}</span></div><div class="clear"></div></li>
+                                        </empty>
+                                    </foreach>
+                                </ul>
+                            </div>
+                            <div class="wenda3_cot TabHide3" id="TabShow3" style="display:none;">
+                                <ul>
+                                    <foreach name="problem" item="val">
+                                    <gt name="val['reply']" value="0">
+                                        <li><a href="{:U('Credit/answer',array('id'=>$val['id']))}"><i class="fa fa-angle-right"></i> {$val.title}</a><div class="gonglue3_r">{$val.reply}回答  <span>{$val.stamptime|date='Y-m-d',###}</span></div><div class="clear"></div></li>
+                                    </gt>
+                                    </foreach>
+                                </ul>
+                            </div>
+                            <div class="wenda3_page">
+                            	<div class="wenda3_pagination">
+                                	<a href="javascript:void(0);" class="wenda3_prev">←</a>
+                                    <div class="pagination_ym">
+                                    <a href="#" class="active">1</a>
+                                    <a href="#" >2</a>
+                                    <a href="#" >3</a>
+                                    <a href="#" >4</a>
+                                    </div>
+                                	<a href="javascript:void(0);" class="wenda3_next">→</a>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="searchPage">
+                                  <span class="page-sum">共<strong class="allPage">4</strong>页</span>
+                                  <span class="page-go">跳转<input type="text">页</span>
+                                  <a href="javascript:void(0);" class="page-btn">GO</a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="wenda3_bottom2">
+                        	<a href="#">
+                            	<img src="__IMAGES__/wenda3.gif" />
+                            </a>
+                        </div>
+                        <div class="wenda3_bottom3">
+                        	<div class="wenda3_list wenda3_list1">
+                            	<div class="wenda3_tit">
+                                	<h4>热门问题</h4>
+                                </div>
+                                <div class="wenda3_tit_cot">
+                                	<ul>
+                                        <foreach name="hot" item="v">
+                                    	   <li><a href="newsdot.html"><i class="fa fa-angle-right"></i>{$v.title}</a></li>
+                                        </foreach>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="wenda3_list">
+                            	<div class="wenda3_tit">
+                                	<h4>热门资讯</h4>
+                                </div>
+                                <div class="wenda3_tit_cot">
+                                	<ul>
+                                    	<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 招商信用卡分期怎么算？</a></li>
+                                    	<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 中信信用卡贷款怎么贷？</a></li>
+                                    	<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 贷贷平安怎么申请条件？</a></li>
+                                    	<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 招商信用卡可以取现吗？</a></li>
+                                    	<li><a href="newsdot.html"><i class="fa fa-angle-right"></i> 招商信用卡分期怎么算？</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="wd3_right">
+                    <div style="margin-bottom: 20px">
+                        <img src="__IMAGES__/wd3_r_img.jpg" width="100%" alt=""/>
+                    </div>
+                    <div class="wd3_right_bom">
+                        <div class="wd3_right_tit">新户办卡有礼活动</div>
+                        <div class="wd3_r_list">
+                            <ul>
+                                <li><a href="newsdot.html"><span class="ts_wd3_r_ind">1</span>【交行】白金卡刷6笔 首年免年费</a></li>
+                                <li><a href="newsdot.html"><span class="ts_wd3_r_ind">2</span>【农业】乐游天下——留学生活“惠”计划，农行银联卡献“四重礼”</a></li>
+                                <li><a href="newsdot.html"><span class="ts_wd3_r_ind">3</span>【包商】包商银行 精英计划</a></li>
+                                <li><a href="newsdot.html"><span>4</span>【交行】白金卡刷6笔 首年免年费</a></li>
+                                <li><a href="newsdot.html"><span>5</span>【农业】乐游天下——留学生活“惠”计划，农行银联卡献“四重礼”</a></li>
+                                <li><a href="newsdot.html"><span>6</span>【包商】包商银行 精英计划</a></li>
+                                <li><a href="newsdot.html"><span>7</span>【交行】白金卡刷6笔 首年免年费</a></li>
+                                <li><a href="newsdot.html"><span>8</span>【农业】乐游天下——留学生活“惠”计划，农行银联卡献“四重礼”</a></li>
+                                <li><a href="newsdot.html"><span>9</span>【包商】包商银行 精英计划</a></li>
+                                <li style="border: none;"><a href="newsdot.html"><span>10</span>【交行】白金卡刷6笔 首年免年费</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!--sec3-->
+
+        </div>
+    </div>
+    <!--chedai_box1-->
+
+</div>
+<!--  / warpper  -->
+
+<!-- right_nav -->
+<include file="Public:right_nav"/>
+<!-- right_nav -->
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<script>
+//    var mySwiper1 = new Swiper('.swiper1',{
+//        loop:true,
+//        grabCursor: true,
+//        autoplay:5000,
+//        spaceBetween: 0,
+//        slidesPerGroup : 1,//设置几个一切换
+//        slidesPerView : 3,//一行几个
+//        paginationClickable: true,
+//        autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+//    });
+//    $('.arrow-left1').on('click', function(e){
+//        e.preventDefault();
+//        mySwiper1.swipePrev();
+//    });
+//
+//    $('.arrow-right1').on('click', function(e){
+//        e.preventDefault();
+//        mySwiper1.swipeNext();
+//    });
+
+
+
+</script>
+
+<script>
+
+
+
+    $(document).ready(function(){
+        $(window).load(function(){
+
+        });
+        $(window).resize(function(){
+
+        });
+
+
+    });
+
+
+    $(window).scroll(function(){
+        var scrollT=$(window).scrollTop();
+        if(scrollT>100&&scrollT<$('.footer').offset().top-$(window).height()){
+            $('.right_nav').css('display','block');
+        }else{
+            $('.right_nav').css('display','none');
+        }
+
+    })
+
+	$('.pagination_ym a').click(function(){
+		$(this).addClass('active');
+		$(this).siblings().removeClass('active');
+	})
+</script>
+<script>
+    function fnTabBoxFade(Focus,Hide,Show){
+        $(Focus).siblings().removeClass("active");
+        $(Focus).addClass("active");
+        $(".TabHide"+Hide).hide();
+        $("#TabShow"+Show).fadeIn("fast");
+    };
+</script>
+
+</html>

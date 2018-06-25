@@ -1,0 +1,76 @@
+  <include file="Public:head"/>
+
+<style>
+.activez a{ color:#fff !important; background:#ff7c0b}
+</style>
+
+<body>
+
+
+<!--head -->
+<div class="head_box" style=" background:#fe9a3a">
+<div class="head_box_left">
+<a class="houtui" href="javascript:history.back(-1)"><i class="fa fa-angle-left" ></i></a>
+<a href="index.html" class="shouye">首页</a>
+<div class="clear"></div>
+</div>
+<div class="head_box_right">
+<div class="head_box_right_l" style="width:100px"><a href="xiaodaizc.html">小贷公司注册</a></div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+<!--head --> 
+
+
+
+
+<div class="warpper_box">
+<div class="xdshow">
+<div class="xdshow_l">
+最近一个月获得贷款人数
+<h3>1024人</h3>
+</div>
+<div class="xdshow_r">
+最近一个月放款金额
+<h3>2048万元</h3>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="xdtxt">
+<h3 class="xdtxt_title">最新贷款申请</h3>
+<ul>
+<li><a href="javascript:void(0)">个贷</a></li>
+<li><a href="javascript:void(0)">房贷资讯</a></li>
+<li><a href="javascript:void(0)">车贷资讯</a></li>
+<div class="clear"></div>
+</ul>
+</div>
+
+</div>
+
+
+
+
+
+
+
+<!--foot-->
+  <include file="Public:footer"/>
+<!--foot-->
+
+</body>
+<script>
+		
+
+$(document).ready(function (){
+				
+$(".xdtxt ul li").click(function() {
+    $(this).addClass("activez").siblings().removeClass("activez");
+});
+	
+})
+
+</script>
+</html>
